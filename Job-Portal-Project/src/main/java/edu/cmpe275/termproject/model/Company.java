@@ -1,10 +1,14 @@
 package edu.cmpe275.termproject.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 @Entity
 public class Company {
@@ -28,6 +32,17 @@ public class Company {
 	@Column(name="COMPANY_DESC", nullable=true)
 	private String description;
 
+	
+	public List<JobPosting> getJobPostingList() {
+		return jobPostingList;
+	}
+
+
+	public void setJobPostingList(List<JobPosting> jobPostingList) {
+		this.jobPostingList = jobPostingList;
+	}
+
+	private List<JobPosting> jobPostingList = new ArrayList<JobPosting>();
 	
 	public Company(){
 		//pass	
