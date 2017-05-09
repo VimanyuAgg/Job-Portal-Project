@@ -16,6 +16,17 @@ import javax.persistence.Table;
 @Table(name="JOB_POSTING")
 public class JobPosting {
 
+	public JobPosting(String jobDescription, String jobTitle, String jobResponsibilities, String jobLocation,
+			String jobSalary, Company jobPostedByCompany) {
+		super();
+		this.jobDescription = jobDescription;
+		this.jobTitle = jobTitle;
+		this.jobResponsibilities = jobResponsibilities;
+		this.jobLocation = jobLocation;
+		this.jobSalary = jobSalary;
+		this.jobPostedByCompany = jobPostedByCompany;
+	}
+
 	@Id
 	@Column(name="JOB_ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)	
