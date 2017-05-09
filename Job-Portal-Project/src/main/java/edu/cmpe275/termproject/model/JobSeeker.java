@@ -3,11 +3,14 @@ package edu.cmpe275.termproject.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-
-import edu.sjsu.cmpe275.model.CompanyJobPosts;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class JobSeeker {
@@ -38,13 +41,16 @@ public class JobSeeker {
 	@Column(name="SKILLS")
 	private String skills;
 	
-	private List< JobPosting > jobPostingList= new ArrayList<JobPosting>();
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
+	@JoinTable(
+			name="T_JobSeeker_JobPosting",
+			joinColumns={@JoinColumn(name="JSID", referencedColumnName="JSID")},
+			inverseJoinColumns={@JoinColumn(name="JOB_ID", referencedColumnName="JOB_ID")})
+	
+	private List<JobPosting> jobPostingList= new ArrayList<JobPosting>();
 
 	
-	
-	
-	
-	public JobSeeker()
+		public JobSeeker()
 	{}
 
 	public JobSeeker(long jsid, String firstName, String lastName, String selfIntroduction, String workExperience,

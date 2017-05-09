@@ -3,11 +3,13 @@ package edu.cmpe275.termproject.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -32,6 +34,8 @@ public class Company {
 	@Column(name="COMPANY_DESC", nullable=true)
 	private String description;
 
+	@OneToMany(mappedBy="jobPostedByCompany", cascade=CascadeType.ALL)
+	private List<JobPosting> jobPostingList = new ArrayList<JobPosting>();
 	
 	public List<JobPosting> getJobPostingList() {
 		return jobPostingList;
@@ -42,7 +46,7 @@ public class Company {
 		this.jobPostingList = jobPostingList;
 	}
 
-	private List<JobPosting> jobPostingList = new ArrayList<JobPosting>();
+	
 	
 	public Company(){
 		//pass	
@@ -51,7 +55,7 @@ public class Company {
 	
 	
 	public Company(long companyId, String companyName, String website, String logoUrl, String address,
-			String description) {
+			String description, List<JobPosting> jobPostingList) {
 		super();
 		this.companyId = companyId;
 		this.companyName = companyName;
@@ -59,6 +63,7 @@ public class Company {
 		this.logoUrl = logoUrl;
 		this.address = address;
 		this.description = description;
+		this.jobPostingList = jobPostingList;
 	}
 
 

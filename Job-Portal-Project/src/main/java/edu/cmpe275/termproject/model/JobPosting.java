@@ -1,10 +1,15 @@
 package edu.cmpe275.termproject.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class JobPosting {
@@ -29,8 +34,13 @@ public class JobPosting {
 	@Column(name="JOB_SAL")
 	private String jobSalary;
 
+	@ManyToOne
+	@JoinColumn(name="companyId")
+	private Company jobPostedByCompany;
+	
+	
 	public JobPosting(long jobId, String jobDescription, String jobTitle, String jobResponsibilities,
-			String jobLocation, String jobSalary) {
+			String jobLocation, String jobSalary, Company jobPostedByCompany) {
 		super();
 		this.jobId = jobId;
 		this.jobDescription = jobDescription;
@@ -38,6 +48,7 @@ public class JobPosting {
 		this.jobResponsibilities = jobResponsibilities;
 		this.jobLocation = jobLocation;
 		this.jobSalary = jobSalary;
+		this.jobPostedByCompany = jobPostedByCompany;
 	}
 
 	public JobPosting() {
