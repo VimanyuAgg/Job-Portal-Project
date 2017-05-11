@@ -22,13 +22,14 @@ public class CompanyService {
 	}
 	
 	//public ResponseEntity<?> addJobPosting(String)
-	public ResponseEntity<?> getCompany(int companyId){
+	public ResponseEntity<?> getCompany(long companyId){
 		Company company= companyDAO.findOne(companyId);
 		if(company!=null){
-			return new ResponseEntity<JSONObject>(new JSONObject(company),HttpStatus.OK);
+			return new ResponseEntity<String>(new JSONObject(company).toString(),HttpStatus.OK);
 		}
 		else{
-			return new ResponseEntity<JSONObject>(generateErrorMessage("Company Does not exist"),HttpStatus.NOT_FOUND);
+			System.out.println("I am in null");
+			return new ResponseEntity<String>(generateErrorMessage("Company Does not exist").toString(),HttpStatus.NOT_FOUND);
 		}
 	}
 

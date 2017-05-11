@@ -19,7 +19,6 @@ public class Company {
 	public Company(String companyName, String website, String logoUrl, String address,
 			String description) {
 		super();
-		this.companyId = companyId;
 		this.companyName = companyName;
 		this.website = website;
 		this.logoUrl = logoUrl;
@@ -48,7 +47,7 @@ public class Company {
 	private String description;
 
 	@OneToMany(mappedBy="jobPostedByCompany", cascade=CascadeType.ALL)
-	private List<JobPosting> jobPostingList = new ArrayList<JobPosting>();
+	private List<JobPosting> jobPostingList;
 	
 	public List<JobPosting> getJobPostingList() {
 		return jobPostingList;
