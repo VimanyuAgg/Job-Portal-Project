@@ -1,5 +1,9 @@
 package edu.cmpe275.termproject.dao;
 
-public class UserDAO {
+import org.springframework.data.repository.CrudRepository;
+
+import edu.cmpe275.termproject.model.User;
+
+public interface UserDAO extends CrudRepository<User,String> {
 
 }
