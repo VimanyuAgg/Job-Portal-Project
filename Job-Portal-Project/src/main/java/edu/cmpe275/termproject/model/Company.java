@@ -10,10 +10,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name="COMPANY")
 public class Company {
+	public Company(String companyName, String website, String logoUrl, String address,
+			String description) {
+		super();
+		this.companyId = companyId;
+		this.companyName = companyName;
+		this.website = website;
+		this.logoUrl = logoUrl;
+		this.address = address;
+		this.description = description;
+	}
+
 	@Id
 	@Column(name="COMPANY_ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -54,10 +67,9 @@ public class Company {
 	}
 	
 	
-	public Company(long companyId, String companyName, String website, String logoUrl, String address,
+	public Company(String companyName, String website, String logoUrl, String address,
 			String description, List<JobPosting> jobPostingList) {
 		super();
-		this.companyId = companyId;
 		this.companyName = companyName;
 		this.website = website;
 		this.logoUrl = logoUrl;
