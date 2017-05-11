@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import edu.cmpe275.termproject.model.Company;
 
-public interface CompanyDAO extends CrudRepository<Company, String>{
+public interface CompanyDAO extends CrudRepository<Company, Integer>{
 
 }

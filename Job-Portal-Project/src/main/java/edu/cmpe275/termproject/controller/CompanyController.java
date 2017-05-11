@@ -17,6 +17,10 @@ public class CompanyController {
 		Company company=new Company(name, website, logoImageUrl,address,description);
 		return companyService.addCompany(company);
 	}
+	@RequestMapping("/{companyId}")
+	public ResponseEntity<?> getCompany(@PathVariable int companyId){
+		return companyService.getCompany(companyId);
+	}
 	//@RequestMapping("/company/addjob/")
 	//public ResponseEntity<?> addJob(){
 		
