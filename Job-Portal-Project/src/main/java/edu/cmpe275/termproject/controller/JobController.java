@@ -45,14 +45,13 @@ public class JobController {
 
 	}*/
 	@RequestMapping(value="/company/{companyId}/addjob",method=RequestMethod.POST)
-	public String addJob(@PathVariable long companyId, HttpServletRequest request){
+	public String addJob(@PathVariable long companyId, HttpServletRequest request, ModelMap map){
 		Company company=companyService.getCompany(companyId);
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
 		String title=request.getParameter("title"), description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary");
 		JobPosting job=new JobPosting(title, description, responsibilites, offliceLocation, salary, company);
 		JobPosting jobAdded =jobSerivce.addJob(job);
-		ModelMap map =new ModelMap();
 		map.addAttribute("message", "Job has been posted!");
 		if(jobAdded!=null)
 			return "success";
