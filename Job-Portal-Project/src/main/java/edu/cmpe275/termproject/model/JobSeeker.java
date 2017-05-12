@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -19,6 +21,7 @@ public class JobSeeker {
 	
 	@Id
 	@Column(name="JSID")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long jsid;
 	
 	@Column(name="FIRST_NAME")
@@ -43,6 +46,15 @@ public class JobSeeker {
 	@Column(name="SKILLS")
 	private String skills;
 	
+	@Column(name="USER_NAME", unique=true)
+	private String username;
+	
+	@Column(name="EMAIL", unique=true)
+	private String email;
+	
+	@Column(name="PASSWORD")
+	private String password;
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
 	@JoinTable(
 			name="T_JobSeeker_JobPosting",
@@ -55,18 +67,64 @@ public class JobSeeker {
 		public JobSeeker()
 	{}
 
-	public JobSeeker(long jsid, String firstName, String lastName, String selfIntroduction, String workExperience,
-			String education, String skills, List< JobPosting > jobPostingList) {
-		super();
-		this.jsid = jsid;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.selfIntroduction = selfIntroduction;
-		this.workExperience = workExperience;
-		this.education = education;
-		this.skills = skills;
-		this.jobPostingList = jobPostingList;
-	}
+	
+	public JobSeeker(String firstName, String lastName, String picture, String selfIntroduction,
+				String workExperience, String education, String skills, String username, 
+				String email, String password) {
+			super();
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.picture = picture;
+			this.selfIntroduction = selfIntroduction;
+			this.workExperience = workExperience;
+			this.education = education;
+			this.skills = skills;
+			this.username = username;
+			this.email = email;
+			this.password = password;
+			
+		}
+
+
+	public String getPicture() {
+			return picture;
+		}
+
+
+		public void setPicture(String picture) {
+			this.picture = picture;
+		}
+
+
+		public String getUsername() {
+			return username;
+		}
+
+
+		public void setUsername(String username) {
+			this.username = username;
+		}
+
+
+		public String getEmail() {
+			return email;
+		}
+
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
+
+		public String getPassword() {
+			return password;
+		}
+
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+
 
 	public long getJsid() {
 		return jsid;
