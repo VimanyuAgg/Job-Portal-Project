@@ -67,6 +67,16 @@ public class CompanyService {
 		}
 		return resultList;
 	}
+
+	public boolean authenticateCompany(String email, String password) {
+		// TODO Auto-generated method stub
+		Company company=companyDAO.findByEmail(email);
+		if(company!=null){
+			if(company.getPassword().equals(password))
+				return true;
+		}
+		return false;
+	}
 }
 //	public String companyToJsonString(Company company){
 		

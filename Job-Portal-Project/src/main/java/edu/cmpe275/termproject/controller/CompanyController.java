@@ -27,12 +27,12 @@ import edu.cmpe275.termproject.service.CompanyService;
 public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
-	@RequestMapping(value="/company/register", method=RequestMethod.POST)
+	/*@RequestMapping(value="/company/register", method=RequestMethod.POST)
 	public ResponseEntity<?> addCompany(@RequestParam String name, @RequestParam String website, @RequestParam String logoImageUrl, @RequestParam String address, @RequestParam String description ){
 		System.out.println("I am here");
 		Company company=new Company(name, website, logoImageUrl,address,description);
 		return companyService.addCompany(company);
-	}
+	}*/
 	@RequestMapping(value="/companyRegistration", method=RequestMethod.GET)
 	public ModelAndView getCreateCompanyView(){
 		System.out.println("I am here");
@@ -42,10 +42,25 @@ public class CompanyController {
 	@RequestMapping(value="/companyRegistration", method=RequestMethod.POST)
 	public String createCompany( HttpServletRequest request){
 		System.out.println("I am in post");
-		String name=request.getParameter("name"), website=request.getParameter("website"), logoImageUrl=request.getParameter("logoImageUrl"), address=request.getParameter("address"), description=request.getParameter("description");
-		Company company=new Company(name, website, logoImageUrl, address, description);
+		String name=request.getParameter("name"), website=request.getParameter("website"), logoImageUrl=request.getParameter("logoImageUrl"),
+				address=request.getParameter("address"), description=request.getParameter("description"), email=request.getParameter("email"), password=request.getParameter("password");
+		Company company=new Company(name, website, logoImageUrl, address, description, email ,password);
 		companyService.addCompany(company);
 		return "redirect:/companyCreated.html";
+	}
+	@RequestMapping(value="/company/login", method=RequestMethod.GET)
+	public String getCompanyLoginPage(){
+		return "companylogin";
+	}
+	@RequestMapping(value="/company/login", method=RequestMethod.POST)
+	public String companyLogin(HttpServletRequest request){
+		String email=request.getParameter("email");
+		String password=request.getParameter("password");
+		System.out.println("emaillll::::"+email);
+		if(companyService.authenticateCompany(email, password))
+			return "welcome";
+		else
+			return "redirect:/error";
 	}
 	@RequestMapping("/company/{companyId}")
 	public ResponseEntity<?> getCompany(@PathVariable long companyId){

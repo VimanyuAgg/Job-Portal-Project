@@ -48,9 +48,13 @@
 <input type="text" name="address" />
 <p>description</p>
 <input type="text" name="description" />
+<p>email</p>
+<input type="text" name="email" />
+<p>Password</p>
+<input type="text" name="password" />
 <input type="submit"/>
 
 </form>
-<h1>HEYYYYYYYY</h1>
+<h1>Register please!</h1>
 </body>
 </html>

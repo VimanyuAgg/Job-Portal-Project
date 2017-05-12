@@ -17,12 +17,14 @@ import javax.persistence.Table;
 @Table(name="COMPANY")
 public class Company {
 	public Company(String companyName, String website, String logoUrl, String address,
-			String description) {
+			String description, String email, String password) {
 		super();
 		this.companyName = companyName;
 		this.website = website;
 		this.logoUrl = logoUrl;
 		this.address = address;
+		this.email=email;
+		this.password=password;
 		this.description = description;
 	}
 
@@ -49,6 +51,32 @@ public class Company {
 	@OneToMany(mappedBy="jobPostedByCompany", cascade=CascadeType.ALL)
 	private List<JobPosting> jobPostingList;
 	
+	@Column(name="EMAIL")
+	private String email;
+	
+	@Column(name="PASSWORD")
+	private String password;
+	
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 	public List<JobPosting> getJobPostingList() {
 		return jobPostingList;
 	}
