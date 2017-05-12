@@ -2,6 +2,7 @@ package edu.cmpe275.termproject.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.json.JSONException;
@@ -32,16 +33,18 @@ public class CompanyController {
 		Company company=new Company(name, website, logoImageUrl,address,description);
 		return companyService.addCompany(company);
 	}
-	@RequestMapping(value="/companyRegistration.html", method=RequestMethod.GET)
+	@RequestMapping(value="/companyRegistration", method=RequestMethod.GET)
 	public ModelAndView getCreateCompanyView(){
 		System.out.println("I am here");
 		int z=5;
 		return new ModelAndView("companyRegistration","CompanyRegistration", z);
 	}
-	@RequestMapping(value="/companyRegistration.html", method=RequestMethod.POST)
-	public String createCompany(@ModelAttribute("form") @Valid Company c, BindingResult result){
-		//return new ModelAndView("CompanyRegistration","form", new Company());
-		companyService.addCompany(c);
+	@RequestMapping(value="/companyRegistration", method=RequestMethod.POST)
+	public String createCompany( HttpServletRequest request){
+		System.out.println("I am in post");
+		String name=request.getParameter("name"), website=request.getParameter("website"), logoImageUrl=request.getParameter("logoImageUrl"), address=request.getParameter("address"), description=request.getParameter("description");
+		Company company=new Company(name, website, logoImageUrl, address, description);
+		companyService.addCompany(company);
 		return "redirect:/companyCreated.html";
 	}
 	@RequestMapping("/company/{companyId}")

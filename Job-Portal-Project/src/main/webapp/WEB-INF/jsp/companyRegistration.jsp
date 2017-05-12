@@ -36,6 +36,21 @@
         <input type="submit"/>
     </div>
 </form:form> -->
+
+<form method="POST" action="/companyRegistration">
+<p>Name</p>
+<input type="text" name="name" />
+<p>Website</p>
+<input type="text" name="website" />
+<p>logoImageUrl</p>
+<input type="text" name="logoImageUrl" />
+<p>address</p>
+<input type="text" name="address" />
+<p>description</p>
+<input type="text" name="description" />
+<input type="submit"/>
+
+</form>
 <h1>HEYYYYYYYY</h1>
 </body>
 </html>
