@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-WELCOME!!!
+Success!!!
+Welcome: ${email}
+    <c:out value="${email}"></c:out>
+
 </body>
 </html>

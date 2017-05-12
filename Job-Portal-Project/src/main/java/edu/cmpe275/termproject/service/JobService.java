@@ -9,9 +9,9 @@ import edu.cmpe275.termproject.model.JobPosting;
 @Service
 public class JobService {
 	@Autowired
-	JobPostingDAO jobPostingDAO;
+	JobPostingDAO jobPostingDao;
 	public JobPosting addJob(JobPosting job){
-		jobPostingDAO.save(job);
+		jobPostingDao.save(job);
 		return job;
 	}
 	

@@ -1,5 +1,7 @@
 package edu.cmpe275.termproject.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,14 @@ public class JobController {
 	@Autowired
 	CompanyService companyService;
 	@Autowired
+	HttpSession session;
+	@Autowired
 	JobService jobSerivce;
-	@RequestMapping(value="/{companyId}/addjob",method=RequestMethod.POST)
+	@RequestMapping(value="company/{companyId}/addjob",method=RequestMethod.GET)
+	public String getJobAddPage(){
+		return "postjob";
+	}
+/*	@RequestMapping(value="company/{companyId}/addjob",method=RequestMethod.POST)
 	public ResponseEntity<?> addJob(@PathVariable int companyId, @RequestParam String title,@RequestParam String description,@RequestParam String responsibilites, @RequestParam String offliceLocation, @RequestParam String salary ){
 		Company company=companyService.getCompany(companyId);
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
@@ -32,8 +40,12 @@ public class JobController {
 		else 
 			return (new ResponseEntity<String>(generateErrorMessage("Some error ocured").toString(),HttpStatus.NOT_FOUND));
 
+	}*/
+	@RequestMapping(value="company/{companyId}/addjob",method=RequestMethod.POST)
+	public void addJob(){
+		
 	}
-	private JSONObject generateErrorMessage(String message) {
+	/*private JSONObject generateErrorMessage(String message) {
 		// TODO Auto-generated method stub
 		JSONObject json= new JSONObject();
 		try {
@@ -43,5 +55,5 @@ public class JobController {
 			e.printStackTrace();
 		}		
 		return json;
-	}
+	}*/
 }

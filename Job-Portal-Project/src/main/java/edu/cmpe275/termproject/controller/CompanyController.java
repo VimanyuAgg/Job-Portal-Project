@@ -3,6 +3,7 @@ package edu.cmpe275.termproject.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.json.JSONException;
@@ -27,26 +28,27 @@ import edu.cmpe275.termproject.service.CompanyService;
 public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
+	@Autowired
+	HttpSession session;
 	/*@RequestMapping(value="/company/register", method=RequestMethod.POST)
 	public ResponseEntity<?> addCompany(@RequestParam String name, @RequestParam String website, @RequestParam String logoImageUrl, @RequestParam String address, @RequestParam String description ){
 		System.out.println("I am here");
 		Company company=new Company(name, website, logoImageUrl,address,description);
 		return companyService.addCompany(company);
 	}*/
-	@RequestMapping(value="/companyRegistration", method=RequestMethod.GET)
-	public ModelAndView getCreateCompanyView(){
+	@RequestMapping(value="/company/register", method=RequestMethod.GET)
+	public String getCreateCompanyView(){
 		System.out.println("I am here");
-		int z=5;
-		return new ModelAndView("companyRegistration","CompanyRegistration", z);
+		return "companyregistration";
 	}
-	@RequestMapping(value="/companyRegistration", method=RequestMethod.POST)
+	@RequestMapping(value="/company/register", method=RequestMethod.POST)
 	public String createCompany( HttpServletRequest request){
 		System.out.println("I am in post");
 		String name=request.getParameter("name"), website=request.getParameter("website"), logoImageUrl=request.getParameter("logoImageUrl"),
 				address=request.getParameter("address"), description=request.getParameter("description"), email=request.getParameter("email"), password=request.getParameter("password");
 		Company company=new Company(name, website, logoImageUrl, address, description, email ,password);
 		companyService.addCompany(company);
-		return "redirect:/companyCreated.html";
+		return "redirect:/companycreated";
 	}
 	@RequestMapping(value="/company/login", method=RequestMethod.GET)
 	public String getCompanyLoginPage(){
@@ -57,8 +59,10 @@ public class CompanyController {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		System.out.println("emaillll::::"+email);
-		if(companyService.authenticateCompany(email, password))
-			return "welcome";
+		if(companyService.authenticateCompany(email, password)){
+			session.setAttribute("email", email);
+			return "success";
+			}
 		else
 			return "redirect:/error";
 	}

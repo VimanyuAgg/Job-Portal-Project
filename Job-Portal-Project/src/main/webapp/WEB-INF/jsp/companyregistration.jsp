@@ -37,7 +37,7 @@
     </div>
 </form:form> -->
 
-<form method="POST" action="/companyRegistration">
+<form method="POST" action="/company/register">
 <p>Name</p>
 <input type="text" name="name" />
 <p>Website</p>

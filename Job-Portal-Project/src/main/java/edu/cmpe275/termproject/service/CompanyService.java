@@ -18,16 +18,16 @@ import edu.cmpe275.termproject.model.JobPosting;
 @Service
 public class CompanyService {
 	@Autowired
-	private CompanyDAO companyDAO;
+	private CompanyDAO companyDao;
 	public ResponseEntity<?> addCompany(Company company) {
 		// TODO Auto-generated method stub
-		companyDAO.save(company);
+		companyDao.save(company);
 		return null;
 	}
 	
 	//public ResponseEntity<?> addJobPosting(String)
 	public Company getCompany(long companyId){
-		Company company= companyDAO.findOne(companyId);
+		Company company= companyDao.findOne(companyId);
 		if(company!=null){
 			//return new ResponseEntity<String>(new JSONObject(company).toString(),HttpStatus.OK);
 			return company;
@@ -39,7 +39,7 @@ public class CompanyService {
 		}
 	}
 
-	private JSONObject generateErrorMessage(String message) {
+	/*private JSONObject generateErrorMessage(String message) {
 		// TODO Auto-generated method stub
 		JSONObject json= new JSONObject();
 		try {
@@ -49,7 +49,7 @@ public class CompanyService {
 			e.printStackTrace();
 		}		
 		return json;
-	}
+	}*/
 
 	public List<JobPosting> getAllPositions(long companyId, String status) {
 		// TODO Auto-generated method stub
@@ -70,7 +70,7 @@ public class CompanyService {
 
 	public boolean authenticateCompany(String email, String password) {
 		// TODO Auto-generated method stub
-		Company company=companyDAO.findByEmail(email);
+		Company company=companyDao.findByEmail(email);
 		if(company!=null){
 			if(company.getPassword().equals(password))
 				return true;
