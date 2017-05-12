@@ -45,7 +45,14 @@ public class JobSeekerController {
 		
 		jobSeekerService.addJobSeeker(jobSeeker);
 		System.out.println("Jobseeker "+firstName+ "saved to DB");
-		return "redirect:/jobseeker-created";
+		return "redirect:/jobseeker/created";
 		
 	}
+	
+	@RequestMapping(value="/jobseeker/created", method=RequestMethod.GET)
+	public String jobSeekerCreated(){
+		return "jobseeker-created";
+		
+	}
+	
 }
