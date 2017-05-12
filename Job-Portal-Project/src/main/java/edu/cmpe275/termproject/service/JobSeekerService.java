@@ -18,4 +18,9 @@ public class JobSeekerService {
 		jobSeekerDAO.save(jobSeeker);
 		
 	}
+	
+	//GET-ALL
+	public void getAllUsers(){
+		jobSeekerDAO.findAll();
+	}
 }
