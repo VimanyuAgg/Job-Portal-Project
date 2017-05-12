@@ -51,7 +51,7 @@ public class Company {
 	@OneToMany(mappedBy="jobPostedByCompany", cascade=CascadeType.ALL)
 	private List<JobPosting> jobPostingList;
 	
-	@Column(name="EMAIL")
+	@Column(name="EMAIL", unique=true)
 	private String email;
 	
 	@Column(name="PASSWORD")
