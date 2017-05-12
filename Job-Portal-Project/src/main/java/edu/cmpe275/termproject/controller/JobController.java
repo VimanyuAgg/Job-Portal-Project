@@ -1,5 +1,6 @@
 package edu.cmpe275.termproject.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONException;
@@ -7,6 +8,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +20,7 @@ import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobService;
-@RestController
+@Controller
 public class JobController {
 	@Autowired
 	CompanyService companyService;
@@ -25,7 +28,7 @@ public class JobController {
 	HttpSession session;
 	@Autowired
 	JobService jobSerivce;
-	@RequestMapping(value="company/{companyId}/addjob",method=RequestMethod.GET)
+	@RequestMapping(value="/company/{companyId}/addjob",method=RequestMethod.GET)
 	public String getJobAddPage(){
 		return "postjob";
 	}
@@ -41,9 +44,21 @@ public class JobController {
 			return (new ResponseEntity<String>(generateErrorMessage("Some error ocured").toString(),HttpStatus.NOT_FOUND));
 
 	}*/
-	@RequestMapping(value="company/{companyId}/addjob",method=RequestMethod.POST)
-	public void addJob(){
-		
+	@RequestMapping(value="/company/{companyId}/addjob",method=RequestMethod.POST)
+	public String addJob(@PathVariable long companyId, HttpServletRequest request){
+		Company company=companyService.getCompany(companyId);
+		System.out.println(company.getCompanyName()+" "+company.getDescription());
+		String title=request.getParameter("title"), description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
+				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary");
+		JobPosting job=new JobPosting(title, description, responsibilites, offliceLocation, salary, company);
+		JobPosting jobAdded =jobSerivce.addJob(job);
+		ModelMap map =new ModelMap();
+		map.addAttribute("message", "Job has been posted!");
+		if(jobAdded!=null)
+			return "success";
+		else 
+			return "error";
+
 	}
 	/*private JSONObject generateErrorMessage(String message) {
 		// TODO Auto-generated method stub

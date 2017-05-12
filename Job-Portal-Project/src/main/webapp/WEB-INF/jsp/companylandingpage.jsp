@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-Success!!!
 Welcome: ${email}
-    <c:out value="${email}"></c:out>
-<h1>${message}</h1>
+<form method="GET" action="/company/<%=session.getAttribute("companyId")%>/addjob">
+	<input type="submit" value="Post Job"/>
+</form>
 </body>
 </html>
