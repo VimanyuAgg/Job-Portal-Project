@@ -69,8 +69,8 @@ public class JobSeeker {
 
 	
 	public JobSeeker(String firstName, String lastName, String picture, String selfIntroduction,
-				String workExperience, String education, String skills, String username, String email, String password,
-				List<JobPosting> jobPostingList) {
+				String workExperience, String education, String skills, String username, 
+				String email, String password) {
 			super();
 			this.firstName = firstName;
 			this.lastName = lastName;
@@ -82,7 +82,7 @@ public class JobSeeker {
 			this.username = username;
 			this.email = email;
 			this.password = password;
-			this.jobPostingList = jobPostingList;
+			
 		}
 
 

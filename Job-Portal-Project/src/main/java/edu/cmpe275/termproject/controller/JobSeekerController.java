@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.cmpe275.termproject.model.Company;
+import edu.cmpe275.termproject.model.JobSeeker;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.UserService;
 
@@ -25,14 +26,21 @@ public class JobSeekerController {
 	
 	@RequestMapping(value="/jobseeker/register", method=RequestMethod.POST)
 	public String createJobSeeker(HttpServletRequest request){
-		String firstName=request.getParameter("firstName"), lastName=request.getParameter("lastName"), 
-				picture=request.getParameter("picture"),selfIntroduction=request.getParameter("selfIntroduction"), 
-				workExperience=request.getParameter("workExperience"), education=request.getParameter("education"), 
-			    skills=request.getParameter("skills"), password=request.getParameter("password"),
-			    username=request.getParameter("username"),email = request.getParameter("email");
-		JobSeeker jobSeeker=new JobSeeker(name, website, logoImageUrl, address, description, email ,password);
-		companyService.addCompany(company);
-		return "redirect:/companycreated";
+		String firstName=request.getParameter("firstName"), 
+				lastName=request.getParameter("lastName"), 
+				picture=request.getParameter("picture"),
+				selfIntroduction=request.getParameter("selfIntroduction"), 
+				workExperience=request.getParameter("workExperience"), 
+				education=request.getParameter("education"), 
+			    skills=request.getParameter("skills"), 
+			    password=request.getParameter("password"),
+			    username=request.getParameter("username"),
+			    email = request.getParameter("email");
+		
+		JobSeeker jobSeeker=new JobSeeker(firstName,lastName, picture, selfIntroduction,
+				workExperience, education, skills, username, email, password);
+
+return "redirect:/companycreated";
 		
 	}
 }
