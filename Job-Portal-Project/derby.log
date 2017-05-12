@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Fri May 12 02:36:31 PDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015b-fc04-48cc-0000051508a0 
-on database directory memory:/Users/ssjsparsh/Google Drive/275/FinalProject/Job-Portal-Project/Job-Portal-Project/testdb with class loader sun.misc.Launcher$AppClassLoader@4554617c 
-Loaded from file:/Users/ssjsparsh/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
+Fri May 12 15:23:13 PDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015b-fec2-3824-00000627c2c8 
+on database directory memory:C:\Users\Vyking\Documents\SJSU\Sem2\CMPE275\TermProject\Job-Portal-Project\Job-Portal-Project\Job-Portal-Project\testdb with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
+Loaded from file:/C:/Users/Vyking/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_101-b13
-user.dir=/Users/ssjsparsh/Google Drive/275/FinalProject/Job-Portal-Project/Job-Portal-Project
-os.name=Mac OS X
-os.arch=x86_64
-os.version=10.11.5
+java.runtime.version=1.8.0_111-b14
+user.dir=C:\Users\Vyking\Documents\SJSU\Sem2\CMPE275\TermProject\Job-Portal-Project\Job-Portal-Project\Job-Portal-Project
+os.name=Windows 8.1
+os.arch=amd64
+os.version=6.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

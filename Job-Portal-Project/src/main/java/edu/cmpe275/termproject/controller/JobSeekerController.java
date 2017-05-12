@@ -44,6 +44,7 @@ public class JobSeekerController {
 				workExperience, education, skills, username, email, password);
 		
 		jobSeekerService.addJobSeeker(jobSeeker);
+		System.out.println("Jobseeker "+firstName+ "saved to DB");
 		return "redirect:/jobseeker-created";
 		
 	}
