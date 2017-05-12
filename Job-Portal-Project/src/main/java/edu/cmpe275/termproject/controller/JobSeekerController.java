@@ -10,20 +10,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobSeeker;
 import edu.cmpe275.termproject.service.CompanyService;
+import edu.cmpe275.termproject.service.JobSeekerService;
 import edu.cmpe275.termproject.service.UserService;
 
 @Controller
 public class JobSeekerController {
 	
 	@Autowired
-	private UserService userService;
+	private JobSeekerService jobSeekerService;
 	
+	//REGISTRATION - GET
 	@RequestMapping(value="/jobseeker/register", method=RequestMethod.GET)
 	public String getJobSeekerView(){
 		return "jobseeker-registration";
 		
 	}
 	
+	//REGISTRATION - POST
 	@RequestMapping(value="/jobseeker/register", method=RequestMethod.POST)
 	public String createJobSeeker(HttpServletRequest request){
 		String firstName=request.getParameter("firstName"), 
@@ -39,8 +42,9 @@ public class JobSeekerController {
 		
 		JobSeeker jobSeeker=new JobSeeker(firstName,lastName, picture, selfIntroduction,
 				workExperience, education, skills, username, email, password);
-
-return "redirect:/companycreated";
+		
+		jobSeekerService.addJobSeeker(jobSeeker);
+		return "redirect:/jobseeker-created";
 		
 	}
 }
