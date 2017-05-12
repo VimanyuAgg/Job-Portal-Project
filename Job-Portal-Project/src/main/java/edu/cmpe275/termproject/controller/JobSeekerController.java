@@ -12,7 +12,7 @@ import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.UserService;
 
 @Controller
-public class UserController {
+public class JobSeekerController {
 	
 	@Autowired
 	private UserService userService;
