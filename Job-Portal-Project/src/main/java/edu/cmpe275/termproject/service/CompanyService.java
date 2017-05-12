@@ -1,6 +1,9 @@
 
 package edu.cmpe275.termproject.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import edu.cmpe275.termproject.dao.CompanyDAO;
 import edu.cmpe275.termproject.model.Company;
+import edu.cmpe275.termproject.model.JobPosting;
 
 @Service
 public class CompanyService {
@@ -45,6 +49,23 @@ public class CompanyService {
 			e.printStackTrace();
 		}		
 		return json;
+	}
+
+	public List<JobPosting> getAllPositions(long companyId, String status) {
+		// TODO Auto-generated method stub
+		//Company company = companyDAO.findByCompanyId();
+		Company company=null;
+		if(company==null)
+			return null;
+		List<JobPosting> jobs=company.getJobPostingList();
+		if(status==null)
+			return jobs;
+		List<JobPosting> resultList=new ArrayList<JobPosting>();
+		for(JobPosting job:jobs){
+			if(job.getJobStatus().equals(status))
+				resultList.add(job);
+		}
+		return resultList;
 	}
 }
 //	public String companyToJsonString(Company company){

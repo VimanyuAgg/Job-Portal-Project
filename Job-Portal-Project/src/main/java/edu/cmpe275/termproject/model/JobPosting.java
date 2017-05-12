@@ -50,6 +50,7 @@ public class JobPosting {
 	@ManyToOne
 	@JoinColumn(name="companyId")
 	private Company jobPostedByCompany;
+	private String jobStatus;
 	
 	
 	public JobPosting(long jobId, String jobDescription, String jobTitle, String jobResponsibilities,
@@ -62,6 +63,7 @@ public class JobPosting {
 		this.jobLocation = jobLocation;
 		this.jobSalary = jobSalary;
 		this.jobPostedByCompany = jobPostedByCompany;
+		setJobStatus("open");
 	}
 
 	public JobPosting() {
@@ -114,6 +116,14 @@ public class JobPosting {
 
 	public void setJobSalary(String jobSalary) {
 		this.jobSalary = jobSalary;
+	}
+
+	public String getJobStatus() {
+		return jobStatus;
+	}
+
+	public void setJobStatus(String jobStatus) {
+		this.jobStatus = jobStatus;
 	}
 	
 	
