@@ -48,7 +48,7 @@ public class CompanyController {
 				address=request.getParameter("address"), description=request.getParameter("description"), email=request.getParameter("email"), password=request.getParameter("password");
 		Company company=new Company(name, website, logoImageUrl, address, description, email ,password);
 		companyService.addCompany(company);
-		return "redirect:/companycreated";
+		return "redirect:/company/login";
 	}
 	@RequestMapping(value="/company/login", method=RequestMethod.GET)
 	public String getCompanyLoginPage(){
@@ -59,13 +59,21 @@ public class CompanyController {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		System.out.println("emaillll::::"+email);
-		if(companyService.authenticateCompany(email, password)){
+		long companyId=companyService.authenticateCompany(email, password);
+		if(companyService.authenticateCompany(email, password)!=-100){
 			session.setAttribute("email", email);
-			return "success";
+			session.setAttribute("companyId", companyId);
+			//session.setAttribute("companyId", companyId);
+			return "redirect:/company/"+companyId+"/welcome";
 			}
 		else
 			return "redirect:/error";
 	}
+	@RequestMapping("/company/{companyId}/welcome")
+	public String companyLandingPage(){
+		return "companylandingpage";
+	}
+	
 	@RequestMapping("/company/{companyId}")
 	public ResponseEntity<?> getCompany(@PathVariable long companyId){
 	//	return companyService.getCompany(companyId);
@@ -77,7 +85,6 @@ public class CompanyController {
 	}
 	@RequestMapping("/company/{companyId}/positions")
 	public ModelAndView getAllPositions(@PathVariable long companyId, @RequestParam String status){
-		
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
 		return new ModelAndView("positions", "positions", jobs);
 	}
@@ -96,8 +103,4 @@ public class CompanyController {
 		}		
 		return json;
 	}
-	//@RequestMapping("/company/addjob/")
-	//public ResponseEntity<?> addJob(){
-		
-//	}
 }

@@ -1,16 +1,9 @@
-
 package edu.cmpe275.termproject.service;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import edu.cmpe275.termproject.dao.CompanyDAO;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
@@ -68,17 +61,13 @@ public class CompanyService {
 		return resultList;
 	}
 
-	public boolean authenticateCompany(String email, String password) {
+	public long authenticateCompany(String email, String password) {
 		// TODO Auto-generated method stub
 		Company company=companyDao.findByEmail(email);
 		if(company!=null){
 			if(company.getPassword().equals(password))
-				return true;
+				return company.getCompanyId();
 		}
-		return false;
+		return -100;
 	}
 }
-//	public String companyToJsonString(Company company){
-		
-//	}
-
