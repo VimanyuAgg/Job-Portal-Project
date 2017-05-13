@@ -4,21 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.cmpe275.termproject.model.Company;
@@ -30,26 +22,31 @@ public class CompanyController {
 	private CompanyService companyService;
 	@Autowired
 	HttpSession session;
-	/*@RequestMapping(value="/company/register", method=RequestMethod.POST)
-	public ResponseEntity<?> addCompany(@RequestParam String name, @RequestParam String website, @RequestParam String logoImageUrl, @RequestParam String address, @RequestParam String description ){
-		System.out.println("I am here");
-		Company company=new Company(name, website, logoImageUrl,address,description);
-		return companyService.addCompany(company);
-	}*/
 	@RequestMapping(value="/company/register", method=RequestMethod.GET)
 	public String getCreateCompanyView(){
 		System.out.println("I am here");
 		return "companyregistration";
 	}
 	@RequestMapping(value="/company/register", method=RequestMethod.POST)
-	public String createCompany( HttpServletRequest request){
+	public String registerCompany( HttpServletRequest request, ModelMap map){
 		System.out.println("I am in post");
 		String name=request.getParameter("name"), website=request.getParameter("website"), logoImageUrl=request.getParameter("logoImageUrl"),
 				address=request.getParameter("address"), description=request.getParameter("description"), email=request.getParameter("email"), password=request.getParameter("password");
 		Company company=new Company(name, website, logoImageUrl, address, description, email ,password);
-		companyService.addCompany(company);
-		return "redirect:/company/login";
+		Company result=companyService.registerCompany(company);
+		if(result!=null){
+			return "redirect:/company/login";
+		}else{			
+			return "redirect:/company/register/error";
+		}
 	}
+	@RequestMapping(value="/company/register/error", method=RequestMethod.GET)
+	public String getCreateCompanyViewError(ModelMap map){
+		System.out.println("I am here");
+		map.addAttribute("errorMessage", "A company with the same email id already exists");
+		return "companyregistration";
+	}
+	
 	@RequestMapping(value="/company/login", method=RequestMethod.GET)
 	public String getCompanyLoginPage(){
 		return "companylogin";
@@ -73,16 +70,6 @@ public class CompanyController {
 	public String companyLandingPage(){
 		return "companylandingpage";
 	}
-	
-	@RequestMapping("/company/{companyId}")
-	public ResponseEntity<?> getCompany(@PathVariable long companyId){
-	//	return companyService.getCompany(companyId);
-		Company company=companyService.getCompany(companyId);
-		if(company!=null)
-			return new ResponseEntity<String>(new JSONObject(company).toString(),HttpStatus.OK);
-		else
-			return new ResponseEntity<String>(generateErrorMessage("Company Does not exist").toString(),HttpStatus.NOT_FOUND);
-	}
 	@RequestMapping("/company/{companyId}/positions")
 	public ModelAndView getAllPositions(@PathVariable long companyId, @RequestParam String status){
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
@@ -91,16 +78,5 @@ public class CompanyController {
 	@RequestMapping("/company/{companyId}/positions/{positionId}")
 	public void getPositionDetails(@PathVariable long companyId, @PathVariable long poisitionId){
 		
-	}
-	private JSONObject generateErrorMessage(String message) {
-		// TODO Auto-generated method stub
-		JSONObject json= new JSONObject();
-		try {
-			json.put("errorMesshage", message);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		return json;
 	}
 }

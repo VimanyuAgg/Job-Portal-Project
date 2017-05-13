@@ -57,8 +57,8 @@ public class JobController {
 			return "success";
 		else 
 			return "error";
-
 	}
+	
 	/*private JSONObject generateErrorMessage(String message) {
 		// TODO Auto-generated method stub
 		JSONObject json= new JSONObject();
