@@ -85,14 +85,15 @@ public class CompanyService {
 		
 		for(Company company : companies){
 			System.out.println("inside loop");
-			System.out.println("company name "+company.getCompanyName());
-			System.out.println("company name "+company.getAddress());
-			System.out.println("company name "+company.getCompanyId());
-			System.out.println("company name "+company.getDescription());
-			System.out.println("company name "+company.getEmail());
-			System.out.println("company name "+company.getLogoUrl());
-			System.out.println("company name "+company.getPassword());
-			System.out.println("company name "+company.getWebsite());
+			System.out.println("getCompanyName "+company.getCompanyName());
+			System.out.println("getAddress "+company.getAddress());
+			System.out.println("getCompanyId "+company.getCompanyId());
+			System.out.println("getDescription "+company.getDescription());
+			System.out.println("getEmail "+company.getEmail());
+			System.out.println("getLogoUrl "+company.getLogoUrl());
+			System.out.println("getPassword "+company.getPassword());
+			System.out.println("getWebsite "+company.getWebsite());
+			System.out.println("getCompanyId "+company.getCompanyId());
 		}
 		
 		return companies;

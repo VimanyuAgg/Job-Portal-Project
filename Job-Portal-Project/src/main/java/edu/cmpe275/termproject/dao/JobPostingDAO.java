@@ -9,9 +9,9 @@ import org.springframework.data.repository.query.Param;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
 
-public interface JobPostingDAO extends CrudRepository<JobPosting,Integer> {
+public interface JobPostingDAO extends CrudRepository<JobPosting, Long> {
 
-	@Query("SELECT j FROM JobPosting j WHERE LOWER(j.jobId) IN (:jobId)")
-    public List<JobPosting> findJobs(@Param("jobId") List<String> jobId);
+	@Query("SELECT j FROM JobPosting j WHERE j.jobId IN (:jobId)")
+    public List<JobPosting> findJobs(@Param("jobId") List<Long> jobId);
 
 }

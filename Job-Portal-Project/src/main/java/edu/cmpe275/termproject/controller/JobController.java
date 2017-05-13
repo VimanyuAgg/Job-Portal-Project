@@ -55,13 +55,15 @@ public class JobController {
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
 		
 		String title = request.getParameter("title"),
-				jobId = request.getParameter("jobId"),
 				description=request.getParameter("description"), 
 				responsibilites=request.getParameter("responsibilites"),
 				offliceLocation=request.getParameter("location"), 
 				salary=request.getParameter("salary");
 		
-		JobPosting job = new JobPosting(title, description, responsibilites, offliceLocation, salary, company,"MS");
+		//long jobId = Long.parseLong(request.getParameter("jobId"));
+		Long jobId = Long.parseLong(request.getParameter("jobId"));
+		
+		JobPosting job = new JobPosting(jobId, title, description, responsibilites, offliceLocation, salary, company,"MS");
 		JobPosting jobAdded = jobSerivce.addJob(job);
 		
 		map.addAttribute("message", "Job has been posted!");
@@ -88,8 +90,8 @@ public class JobController {
 	public String findPositions(HttpServletRequest request){
 		
 		System.out.println("inside findPositions()");
-		String jobId = "askl," + request.getParameter("jobId");
-		List<JobPosting> companies = jobSerivce.getPositions(jobId);
+		String jobId = "-1,"+request.getParameter("jobId");
+		List<JobPosting> positions = jobSerivce.getPositions(jobId);
 		
 		return null;
 	}

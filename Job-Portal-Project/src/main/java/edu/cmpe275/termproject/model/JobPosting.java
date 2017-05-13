@@ -19,9 +19,13 @@ import javax.persistence.Table;
 @Table(name="JOB_POSTING")
 public class JobPosting {
 
-	public JobPosting(String jobDescription, String jobTitle, String jobResponsibilities, String jobLocation,
-			String jobSalary, Company jobPostedByCompany, String eligibility) {
+	public JobPosting(Long jobId, String jobDescription, String jobTitle, 
+			String jobResponsibilities, String jobLocation,
+			String jobSalary, Company jobPostedByCompany, 
+			String eligibility) {
+		
 		super();
+		this.jobId = jobId;
 		this.jobDescription = jobDescription;
 		this.jobTitle = jobTitle;
 		this.jobResponsibilities = jobResponsibilities;
@@ -31,12 +35,11 @@ public class JobPosting {
 		this.setJobStatus("open");
 		this.eligibility=eligibility;
 		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-		
 	}
 
 	@Id
-	@Column(name="JOB_ID")
-	private long jobId;
+	@Column(name="JOB_ID", unique=true)
+	private Long jobId;
 	
 	@Column(name="JOB_DESC")
 	private String jobDescription;
@@ -56,17 +59,13 @@ public class JobPosting {
 	@ManyToOne
 	@JoinColumn(name="companyId")
 	private Company jobPostedByCompany;
+	
 	@Column(name="STATUS")
 	private String jobStatus;
+	
 	@Column(name="POSTED_ON")
 	private String postedOn;
-	public String getPostedOn() {
-		return postedOn;
-	}
-
-	public void setPostedOn(String postedOn) {
-		this.postedOn = postedOn;
-	}
+	
 
 	@Column(name="ELIGIBILITY")
 	private String eligibility;
@@ -84,6 +83,14 @@ public class JobPosting {
 //		this.jobPostedByCompany = jobPostedByCompany;
 //		setJobStatus("open");
 //	}
+	
+	public String getPostedOn() {
+		return postedOn;
+	}
+
+	public void setPostedOn(String postedOn) {
+		this.postedOn = postedOn;
+	}
 
 	public String getEligibility() {
 		return eligibility;
@@ -97,11 +104,11 @@ public class JobPosting {
 		super();
 	}
 
-	public long getJobId() {
+	public Long getJobId() {
 		return jobId;
 	}
 
-	public void setJobId(long jobId) {
+	public void setJobId(Long jobId) {
 		this.jobId = jobId;
 	}
 
