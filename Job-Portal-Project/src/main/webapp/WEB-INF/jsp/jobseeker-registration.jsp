@@ -78,9 +78,10 @@
         <input type="submit"/>
     </div>
 </form:form> -->
-<div class="container">
+<div class="container" style="background-color:#efefef">
+<div name="head" class="text-center"><h1>Registration</h1></div>
 <form method="POST" action="/jobseeker/register">
-<div class="form-group row">
+<div class="form-group row" style="margin-top:25px">
    <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
     <div class="col-sm-6">
     <input class="form-control" type="text" placeholder="Enter your first name" id="firstName" name="firstName">
@@ -95,7 +96,7 @@
 <div class="form-group row">
      <label for="picture"  class="col-sm-2 col-form-label">Upload picture</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="upload" name="upload">
+    <input id="input-1" type="file" class="file">
   </div>
 </div>
 
@@ -109,7 +110,7 @@
 <div class="form-group row">
      <label for="education"  class="col-sm-2 col-form-label">Highest Education</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="education" name="education">
+    <input class="form-control" type="text" id="education" placeholder="Enter highest education" name="education">
   </div>
 </div>
 
