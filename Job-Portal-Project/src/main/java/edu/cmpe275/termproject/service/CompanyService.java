@@ -12,10 +12,15 @@ import edu.cmpe275.termproject.model.JobPosting;
 public class CompanyService {
 	@Autowired
 	private CompanyDAO companyDao;
-	public ResponseEntity<?> addCompany(Company company) {
+	public Company registerCompany(Company company) {
 		// TODO Auto-generated method stub
-		companyDao.save(company);
-		return null;
+		Company existingCompany=companyDao.findByEmail(company.getEmail());
+		if(existingCompany==null){
+			companyDao.save(company);
+			return company;
+		}
+		else
+			return null;
 	}
 	
 	//public ResponseEntity<?> addJobPosting(String)
