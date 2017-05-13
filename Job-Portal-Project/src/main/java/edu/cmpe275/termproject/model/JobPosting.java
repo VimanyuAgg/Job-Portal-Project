@@ -1,6 +1,9 @@
 package edu.cmpe275.termproject.model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,7 +20,7 @@ import javax.persistence.Table;
 public class JobPosting {
 
 	public JobPosting(String jobDescription, String jobTitle, String jobResponsibilities, String jobLocation,
-			String jobSalary, Company jobPostedByCompany) {
+			String jobSalary, Company jobPostedByCompany, String eligibility) {
 		super();
 		this.jobDescription = jobDescription;
 		this.jobTitle = jobTitle;
@@ -25,6 +28,10 @@ public class JobPosting {
 		this.jobLocation = jobLocation;
 		this.jobSalary = jobSalary;
 		this.jobPostedByCompany = jobPostedByCompany;
+		this.setJobStatus("open");
+		this.eligibility=eligibility;
+		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+		
 	}
 
 	@Id
@@ -50,21 +57,26 @@ public class JobPosting {
 	@ManyToOne
 	@JoinColumn(name="companyId")
 	private Company jobPostedByCompany;
+	@Column(name="STATUS")
 	private String jobStatus;
+	@Column(name="POSTED_ON")
+	private String postedOn;
+	@Column(name="ELIGIBILITY")
+	private String eligibility;
 	
 	
-	public JobPosting(long jobId, String jobDescription, String jobTitle, String jobResponsibilities,
-			String jobLocation, String jobSalary, Company jobPostedByCompany) {
-		super();
-		this.jobId = jobId;
-		this.jobDescription = jobDescription;
-		this.jobTitle = jobTitle;
-		this.jobResponsibilities = jobResponsibilities;
-		this.jobLocation = jobLocation;
-		this.jobSalary = jobSalary;
-		this.jobPostedByCompany = jobPostedByCompany;
-		setJobStatus("open");
-	}
+//	public JobPosting(long jobId, String jobDescription, String jobTitle, String jobResponsibilities,
+//			String jobLocation, String jobSalary, Company jobPostedByCompany) {
+//		super();
+//		this.jobId = jobId;
+//		this.jobDescription = jobDescription;
+//		this.jobTitle = jobTitle;
+//		this.jobResponsibilities = jobResponsibilities;
+//		this.jobLocation = jobLocation;
+//		this.jobSalary = jobSalary;
+//		this.jobPostedByCompany = jobPostedByCompany;
+//		setJobStatus("open");
+//	}
 
 	public JobPosting() {
 		super();

@@ -48,7 +48,7 @@ public class JobSeekerController {
 			    email = request.getParameter("email");
 		
 		JobSeeker jobSeeker=new JobSeeker(firstName,lastName, picture, selfIntroduction,
-				workExperience, education, skills, username, email, password);
+				workExperience, education, skills, username, email, password, null);
 		
 		jobSeekerService.addJobSeeker(jobSeeker);
 		System.out.println("Jobseeker "+firstName+ " saved to DB");

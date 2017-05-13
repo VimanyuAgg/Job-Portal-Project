@@ -2,8 +2,9 @@ package edu.cmpe275.termproject.service;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import edu.cmpe275.termproject.dao.CompanyDAO;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
@@ -27,12 +28,10 @@ public class CompanyService {
 	public Company getCompany(long companyId){
 		Company company= companyDao.findOne(companyId);
 		if(company!=null){
-			//return new ResponseEntity<String>(new JSONObject(company).toString(),HttpStatus.OK);
 			return company;
 		}
 		else{
 			System.out.println("I am in null");
-			//return new ResponseEntity<String>(generateErrorMessage("Company Does not exist").toString(),HttpStatus.NOT_FOUND);
 			return null;
 		}
 	}
@@ -49,10 +48,9 @@ public class CompanyService {
 		return json;
 	}*/
 
-	public List<JobPosting> getAllPositions(long companyId, String status) {
+	public List<JobPosting> getAllPositions(long companyId,@RequestParam(value = "status", required=false) String status) {
 		// TODO Auto-generated method stub
-		//Company company = companyDAO.findByCompanyId();
-		Company company=null;
+		Company company = companyDao.findByCompanyId(companyId);
 		if(company==null)
 			return null;
 		List<JobPosting> jobs=company.getJobPostingList();

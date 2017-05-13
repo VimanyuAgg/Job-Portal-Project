@@ -8,5 +8,5 @@ import edu.cmpe275.termproject.model.Company;
 
 public interface CompanyDAO extends CrudRepository<Company, Long>{
 	Company findByEmail(String email);
-
+	Company findByCompanyId(long companyId);
 }
