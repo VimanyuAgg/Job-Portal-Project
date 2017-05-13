@@ -97,4 +97,14 @@ public class CompanyController {
 	            return "{\"message\": \"Error\"}";
 	        }
 	    }*/
+	
+	@RequestMapping(value="/company",method = RequestMethod.GET)
+	public String getCompanyByNames(HttpServletRequest request){
+		
+		System.out.println("inside getCompanyByName()");
+		String companyName = "askl," + request.getParameter("companyName");
+		List<Company> companies = companyService.getCompanyByName(companyName);
+		
+		return "postjob";
+	}
 }

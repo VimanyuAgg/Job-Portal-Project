@@ -1,5 +1,9 @@
 package edu.cmpe275.termproject.controller;
 
+import java.util.UUID;
+
+import javax.mail.Message;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.cmpe275.termproject.emailService.RegistrationEmail;
+import edu.cmpe275.termproject.emailService.WelcomeEmail;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobSeeker;
 import edu.cmpe275.termproject.service.CompanyService;
@@ -51,11 +57,46 @@ public class JobSeekerController {
 				workExperience, education, skills, username, email, password, null);
 		
 		jobSeekerService.addJobSeeker(jobSeeker);
+		
+        String authenticationCode_String = RegistrationEmail.generateAuthCode();
+        
+		RegistrationEmail.registrationEmailTrigger(email, authenticationCode_String);
 		System.out.println("Jobseeker "+firstName+ " saved to DB");
-		redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
-		return "redirect:/jobseeker/login";
+		jobSeekerService.setAuthCode(authenticationCode_String, username);
+		redirectAttribute.addFlashAttribute("username",username);
+		return "redirect:/jobseeker/authentication";
 		
 	}
+	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.GET)
+	private String codeAuthenticationGET(@ModelAttribute ("username") String username){
+		
+		return "code-authentication";
+	}
+	
+	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.POST)
+	private String codeAuthenticationPOST(HttpServletRequest request, RedirectAttributes redirectAttribute){
+		
+		String username = request.getParameter("username");
+		String passCode = request.getParameter("codeVerification");
+		boolean userExists = jobSeekerService.find(username);
+		System.out.println("User Name: "+username);
+		String authCode = jobSeekerService.getJobSeeker(username).getAuthenticationCode();
+		System.out.println("Email code: "+authCode);
+		System.out.println("User code: " +passCode);
+		if(userExists&& passCode.equals(authCode)){
+			redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
+			
+			WelcomeEmail.welcomeEmailTrigger(jobSeekerService.getJobSeeker(username).getEmail(), username);
+			//System.out.println("Jobseeker "+firstName+ " saved to DB");
+			return "redirect:/jobseeker/login";
+		}
+		else {
+			return "jobseeker/authentication";
+		}
+		
+		
+	}
+	
 	
 	//Removing jobseeker/created path
 	

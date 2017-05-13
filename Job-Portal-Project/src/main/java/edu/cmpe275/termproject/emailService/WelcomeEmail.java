@@ -1,9 +1,6 @@
 package edu.cmpe275.termproject.emailService;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Properties;
-import java.util.Random;
-import java.util.UUID;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -13,16 +10,9 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import edu.cmpe275.termproject.dao.JobSeekerDAO;
-
-
-public class RegistrationEmail {
+public class WelcomeEmail {
 	
-
-
-	public static void registrationEmailTrigger(String receiverMail, String authenticationCode){
+	public static void welcomeEmailTrigger(String receiverMail, String username){
 		String emailID = "testmyouth@gmail.com";
 		String emailPassword = "Testouth1@";		
 		
@@ -45,35 +35,14 @@ public class RegistrationEmail {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
             
             message.setSubject("Spring Onion almost there..");
-            message.setText("Your Authentication Code is "+authenticationCode+"\n\nCheers,\n" + "Team Spring-Onions");
+            message.setText("\nDear "+username+",\n\nWelcome to Spring Onions !\n"
+            		+ "\n\nCheers,\n" + "Team Spring-Onions");
             Transport.send(message);
             System.out.println("Your message is sent successfully to "+receiverMail);
         } catch (MessagingException e) { e.printStackTrace();}
 	}
+		
+		
+	
 
-	public static String generateAuthCode() {
-		// TODO Auto-generated method stub
-		System.out.println("Generating OTP using random() : ");
-        System.out.println("You OTP is : ");
-        int len = 6;
-        // Using numeric values
-        String numbers = "0123456789";
- 
-        System.out.println("Length of string is "+numbers.length());
-        // Using random method
-        Random rndm_method = new Random();
- 
-        char[] otp = new char[len];
- 
-        for (int i = 0; i < len; i++)
-        {
-            // Use of charAt() method : to get character value
-            // Use of nextInt() as it is scanning the value as int
-            otp[i] =
-             numbers.charAt(rndm_method.nextInt(numbers.length()));
-        }
-        System.out.println("OTP: "+String.valueOf(otp));
-        //System.out.println("OTP: "+otp.toString());
-        return String.valueOf(otp);
-	}
 }

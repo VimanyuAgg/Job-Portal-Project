@@ -1,5 +1,7 @@
 package edu.cmpe275.termproject.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -28,6 +30,7 @@ public class JobController {
 	HttpSession session;
 	@Autowired
 	JobService jobSerivce;
+	
 	@RequestMapping(value="/company/{companyId}/addjob",method=RequestMethod.GET)
 	public String getJobAddPage(){
 		return "postjob";
@@ -46,14 +49,33 @@ public class JobController {
 	}*/
 	@RequestMapping(value="/company/{companyId}/addjob",method=RequestMethod.POST)
 	public String addJob(@PathVariable long companyId, HttpServletRequest request, ModelMap map){
+		
 		Company company=companyService.getCompany(companyId);
+		
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
+<<<<<<< HEAD
 		String title=request.getParameter("title"), description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary");
 		Long jobId = Long.parseLong(request.getParameter("jobId"));
 		JobPosting job=new JobPosting(jobId,title, description, responsibilites, offliceLocation, salary, company,"MS");
 		JobPosting jobAdded =jobSerivce.addJob(job);
+=======
+		
+		String title = request.getParameter("title"),
+				description=request.getParameter("description"), 
+				responsibilites=request.getParameter("responsibilites"),
+				offliceLocation=request.getParameter("location"), 
+				salary=request.getParameter("salary");
+		
+		//long jobId = Long.parseLong(request.getParameter("jobId"));
+		Long jobId = Long.parseLong(request.getParameter("jobId"));
+		
+		JobPosting job = new JobPosting(jobId, title, description, responsibilites, offliceLocation, salary, company,"MS");
+		JobPosting jobAdded = jobSerivce.addJob(job);
+		
+>>>>>>> 59897ede07aa3eb740c246a8b6b2668cfbcdf685
 		map.addAttribute("message", "Job has been posted!");
+		
 		if(jobAdded!=null)
 			return "success";
 		else 
@@ -99,4 +121,14 @@ public class JobController {
 		}		
 		return json;
 	}*/
+	
+	@RequestMapping(value="/positions",method=RequestMethod.GET)
+	public String findPositions(HttpServletRequest request){
+		
+		System.out.println("inside findPositions()");
+		String jobId = "-1,"+request.getParameter("jobId");
+		List<JobPosting> positions = jobSerivce.getPositions(jobId);
+		
+		return null;
+	}
 }
