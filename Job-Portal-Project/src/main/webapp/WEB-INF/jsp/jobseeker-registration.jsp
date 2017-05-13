@@ -4,9 +4,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head> 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <title>Register</title>
 </head>
 <body>
@@ -73,43 +78,92 @@
         <input type="submit"/>
     </div>
 </form:form> -->
-<center>
+<div class="container">
 <form method="POST" action="/jobseeker/register">
 <div class="form-group row">
-    <label for="firstName">First Name:</label>
-    <div class="col-10">
+   <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+    <div class="col-sm-6">
     <input class="form-control" type="text" placeholder="Enter your first name" id="firstName" name="firstName">
   </div>
 </div>
 <div class="form-group row">
-    <label for="firstName">Last Name:</label>
-    <div class="col-10">
+    <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
+    <div class="col-sm-6">
     <input class="form-control" type="text" placeholder="Enter your last name" id="lastName" name="lastName">
   </div>
 </div>
-<p>Last Name</p>
-<input type="text" name="lastName" />
-<p>Upload Picture</p>
-<input type="text" name="picture" />
-<p>Introduction</p>
-<input type="text" name="selfIntroduction" />
-<p>Highest Education</p>
-<input type="text" name="education" />
-<p>Work Experience</p>
-<input type="text" name="workExperience" />
-<p>Comma Separated Skills</p>
-<input type="text" name="skills" />
-<p>Username</p>
-<input type="text" name="username" />
-<p>email</p>
-<input type="text" name="email" />
-<p>Password</p>
-<input type="password" name="password" />
-<p>Confirm Password</p>
-<input type="password" name="confirmPassword" />
-<input type="submit"/>
-<h1>Register Please !</h1>
+<div class="form-group row">
+     <label for="picture"  class="col-sm-2 col-form-label">Upload picture</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="text" id="upload" name="upload">
+  </div>
+</div>
+
+<div class="form-group row">
+     <label for="selfIntroduction"  class="col-sm-2 col-form-label">Introduction</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="text" id="selfIntroduction" name="selfIntroduction">
+  </div>
+</div>
+
+<div class="form-group row">
+     <label for="education"  class="col-sm-2 col-form-label">Highest Education</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="text" id="education" name="education">
+  </div>
+</div>
+
+<div class="form-group row">
+     <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="text" id="workExperience" name="workExperience">
+  </div>
+</div>
+
+<div class="form-group row">
+     <label for="skills"  class="col-sm-2 col-form-label">Comma Seperated Skills</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="text" id="skills" name="skills">
+  </div>
+</div>
+
+<div class="form-group row">
+     <label for="username"  class="col-sm-2 col-form-label">Username</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="text" id="username" name="username">
+  </div>
+</div>
+
+<div class="form-group row">
+     <label for="email"  class="col-sm-2 col-form-label">email</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="email" id="email" name="email">
+  </div>
+</div>
+
+<div class="form-group row">
+     <label for="password"  class="col-sm-2 col-form-label">password</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="password" id="password" name="password">
+  </div>
+</div>
+
+<div class="form-group row">
+     <label for="confirmPassword"  class="col-sm-2 col-form-label"> confirm password</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword">
+  </div>
+</div>
+
+<div class="form-group row">
+     <label for="submit"  class="col-sm-2 col-form-label">Submit</label>
+    <div class="col-sm-6">
+    <input class="form-control" type="submit" id="submit" name="submit">
+  </div>
+</div>
+
+
 </form>
-</center>
+</div>
 </body>
 </html>

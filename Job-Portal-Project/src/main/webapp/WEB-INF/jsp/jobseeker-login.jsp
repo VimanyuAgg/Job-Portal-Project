@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
+<h4>${username}</h4>
 <h1>Login Form</h1>
 <form method="POST" action="/jobseeker/login">
 <p>Username</p>
