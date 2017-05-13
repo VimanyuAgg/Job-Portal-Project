@@ -16,6 +16,9 @@
 
 </head>
 <body>
+<div class="jumbotron" style="background-color:white">
+
+</div>
 
 <div class="container" style="background-color:#efefef" style="padding-top:30cm">
 <div name="head" class="text-center"><h1>Almost there.. ${username}</h1></div>
