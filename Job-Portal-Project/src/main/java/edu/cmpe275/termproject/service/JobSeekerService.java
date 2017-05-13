@@ -28,7 +28,7 @@ public class JobSeekerService {
 		// TODO Auto-generated method stub
 		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
 		if(jobSeeker.getPassword().equals(password))
-			return username;
+		return username;
 		else
 			return "";
 	}
