@@ -50,7 +50,8 @@ public class JobController {
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
 		String title=request.getParameter("title"), description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary");
-		JobPosting job=new JobPosting(title, description, responsibilites, offliceLocation, salary, company,"MS");
+		Long jobId = Long.parseLong(request.getParameter("jobId"));
+		JobPosting job=new JobPosting(jobId,title, description, responsibilites, offliceLocation, salary, company,"MS");
 		JobPosting jobAdded =jobSerivce.addJob(job);
 		map.addAttribute("message", "Job has been posted!");
 		if(jobAdded!=null)
@@ -59,6 +60,34 @@ public class JobController {
 			return "error";
 	}
 	
+	@RequestMapping("/company/{companyId}/positions/{positionId}")
+	public String getPositionDetails(@PathVariable long companyId, @PathVariable long positionId, ModelMap map){
+		JobPosting job=jobSerivce.getJob(positionId);
+		map.addAttribute("job",job);
+		return "positiondetails";
+	}
+	@RequestMapping(value="/company/{companyId}/positions/{positionId}/edit", method=RequestMethod.GET)
+	public String editPositionDetailsGet(@PathVariable long companyId, @PathVariable long positionId, HttpServletRequest request, ModelMap map){
+		JobPosting job=jobSerivce.getJob(positionId);
+		map.addAttribute("job",job);
+		return "editpostion";
+	}
+	@RequestMapping(value="/company/{companyId}/positions/{positionId}/edit", method=RequestMethod.POST)
+	public String editPositionDetails(@PathVariable long companyId, @PathVariable long positionId, HttpServletRequest request, ModelMap map){
+	       String title=request.getParameter("title"), description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
+				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary"), status=request.getParameter("status");
+		Company company=companyService.getCompany(companyId);
+		JobPosting currentJob=jobSerivce.getJob(positionId);
+		//String title=currentJob.getJobTitle(), description=currentJob.getJobDescription(), responsibilites=currentJob.getJobResponsibilities(),
+		//		offliceLocation=currentJob.getJobLocation(), salary=currentJob.getJobSalary(), status=currentJob.getJobStatus();
+		jobSerivce.removeJob(currentJob);
+		System.out.println("Title:"+title);
+		JobPosting job=new JobPosting(positionId, title, description, responsibilites, offliceLocation, salary, company,"MS");
+		System.out.println("Description:"+job.getJobDescription());
+		jobSerivce.addJob(job);
+		map.addAttribute("job",job);
+		return "positiondetails";
+	}
 	/*private JSONObject generateErrorMessage(String message) {
 		// TODO Auto-generated method stub
 		JSONObject json= new JSONObject();

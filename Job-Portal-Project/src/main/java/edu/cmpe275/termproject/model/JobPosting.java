@@ -19,9 +19,10 @@ import javax.persistence.Table;
 @Table(name="JOB_POSTING")
 public class JobPosting {
 
-	public JobPosting(String jobDescription, String jobTitle, String jobResponsibilities, String jobLocation,
+	public JobPosting(long jobId,String jobDescription, String jobTitle, String jobResponsibilities, String jobLocation,
 			String jobSalary, Company jobPostedByCompany, String eligibility) {
 		super();
+		this.jobId=jobId;
 		this.jobDescription = jobDescription;
 		this.jobTitle = jobTitle;
 		this.jobResponsibilities = jobResponsibilities;
@@ -32,6 +33,30 @@ public class JobPosting {
 		this.eligibility=eligibility;
 		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 		
+	}
+
+	public Company getJobPostedByCompany() {
+		return jobPostedByCompany;
+	}
+
+	public void setJobPostedByCompany(Company jobPostedByCompany) {
+		this.jobPostedByCompany = jobPostedByCompany;
+	}
+
+	public String getPostedOn() {
+		return postedOn;
+	}
+
+	public void setPostedOn(String postedOn) {
+		this.postedOn = postedOn;
+	}
+
+	public String getEligibility() {
+		return eligibility;
+	}
+
+	public void setEligibility(String eligibility) {
+		this.eligibility = eligibility;
 	}
 
 	@Id

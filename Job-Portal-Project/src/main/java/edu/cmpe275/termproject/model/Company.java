@@ -16,6 +16,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name="COMPANY")
 public class Company {
+	public int getSize() {
+		return size;
+	}
+
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+
 	public Company(String companyName, String website, String logoUrl, String address,
 			String description, String email, String password, int size, List<JobPosting> jobPostingList) {
 		this.companyName = companyName;
