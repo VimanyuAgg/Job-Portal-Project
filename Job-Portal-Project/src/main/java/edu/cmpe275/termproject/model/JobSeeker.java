@@ -61,6 +61,9 @@ public class JobSeeker {
 	@Column(name="VER_STATUS", nullable=true)
 	private boolean isVerified = false;
 	
+	@Column(name="AUTH_CODE",nullable=true)
+	private String authenticationCode = "";
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
 	@JoinTable(
 			name="T_JobSeeker_JobPosting",
@@ -216,6 +219,17 @@ public class JobSeeker {
 
 	public void setJobPostingList(List<JobPosting> jobPostingList) {
 		this.jobPostingList = jobPostingList;
+	}
+
+
+	public void setAuthenticationCode(String authenticationCode_String) {
+		// TODO Auto-generated method stub
+		this.authenticationCode = authenticationCode_String;
+		
+	}
+	
+	public String getAuthenticationCode(){
+		return this.authenticationCode;
 	}
 	
 	

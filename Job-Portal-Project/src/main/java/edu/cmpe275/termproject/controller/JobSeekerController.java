@@ -56,13 +56,13 @@ public class JobSeekerController {
 				workExperience, education, skills, username, email, password, null);
 		
 		jobSeekerService.addJobSeeker(jobSeeker);
-		UUID authenticationCode = UUID.randomUUID();
-        String authenticationCode_String = authenticationCode.toString();
+		
+        String authenticationCode_String = RegistrationEmail.generateAuthCode();
         
 		RegistrationEmail.registrationEmailTrigger(email, authenticationCode_String);
 		System.out.println("Jobseeker "+firstName+ " saved to DB");
-		redirectAttribute.addFlashAttribute("authenticationCode",authenticationCode_String);
-		redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
+		jobSeekerService.setAuthCode(authenticationCode_String, username);
+		redirectAttribute.addFlashAttribute("username",username);
 		return "redirect:/jobseeker/authentication";
 		
 	}
@@ -73,17 +73,19 @@ public class JobSeekerController {
 	}
 	
 	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.POST)
-	private String codeAuthenticationGET(HttpServletRequest request,RedirectAttributes redirectAttribute,
-			@ModelAttribute ("username") String username,@ModelAttribute ("authenticationCode") String authCode){
+	private String codeAuthenticationPOST(HttpServletRequest request, RedirectAttributes redirectAttribute){
 		
-		//String username = request.getParameter("username");
+		String username = request.getParameter("username");
 		String passCode = request.getParameter("codeVerification");
 		boolean userExists = jobSeekerService.find(username);
 		System.out.println("User Name: "+username);
+		String authCode = jobSeekerService.getJobSeeker(username).getAuthenticationCode();
 		System.out.println("Email code: "+authCode);
 		System.out.println("User code: " +passCode);
 		if(userExists&& passCode.equals(authCode)){
 			redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
+			WelcomeEmail.welcomeEmailTrigger(email);
+			//System.out.println("Jobseeker "+firstName+ " saved to DB");
 			return "redirect:/jobseeker/login";
 		}
 		else {

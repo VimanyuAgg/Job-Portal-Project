@@ -18,8 +18,8 @@
 <body>
 
 <div class="container" style="background-color:#efefef">
-<div name="head" class="text-center"><h1>Verify Email</h1></div>
-<form method="POST" action="/jobseeker/login">
+<div name="head" class="text-center"><h1>Almost there.. ${username}</h1></div>
+<form method="POST" action="/jobseeker/authentication">
 
 <div class="form-group row" style="margin-top:25px">
    <label for="codeVerification" class="col-sm-2 col-form-label" >Verify your code</label>

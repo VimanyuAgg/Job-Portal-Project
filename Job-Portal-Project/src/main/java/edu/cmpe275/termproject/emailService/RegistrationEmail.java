@@ -2,6 +2,7 @@ package edu.cmpe275.termproject.emailService;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.mail.Message;
@@ -48,5 +49,31 @@ public class RegistrationEmail {
             Transport.send(message);
             System.out.println("Your message is sent successfully to "+receiverMail);
         } catch (MessagingException e) { e.printStackTrace();}
+	}
+
+	public static String generateAuthCode() {
+		// TODO Auto-generated method stub
+		System.out.println("Generating OTP using random() : ");
+        System.out.println("You OTP is : ");
+        int len = 6;
+        // Using numeric values
+        String numbers = "0123456789";
+ 
+        System.out.println("Length of string is "+numbers.length());
+        // Using random method
+        Random rndm_method = new Random();
+ 
+        char[] otp = new char[len];
+ 
+        for (int i = 0; i < len; i++)
+        {
+            // Use of charAt() method : to get character value
+            // Use of nextInt() as it is scanning the value as int
+            otp[i] =
+             numbers.charAt(rndm_method.nextInt(numbers.length()));
+        }
+        System.out.println("OTP: "+String.valueOf(otp));
+        //System.out.println("OTP: "+otp.toString());
+        return String.valueOf(otp);
 	}
 }
