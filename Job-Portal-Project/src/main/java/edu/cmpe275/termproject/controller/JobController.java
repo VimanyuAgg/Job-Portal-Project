@@ -53,27 +53,15 @@ public class JobController {
 		Company company=companyService.getCompany(companyId);
 		
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
-<<<<<<< HEAD
 		String title=request.getParameter("title"), description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary");
-		Long jobId = Long.parseLong(request.getParameter("jobId"));
+		long jobId = Long.parseLong(request.getParameter("jobId"));
 		JobPosting job=new JobPosting(jobId,title, description, responsibilites, offliceLocation, salary, company,"MS");
 		JobPosting jobAdded =jobSerivce.addJob(job);
-=======
-		
-		String title = request.getParameter("title"),
-				description=request.getParameter("description"), 
-				responsibilites=request.getParameter("responsibilites"),
-				offliceLocation=request.getParameter("location"), 
-				salary=request.getParameter("salary");
 		
 		//long jobId = Long.parseLong(request.getParameter("jobId"));
-		Long jobId = Long.parseLong(request.getParameter("jobId"));
 		
-		JobPosting job = new JobPosting(jobId, title, description, responsibilites, offliceLocation, salary, company,"MS");
-		JobPosting jobAdded = jobSerivce.addJob(job);
 		
->>>>>>> 59897ede07aa3eb740c246a8b6b2668cfbcdf685
 		map.addAttribute("message", "Job has been posted!");
 		
 		if(jobAdded!=null)

@@ -19,12 +19,7 @@ import javax.persistence.Table;
 @Table(name="JOB_POSTING")
 public class JobPosting {
 
-<<<<<<< HEAD
-	public JobPosting(long jobId,String jobDescription, String jobTitle, String jobResponsibilities, String jobLocation,
-			String jobSalary, Company jobPostedByCompany, String eligibility) {
-		super();
-		this.jobId=jobId;
-=======
+
 	public JobPosting(Long jobId, String jobDescription, String jobTitle, 
 			String jobResponsibilities, String jobLocation,
 			String jobSalary, Company jobPostedByCompany, 
@@ -32,7 +27,6 @@ public class JobPosting {
 		
 		super();
 		this.jobId = jobId;
->>>>>>> 59897ede07aa3eb740c246a8b6b2668cfbcdf685
 		this.jobDescription = jobDescription;
 		this.jobTitle = jobTitle;
 		this.jobResponsibilities = jobResponsibilities;
@@ -114,22 +108,7 @@ public class JobPosting {
 //		this.jobPostedByCompany = jobPostedByCompany;
 //		setJobStatus("open");
 //	}
-	
-	public String getPostedOn() {
-		return postedOn;
-	}
 
-	public void setPostedOn(String postedOn) {
-		this.postedOn = postedOn;
-	}
-
-	public String getEligibility() {
-		return eligibility;
-	}
-
-	public void setEligibility(String eligibility) {
-		this.eligibility = eligibility;
-	}
 
 	public JobPosting() {
 		super();
