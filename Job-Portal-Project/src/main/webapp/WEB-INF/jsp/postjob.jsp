@@ -18,6 +18,5 @@
 	<input type="text" name="salary" />
 	<input type="submit"/>
 </form>
-<h1>Post job!</h1>
 </body>
 </html>
