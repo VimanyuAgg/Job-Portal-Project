@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+
+</head>
 <body>
 <h4>${username}</h4>
 <h1>Login Form</h1>

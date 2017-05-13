@@ -1,20 +1,13 @@
 ----------------------------------------------------------------
-<<<<<<< HEAD
-Fri May 12 16:17:04 PDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015b-fef3-85b7-00000625ca48 
+Fri May 12 19:56:57 PDT 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015b-ffbc-d80c-000005ff3148 
 on database directory memory:C:\Users\Vyking\Documents\SJSU\Sem2\CMPE275\TermProject\Job-Portal-Project\Job-Portal-Project\Job-Portal-Project\testdb with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
 Loaded from file:/C:/Users/Vyking/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
-=======
-Fri May 12 19:32:35 PDT 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015b-ffa6-8748-0000034d0770 
-on database directory memory:/Users/Bhushan/Desktop/Job-Portal-Project/Job-Portal-Project/Job-Portal-Project/testdb with class loader sun.misc.Launcher$AppClassLoader@2a139a55 
-Loaded from file:/Users/Bhushan/.m2/repository/org/apache/derby/derby/10.12.1.1/derby-10.12.1.1.jar
->>>>>>> 2d8dabecd9a7cd1cddd0b8369c068aea7830806a
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_101-b13
-user.dir=/Users/Bhushan/Desktop/Job-Portal-Project/Job-Portal-Project/Job-Portal-Project
-os.name=Mac OS X
-os.arch=x86_64
-os.version=10.12
+java.runtime.version=1.8.0_111-b14
+user.dir=C:\Users\Vyking\Documents\SJSU\Sem2\CMPE275\TermProject\Job-Portal-Project\Job-Portal-Project\Job-Portal-Project
+os.name=Windows 8.1
+os.arch=amd64
+os.version=6.3
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

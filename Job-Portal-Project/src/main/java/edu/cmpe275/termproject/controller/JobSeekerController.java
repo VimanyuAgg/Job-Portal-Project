@@ -57,11 +57,13 @@ public class JobSeekerController {
 		
 	}
 	
-	@RequestMapping(value="/jobseeker/created", method=RequestMethod.GET)
-	public String jobSeekerCreated(@ModelAttribute ("username") String username){
-		return "jobseeker-created";
-		
-	}
+	//Removing jobseeker/created path
+	
+//	@RequestMapping(value="/jobseeker/created", method=RequestMethod.GET)
+//	public String jobSeekerCreated(@ModelAttribute ("username") String username){
+//		return "jobseeker-created";
+//		
+//	}
 	
 	@RequestMapping(value="/jobseeker/dashboard",method=RequestMethod.GET)
 	public String jobSeekerDashBoard(){
@@ -79,6 +81,7 @@ public class JobSeekerController {
 	
 	@RequestMapping(value="/jobseeker/login", method=RequestMethod.POST)
 	public String jobSeekerLoginPost(HttpServletRequest request){
+		//, RedirectAttributes redirectAttribute
 		String username = request.getParameter("username"),
 		       password = request.getParameter("password");
 		
@@ -87,6 +90,7 @@ public class JobSeekerController {
 		if(!usersess.isEmpty()){
 			httpSession.setAttribute("username",username);
 			//httpSession.setAttribute("userID", userN);
+			//redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
 			return "redirect:/jobseeker/dashboard";
 		}
 		else
