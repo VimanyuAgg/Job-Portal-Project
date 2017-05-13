@@ -102,7 +102,7 @@
 <div class="form-group row">
      <label for="selfIntroduction"  class="col-sm-2 col-form-label">Introduction</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="selfIntroduction" name="selfIntroduction">
+    <textarea class="form-control" rows="4" cols="50" id="selfIntroduction" name="selfIntroduction"></textarea>
   </div>
 </div>
 
@@ -135,32 +135,35 @@
 </div>
 
 <div class="form-group row">
-     <label for="email"  class="col-sm-2 col-form-label">email</label>
+     <label for="email"  class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-6">
     <input class="form-control" type="email" id="email" name="email">
   </div>
 </div>
 
 <div class="form-group row">
-     <label for="password"  class="col-sm-2 col-form-label">password</label>
+     <label for="password"  class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-6">
     <input class="form-control" type="password" id="password" name="password">
   </div>
 </div>
 
 <div class="form-group row">
-     <label for="confirmPassword"  class="col-sm-2 col-form-label"> confirm password</label>
+     <label for="confirmPassword"  class="col-sm-2 col-form-label"> Confirm password</label>
     <div class="col-sm-6">
     <input class="form-control" type="password" id="confirmPassword" name="confirmPassword">
   </div>
 </div>
 
+
 <div class="form-group row">
-     <label for="submit"  class="col-sm-2 col-form-label">Submit</label>
-    <div class="col-sm-6">
-    <input class="form-control" type="submit" id="submit" name="submit">
-  </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">    
+    <input class="btn btn-info form-control" type="submit" id="submit" name="submit">
+	<div class="col-sm-6"></div>
 </div>
+
+</div>  
 
 
 </form>
