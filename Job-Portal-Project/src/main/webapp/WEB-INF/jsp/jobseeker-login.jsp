@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 <head> 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
@@ -13,6 +14,11 @@
 <title>Login</title>
 </head>
 
+=======
+<head>
+
+</head>
+>>>>>>> 407ed56b0556c507e8bbe05f2996dab1952d8c07
 <body>
 <div class="container">
 <center>

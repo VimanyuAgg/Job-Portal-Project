@@ -4,7 +4,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-<h1>Welcome, ${sessionScope.username}</h1>
-
+Welcome: ${email}
+<h1>Following are the open positions:</h1>
+<table>
+  <c:forEach items="${positions}" var="position">
+    <tr>
+      <td><c:out value="${position}" /></td>
+    </tr>
+  </c:forEach>
+</table>
 </body>
 </html>

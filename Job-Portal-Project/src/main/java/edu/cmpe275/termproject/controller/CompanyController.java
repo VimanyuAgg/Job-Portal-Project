@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +33,7 @@ public class CompanyController {
 		System.out.println("I am in post");
 		String name=request.getParameter("name"), website=request.getParameter("website"), logoImageUrl=request.getParameter("logoImageUrl"),
 				address=request.getParameter("address"), description=request.getParameter("description"), email=request.getParameter("email"), password=request.getParameter("password");
-		Company company=new Company(name, website, logoImageUrl, address, description, email ,password);
+		Company company=new Company(name, website, logoImageUrl, address, description, email ,password,0, null);
 		Company result=companyService.registerCompany(company);
 		if(result!=null){
 			return "redirect:/company/login";
@@ -71,12 +72,32 @@ public class CompanyController {
 		return "companylandingpage";
 	}
 	@RequestMapping("/company/{companyId}/positions")
-	public ModelAndView getAllPositions(@PathVariable long companyId, @RequestParam String status){
+	public String getAllPositions(@PathVariable long companyId, @RequestParam(value = "status", required=false) String status, ModelMap map){
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
-		return new ModelAndView("positions", "positions", jobs);
+		System.out.println("Jobs Size:"+jobs.size());
+		for(JobPosting job: jobs){
+			
+			System.out.println(job.getJobTitle());}
+		map.addAttribute("positions", jobs);
+		return "companyjobopenings";
 	}
 	@RequestMapping("/company/{companyId}/positions/{positionId}")
 	public void getPositionDetails(@PathVariable long companyId, @PathVariable long poisitionId){
 		
 	}
+	
+/*	  @RequestMapping(value = "/email/trigger", method = RequestMethod.POST)
+	    public String triggerEmail() {
+	        SimpleMailMessage message = new SimpleMailMessage();
+	        message.setText("Hello from Spring Boot Application");
+	        message.setTo("sidanasparsh@gmail.com");
+	        message.setFrom("sidanasparsh@gmail.com");
+	        try {
+	            mailSender.send(message);
+	            return "{\"message\": \"OK\"}";
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            return "{\"message\": \"Error\"}";
+	        }
+	    }*/
 }

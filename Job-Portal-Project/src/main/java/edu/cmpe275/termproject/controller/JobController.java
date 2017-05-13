@@ -50,7 +50,7 @@ public class JobController {
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
 		String title=request.getParameter("title"), description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary");
-		JobPosting job=new JobPosting(title, description, responsibilites, offliceLocation, salary, company);
+		JobPosting job=new JobPosting(title, description, responsibilites, offliceLocation, salary, company,"MS");
 		JobPosting jobAdded =jobSerivce.addJob(job);
 		map.addAttribute("message", "Job has been posted!");
 		if(jobAdded!=null)
