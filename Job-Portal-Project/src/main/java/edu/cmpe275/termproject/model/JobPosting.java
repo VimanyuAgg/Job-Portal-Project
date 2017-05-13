@@ -36,7 +36,6 @@ public class JobPosting {
 
 	@Id
 	@Column(name="JOB_ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)	
 	private long jobId;
 	
 	@Column(name="JOB_DESC")
@@ -61,6 +60,14 @@ public class JobPosting {
 	private String jobStatus;
 	@Column(name="POSTED_ON")
 	private String postedOn;
+	public String getPostedOn() {
+		return postedOn;
+	}
+
+	public void setPostedOn(String postedOn) {
+		this.postedOn = postedOn;
+	}
+
 	@Column(name="ELIGIBILITY")
 	private String eligibility;
 	
@@ -77,6 +84,14 @@ public class JobPosting {
 //		this.jobPostedByCompany = jobPostedByCompany;
 //		setJobStatus("open");
 //	}
+
+	public String getEligibility() {
+		return eligibility;
+	}
+
+	public void setEligibility(String eligibility) {
+		this.eligibility = eligibility;
+	}
 
 	public JobPosting() {
 		super();

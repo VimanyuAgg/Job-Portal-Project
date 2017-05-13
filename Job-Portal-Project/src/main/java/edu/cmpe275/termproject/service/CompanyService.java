@@ -1,5 +1,6 @@
 package edu.cmpe275.termproject.service;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,5 +73,28 @@ public class CompanyService {
 				return company.getCompanyId();
 		}
 		return -100;
+	}
+	
+	public List<Company> getCompanyByName(String position){
+		System.out.println("inside getCompanyByName()");
+		
+		//String input2[] = position.split(",");
+		List<String> input = Arrays.asList(position.split(","));
+				
+		List<Company> companies = companyDao.findCompanyByName(input);
+		
+		for(Company company : companies){
+			System.out.println("inside loop");
+			System.out.println("company name "+company.getCompanyName());
+			System.out.println("company name "+company.getAddress());
+			System.out.println("company name "+company.getCompanyId());
+			System.out.println("company name "+company.getDescription());
+			System.out.println("company name "+company.getEmail());
+			System.out.println("company name "+company.getLogoUrl());
+			System.out.println("company name "+company.getPassword());
+			System.out.println("company name "+company.getWebsite());
+		}
+		
+		return companies;
 	}
 }

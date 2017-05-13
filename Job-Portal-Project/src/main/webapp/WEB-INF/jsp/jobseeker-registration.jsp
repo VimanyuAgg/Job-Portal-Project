@@ -13,6 +13,15 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <title>Register</title>
+<style>
+.form-group.required.col-form-label:after { 
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 8px;
+    top:7px;
+}
+</style>
 </head>
 <body>
 
@@ -78,9 +87,11 @@
         <input type="submit"/>
     </div>
 </form:form> -->
+
 <div class="container" style="background-color:#efefef">
 <div name="head" class="text-center"><h1>Registration</h1></div>
 <form method="POST" action="/jobseeker/register">
+<div class="form-group required">
 <div class="form-group row" style="margin-top:25px">
    <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
     <div class="col-sm-6">
@@ -103,7 +114,7 @@
 <div class="form-group row">
      <label for="selfIntroduction"  class="col-sm-2 col-form-label">Introduction</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="selfIntroduction" name="selfIntroduction">
+    <textarea class="form-control" rows="4" cols="50" id="selfIntroduction" name="selfIntroduction" placeholder="Tell us about yourself!"></textarea>
   </div>
 </div>
 
@@ -117,50 +128,54 @@
 <div class="form-group row">
      <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="workExperience" name="workExperience">
+    <input class="form-control" type="text" id="workExperience" name="workExperience" placeholder="Insert the experience in years">
   </div>
 </div>
 
 <div class="form-group row">
      <label for="skills"  class="col-sm-2 col-form-label">Comma Seperated Skills</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="skills" name="skills">
+    <input class="form-control" type="text" id="skills" name="skills" placeholder="Ex - Python, Java, Ruby etc">
   </div>
 </div>
 
 <div class="form-group row">
      <label for="username"  class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="username" name="username">
+    <input class="form-control" type="text" id="username" name="username" placeholder="Choose a username">
   </div>
 </div>
 
 <div class="form-group row">
-     <label for="email"  class="col-sm-2 col-form-label">email</label>
+     <label for="email"  class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-6">
-    <input class="form-control" type="email" id="email" name="email">
+    <input class="form-control" type="email" id="email" name="email" placeholder="enter your email ID">
   </div>
 </div>
 
 <div class="form-group row">
-     <label for="password"  class="col-sm-2 col-form-label">password</label>
+     <label for="password"  class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-6">
-    <input class="form-control" type="password" id="password" name="password">
+    <input class="form-control" type="password" id="password" name="password" placeholder="Type your password">
   </div>
 </div>
 
 <div class="form-group row">
-     <label for="confirmPassword"  class="col-sm-2 col-form-label"> confirm password</label>
+     <label for="confirmPassword"  class="col-sm-2 col-form-label"> Confirm password</label>
     <div class="col-sm-6">
-    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword">
+    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd">
   </div>
 </div>
 
+
 <div class="form-group row">
-     <label for="submit"  class="col-sm-2 col-form-label">Submit</label>
-    <div class="col-sm-6">
-    <input class="form-control" type="submit" id="submit" name="submit">
-  </div>
+    <div class="col-sm-2"></div>
+    <div class="col-sm-4">    
+    <input class="btn btn-info form-control" type="submit" id="submit" name="submit">
+	<div class="col-sm-6"></div>
+</div>
+
+</div>  
 </div>
 
 
