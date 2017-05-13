@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-<h1>Thanks for registering with us, USER</h1>
+<h1>All job listings to be displayed here/h1>
 
 </body>
 </html>

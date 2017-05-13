@@ -44,7 +44,20 @@ public class JobSeekerController {
 				workExperience, education, skills, username, email, password);
 		
 		jobSeekerService.addJobSeeker(jobSeeker);
-		return "redirect:/jobseeker-created";
+		System.out.println("Jobseeker "+firstName+ " saved to DB");
+		return "redirect:/jobseeker/created";
 		
 	}
+	
+	@RequestMapping(value="/jobseeker/created", method=RequestMethod.GET)
+	public String jobSeekerCreated(){
+		return "jobseeker-created";
+		
+	}
+	
+	@RequestMapping(value="/jobseeker/dashboard",method=RequestMethod.GET)
+	public String jobSeekerDashBoard(){
+		return "jobseeker-dashboard";
+	}
+	
 }
