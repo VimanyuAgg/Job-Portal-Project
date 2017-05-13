@@ -3,8 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+<head> 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<title>Register</title>
+</head>
 <body>
-<h1>Registration Form for JobSeekers</h1>
+
+
 <!-- <form:form method="POST" action="/companyCreate" modelAttribute="form">
     <form:errors path="" element="div"/>
     <div>
@@ -66,10 +73,20 @@
         <input type="submit"/>
     </div>
 </form:form> -->
-
+<center>
 <form method="POST" action="/jobseeker/register">
-<p>First Name</p>
-<input type="text" name="firstName" />
+<div class="form-group row">
+    <label for="firstName">First Name:</label>
+    <div class="col-10">
+    <input class="form-control" type="text" placeholder="Enter your first name" id="firstName" name="firstName">
+  </div>
+</div>
+<div class="form-group row">
+    <label for="firstName">Last Name:</label>
+    <div class="col-10">
+    <input class="form-control" type="text" placeholder="Enter your last name" id="lastName" name="lastName">
+  </div>
+</div>
 <p>Last Name</p>
 <input type="text" name="lastName" />
 <p>Upload Picture</p>
@@ -87,10 +104,12 @@
 <p>email</p>
 <input type="text" name="email" />
 <p>Password</p>
-<input type="text" name="password" />
+<input type="password" name="password" />
+<p>Confirm Password</p>
+<input type="password" name="confirmPassword" />
 <input type="submit"/>
 <h1>Register Please !</h1>
 </form>
-
+</center>
 </body>
 </html>

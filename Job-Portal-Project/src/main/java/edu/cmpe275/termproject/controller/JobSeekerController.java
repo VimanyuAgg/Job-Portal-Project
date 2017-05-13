@@ -1,6 +1,7 @@
 package edu.cmpe275.termproject.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,9 @@ public class JobSeekerController {
 	
 	@Autowired
 	private JobSeekerService jobSeekerService;
+	
+	@Autowired
+	HttpSession httpSession;
 	
 	//REGISTRATION - GET
 	@RequestMapping(value="/jobseeker/register", method=RequestMethod.GET)
@@ -58,6 +62,33 @@ public class JobSeekerController {
 	@RequestMapping(value="/jobseeker/dashboard",method=RequestMethod.GET)
 	public String jobSeekerDashBoard(){
 		return "jobseeker-dashboard";
+	}
+	
+	@RequestMapping(value="/jobseeker/login", method=RequestMethod.GET)
+	public String jobSeekerLogin()
+	{
+		
+		return "jobseeker-login";
+	
+		
+	}
+	
+	@RequestMapping(value="/jobseeker/login", method=RequestMethod.POST)
+	public String jobSeekerLoginPost(HttpServletRequest request){
+		String username = request.getParameter("username"),
+		       password = request.getParameter("password");
+		
+		String usersess = jobSeekerService.authenticateJobSeeker(username, password);
+		System.out.println(usersess);
+		if(!usersess.isEmpty()){
+			httpSession.setAttribute("username",username);
+			//httpSession.setAttribute("userID", userN);
+			return "redirect:/jobseeker/dashboard";
+		}
+		else
+		return "redirect:/usersession-error"; 
+		
+		
 	}
 	
 }
