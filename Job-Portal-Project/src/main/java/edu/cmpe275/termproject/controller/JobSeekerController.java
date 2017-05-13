@@ -5,8 +5,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobSeeker;
@@ -32,7 +34,8 @@ public class JobSeekerController {
 	
 	//REGISTRATION - POST
 	@RequestMapping(value="/jobseeker/register", method=RequestMethod.POST)
-	public String createJobSeeker(HttpServletRequest request){
+	public String createJobSeeker(HttpServletRequest request, RedirectAttributes redirectAttribute){
+		
 		String firstName=request.getParameter("firstName"), 
 				lastName=request.getParameter("lastName"), 
 				picture=request.getParameter("picture"),
@@ -49,12 +52,13 @@ public class JobSeekerController {
 		
 		jobSeekerService.addJobSeeker(jobSeeker);
 		System.out.println("Jobseeker "+firstName+ " saved to DB");
-		return "redirect:/jobseeker/created";
+		redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
+		return "redirect:/jobseeker/login";
 		
 	}
 	
 	@RequestMapping(value="/jobseeker/created", method=RequestMethod.GET)
-	public String jobSeekerCreated(){
+	public String jobSeekerCreated(@ModelAttribute ("username") String username){
 		return "jobseeker-created";
 		
 	}
@@ -65,7 +69,7 @@ public class JobSeekerController {
 	}
 	
 	@RequestMapping(value="/jobseeker/login", method=RequestMethod.GET)
-	public String jobSeekerLogin()
+	public String jobSeekerLogin(@ModelAttribute ("username") String username)
 	{
 		
 		return "jobseeker-login";

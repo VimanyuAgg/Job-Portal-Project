@@ -3,8 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+<head><meta http-equiv="refresh" content="5; url=./" /></head>
 <body>
-<h1>Thanks for registering with us, USER</h1>
+<h1>Thanks for registering with us, ${username}</h1>
 
 </body>
 </html>
