@@ -1,5 +1,6 @@
 package edu.cmpe275.termproject.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -23,13 +24,19 @@ public class JobService {
 		
 		System.out.println("inside getPositions()");
 		
-		//String input2[] = jobId.split(",");
-		List<String> input = Arrays.asList(jobId.split(","));
+		String input2[] = jobId.split(",");
+		List<Long> input = new ArrayList();
 				
+		for(int i=0;i<input2.length;i++){
+			input.add(Long.parseLong(input2[i]));
+		}
+
+		System.out.println("calling query");		
 		List<JobPosting> positions = jobPostingDao.findJobs(input);
 		
 		for(JobPosting position : positions){
 			System.out.println("inside loop");
+			System.out.println("position name "+position.getJobId());
 			System.out.println("position name "+position.getJobDescription());
 			System.out.println("position name "+position.getJobTitle());
 			System.out.println("position name "+position.getJobResponsibilities());

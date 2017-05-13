@@ -9,7 +9,7 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/jobseeker-registration.css"></link>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -30,6 +30,7 @@
 
 <div class="container" style="background-color:#efefef">
 <div name="head" class="text-center"><h1>Registration</h1></div>
+
 <form method="POST" action="/jobseeker/register">
 <div class="form-group required">
 <div class="form-group row" style="margin-top:25px">
@@ -105,7 +106,7 @@
     <div class="col-sm-6">
     <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd">
   </div>
-  <div class="col-sm-6" id="divCheckPasswordMatch"></div>
+  <div class="col-sm-4" id="divCheckPasswordMatch"></div>
 </div>
 
 
