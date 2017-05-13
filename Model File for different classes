@@ -1,0 +1,64 @@
+Please add your model file here.
+If anyone is adding any field or making any changes in these Models, please update here.
+
+
+Company Class-
+
+@Id
+@Column(name="COMPANY_ID")
+@GeneratedValue(strategy=GenerationType.AUTO)
+private long companyId;
+
+@Column(name="COMPANY_NAME")
+private String companyName;
+
+@Column(name="COMPANY_WEBSITE")
+private String website;
+
+@Column(name="COMPANY_LOGO_URL", nullable=true)
+private String logoUrl;
+
+@Column(name="COMPANY_ADDRESS")
+private String address;
+
+@Column(name="COMPANY_DESC", nullable=true)
+private String description;
+
+@OneToMany(mappedBy="jobPostedByCompany", cascade=CascadeType.ALL)
+private List<JobPosting> jobPostingList;
+
+@Column(name="EMAIL", unique=true)
+private String email;
+
+@Column(name="PASSWORD")
+private String password;
+
+
+Job Class - 
+
+@Id
+	@Column(name="JOB_ID")
+	@GeneratedValue(strategy=GenerationType.AUTO)	
+	private long jobId;
+	
+	@Column(name="JOB_DESC")
+	private String jobDescription;
+	
+	@Column(name="JOB_TITLE")
+	private String jobTitle;
+	
+	@Column(name="JOB_RESP")
+	private String jobResponsibilities;
+	
+	@Column(name="JOB_LCTN")
+	private String jobLocation;
+	
+	@Column(name="JOB_SAL")
+	private String jobSalary;
+
+	@ManyToOne
+	@JoinColumn(name="companyId")
+	private Company jobPostedByCompany;
+	
+	@Column(name="JOB_STATUS")
+	private String jobStatus;

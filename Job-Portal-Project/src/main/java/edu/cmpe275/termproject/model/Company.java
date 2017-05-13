@@ -17,8 +17,7 @@ import javax.persistence.Table;
 @Table(name="COMPANY")
 public class Company {
 	public Company(String companyName, String website, String logoUrl, String address,
-			String description, String email, String password) {
-		super();
+			String description, String email, String password, int size, List<JobPosting> jobPostingList) {
 		this.companyName = companyName;
 		this.website = website;
 		this.logoUrl = logoUrl;
@@ -26,6 +25,8 @@ public class Company {
 		this.email=email;
 		this.password=password;
 		this.description = description;
+		this.size=size;
+		jobPostingList=null;
 	}
 
 	@Id
@@ -56,6 +57,8 @@ public class Company {
 	
 	@Column(name="PASSWORD")
 	private String password;
+	@Column(name="SIZE")
+	private int size;
 	
 	public String getEmail() {
 		return email;

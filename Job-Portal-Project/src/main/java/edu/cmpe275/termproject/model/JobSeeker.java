@@ -55,6 +55,9 @@ public class JobSeeker {
 	@Column(name="PASSWORD")
 	private String password;
 	
+	@Column(name="PROFILE_PHOTO", nullable=true)
+	private String profilePhoto;
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
 	@JoinTable(
 			name="T_JobSeeker_JobPosting",
@@ -70,7 +73,7 @@ public class JobSeeker {
 	
 	public JobSeeker(String firstName, String lastName, String picture, String selfIntroduction,
 				String workExperience, String education, String skills, String username, 
-				String email, String password) {
+				String email, String password, String profilePhoto) {
 			super();
 			this.firstName = firstName;
 			this.lastName = lastName;
@@ -82,6 +85,7 @@ public class JobSeeker {
 			this.username = username;
 			this.email = email;
 			this.password = password;
+			this.profilePhoto=profilePhoto;
 			
 		}
 

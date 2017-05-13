@@ -23,4 +23,13 @@ public class JobSeekerService {
 	public void getAllUsers(){
 		jobSeekerDAO.findAll();
 	}
+
+	public String authenticateJobSeeker(String username, String password) {
+		// TODO Auto-generated method stub
+		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
+		if(jobSeeker.getPassword().equals(password))
+			return username;
+		else
+			return "";
+	}
 }
