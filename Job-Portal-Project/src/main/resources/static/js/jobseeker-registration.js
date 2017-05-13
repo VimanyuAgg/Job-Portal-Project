@@ -12,3 +12,4 @@ $(document).ready(function () {
    $("#password, #confirmPassword").keyup(checkPasswordMatch);
 });
 
+
