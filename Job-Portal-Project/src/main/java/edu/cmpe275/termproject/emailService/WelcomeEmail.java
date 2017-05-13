@@ -35,8 +35,8 @@ public class WelcomeEmail {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
             
             message.setSubject("Spring Onion almost there..");
-            message.setText("\nDear "+username+",\nWelcome to Spring Onions !\n"
-            		+ "\nCheers," + "Team Spring-Onions");
+            message.setText("\nDear "+username+",\n\nWelcome to Spring Onions !\n"
+            		+ "\n\nCheers,\n" + "Team Spring-Onions");
             Transport.send(message);
             System.out.println("Your message is sent successfully to "+receiverMail);
         } catch (MessagingException e) { e.printStackTrace();}
