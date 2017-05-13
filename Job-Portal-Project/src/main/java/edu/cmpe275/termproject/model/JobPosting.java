@@ -25,6 +25,7 @@ public class JobPosting {
 		this.jobLocation = jobLocation;
 		this.jobSalary = jobSalary;
 		this.jobPostedByCompany = jobPostedByCompany;
+		this.setJobStatus("open");
 	}
 
 	@Id
@@ -53,18 +54,18 @@ public class JobPosting {
 	private String jobStatus;
 	
 	
-	public JobPosting(long jobId, String jobDescription, String jobTitle, String jobResponsibilities,
-			String jobLocation, String jobSalary, Company jobPostedByCompany) {
-		super();
-		this.jobId = jobId;
-		this.jobDescription = jobDescription;
-		this.jobTitle = jobTitle;
-		this.jobResponsibilities = jobResponsibilities;
-		this.jobLocation = jobLocation;
-		this.jobSalary = jobSalary;
-		this.jobPostedByCompany = jobPostedByCompany;
-		setJobStatus("open");
-	}
+//	public JobPosting(long jobId, String jobDescription, String jobTitle, String jobResponsibilities,
+//			String jobLocation, String jobSalary, Company jobPostedByCompany) {
+//		super();
+//		this.jobId = jobId;
+//		this.jobDescription = jobDescription;
+//		this.jobTitle = jobTitle;
+//		this.jobResponsibilities = jobResponsibilities;
+//		this.jobLocation = jobLocation;
+//		this.jobSalary = jobSalary;
+//		this.jobPostedByCompany = jobPostedByCompany;
+//		setJobStatus("open");
+//	}
 
 	public JobPosting() {
 		super();

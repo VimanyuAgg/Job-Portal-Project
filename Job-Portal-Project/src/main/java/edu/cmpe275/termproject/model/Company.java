@@ -92,20 +92,6 @@ public class Company {
 		//pass	
 		
 	}
-	
-	
-	public Company(String companyName, String website, String logoUrl, String address,
-			String description, List<JobPosting> jobPostingList) {
-		super();
-		this.companyName = companyName;
-		this.website = website;
-		this.logoUrl = logoUrl;
-		this.address = address;
-		this.description = description;
-		this.jobPostingList = jobPostingList;
-	}
-
-
 	public long getCompanyId() {
 		return companyId;
 	}
