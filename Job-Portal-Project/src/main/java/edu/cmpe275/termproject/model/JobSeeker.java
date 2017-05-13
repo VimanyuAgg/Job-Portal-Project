@@ -58,6 +58,9 @@ public class JobSeeker {
 	@Column(name="PROFILE_PHOTO", nullable=true)
 	private String profilePhoto;
 	
+	@Column(name="VER_STATUS", nullable=true)
+	private boolean isVerified = false;
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
 	@JoinTable(
 			name="T_JobSeeker_JobPosting",
@@ -88,6 +91,27 @@ public class JobSeeker {
 			this.profilePhoto=profilePhoto;
 			
 		}
+
+	
+
+	public String getProfilePhoto() {
+		return profilePhoto;
+	}
+
+
+	public void setProfilePhoto(String profilePhoto) {
+		this.profilePhoto = profilePhoto;
+	}
+
+
+	public boolean isVerified() {
+		return isVerified;
+	}
+
+
+	public void setVerified() {
+		this.isVerified = true;
+	}
 
 
 	public String getPicture() {

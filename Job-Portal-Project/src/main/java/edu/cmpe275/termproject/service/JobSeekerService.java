@@ -32,4 +32,15 @@ public class JobSeekerService {
 		else
 			return "";
 	}
+
+	public boolean find(String username) {
+		// TODO Auto-generated method stub
+		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
+		if(jobSeeker != null){
+			jobSeeker.setVerified();
+			return true;
+		}
+		
+		return false;
+	}
 }
