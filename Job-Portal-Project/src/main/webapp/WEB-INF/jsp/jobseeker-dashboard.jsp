@@ -110,8 +110,15 @@ button:hover, a:hover {
 
 	</div> <!-- End container-->
 
+
 </nav> <!--End navbar-->
-<div class ="row"><div class ="jumbotron" style="background-color:white"></div></div>
+
+	<div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align:center">Spring Onion</h1>   
+    </div>
+    </div>
+
 <!-- Start of container -->
 <div class="container">
   <div class="row text-center">

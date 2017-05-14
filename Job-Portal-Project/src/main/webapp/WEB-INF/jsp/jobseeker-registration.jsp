@@ -27,9 +27,15 @@
 </style> -->
 </head>
 <body>
+	<div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align:center">Spring Onion</h1>   
+    </div>
+    </div>
 
-<div class="container" style="background-color:#efefef">
-<div name="head" class="text-center"><h1>Registration</h1></div>
+<div class="container">
+<div class="jumbotron">
+<div class="text-center"><h1>Registration</h1></div>
 
 <form method="POST" action="/jobseeker/register">
 <div class="form-group row">
@@ -136,10 +142,12 @@
 </div>
 
 </div>  
+</form>
 </div>
 
 
-</form>
+
+
 </div>
 </body>
 </html>
