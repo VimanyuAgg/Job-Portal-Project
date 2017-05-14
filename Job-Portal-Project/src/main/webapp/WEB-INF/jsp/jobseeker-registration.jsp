@@ -32,6 +32,20 @@
 <div name="head" class="text-center"><h1>Registration</h1></div>
 
 <form method="POST" action="/jobseeker/register">
+<div class="form-group row">
+<label for="lastName" class="col-sm-2 col-form-label">Profile picture:</label>
+    <div class="col-sm-6">
+    
+<div class="col-md-2 rounder image-upload">
+    <label for="file-input">
+        <img class="rounder" name="picture" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
+    </label>
+
+    <input id="file-input" type="file" onchange="encodeImageFileAsURL(this)"/>
+</div>
+</div>
+</div>
+
 <div class="form-group required">
 <div class="form-group row" style="margin-top:25px">
    <label for="firstName" class="col-sm-2 col-form-label" >First Name</label>
@@ -43,12 +57,6 @@
     <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
     <div class="col-sm-6">
     <input class="form-control" type="text" placeholder="Enter your last name" id="lastName" name="lastName" required>
-  </div>
-</div>
-<div class="form-group row">
-     <label for="picture"  class="col-sm-2 col-form-label">Upload picture</label>
-    <div class="col-sm-6">
-    <input id="input-1" type="file" class="file">
   </div>
 </div>
 
@@ -66,12 +74,22 @@
   </div>
 </div>
 
-<div class="form-group row">
+<!-- <div class="form-group row">
      <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
     <div class="col-sm-6">
     <input class="form-control" type="text" id="workExperience" name="workExperience" placeholder="Insert the experience in years" required>
   </div>
-</div>
+</div> -->
+<div class="form-group row">
+ <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
+<select class="ui dropdown">
+  <option value="">Work Experience</option>
+  <option value="level1"> less 1 Year </option>
+  <option value="level2"> 1-3 years</option>
+  <option value="level3">More than 3 years</option>
+</select>
+ </div>
+</div> 
 
 <div class="form-group row">
      <label for="skills"  class="col-sm-2 col-form-label">Comma Seperated Skills</label>

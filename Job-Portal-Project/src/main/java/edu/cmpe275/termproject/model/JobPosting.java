@@ -19,8 +19,7 @@ import javax.persistence.Table;
 @Table(name="JOB_POSTING")
 public class JobPosting {
 
-
-	public JobPosting(Long jobId, String jobDescription, String jobTitle, 
+	public JobPosting(String jobId, String jobTitle, String jobDescription, 
 			String jobResponsibilities, String jobLocation,
 			String jobSalary, Company jobPostedByCompany, 
 			String eligibility) {
@@ -35,6 +34,7 @@ public class JobPosting {
 		this.jobPostedByCompany = jobPostedByCompany;
 		this.setJobStatus("open");
 		this.eligibility=eligibility;
+		this.tempSize = 1;
 		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 	}
 
@@ -64,7 +64,7 @@ public class JobPosting {
 
 	@Id
 	@Column(name="JOB_ID", unique=true)
-	private Long jobId;
+	private String jobId;
 	
 	@Column(name="JOB_DESC")
 	private String jobDescription;
@@ -96,6 +96,10 @@ public class JobPosting {
 	private String eligibility;
 	
 	
+	@Column(name="TEMPSIZE")
+	private int tempSize;
+	
+	
 //	public JobPosting(long jobId, String jobDescription, String jobTitle, String jobResponsibilities,
 //			String jobLocation, String jobSalary, Company jobPostedByCompany) {
 //		super();
@@ -114,11 +118,11 @@ public class JobPosting {
 		super();
 	}
 
-	public Long getJobId() {
+	public String getJobId() {
 		return jobId;
 	}
 
-	public void setJobId(Long jobId) {
+	public void setJobId(String jobId) {
 		this.jobId = jobId;
 	}
 
@@ -168,6 +172,14 @@ public class JobPosting {
 
 	public void setJobStatus(String jobStatus) {
 		this.jobStatus = jobStatus;
+	}
+
+	public int getTempSize() {
+		return tempSize;
+	}
+
+	public void setTempSize(int tempSize) {
+		this.tempSize = tempSize;
 	}
 	
 	

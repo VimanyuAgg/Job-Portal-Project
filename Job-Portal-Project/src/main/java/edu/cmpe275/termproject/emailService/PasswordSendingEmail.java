@@ -10,10 +10,10 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class WelcomeEmail {
+public class PasswordSendingEmail {
 	
-	public static void welcomeEmailTrigger(String receiverMail,String firstName,
-										   String lastName, String username){
+	public static void deliverPasswordEmail(String receiverMail, String firstName,
+											String lastName, String password){
 		String emailID = "testmyouth@gmail.com";
 		String emailPassword = "Testouth1@";		
 		
@@ -36,17 +36,12 @@ public class WelcomeEmail {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
             
             message.setSubject("Spring Onion almost there..");
-            message.setText("\nDear "+firstName+" "+lastName+",\n\nWelcome to Spring Onions !"
-            		+ "\n Here is your user id: "+username
-            		+"\n Your password will arrive shortly! Please keep them safe."
-            		+ "\nLooking forward to tears of happiness!"
-            		+ "\n\nCheers,\n" + "Team Spring-Onions");
+            message.setText("\nDear "+firstName+" "+lastName+",\n\nHere is your password: "+
+            				password+"\n\nLooking forward to tears of happiness!"
+            				+ "\n\nCheers,\n" + "Team Spring-Onions");
             Transport.send(message);
             System.out.println("Your message is sent successfully to "+receiverMail);
         } catch (MessagingException e) { e.printStackTrace();}
 	}
-		
-		
-	
 
 }

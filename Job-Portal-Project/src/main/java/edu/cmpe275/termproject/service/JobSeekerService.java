@@ -54,4 +54,11 @@ public class JobSeekerService {
 		jobSeekerDAO.save(jobSeeker);
 		System.out.println("Authentication code successfully saved to DAO");
 	}
+
+	public void remove(JobSeeker existingjobSeeker) {
+		// TODO Auto-generated method stub
+		
+		jobSeekerDAO.delete(existingjobSeeker);
+		
+	}
 }

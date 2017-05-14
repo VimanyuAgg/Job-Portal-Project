@@ -132,4 +132,5 @@ public class CompanyController {
 		map.addAttribute("company",company);
 		return "companyprofile";
 	}
+
 }
