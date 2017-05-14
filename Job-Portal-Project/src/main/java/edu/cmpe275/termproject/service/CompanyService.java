@@ -97,4 +97,12 @@ public class CompanyService {
 		
 		return companies;
 	}
+
+	public String getCompanyByEmail(String email){
+		
+		Company company = companyDao.findByEmail(email);
+		
+		if(company == null) return null;
+		return "";
+	}
 }

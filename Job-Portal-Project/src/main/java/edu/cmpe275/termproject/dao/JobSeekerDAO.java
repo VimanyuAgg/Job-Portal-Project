@@ -8,5 +8,6 @@ import edu.cmpe275.termproject.model.JobSeeker;
 public interface JobSeekerDAO extends CrudRepository<JobSeeker,Long>{
 
 	JobSeeker findByUsername(String username);
+	JobSeeker findByEmail(String email);
 
 }
