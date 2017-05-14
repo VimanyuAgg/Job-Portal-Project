@@ -73,9 +73,9 @@ public class JobSeeker {
 	private List<JobPosting> jobPostingList= new ArrayList<JobPosting>();
 
 	
-		public JobSeeker()
-	{}
-
+	public JobSeeker(){
+		
+	}
 	
 	public JobSeeker(String firstName, String lastName, String picture, String selfIntroduction,
 				String workExperience, String education, String skills, String username, 
