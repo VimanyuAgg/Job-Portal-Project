@@ -55,8 +55,7 @@ public class JobSeeker {
 	@Column(name="PASSWORD")
 	private String password;
 	
-	@Column(name="PROFILE_PHOTO", nullable=true)
-	private String profilePhoto;
+	
 	
 	@Column(name="VER_STATUS", nullable=true)
 	private boolean isVerified = false;
@@ -79,7 +78,7 @@ public class JobSeeker {
 	
 	public JobSeeker(String firstName, String lastName, String picture, String selfIntroduction,
 				String workExperience, String education, String skills, String username, 
-				String email, String password, String profilePhoto) {
+				String email, String password) {
 			super();
 			this.firstName = firstName;
 			this.lastName = lastName;
@@ -91,20 +90,11 @@ public class JobSeeker {
 			this.username = username;
 			this.email = email;
 			this.password = password;
-			this.profilePhoto=profilePhoto;
+			
 			
 		}
 
 	
-
-	public String getProfilePhoto() {
-		return profilePhoto;
-	}
-
-
-	public void setProfilePhoto(String profilePhoto) {
-		this.profilePhoto = profilePhoto;
-	}
 
 
 	public boolean isVerified() {

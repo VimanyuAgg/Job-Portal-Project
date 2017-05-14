@@ -68,7 +68,7 @@ public class JobSeekerController {
 			    email = request.getParameter("email");
 		
 		JobSeeker jobSeeker=new JobSeeker(firstName,lastName, picture, selfIntroduction,
-				workExperience, education, skills, username, email, password, null);
+				workExperience, education, skills, username, email, password);
 		
 		
 		//If existing job seeker and not verified - then delete
