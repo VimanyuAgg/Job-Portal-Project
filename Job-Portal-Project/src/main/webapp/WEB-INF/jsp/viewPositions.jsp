@@ -5,7 +5,7 @@
 <html lang="en">
 <body>
 Welcome: ${email}
-<h1>Following are the open positions:</h1>
+<h1>All positions:</h1>
 <table>
  <tr>
       <td>Job Id</td>
@@ -19,8 +19,8 @@ Welcome: ${email}
       <td>Job Title:<c:out value="${position.getJobTitle()}" /></td>
            <td>Job Responsebilities:<c:out value="${position.getJobResponsibilities()}" /></td>
             <td>Job Description<c:out value="${position.getJobDescription()}" /></td>
-            	<td>Job Salary<c:out value="${position.getjobSalary()}" /></td>
-                <td>Job Posted On<c:out value="${position.getJobPostedOn()}" /></td>
+            	<td>Job Salary<c:out value="${position.getJobSalary()}" /></td>
+                <td>Job Posted On<c:out value="${position.getPostedOn()}" /></td>
                 <td>Job Eligibility<c:out value="${position.getEligibility()}" /></td>
     </tr>
   </c:forEach>

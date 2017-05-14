@@ -92,7 +92,9 @@ button:hover, a:hover {
 
 			<ul class="nav navbar-nav">
 				<li><a href="#">Home</a></li>
-				<li><a href="#">Jobs</a></li>
+				<form action="/positions" method="GET">
+					<li><input type="submit" value="Jobs"/></li>
+				</form>
 				<li><a href="#">Profile</a></li>
 			</ul>
 		    <div class="col-sm-3 col-md-3">
@@ -143,7 +145,7 @@ button:hover, a:hover {
    
   <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" height="50%" width="50%">
   <div class="container1">
-    <p class="title">${firstName} ${lastName}</p>
+    <p class="title">${firstName}&nbsp; ${lastName}</p>
     <p class="title">${selfIntroduction}</p>
     
   </div>

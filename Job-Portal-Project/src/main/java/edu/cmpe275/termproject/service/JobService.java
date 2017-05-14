@@ -42,22 +42,15 @@ public class JobService {
 		
 		System.out.println("inside getPositions()");
 		
-		String tempJobIdArray[] = null;
-		List<String> jobIdList = new ArrayList();
 		List<String> jobTitleList = null;
 		List<String> jobLocationList = null;
 		List<String> jobSalaryList = null;
 		List<String> jobStatusList = null;
 		List<String> jobPostedOnList = null;
-		int tempTitle = 1, tempJobId = 1, 
+		int tempTitle = 1, 
 				tempJobLocation = 1, tempJobSalary = 1,
 				tempJobStatus = 1, tempPostedOn = 1;
 		
-		if(jobId != null){
-			tempJobId = 0;
-			jobIdList = Arrays.asList(jobId.split(","));
-		}
-				
 		if(title != null){
 			tempTitle = 0;
 			jobTitleList = Arrays.asList(title.split(","));
@@ -83,16 +76,14 @@ public class JobService {
 			jobPostedOnList = Arrays.asList(postedOn.split(","));
 		}
 		
-		
-		System.out.println("tempJobId "+tempJobId);
 		System.out.println("tempTitle "+tempTitle);
 		System.out.println("tempJobLocation "+tempJobLocation);
 		System.out.println("tempJobSalary "+tempJobSalary);
 		System.out.println("tempJobStatus "+tempJobStatus);
 		System.out.println("tempPostedOn "+tempPostedOn);
 
-		List<JobPosting> positions = jobPostingDao.findJobs(jobIdList, jobTitleList, 
-				jobLocationList, jobSalaryList, jobStatusList, jobPostedOnList, tempJobId, 
+		List<JobPosting> positions = jobPostingDao.findJobs(jobTitleList, 
+				jobLocationList, jobSalaryList, jobStatusList, jobPostedOnList, 
 				tempTitle, tempJobLocation, tempJobSalary, tempJobStatus, tempPostedOn);
 		
 		//System.out.println("titles "+jobIdList);
