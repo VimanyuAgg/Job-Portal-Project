@@ -44,4 +44,21 @@ public class JobApplicationService {
 		
 		return "error";
 	}
+
+	public String findApplicants(String jobId) {
+		
+		System.out.println("insde findApplicants()");
+		JobPosting job = jobPostingDAO.findByJobId(jobId);
+		if(job != null) System.out.println("job is not null");
+		
+		for(JobApplication applicant : job.getApplicants()){
+			
+			System.out.println("insde loop");
+			System.out.println(applicant.getId());
+			System.out.println(applicant.getPostedOn());
+			System.out.println(applicant.getStatus());
+		}
+		
+		return null;
+	}
 }

@@ -17,13 +17,27 @@ public class JobApplicationController {
 
 	@Autowired
 	JobApplicationService jobApplicationService;
+
 	
+	// APPLY FOR JOB
+	// REQUIRED job id and job seeker username
 	@RequestMapping(value="/positions/{jobId}/applyjob",method=RequestMethod.POST)
 	public String applyJob(HttpServletRequest request, ModelMap map) throws ParseException{
 		
 		String jobId = request.getParameter("jobId");
-		String jobSeekerUsername = request.getParameter("jsid");
+		String jobSeekerUsername = request.getParameter("username");
 		
 		return jobApplicationService.applyJob(jobId, jobSeekerUsername);
+	}	
+
+	// GEt applicants for a particular job
+	//  REquired jobId
+	@RequestMapping(value="/positions/{jobId}/applicants",method=RequestMethod.GET)
+	public String findApplicants(@PathVariable String jobId, 
+			HttpServletRequest request, ModelMap map) throws ParseException{
+		
+		jobApplicationService.findApplicants(jobId);
+		
+		return "success";
 	}	
 }
