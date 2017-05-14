@@ -26,7 +26,13 @@ public class JobApplicationController {
 		
 		String jobId = request.getParameter("jobId");
 		String jobSeekerUsername = request.getParameter("username");
-		
+		if(jobApplicationService.checkTotalPendingApplications(jobSeekerUsername)>=5){
+			return "error";
+		}
+
+		if(jobApplicationService.checkIfApplicationPending(jobId, jobSeekerUsername)){
+			return "error";
+		}
 		return jobApplicationService.applyJob(jobId, jobSeekerUsername);
 	}	
 

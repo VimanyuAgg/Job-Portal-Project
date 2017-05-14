@@ -1,5 +1,7 @@
 package edu.cmpe275.termproject.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,24 +32,35 @@ public class JobApplicationService {
 		System.out.println("inside applyJob ");
 		
 		JobPosting job = jobPostingDAO.findByJobId(jobId);
+	try{
+		JobApplication jobApplication = new JobApplication("Pending", job, applicant);
+		jobApplicationDAO.save(jobApplication);
 		
-		try{
-			JobApplication jobApplication = new JobApplication("Pending", job, applicant);
-			jobApplicationDAO.save(jobApplication);
-			
-			applicant.getApplicationsList().add(jobApplication);
-			jobSeekerDAO.save(applicant);
-			
-			job.getApplicants().add(jobApplication);
-			jobPostingDAO.save(job);
-			
-			System.out.println("size "+job.getApplicants().size());
-			return "success";
-		}catch(Exception e){
-			System.out.println("Exception in applyJob()");
+		applicant.getApplicationsList().add(jobApplication);
+		jobSeekerDAO.save(applicant);
+		
+		job.getApplicants().add(jobApplication);
+		jobPostingDAO.save(job);
+		
+		System.out.println("size "+job.getApplicants().size());
+		return "success";
+	}catch(Exception e){
+		System.out.println("Exception in applyJob()");
+	}
+	
+	return "error";
+	
+	}
+
+	public int checkTotalPendingApplications(String username) {
+		// TODO Auto-generated method stub
+		int count=0;
+		List<JobApplication> applications=jobSeekerDAO.findByUsername(username).getApplicationsList();
+		for(JobApplication application:applications){
+			if(application.getStatus().equals("pending"))
+				count++;
 		}
-		
-		return "error";
+		return count;
 	}
 
 	public String findApplicants(String jobId) {
@@ -73,5 +86,20 @@ public class JobApplicationService {
 		}
 		
 		return null;
+	}
+
+	public boolean checkIfApplicationPending(String jobId, String jobSeekerUsername) {
+		// TODO Auto-generated method stub
+		JobSeeker applicant= jobSeekerDAO.findByUsername(jobSeekerUsername);
+		List<JobApplication> applications=applicant.getApplicationsList();
+		for(JobApplication application:applications){
+			if(application.getJobPosting().getJobId().equals(jobId)){
+				if(application.getStatus().equals("pending"))
+					return true;
+				else
+					return false;
+			}
+		}
+		return false;
 	}
 }
