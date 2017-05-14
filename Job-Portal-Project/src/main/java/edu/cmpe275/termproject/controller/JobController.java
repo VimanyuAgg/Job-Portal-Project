@@ -55,7 +55,7 @@ public class JobController {
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
 		String title=request.getParameter("title"), description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary");
-		long jobId = Long.parseLong(request.getParameter("jobId"));
+		String jobId =request.getParameter("jobId");
 		JobPosting job=new JobPosting(jobId,title, description, responsibilites, offliceLocation, salary, company,"MS");
 		JobPosting jobAdded =jobSerivce.addJob(job);
 		
@@ -71,19 +71,19 @@ public class JobController {
 	}
 	
 	@RequestMapping("/company/{companyId}/positions/{positionId}")
-	public String getPositionDetails(@PathVariable long companyId, @PathVariable long positionId, ModelMap map){
+	public String getPositionDetails(@PathVariable long companyId, @PathVariable String positionId, ModelMap map){
 		JobPosting job=jobSerivce.getJob(positionId);
 		map.addAttribute("job",job);
 		return "positiondetails";
 	}
 	@RequestMapping(value="/company/{companyId}/positions/{positionId}/edit", method=RequestMethod.GET)
-	public String editPositionDetailsGet(@PathVariable long companyId, @PathVariable long positionId, HttpServletRequest request, ModelMap map){
+	public String editPositionDetailsGet(@PathVariable long companyId, @PathVariable String positionId, HttpServletRequest request, ModelMap map){
 		JobPosting job=jobSerivce.getJob(positionId);
 		map.addAttribute("job",job);
 		return "editpostion";
 	}
 	@RequestMapping(value="/company/{companyId}/positions/{positionId}/edit", method=RequestMethod.POST)
-	public String editPositionDetails(@PathVariable long companyId, @PathVariable long positionId, HttpServletRequest request, ModelMap map){
+	public String editPositionDetails(@PathVariable long companyId, @PathVariable String positionId, HttpServletRequest request, ModelMap map){
 	       String title=request.getParameter("title"), description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary"), status=request.getParameter("status");
 		Company company=companyService.getCompany(companyId);
@@ -110,13 +110,52 @@ public class JobController {
 		return json;
 	}*/
 	
+	
+	// REQUIREMENT No 2
 	@RequestMapping(value="/positions",method=RequestMethod.GET)
-	public String findPositions(HttpServletRequest request){
+	public String findPositions(HttpServletRequest request, ModelMap map){
 		
 		System.out.println("inside findPositions()");
-		String jobId = "-1,"+request.getParameter("jobId");
-		List<JobPosting> positions = jobSerivce.getPositions(jobId);
+		String jobId = request.getParameter("jobId");
+		String title = request.getParameter("title");
+		String location = request.getParameter("location");
+		String salary = request.getParameter("salary");
+		String status = request.getParameter("status");
+		String postedOn = request.getParameter("postedOn");
 		
-		return null;
+		if(jobId != null){
+			System.out.println("found jobId");
+			jobId = request.getParameter("jobId") + ",";
+		}
+		
+		if(title != null){
+			System.out.println("found title");
+			title = request.getParameter("title") + ",";
+		}
+		
+		if(location != null){
+			System.out.println("found location");
+			location = request.getParameter("location") + ",";
+		}
+		
+		if(salary != null){
+			System.out.println("found salary");
+			salary = request.getParameter("salary") + ",";
+		}
+		
+		if(status != null){
+			System.out.println("found status");
+			status = request.getParameter("status") + ",";
+		}
+		
+		if(postedOn != null){
+			System.out.println("found postedOn");
+			postedOn = request.getParameter("postedOn") + ",";
+		}
+		
+		List<JobPosting> positions = jobSerivce.getPositions(jobId, title, location, salary, status, postedOn);
+		
+		map.addAttribute("positions", positions);
+		return "viewPositions";
 	}
 }

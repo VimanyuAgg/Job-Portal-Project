@@ -2,10 +2,13 @@ function checkPasswordMatch() {
     var password = $("#password").val();
     var confirmPassword = $("#confirmPassword").val();
 
-    if (password != confirmPassword)
+    if (password != confirmPassword){
         $("#divCheckPasswordMatch").html("Passwords do not match!");
-    else
-        $("#divCheckPasswordMatch").html("Passwords matched!.");
+    	$("#divCheckPasswordMatch").css("color","Red"); }
+    else{
+        $("#divCheckPasswordMatch").html("Passwords matched!");
+    	$("#divCheckPasswordMatch").css("color","Green");
+    }
 }
 
 $(document).ready(function () {
