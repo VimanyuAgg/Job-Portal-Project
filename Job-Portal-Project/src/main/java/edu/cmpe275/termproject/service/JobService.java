@@ -19,7 +19,7 @@ public class JobService {
 	public JobPosting addJob(JobPosting job){
 		jobPostingDao.save(job);
 		return job;
-	}
+	}	
 	public JobPosting getJob(String jobId){
 		return jobPostingDao.findByJobId(jobId);
 	}
@@ -30,7 +30,7 @@ public class JobService {
 	public List<JobPosting> getTop10NewJobListings(){
 		List<JobPosting> jobList = new ArrayList<JobPosting>();
 		PageRequest pr = new PageRequest(10,10);
-		 jobList = jobPostingDao.findTop10jobs(pr);
+		 jobList = jobPostingDao.findTop10jobs();
 		
 		return jobList;
 	}

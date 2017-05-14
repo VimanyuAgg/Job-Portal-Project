@@ -24,6 +24,8 @@ public class JobSeekerService {
 	public String authenticateJobSeeker(String username, String password) {
 		// TODO Auto-generated method stub
 		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
+		System.out.println("Inside authenticateJobSeeker"+jobSeeker);
+		System.out.println("firstName: "+jobSeeker.getFirstName());
 		if(jobSeeker.getPassword().equals(password))
 		return username;
 		else

@@ -33,6 +33,6 @@ public interface JobPostingDAO extends CrudRepository<JobPosting, String> {
 			@Param("tempJobPostedOn") int tempJobPostedOn);
 	
 	@Query("SELECT J FROM JobPosting J ORDER BY J.postedOn DESC")
-	public List<JobPosting> findTop10jobs(Pageable page);
+	public List<JobPosting> findTop10jobs();
 }
 
