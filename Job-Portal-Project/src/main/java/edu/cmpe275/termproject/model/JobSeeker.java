@@ -13,11 +13,30 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="JOB_SEEKER")
 public class JobSeeker {
+	
+	
+	public JobSeeker(String firstName, String lastName, String picture, String selfIntroduction,
+			String workExperience, String education, String skills, String username, 
+			String email, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.picture = picture;
+		this.selfIntroduction = selfIntroduction;
+		this.workExperience = workExperience;
+		this.education = education;
+		this.skills = skills;
+		this.username = username;
+		this.email = email;
+		this.password = password;	
+	}
 	
 	@Id
 	@Column(name="JSID")
@@ -54,48 +73,21 @@ public class JobSeeker {
 	
 	@Column(name="PASSWORD")
 	private String password;
-	
-	
-	
+
 	@Column(name="VER_STATUS", nullable=true)
 	private boolean isVerified = false;
 	
 	@Column(name="AUTH_CODE",nullable=true)
 	private String authenticationCode = "";
 	
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch = FetchType.EAGER)
-	@JoinTable(
-			name="T_JobSeeker_JobPosting",
-			joinColumns={@JoinColumn(name="JSID", referencedColumnName="JSID")},
-			inverseJoinColumns={@JoinColumn(name="JOB_ID", referencedColumnName="JOB_ID")})
+	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
+	private List<JobApplication> applicationsList = new ArrayList<JobApplication>();
 	
-	private List<JobPosting> jobPostingList= new ArrayList<JobPosting>();
-
 	
 	public JobSeeker(){
 		
 	}
 	
-	public JobSeeker(String firstName, String lastName, String picture, String selfIntroduction,
-				String workExperience, String education, String skills, String username, 
-				String email, String password) {
-			super();
-			this.firstName = firstName;
-			this.lastName = lastName;
-			this.picture = picture;
-			this.selfIntroduction = selfIntroduction;
-			this.workExperience = workExperience;
-			this.education = education;
-			this.skills = skills;
-			this.username = username;
-			this.email = email;
-			this.password = password;
-			
-			
-		}
-
-	
-
 
 	public boolean isVerified() {
 		return isVerified;
@@ -203,13 +195,7 @@ public class JobSeeker {
 		this.skills = skills;
 	}
 
-	public List<JobPosting> getJobPostingList() {
-		return jobPostingList;
-	}
-
-	public void setJobPostingList(List<JobPosting> jobPostingList) {
-		this.jobPostingList = jobPostingList;
-	}
+	
 
 
 	public void setAuthenticationCode(String authenticationCode_String) {
@@ -220,6 +206,16 @@ public class JobSeeker {
 	
 	public String getAuthenticationCode(){
 		return this.authenticationCode;
+	}
+
+
+	public List<JobApplication> getApplicationsList() {
+		return applicationsList;
+	}
+
+
+	public void setApplicationsList(List<JobApplication> applicationsList) {
+		this.applicationsList = applicationsList;
 	}
 	
 	

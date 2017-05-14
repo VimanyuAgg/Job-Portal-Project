@@ -27,16 +27,15 @@ public class JobApplicationService {
 		
 		JobSeeker applicant = jobSeekerDAO.findByUsername(jobSeekerUsername);
 		
-		System.out.println("appl");
+		System.out.println("inside applyJob ");
 		
 		JobPosting job = jobPostingDAO.findByJobId(jobId);
 		
 		try{
-			
 			JobApplication jobApplication = new JobApplication("Pending", job, applicant);
 			jobApplicationDAO.save(jobApplication);
 			
-			applicant.getJobPostingList().add(job);
+			applicant.getApplicationsList().add(jobApplication);
 			jobSeekerDAO.save(applicant);
 			
 			job.getApplicants().add(jobApplication);
