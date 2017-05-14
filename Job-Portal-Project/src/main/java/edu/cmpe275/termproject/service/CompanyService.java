@@ -78,7 +78,6 @@ public class CompanyService {
 	public List<Company> getCompanyByName(String position){
 		System.out.println("inside getCompanyByName()");
 		
-		//String input2[] = position.split(",");
 		List<String> input = Arrays.asList(position.split(","));
 				
 		List<Company> companies = companyDao.findCompanyByName(input);

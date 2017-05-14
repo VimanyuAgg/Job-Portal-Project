@@ -61,7 +61,7 @@ public class JobController {
 				salary=request.getParameter("salary");
 		
 		//long jobId = Long.parseLong(request.getParameter("jobId"));
-		Long jobId = Long.parseLong(request.getParameter("jobId"));
+		String jobId = request.getParameter("jobId");
 		
 		JobPosting job = new JobPosting(jobId, title, description, responsibilites, offliceLocation, salary, company,"MS");
 		JobPosting jobAdded = jobSerivce.addJob(job);
@@ -86,13 +86,52 @@ public class JobController {
 		return json;
 	}*/
 	
+	
+	// REQUIREMENT No 2
 	@RequestMapping(value="/positions",method=RequestMethod.GET)
-	public String findPositions(HttpServletRequest request){
+	public String findPositions(HttpServletRequest request, ModelMap map){
 		
 		System.out.println("inside findPositions()");
-		String jobId = "-1,"+request.getParameter("jobId");
-		List<JobPosting> positions = jobSerivce.getPositions(jobId);
+		String jobId = request.getParameter("jobId");
+		String title = request.getParameter("title");
+		String location = request.getParameter("location");
+		String salary = request.getParameter("salary");
+		String status = request.getParameter("status");
+		String postedOn = request.getParameter("postedOn");
 		
-		return null;
+		if(jobId != null){
+			System.out.println("found jobId");
+			jobId = request.getParameter("jobId") + ",";
+		}
+		
+		if(title != null){
+			System.out.println("found title");
+			title = request.getParameter("title") + ",";
+		}
+		
+		if(location != null){
+			System.out.println("found location");
+			location = request.getParameter("location") + ",";
+		}
+		
+		if(salary != null){
+			System.out.println("found salary");
+			salary = request.getParameter("salary") + ",";
+		}
+		
+		if(status != null){
+			System.out.println("found status");
+			status = request.getParameter("status") + ",";
+		}
+		
+		if(postedOn != null){
+			System.out.println("found postedOn");
+			postedOn = request.getParameter("postedOn") + ",";
+		}
+		
+		List<JobPosting> positions = jobSerivce.getPositions(jobId, title, location, salary, status, postedOn);
+		
+		map.addAttribute("positions", positions);
+		return "viewPositions";
 	}
 }
