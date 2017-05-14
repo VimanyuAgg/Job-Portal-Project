@@ -6,6 +6,8 @@
 <body>
 <h1>Job Post Form</h1>
 <form method="POST" action="/company/<%=session.getAttribute("companyId")%>/addjob">
+	<p>Requisition Id</p>
+	<input type="text" name="jobId" />
 	<p>Title</p>
 	<input type="text" name="title" />
 	<p>Description</p>

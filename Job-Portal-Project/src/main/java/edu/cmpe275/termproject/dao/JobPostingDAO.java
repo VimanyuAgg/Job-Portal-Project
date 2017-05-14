@@ -29,5 +29,8 @@ public interface JobPostingDAO extends CrudRepository<JobPosting, String> {
 			@Param("tempJobSalary") int tempJobSalary,
 			@Param("tempJobStatus") int tempJobStatus,
 			@Param("tempJobPostedOn") int tempJobPostedOn);
+	
+	@Query("SELECT J FROM JobPosting J ORDER BY J.postedOn DESC LIMIT 10")
+	public List<JobPosting> find10LatestJobs();
 }
 
