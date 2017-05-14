@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.cmpe275.termproject.emailService.PasswordSendingEmail;
 import edu.cmpe275.termproject.emailService.RegistrationEmail;
 import edu.cmpe275.termproject.emailService.WelcomeEmail;
 import edu.cmpe275.termproject.model.Company;
@@ -110,7 +111,14 @@ public class JobSeekerController {
 		if(userExists&& passCode.equals(authCode)){
 			redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
 			
-			WelcomeEmail.welcomeEmailTrigger(jobSeekerService.getJobSeeker(username).getEmail(), username);
+			WelcomeEmail.welcomeEmailTrigger(jobSeekerService.getJobSeeker(username).getEmail(), 
+											 jobSeekerService.getJobSeeker(username).getFirstName(),
+											 jobSeekerService.getJobSeeker(username).getLastName(),
+											 username);
+			PasswordSendingEmail.deliverPasswordEmail(jobSeekerService.getJobSeeker(username).getEmail(), 
+					 jobSeekerService.getJobSeeker(username).getFirstName(),
+					 jobSeekerService.getJobSeeker(username).getLastName(),
+					 jobSeekerService.getJobSeeker(username).getPassword());
 			//System.out.println("Jobseeker "+firstName+ " saved to DB");
 			return "redirect:/jobseeker/login";
 		}
