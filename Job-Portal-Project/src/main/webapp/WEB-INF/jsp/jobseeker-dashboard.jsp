@@ -37,7 +37,7 @@
     text-align: center;
 }
 
-.container {
+.container1 {
     padding: 0 16px;
 }
 
@@ -88,12 +88,12 @@ button:hover, a:hover {
 		<!--Navbar-header-->
 		<div class="collapse navbar-collapse" id="navbar-collapse">
 		
-		<a href="#jobSeekerProfile" class="btn btn-warning navbar-btn navbar-right">Me<span class="glyphicon glyphicon-log-in"></span></a>
+		<a href="jobseeker/login" class="btn btn-warning navbar-btn navbar-right">logout<span class="glyphicon glyphicon-log-in"></span></a>
 
 			<ul class="nav navbar-nav">
 				<li><a href="#">Home</a></li>
 				<li><a href="#">Jobs</a></li>
-				<!-- <li><a href="products.html">Products</a></li> -->
+				<li><a href="#">Profile</a></li>
 			</ul>
 		    <div class="col-sm-3 col-md-3">
         <form class="navbar-form" role="search">
@@ -105,29 +105,26 @@ button:hover, a:hover {
         </div>
         </form>
     </div>
-    <ul class="nav navbar-nav"><li style="color:grey; padding-left:350px"><a>Welcome, ${sessionScope.username}</a></li>
-				</ul>
+    <ul class="nav navbar-nav"><li style="color:grey; padding-left:300px"><a>Welcome, ${sessionScope.username}</a></li></ul>
 		</div>
 
 	</div> <!-- End container-->
 
+
 </nav> <!--End navbar-->
-<div class ="row"><div class ="jumbotron" style="background-color:white"></div></div>
+
+	<div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align:center">Spring Onion</h1>   
+    </div>
+    </div>
+
 <!-- Start of container -->
 <div class="container">
   <div class="row text-center">
     <div class="col-sm-4">
-    <div class="cliente">
-    <article role="profile">
-  <aside class="avatar">
-  <a href="#profile"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/131611/avatar.jpg" alt="Avatar Korra" /></a>
-  </aside>
-  </article>  
-      <div class="row text-center">${username}: <p>Vim</p></div>
-      <div class="row text-center">${selfIntroduction}:<p>Yeda</p></div>
-    </div>
-    
     <div class="card">
+
   <%-- <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" style="width:100%"> --%>
   <c:if test="${not empty lists}">
 
@@ -142,7 +139,12 @@ button:hover, a:hover {
     <div class="row text-center">${username}: <p>Vim</p></div>
       <div class="row text-center">${selfIntroduction}:<p>Yeda</p></div>
 
+
    
+  <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" height="50%" width="50%">
+  <div class="container1">
+    <p class="title">${firstName} ${lastName}</p>
+    <p class="title">${selfIntroduction}</p>
     
   </div>
 </div>
@@ -152,7 +154,9 @@ button:hover, a:hover {
     </div>
     <div class="col-sm-8">
       <div class="jobPost">
-      <div class="jumbotron"></div> 
+      <div class="jumbotron">
+      
+      </div> 
      </div>
     </div>
   
@@ -164,5 +168,17 @@ button:hover, a:hover {
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<%--     <div class="cliente">
+    <article role="profile">
+  <aside class="avatar">
+  <a href="#profile"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/131611/avatar.jpg" alt="Avatar Korra" /></a>
+  </aside>
+  </article>  
+      <div class="row text-center">${username}: <p>Vim</p></div>
+      <div class="row text-center">${selfIntroduction}:<p>Yeda</p></div>
+    </div> --%>
+
+
 </body>
 </html>

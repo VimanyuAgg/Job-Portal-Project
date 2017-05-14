@@ -27,21 +27,50 @@ public class JobApplicationService {
 		
 		JobSeeker applicant = jobSeekerDAO.findByUsername(jobSeekerUsername);
 		
+		System.out.println("inside applyJob ");
+		
 		JobPosting job = jobPostingDAO.findByJobId(jobId);
 		
 		try{
-			
 			JobApplication jobApplication = new JobApplication("Pending", job, applicant);
 			jobApplicationDAO.save(jobApplication);
 			
-			applicant.getJobPostingList().add(job);
+			applicant.getApplicationsList().add(jobApplication);
+			jobSeekerDAO.save(applicant);
 			
 			job.getApplicants().add(jobApplication);
+			jobPostingDAO.save(job);
 			
+			System.out.println("size "+job.getApplicants().size());
+			return "success";
 		}catch(Exception e){
-			
+			System.out.println("Exception in applyJob()");
 		}
 		
+		return "error";
+	}
+
+	public String findApplicants(String jobId) {
+		
+		System.out.println("insde findApplicants()");
+		JobPosting job = jobPostingDAO.findByJobId(jobId);
+		if(job != null) System.out.println("job is not null");
+		
+		System.out.println("getEligibility is "+job.getEligibility());
+		System.out.println("getJobDescription is "+job.getJobDescription());
+		System.out.println("jobId is "+job.getJobId());
+		System.out.println("jobId is "+job.getJobLocation());
+		System.out.println("jobId is "+job.getJobResponsibilities());
+		System.out.println("getApplicants size is "+job.getApplicants().size());
+		System.out.println("jobId is "+job.getEligibility());
+		
+		for(JobApplication applicant : job.getApplicants()){
+			
+			System.out.println("insde loop");
+			System.out.println(applicant.getId());
+			System.out.println(applicant.getPostedOn());
+			System.out.println(applicant.getStatus());
+		}
 		
 		return null;
 	}

@@ -57,14 +57,6 @@ public class JobApplication {
 		this.status = status;
 	}
 
-	public JobSeeker getApplicants() {
-		return applicant;
-	}
-
-	public void setApplicants(JobSeeker applicant) {
-		this.applicant = applicant;
-	}
-
 	public String getPostedOn() {
 		return postedOn;
 	}

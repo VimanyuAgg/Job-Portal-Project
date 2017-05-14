@@ -18,10 +18,14 @@
 
 
 <body>
-<center>
 
+	<div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align:center">Spring Onion</h1>   
+    </div>
+    </div>
 <div class="text-center" name="registrationSuccess">${username}</div>
-<div class ="container">
+<div class ="jumbotron" style="text-align:center">
 
 	
    
