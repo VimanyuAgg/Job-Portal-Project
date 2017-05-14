@@ -38,8 +38,12 @@ public class JobPosting {
 		this.tempSize = 1;
 		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
+
+		//datePosted = new SimpleDateFormat("yyyyMMdd_HHmmss").parse(postedOn);
+
 			//datePosted = new SimpleDateFormat("yyyyMMdd_HHmmss").parse(postedOn);
 		
+
 	}
 
 	
