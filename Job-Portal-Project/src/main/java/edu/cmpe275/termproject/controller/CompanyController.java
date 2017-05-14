@@ -80,6 +80,12 @@ public class CompanyController {
 	@RequestMapping("/company/{companyId}/positions")
 	public String getAllPositions(@PathVariable long companyId, @RequestParam(value = "status", required=false) String status, ModelMap map){
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
+		if(session.getAttribute("companyId")==null){
+			return "redirect:/company/login";
+		}
+		//if(session.getAttribute("companyId")!=companyId){
+		//	return "error";
+		//}
 		System.out.println("Jobs Size:"+jobs.size());
 		for(JobPosting job: jobs){
 			System.out.println(job.getJobTitle());
