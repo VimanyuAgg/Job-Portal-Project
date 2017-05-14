@@ -116,7 +116,10 @@ public class JobSeekerController {
 	}
 	
 	@RequestMapping(value="/jobseeker/dashboard",method=RequestMethod.GET)
-	public String jobSeekerDashBoard(){
+	public String jobSeekerDashBoard(@ModelAttribute("selfIntroduction") String selfIntroduction,
+									 @ModelAttribute("firstName") String firstName,
+									 @ModelAttribute("lastName") String lastName,
+									 @ModelAttribute("picture") String picture){
 		return "jobseeker-dashboard";
 	}
 	
@@ -131,7 +134,8 @@ public class JobSeekerController {
 	
 	//LOGIN - POST
 	@RequestMapping(value="/jobseeker/login", method=RequestMethod.POST)
-	public String jobSeekerLoginPost(HttpServletRequest request){
+	public String jobSeekerLoginPost(HttpServletRequest request,
+									 RedirectAttributes redirectAttribute){
 		//, RedirectAttributes redirectAttribute
 		String username = request.getParameter("username"),
 		       password = request.getParameter("password");
@@ -140,6 +144,10 @@ public class JobSeekerController {
 		System.out.println(usersess);
 		if(!usersess.isEmpty()){
 			httpSession.setAttribute("username",username);
+			redirectAttribute.addFlashAttribute("selfIntroduction",jobSeekerService.getJobSeeker(username).getSelfIntroduction());
+			redirectAttribute.addFlashAttribute("picture",jobSeekerService.getJobSeeker(username).getPicture());
+			redirectAttribute.addFlashAttribute("firstName",jobSeekerService.getJobSeeker(username).getFirstName());
+			redirectAttribute.addFlashAttribute("lastName",jobSeekerService.getJobSeeker(username).getLastName());
 			//httpSession.setAttribute("userID", userN);
 			//redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
 			return "redirect:/jobseeker/dashboard";
