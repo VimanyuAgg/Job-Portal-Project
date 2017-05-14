@@ -74,6 +74,10 @@ public class JobController {
 	@RequestMapping("/company/{companyId}/positions/{positionId}")
 	public String getPositionDetails(@PathVariable long companyId, @PathVariable String positionId, ModelMap map){
 		JobPosting job=jobSerivce.getJob(positionId);
+		if(job==null){
+			map.addAttribute("errorMessage", "Job with ID "+ positionId +" doesn't exist");
+			return "error";
+		}
 		map.addAttribute("job",job);
 		return "positiondetails";
 	}

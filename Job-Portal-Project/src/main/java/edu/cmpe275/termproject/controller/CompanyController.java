@@ -107,7 +107,30 @@ public class CompanyController {
 		
 		return "postjob";
 	}
-	
-	
-	
+	@RequestMapping(value="/company/{companyId}/profile", method=RequestMethod.GET)
+	public String getCompanyProfilePage(@PathVariable long companyId, ModelMap map){
+		Company company=companyService.getCompany(companyId);
+		map.addAttribute("company",company);
+		return "companyprofile";
+	}
+	@RequestMapping(value="/company/{companyId}/edit", method=RequestMethod.GET)
+	public String getCompanyEditPage(@PathVariable long companyId, ModelMap map){
+		Company company= companyService.getCompany(companyId);
+		map.addAttribute("company", company);
+		return "company-edit";
+	}
+	@RequestMapping(value="/company/{companyId}/edit", method=RequestMethod.POST)
+	public String editCompany(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
+		Company company = companyService.getCompany(companyId);
+		company.setCompanyName(request.getParameter("name"));
+		company.setWebsite(request.getParameter("website"));
+		company.setAddress(request.getParameter("address"));
+		company.setDescription(request.getParameter("description"));
+		company.setLogoUrl(request.getParameter("logoUrl"));
+		companyService.registerCompany(company);
+		System.out.println("I am website:"+company.getWebsite());
+		map.addAttribute("company",company);
+		return "companyprofile";
+	}
+
 }
