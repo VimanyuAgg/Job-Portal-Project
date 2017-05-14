@@ -110,13 +110,36 @@ button:hover, a:hover {
 
 	</div> <!-- End container-->
 
+
 </nav> <!--End navbar-->
-<div class ="row"><div class ="jumbotron" style="background-color:white"></div></div>
+
+	<div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align:center">Spring Onion</h1>   
+    </div>
+    </div>
+
 <!-- Start of container -->
 <div class="container">
   <div class="row text-center">
     <div class="col-sm-4">
     <div class="card">
+
+  <%-- <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" style="width:100%"> --%>
+  <c:if test="${not empty lists}">
+
+		<ul>
+			<c:forEach var="topJobValue" items="${topJobs}">
+				<li>${topJobValue}</li>
+			</c:forEach>
+		</ul>
+
+	</c:if>
+  <div class="container">
+    <div class="row text-center">${username}: <p>Vim</p></div>
+      <div class="row text-center">${selfIntroduction}:<p>Yeda</p></div>
+
+
    
   <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" height="50%" width="50%">
   <div class="container1">
