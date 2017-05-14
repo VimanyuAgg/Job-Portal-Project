@@ -25,37 +25,36 @@ public class JobApplicationService {
 	@Autowired
 	private JobApplicationDAO jobApplicationDAO;
 
-	public String applyJob(String jobId, String jobSeekerUsername) {
+	public String applyJob(String jobId, String jobSeekerEmail) {
 		
-		JobSeeker applicant = jobSeekerDAO.findByUsername(jobSeekerUsername);
+		JobSeeker applicant = jobSeekerDAO.findByEmail(jobSeekerEmail);
 		
 		System.out.println("inside applyJob ");
 		
 		JobPosting job = jobPostingDAO.findByJobId(jobId);
-	try{
-		JobApplication jobApplication = new JobApplication("Pending", job, applicant);
-		jobApplicationDAO.save(jobApplication);
+		try{
+			JobApplication jobApplication = new JobApplication("Pending", job, applicant);
+			jobApplicationDAO.save(jobApplication);
+			
+			applicant.getApplicationsList().add(jobApplication);
+			jobSeekerDAO.save(applicant);
+			
+			job.getApplicants().add(jobApplication);
+			jobPostingDAO.save(job);
+			
+			System.out.println("size "+job.getApplicants().size());
+			return "success";
+		}catch(Exception e){
+			System.out.println("Exception in applyJob()");
+		}
 		
-		applicant.getApplicationsList().add(jobApplication);
-		jobSeekerDAO.save(applicant);
-		
-		job.getApplicants().add(jobApplication);
-		jobPostingDAO.save(job);
-		
-		System.out.println("size "+job.getApplicants().size());
-		return "success";
-	}catch(Exception e){
-		System.out.println("Exception in applyJob()");
-	}
-	
-	return "error";
-	
+		return "error";
 	}
 
-	public int checkTotalPendingApplications(String username) {
+	public int checkTotalPendingApplications(String email) {
 		// TODO Auto-generated method stub
 		int count=0;
-		List<JobApplication> applications=jobSeekerDAO.findByUsername(username).getApplicationsList();
+		List<JobApplication> applications=jobSeekerDAO.findByEmail(email).getApplicationsList();
 		for(JobApplication application:applications){
 			if(application.getStatus().equals("pending"))
 				count++;

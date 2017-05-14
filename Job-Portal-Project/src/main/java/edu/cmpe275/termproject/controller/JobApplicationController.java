@@ -25,15 +25,23 @@ public class JobApplicationController {
 	public String applyJob(HttpServletRequest request, ModelMap map) throws ParseException{
 		
 		String jobId = request.getParameter("jobId");
-		String jobSeekerUsername = request.getParameter("username");
-		if(jobApplicationService.checkTotalPendingApplications(jobSeekerUsername)>=5){
+		String email = request.getParameter("email");
+
+		System.out.println("inside applyJob");
+		System.out.println("jobid "+jobId);
+		System.out.println("email "+email);
+
+		
+		if(jobApplicationService.checkTotalPendingApplications(email)>=5){
+			System.out.println("more than 5 applications");
 			return "error";
 		}
 
-		if(jobApplicationService.checkIfApplicationPending(jobId, jobSeekerUsername)){
+		if(jobApplicationService.checkIfApplicationPending(jobId, email)){
+			System.out.println("pending applications");
 			return "error";
 		}
-		return jobApplicationService.applyJob(jobId, jobSeekerUsername);
+		return jobApplicationService.applyJob(jobId, email);
 	}	
 
 	// GEt applicants for a particular job
