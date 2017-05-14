@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -37,13 +39,7 @@ public class JobPosting {
 		this.eligibility=eligibility;
 		this.tempSize = 1;
 		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-
-
-		//datePosted = new SimpleDateFormat("yyyyMMdd_HHmmss").parse(postedOn);
-
-			//datePosted = new SimpleDateFormat("yyyyMMdd_HHmmss").parse(postedOn);
-		
-
+		//this.applications = new ArrayList<JobApplication>();
 	}
 
 	
@@ -101,7 +97,8 @@ public class JobPosting {
 	@Column(name="POSTED_ON")
 	private String postedOn;
 	
-	
+	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
+	private List<JobApplication> applications;
 
 	@Column(name="ELIGIBILITY")
 	private String eligibility;
@@ -192,6 +189,12 @@ public class JobPosting {
 	public void setTempSize(int tempSize) {
 		this.tempSize = tempSize;
 	}
-	
-	
+
+	public void setApplicants(JobApplication applicant){
+		this.applications.add(applicant);
+	}
+
+	public List<JobApplication> getApplicants() {
+		return this.applications;
+	}
 }
