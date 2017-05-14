@@ -7,6 +7,7 @@
 
 package edu.cmpe275.termproject.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -165,7 +166,7 @@ public class JobSeekerController {
 			return "redirect:/jobseeker/dashboard";
 		}
 		else
-		return "redirect:/usersession-error"; 
+		return "redirect:/jobseeker/login"; 
 		
 		
 	}
@@ -177,7 +178,7 @@ public class JobSeekerController {
 									 @ModelAttribute("firstName") String firstName,
 									 @ModelAttribute("lastName") String lastName,
 									 @ModelAttribute("picture") String picture,
-									 @ModelAttribute("topJobs") List<JobPosting> topJobs
+									 @ModelAttribute("topJobs") ArrayList<JobPosting> topJobs
 									 ){
 		System.out.println("Inside GET Jobseeker");
 		return "jobseeker-dashboard";
