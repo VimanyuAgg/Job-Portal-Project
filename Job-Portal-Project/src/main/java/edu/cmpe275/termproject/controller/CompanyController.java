@@ -107,4 +107,7 @@ public class CompanyController {
 		
 		return "postjob";
 	}
+	
+	
+	
 }
