@@ -65,7 +65,7 @@
 	</div> <!-- End container-->
 
 </nav> <!--End navbar-->
-<div class ="row"><div class ="jumbotron"></div></div>
+<div class ="row"><div class ="jumbotron" style="background-color:white"></div></div>
 <!-- Start of container -->
 <div class="container">
   <div class="row text-center">
@@ -79,11 +79,12 @@
       <div class="row text-center">${username}: <p>Vim</p></div>
       <div class="row text-center">${selfIntroduction}:<p>Yeda</p></div>
     </div>
+    </div>
     <div class="col-sm-8">
-     <!--  <div class="jumbotron"></div> -->
+      <div class="jumbotron"></div> 
      
     </div>
-  </div>
+  
   </div>
 <!-- End of container -->
 
