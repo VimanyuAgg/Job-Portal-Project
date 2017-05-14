@@ -70,4 +70,9 @@ public class JobSeekerService {
 		
 		return null;
 	}
+
+	public JobSeeker findByUsername(String username) {
+		
+		return jobSeekerDAO.findByUsername(username);
+	}
 }

@@ -25,7 +25,7 @@ public class JobApplicationService {
 	@Autowired
 	private JobApplicationDAO jobApplicationDAO;
 
-	public String applyJob(String jobId, String jobSeekerEmail) {
+	public String applyJob(String jobId, String jobSeekerEmail, byte[] by, String profile) {
 		
 		JobSeeker applicant = jobSeekerDAO.findByEmail(jobSeekerEmail);
 		
@@ -33,7 +33,7 @@ public class JobApplicationService {
 		
 		JobPosting job = jobPostingDAO.findByJobId(jobId);
 		try{
-			JobApplication jobApplication = new JobApplication("Pending", job, applicant);
+			JobApplication jobApplication = new JobApplication("Pending", job, applicant, by, profile);
 			jobApplicationDAO.save(jobApplication);
 			
 			applicant.getApplicationsList().add(jobApplication);
@@ -100,5 +100,12 @@ public class JobApplicationService {
 			}
 		}
 		return false;
+	}
+
+	public List<JobApplication> findApplications(JobSeeker applicant) {
+		
+		
+		
+		return (List<JobApplication>) jobApplicationDAO.findByApplicant(applicant);
 	}
 }

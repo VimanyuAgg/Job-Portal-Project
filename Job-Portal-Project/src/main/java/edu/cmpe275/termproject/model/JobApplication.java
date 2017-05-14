@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,10 +19,13 @@ public class JobApplication {
 		
 	}
 	
-	public JobApplication(String status, JobPosting job, JobSeeker applicant){
+	public JobApplication(String status, JobPosting job, JobSeeker applicant,
+			byte[] resume, String profile){
 		this.jobPosting = job;
 		this.applicant = applicant;
 		this.status = status;
+		this.resume = resume;
+		this.profile = profile;
 	}
 	
 	@Id
@@ -38,9 +42,15 @@ public class JobApplication {
 	@Column(name="APPLICATION_POSTED_ON")
 	private String postedOn;
 	
+	@Column(name="PROFILE")
+	private String profile;
+	
 	@OneToOne(targetEntity=JobPosting.class, cascade=CascadeType.ALL)
 	private JobPosting jobPosting;
 
+	@Lob
+	private byte[] resume;
+	
 	public long getId() {
 		return id;
 	}
@@ -63,6 +73,22 @@ public class JobApplication {
 
 	public void setPostedOn(String postedOn) {
 		this.postedOn = postedOn;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public byte[] getResume() {
+		return resume;
+	}
+
+	public void setResume(byte[] resume) {
+		this.resume = resume;
 	}
 
 	public JobPosting getJobPosting() {

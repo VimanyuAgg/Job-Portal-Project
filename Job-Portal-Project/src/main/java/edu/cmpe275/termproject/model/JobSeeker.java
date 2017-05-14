@@ -2,25 +2,22 @@ package edu.cmpe275.termproject.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="JOB_SEEKER")
 public class JobSeeker {
 	
+	public JobSeeker(){
+		
+	}
 	
 	public JobSeeker(String firstName, String lastName, String picture, String selfIntroduction,
 			String workExperience, String education, String skills, String username, 
@@ -61,7 +58,6 @@ public class JobSeeker {
 	@Column(name="EDU")
 	private String education;
 	
-	
 	@Column(name="SKILLS")
 	private String skills;
 	
@@ -83,61 +79,45 @@ public class JobSeeker {
 	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
 	private List<JobApplication> applicationsList = new ArrayList<JobApplication>();
 	
-	
-	public JobSeeker(){
-		
-	}
-	
-
 	public boolean isVerified() {
 		return isVerified;
 	}
-
 
 	public void setVerified() {
 		this.isVerified = true;
 	}
 
-
 	public String getPicture() {
-			return picture;
-		}
+		return picture;
+	}
 
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 
-		public void setPicture(String picture) {
-			this.picture = picture;
-		}
+	public String getUsername() {
+		return username;
+	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-		public String getUsername() {
-			return username;
-		}
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-		public void setUsername(String username) {
-			this.username = username;
-		}
+	public String getPassword() {
+		return password;
+	}
 
-
-		public String getEmail() {
-			return email;
-		}
-
-
-		public void setEmail(String email) {
-			this.email = email;
-		}
-
-
-		public String getPassword() {
-			return password;
-		}
-
-
-		public void setPassword(String password) {
-			this.password = password;
-		}
-
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public long getJsid() {
 		return jsid;
@@ -195,34 +175,19 @@ public class JobSeeker {
 		this.skills = skills;
 	}
 
-	
-
-
 	public void setAuthenticationCode(String authenticationCode_String) {
-		// TODO Auto-generated method stub
 		this.authenticationCode = authenticationCode_String;
-		
 	}
 	
 	public String getAuthenticationCode(){
 		return this.authenticationCode;
 	}
 
-
 	public List<JobApplication> getApplicationsList() {
 		return applicationsList;
 	}
 
-
 	public void setApplicationsList(List<JobApplication> applicationsList) {
 		this.applicationsList = applicationsList;
 	}
-	
-	
-	
-
-	
-	
-	
-	
 }
