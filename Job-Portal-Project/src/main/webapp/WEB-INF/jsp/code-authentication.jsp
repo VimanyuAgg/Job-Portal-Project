@@ -37,7 +37,7 @@
 	<div class="col-sm-6"></div>
 </div>
 </div>
-<input type="hidden" name="userName" value="${username}" />
+<input type="hidden" name="username" value="${username}" />
              
 </form>
 </div>

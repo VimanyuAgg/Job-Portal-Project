@@ -28,8 +28,9 @@ public class JobService {
 	}
 	
 	public List<JobPosting> getTop10NewJobListings(){
-		 PageRequest pr = new PageRequest(10,10);
-		 List<JobPosting> jobList = jobPostingDao.findTop10jobs(pr);
+		List<JobPosting> jobList = new ArrayList<JobPosting>();
+		PageRequest pr = new PageRequest(10,10);
+		 jobList = jobPostingDao.findTop10jobs(pr);
 		
 		return jobList;
 	}
