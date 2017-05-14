@@ -1,6 +1,8 @@
 package edu.cmpe275.termproject.dao;
 
 import java.util.List;
+
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -30,7 +32,7 @@ public interface JobPostingDAO extends CrudRepository<JobPosting, String> {
 			@Param("tempJobStatus") int tempJobStatus,
 			@Param("tempJobPostedOn") int tempJobPostedOn);
 	
-	@Query("SELECT J FROM JobPosting J ORDER BY J.postedOn DESC LIMIT 10")
-	public List<JobPosting> find10LatestJobs();
+	@Query("SELECT J FROM JobPosting J ORDER BY J.postedOn DESC")
+	public List<JobPosting> findTop10jobs(Pageable page);
 }
 

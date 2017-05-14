@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +28,8 @@ public class JobService {
 	}
 	
 	public List<JobPosting> getTop10NewJobListings(){
-		 
-		 List<JobPosting> jobList = jobPostingDao.find10LatestJobs();
+		 PageRequest pr = new PageRequest(10,10);
+		 List<JobPosting> jobList = jobPostingDao.findTop10jobs(pr);
 		
 		return jobList;
 	}
