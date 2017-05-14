@@ -27,10 +27,11 @@ public class JobService {
 		jobPostingDao.delete(job);
 	}
 	
-	public List<JobPosting> getTop10NewJobListings(){
-		List<JobPosting> jobList = new ArrayList<JobPosting>();
+	public ArrayList<JobPosting> getTop10NewJobListings(){
+		//ArrayList<JobPosting> jobList = new ArrayList<JobPosting>();
 		PageRequest pr = new PageRequest(10,10);
-		 jobList = jobPostingDao.findTop10jobs();
+		ArrayList<JobPosting> jobList = jobPostingDao.findTop10jobs();
+		 System.out.println("inside job service - jobList size: "+jobList.size());
 		
 		return jobList;
 	}

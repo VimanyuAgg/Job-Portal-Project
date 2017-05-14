@@ -155,7 +155,7 @@ public class JobSeekerController {
 		System.out.println("Printing usersess: "+usersess);
 		if(!usersess.isEmpty()){
 			httpSession.setAttribute("username",username);
-			//redirectAttribute.addFlashAttribute("topJobs",jobService.getTop10NewJobListings());
+			redirectAttribute.addFlashAttribute("topJobs",jobService.getTop10NewJobListings());
 			redirectAttribute.addFlashAttribute("selfIntroduction",jobSeekerService.getJobSeeker(username).getSelfIntroduction());
 			redirectAttribute.addFlashAttribute("picture",jobSeekerService.getJobSeeker(username).getPicture());
 			redirectAttribute.addFlashAttribute("firstName",jobSeekerService.getJobSeeker(username).getFirstName());
@@ -176,7 +176,8 @@ public class JobSeekerController {
 	public String jobSeekerDashBoard(@ModelAttribute("selfIntroduction") String selfIntroduction,
 									 @ModelAttribute("firstName") String firstName,
 									 @ModelAttribute("lastName") String lastName,
-									 @ModelAttribute("picture") String picture
+									 @ModelAttribute("picture") String picture,
+									 @ModelAttribute("topJobs") List<JobPosting> topJobs
 									 ){
 		System.out.println("Inside GET Jobseeker");
 		return "jobseeker-dashboard";

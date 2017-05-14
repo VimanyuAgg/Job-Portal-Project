@@ -1,5 +1,6 @@
 package edu.cmpe275.termproject.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,6 @@ public interface JobPostingDAO extends CrudRepository<JobPosting, String> {
 			@Param("tempJobPostedOn") int tempJobPostedOn);
 	
 	@Query("SELECT J FROM JobPosting J ORDER BY J.postedOn DESC")
-	public List<JobPosting> findTop10jobs();
+	public ArrayList<JobPosting> findTop10jobs();
 }
 

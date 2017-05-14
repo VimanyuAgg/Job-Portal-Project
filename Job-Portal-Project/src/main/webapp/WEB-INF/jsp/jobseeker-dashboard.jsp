@@ -128,7 +128,7 @@ button:hover, a:hover {
     </div>
     
     <div class="card">
-  <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" style="width:100%">
+  <%-- <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" style="width:100%"> --%>
   <c:if test="${not empty lists}">
 
 		<ul>
