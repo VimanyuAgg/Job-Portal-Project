@@ -26,6 +26,13 @@ public class JobService {
 		jobPostingDao.delete(job);
 	}
 	
+	public List<JobPosting> getTop10NewJobListings(){
+		 
+		 List<JobPosting> jobList = jobPostingDao.find10LatestJobs();
+		
+		return jobList;
+	}
+	
 	public List<JobPosting> getPositions(String jobId, 
 			String title, String location, String salary,
 			String status, String postedOn) {
