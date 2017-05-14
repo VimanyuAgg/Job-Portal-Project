@@ -19,6 +19,12 @@ public class JobService {
 		jobPostingDao.save(job);
 		return job;
 	}
+	public JobPosting getJob(String jobId){
+		return jobPostingDao.findByJobId(jobId);
+	}
+	public void removeJob(JobPosting job){
+		jobPostingDao.delete(job);
+	}
 	
 	public List<JobPosting> getPositions(String jobId, 
 			String title, String location, String salary,

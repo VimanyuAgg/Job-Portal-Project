@@ -38,6 +38,30 @@ public class JobPosting {
 		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 	}
 
+	public Company getJobPostedByCompany() {
+		return jobPostedByCompany;
+	}
+
+	public void setJobPostedByCompany(Company jobPostedByCompany) {
+		this.jobPostedByCompany = jobPostedByCompany;
+	}
+
+	public String getPostedOn() {
+		return postedOn;
+	}
+
+	public void setPostedOn(String postedOn) {
+		this.postedOn = postedOn;
+	}
+
+	public String getEligibility() {
+		return eligibility;
+	}
+
+	public void setEligibility(String eligibility) {
+		this.eligibility = eligibility;
+	}
+
 	@Id
 	@Column(name="JOB_ID", unique=true)
 	private String jobId;
@@ -88,22 +112,7 @@ public class JobPosting {
 //		this.jobPostedByCompany = jobPostedByCompany;
 //		setJobStatus("open");
 //	}
-	
-	public String getPostedOn() {
-		return postedOn;
-	}
 
-	public void setPostedOn(String postedOn) {
-		this.postedOn = postedOn;
-	}
-
-	public String getEligibility() {
-		return eligibility;
-	}
-
-	public void setEligibility(String eligibility) {
-		this.eligibility = eligibility;
-	}
 
 	public JobPosting() {
 		super();

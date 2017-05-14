@@ -7,26 +7,28 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 <script
-  src="https://code.jquery.com/jquery-1.12.4.min.js"
-  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
-  crossorigin="anonymous"></script>
+  src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
-<scipt src="${pageContext.request.contextPath}/js/login-validation.js"></scipt>
+<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>
 <title>Login</title>
 </head>
 
 
 <body>
-<div class="container">
 <center>
+
 <div class="text-center" name="registrationSuccess">${username}</div>
-<div class="text-center" style="padding:50px 0">
+<div class ="container">
+
+	
+   
 	<div class="logo">login</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
-	<form method="POST" action="/jobseeker/login" id="login-form" class="text-left">
+	<form method="POST" action="/jobseeker/jobseeker-dashboard" id="login-form" class="text-left" name="jslogin">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
@@ -36,7 +38,7 @@
 					</div>
 					<div class="form-group">
 						<label for="password" class="sr-only">Password</label>
-						<input type="password" class="form-control" id="lg_password" name="lg_password" placeholder="password">
+						<input type="password" class="form-control" id="password" name="password" placeholder="password">
 					</div>
 					<!-- <div class="form-group login-group-checkbox">
 						<input type="checkbox" id="lg_remember" name="lg_remember">
@@ -50,12 +52,10 @@
 			</div>
 		</form>
 	</div>
+	</div>
 	<!-- end:Main Form -->
-</div>
-</center>
-</div>
 
-
+</div>
 
 
 
@@ -69,6 +69,6 @@
 <input type="submit"/>
 
 </form> -->
-
+</center>
 </body>
 </html>

@@ -76,15 +76,12 @@ public class CompanyController {
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
 		System.out.println("Jobs Size:"+jobs.size());
 		for(JobPosting job: jobs){
-			
-			System.out.println(job.getJobTitle());}
+			System.out.println(job.getJobTitle());
+		}
 		map.addAttribute("positions", jobs);
 		return "companyjobopenings";
 	}
-	@RequestMapping("/company/{companyId}/positions/{positionId}")
-	public void getPositionDetails(@PathVariable long companyId, @PathVariable long poisitionId){
-		
-	}
+	
 	
 /*	  @RequestMapping(value = "/email/trigger", method = RequestMethod.POST)
 	    public String triggerEmail() {

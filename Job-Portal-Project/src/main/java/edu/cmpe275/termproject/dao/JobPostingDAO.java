@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import edu.cmpe275.termproject.model.JobPosting;
 
 public interface JobPostingDAO extends CrudRepository<JobPosting, String> {
+	public JobPosting findByJobId(String jobId);
 
 	@Query("SELECT j FROM JobPosting j WHERE (j.tempSize = :tempJobTitle OR LOWER(j.jobTitle) IN (:title)) "
 			+ "AND (j.tempSize = :tempJobId OR j.jobId IN :jobId)"
@@ -29,3 +30,4 @@ public interface JobPostingDAO extends CrudRepository<JobPosting, String> {
 			@Param("tempJobStatus") int tempJobStatus,
 			@Param("tempJobPostedOn") int tempJobPostedOn);
 }
+

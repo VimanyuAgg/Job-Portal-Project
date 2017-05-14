@@ -1,9 +1,6 @@
 package edu.cmpe275.termproject.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import edu.cmpe275.termproject.dao.CompanyDAO;
 import edu.cmpe275.termproject.dao.JobSeekerDAO;
 import edu.cmpe275.termproject.model.JobSeeker;
 
@@ -31,5 +28,37 @@ public class JobSeekerService {
 		return username;
 		else
 			return "";
+	}
+
+	public boolean find(String username) {
+		// TODO Auto-generated method stub
+		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
+		if(jobSeeker != null){
+			jobSeeker.setVerified();
+			jobSeekerDAO.save(jobSeeker);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public JobSeeker getJobSeeker(String username){
+		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
+		return jobSeeker;
+	}
+
+	public void setAuthCode(String authenticationCode_String, String username) {
+		// TODO Auto-generated method stub
+		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
+		jobSeeker.setAuthenticationCode(authenticationCode_String);
+		jobSeekerDAO.save(jobSeeker);
+		System.out.println("Authentication code successfully saved to DAO");
+	}
+
+	public void remove(JobSeeker existingjobSeeker) {
+		// TODO Auto-generated method stub
+		
+		jobSeekerDAO.delete(existingjobSeeker);
+		
 	}
 }
