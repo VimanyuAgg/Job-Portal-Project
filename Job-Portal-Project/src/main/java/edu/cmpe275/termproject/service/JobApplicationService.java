@@ -37,12 +37,11 @@ public class JobApplicationService {
 			applicant.getJobPostingList().add(job);
 			
 			job.getApplicants().add(jobApplication);
-			
+			return "success";
 		}catch(Exception e){
-			
+			System.out.println("Exception in applyJob()");
 		}
 		
-		
-		return null;
+		return "error";
 	}
 }
