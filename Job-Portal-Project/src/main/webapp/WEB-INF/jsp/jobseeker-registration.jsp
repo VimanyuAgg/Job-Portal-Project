@@ -32,6 +32,20 @@
 <div name="head" class="text-center"><h1>Registration</h1></div>
 
 <form method="POST" action="/jobseeker/register">
+<div class="form-group row">
+<label for="lastName" class="col-sm-2 col-form-label">Profile picture:</label>
+    <div class="col-sm-6">
+    
+<div class="col-md-2 rounder image-upload">
+    <label for="file-input">
+        <img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
+    </label>
+
+    <input id="file-input" type="file" onchange="encodeImageFileAsURL(this)"/>
+</div>
+</div>
+</div>
+
 <div class="form-group required">
 <div class="form-group row" style="margin-top:25px">
    <label for="firstName" class="col-sm-2 col-form-label" >First Name</label>
@@ -43,12 +57,6 @@
     <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
     <div class="col-sm-6">
     <input class="form-control" type="text" placeholder="Enter your last name" id="lastName" name="lastName" required>
-  </div>
-</div>
-<div class="form-group row">
-     <label for="picture"  class="col-sm-2 col-form-label">Upload picture</label>
-    <div class="col-sm-6">
-    <input id="input-1" type="file" class="file">
   </div>
 </div>
 
