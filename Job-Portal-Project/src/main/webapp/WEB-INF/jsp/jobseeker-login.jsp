@@ -28,7 +28,7 @@
 	<div class="logo">login</div>
 	<!-- Main Form -->
 	<div class="login-form-1">
-	<form method="POST" action="/jobseeker/jobseeker-dashboard" id="login-form" class="text-left" name="jslogin">
+	<form method="POST" action="/jobseeker/dashboard" id="login-form" class="text-left" name="jslogin">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
