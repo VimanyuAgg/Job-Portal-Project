@@ -32,23 +32,31 @@
 <div name="head" class="text-center"><h1>Registration</h1></div>
 
 <form method="POST" action="/jobseeker/register">
+<div class="form-group row">
+<label for="lastName" class="col-sm-2 col-form-label">Profile picture:</label>
+    <div class="col-sm-6">
+    
+<div class="col-md-2 rounder image-upload">
+    <label for="file-input">
+        <img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
+    </label>
+
+    <input id="file-input" type="file" onchange="encodeImageFileAsURL(this)"/>
+</div>
+</div>
+</div>
+
 <div class="form-group required">
 <div class="form-group row" style="margin-top:25px">
    <label for="firstName" class="col-sm-2 col-form-label" >First Name</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" placeholder="Enter your first name" id="firstName" name="firstName" required="True">
+    <input class="form-control" type="text" placeholder="Enter your first name" id="firstName" name="firstName" required>
   </div>
 </div>
 <div class="form-group row">
     <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" placeholder="Enter your last name" id="lastName" name="lastName">
-  </div>
-</div>
-<div class="form-group row">
-     <label for="picture"  class="col-sm-2 col-form-label">Upload picture</label>
-    <div class="col-sm-6">
-    <input id="input-1" type="file" class="file">
+    <input class="form-control" type="text" placeholder="Enter your last name" id="lastName" name="lastName" required>
   </div>
 </div>
 
@@ -62,49 +70,49 @@
 <div class="form-group row">
      <label for="education"  class="col-sm-2 col-form-label">Highest Education</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="education" placeholder="Enter highest education" name="education">
+    <input class="form-control" type="text" id="education" placeholder="Enter highest education" name="education" required>
   </div>
 </div>
 
 <div class="form-group row">
      <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="workExperience" name="workExperience" placeholder="Insert the experience in years">
+    <input class="form-control" type="text" id="workExperience" name="workExperience" placeholder="Insert the experience in years" required>
   </div>
 </div>
 
 <div class="form-group row">
      <label for="skills"  class="col-sm-2 col-form-label">Comma Seperated Skills</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="skills" name="skills" placeholder="Ex - Python, Java, Ruby etc">
+    <input class="form-control" type="text" id="skills" name="skills" placeholder="Ex - Python, Java, Ruby etc" required>
   </div>
 </div>
 
 <div class="form-group row">
      <label for="username"  class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="username" name="username" placeholder="Choose a username">
+    <input class="form-control" type="text" id="username" name="username" placeholder="Choose a username" required>
   </div>
 </div>
 
 <div class="form-group row">
      <label for="email"  class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-6">
-    <input class="form-control" type="email" id="email" name="email" placeholder="enter your email ID">
+    <input class="form-control" type="email" id="email" name="email" placeholder="enter your email ID" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
   </div>
 </div>
 
 <div class="form-group row">
      <label for="password"  class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-6">
-    <input class="form-control" type="password" id="password" name="password" placeholder="Type your password">
+    <input class="form-control" type="password" title="at least eight symbols containing at least one number, one lower, and one upper letter" id="password" name="password" placeholder="Type your password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
   </div>
 </div>
 
 <div class="form-group row">
      <label for="confirmPassword"  class="col-sm-2 col-form-label"> Confirm password</label>
     <div class="col-sm-6">
-    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd">
+    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd" required>
   </div>
   <div class="col-sm-4" id="divCheckPasswordMatch"></div>
 </div>
