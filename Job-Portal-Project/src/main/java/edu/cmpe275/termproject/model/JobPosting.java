@@ -1,5 +1,6 @@
 package edu.cmpe275.termproject.model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,7 +23,7 @@ public class JobPosting {
 	public JobPosting(String jobId, String jobTitle, String jobDescription, 
 			String jobResponsibilities, String jobLocation,
 			String jobSalary, Company jobPostedByCompany, 
-			String eligibility) {
+			String eligibility) throws ParseException {
 		
 		super();
 		this.jobId = jobId;
@@ -36,6 +37,17 @@ public class JobPosting {
 		this.eligibility=eligibility;
 		this.tempSize = 1;
 		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+
+			datePosted = new SimpleDateFormat("yyyyMMdd_HHmmss").parse(postedOn);
+		
+	}
+
+	public Date getDatePosted() {
+		return datePosted;
+	}
+
+	public void setDatePosted(Date datePosted) {
+		this.datePosted = datePosted;
 	}
 
 	public Company getJobPostedByCompany() {
@@ -90,6 +102,9 @@ public class JobPosting {
 	
 	@Column(name="POSTED_ON")
 	private String postedOn;
+	
+	@Column(name="DATE_POSTED")
+	private Date datePosted;
 	
 
 	@Column(name="ELIGIBILITY")
