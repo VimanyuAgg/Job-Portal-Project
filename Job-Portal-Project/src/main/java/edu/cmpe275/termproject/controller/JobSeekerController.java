@@ -129,15 +129,7 @@ public class JobSeekerController {
 		
 	}
 	
-	//DASHBOARD - GET
-	@RequestMapping(value="/jobseeker/dashboard",method=RequestMethod.GET)
-	public String jobSeekerDashBoard(@ModelAttribute("selfIntroduction") String selfIntroduction,
-									 @ModelAttribute("firstName") String firstName,
-									 @ModelAttribute("lastName") String lastName,
-									 @ModelAttribute("picture") String picture,
-									 @ModelAttribute("topJobs") List<JobPosting> topJobs){
-		return "jobseeker-dashboard";
-	}
+
 	
 	//LOGIN - GET
 	@RequestMapping(value="/jobseeker/login", method=RequestMethod.GET)
@@ -156,11 +148,14 @@ public class JobSeekerController {
 		String username = request.getParameter("username"),
 		       password = request.getParameter("password");
 		
+		System.out.println("username: "+username);
+		System.out.println("password:"+password);
+		
 		String usersess = jobSeekerService.authenticateJobSeeker(username, password);
-		System.out.println(usersess);
+		System.out.println("Printing usersess: "+usersess);
 		if(!usersess.isEmpty()){
 			httpSession.setAttribute("username",username);
-			redirectAttribute.addFlashAttribute("topJobs",jobService.getTop10NewJobListings());
+			//redirectAttribute.addFlashAttribute("topJobs",jobService.getTop10NewJobListings());
 			redirectAttribute.addFlashAttribute("selfIntroduction",jobSeekerService.getJobSeeker(username).getSelfIntroduction());
 			redirectAttribute.addFlashAttribute("picture",jobSeekerService.getJobSeeker(username).getPicture());
 			redirectAttribute.addFlashAttribute("firstName",jobSeekerService.getJobSeeker(username).getFirstName());
@@ -173,6 +168,18 @@ public class JobSeekerController {
 		return "redirect:/usersession-error"; 
 		
 		
+	}
+	
+
+	//DASHBOARD - GET
+	@RequestMapping(value="/jobseeker/dashboard",method=RequestMethod.GET)
+	public String jobSeekerDashBoard(@ModelAttribute("selfIntroduction") String selfIntroduction,
+									 @ModelAttribute("firstName") String firstName,
+									 @ModelAttribute("lastName") String lastName,
+									 @ModelAttribute("picture") String picture
+									 ){
+		System.out.println("Inside GET Jobseeker");
+		return "jobseeker-dashboard";
 	}
 	
 }

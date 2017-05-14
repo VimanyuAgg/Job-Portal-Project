@@ -117,7 +117,7 @@ button:hover, a:hover {
 <div class="container">
   <div class="row text-center">
     <div class="col-sm-4">
-<%--     <div class="cliente">
+    <div class="cliente">
     <article role="profile">
   <aside class="avatar">
   <a href="#profile"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/131611/avatar.jpg" alt="Avatar Korra" /></a>
@@ -125,7 +125,7 @@ button:hover, a:hover {
   </article>  
       <div class="row text-center">${username}: <p>Vim</p></div>
       <div class="row text-center">${selfIntroduction}:<p>Yeda</p></div>
-    </div> --%>
+    </div>
     
     <div class="card">
   <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" style="width:100%">
