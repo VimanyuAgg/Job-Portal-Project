@@ -17,10 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.service.CompanyService;
+import edu.cmpe275.termproject.service.JobSeekerService;
 @Controller
 public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
+	@Autowired
+	private JobSeekerService jobSeekerService;
 	@Autowired
 	HttpSession session;
 	@RequestMapping(value="/company/register", method=RequestMethod.GET)
@@ -50,6 +53,9 @@ public class CompanyController {
 	
 	@RequestMapping(value="/company/login", method=RequestMethod.GET)
 	public String getCompanyLoginPage(){
+		
+		System.out.println("inside getCompany()");
+		
 		return "companylogin";
 	}
 	@RequestMapping(value="/company/login", method=RequestMethod.POST)
@@ -108,6 +114,18 @@ public class CompanyController {
 		return "postjob";
 	}
 	
-	
-	
+	@RequestMapping(value="/test",method = RequestMethod.GET)
+	public String checkEmail(HttpServletRequest request, ModelMap map){
+		System.out.println("inside getTestPage()");
+		String email = request.getParameter("email");
+		
+		String findCompany = companyService.getCompanyByEmail(email);
+		String findJobSeeker = jobSeekerService.getJobSeekerByEmail(email);
+		if(findCompany != null || findJobSeeker != null){
+			System.out.println("found email");
+			return "emailFound";
+		}
+
+		return "noEmailFound";
+	}	
 }

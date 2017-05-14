@@ -61,4 +61,11 @@ public class JobSeekerService {
 		jobSeekerDAO.delete(existingjobSeeker);
 		
 	}
+
+	public String getJobSeekerByEmail(String email) {
+		
+		JobSeeker jobSeeker = jobSeekerDAO.findByEmail(email);
+		
+		return null;
+	}
 }
