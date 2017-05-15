@@ -19,7 +19,21 @@
                     url: "/test",
                     data: "email=" +$('#email').val(),
                     success: function(msg){      
-                            $('#output').html("   "+msg);
+                    	console.log("I am here outside" +msg);
+                            $('#output').html(msg);
+                            if(msg.includes("Email Not Available")){
+                            	console.log("I am here");
+                            	document.getElementById("output").style.color="Red";
+                            	document.getElementById("mySubmit").style.backgroundColor="Red";
+                            	document.getElementById("mySubmit").style.borderColor="Red";
+                            	document.getElementById("mySubmit").disabled = true;
+                        }else{
+                        	document.getElementById("output").style.color="Green";
+                        	document.getElementById("mySubmit").disabled = false;
+                        	document.getElementById("mySubmit").style.backgroundColor="#62C192";
+                        	document.getElementById("mySubmit").style.borderColor="#62C192";
+
+                        }
                     }
                 });
             });
@@ -72,7 +86,7 @@
 			
 			<div class="form-group row">
 			    <div class="col-sm-4"></div>
-				<button type="submit" class="col-md-2 btn btn-primary btn1">Submit</button>		
+				<button id="mySubmit" type="submit" class="col-md-2 btn btn-primary btn1">Submit</button>		
 			</div>
 		</form>
 		
