@@ -128,15 +128,17 @@ button:hover, a:hover {
     <div class="card">
 
   <%-- <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" style="width:100%"> --%>
-  <c:if test="${not empty lists}">
+		<table>
+		<c:forEach var="topJobValue" items="${topJobs}">
+		<tr>
+		<td><c:out value="${topJobValue.getJobTitle()}" /></td>
+		</tr>
+		</c:forEach>
+		</table>
+			
+			
+		
 
-		<ul>
-			<c:forEach var="topJobValue" items="${topJobs}">
-				<li>${topJobValue.getJobTitle()}</li>
-			</c:forEach>
-		</ul>
-
-	</c:if>
   <div class="container">
     <div class="row text-center">${username}: <p>Vim</p></div>
       <div class="row text-center">${selfIntroduction}:<p>Yeda</p></div>
