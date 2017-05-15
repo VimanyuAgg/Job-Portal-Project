@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
@@ -59,7 +61,7 @@ public class CompanyController {
 		return "companylogin";
 	}
 	@RequestMapping(value="/company/login", method=RequestMethod.POST)
-	public String companyLogin(HttpServletRequest request){
+	public String companyLogin(HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute){
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		System.out.println("emaillll::::"+email);
@@ -70,22 +72,50 @@ public class CompanyController {
 			//session.setAttribute("companyId", companyId);
 			return "redirect:/company/"+companyId+"/welcome";
 			}
-		else
-			return "redirect:/error";
+		else{
+				redirectAttribute.addFlashAttribute("notFoundText","Sorry, Email/password is invalid");
+				String isNotFound = "true";
+				redirectAttribute.addFlashAttribute("isNotFound",isNotFound);
+				return "redirect:/company/login/error"; 
+			}
 	}
+	//LOGIN - GET ERROR
+			@RequestMapping(value="/company/login/error", method=RequestMethod.GET)
+			public String jobSeekerLogin(@ModelAttribute ("email") String email,
+										 @ModelAttribute ("isNotFound") String isNotFound,
+										 @ModelAttribute ("notFoundText") String notFoundText)
+										
+			{
+				
+				
+				return "companylogin";	
+				
+			}
 	@RequestMapping("/company/{companyId}/welcome")
-	public String companyLandingPage(){
-		return "companylandingpage";
+	public String companyLandingPage(@PathVariable long companyId){
+		if(session.getAttribute("companyId")!=null){
+			System.out.println("Not null");
+			System.out.println("Session comapny Id:" + session.getAttribute("companyId"));
+			System.out.println("original company Id:" + String.valueOf(companyId));
+			String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+			if(sessionCompanyId.equals(String.valueOf(companyId))){
+				System.out.println("Not equal");
+				return "companylandingpage";
+			}
+			else{
+				return "redirect:/company/login";
+			}
+
+		}
+		return "error";
 	}
 	@RequestMapping("/company/{companyId}/positions")
 	public String getAllPositions(@PathVariable long companyId, @RequestParam(value = "status", required=false) String status, ModelMap map){
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
-		if(session.getAttribute("companyId")==null){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}
-		//if(session.getAttribute("companyId")!=companyId){
-		//	return "error";
-		//}
 		System.out.println("Jobs Size:"+jobs.size());
 		for(JobPosting job: jobs){
 			System.out.println(job.getJobTitle());
@@ -137,18 +167,30 @@ public class CompanyController {
 
 	@RequestMapping(value="/company/{companyId}/profile", method=RequestMethod.GET)
 	public String getCompanyProfilePage(@PathVariable long companyId, ModelMap map){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		Company company=companyService.getCompany(companyId);
 		map.addAttribute("company",company);
 		return "companyprofile";
 	}
 	@RequestMapping(value="/company/{companyId}/edit", method=RequestMethod.GET)
 	public String getCompanyEditPage(@PathVariable long companyId, ModelMap map){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		Company company= companyService.getCompany(companyId);
 		map.addAttribute("company", company);
 		return "company-edit";
 	}
 	@RequestMapping(value="/company/{companyId}/edit", method=RequestMethod.POST)
 	public String editCompany(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		Company company = companyService.getCompany(companyId);
 		company.setCompanyName(request.getParameter("name"));
 		company.setWebsite(request.getParameter("website"));

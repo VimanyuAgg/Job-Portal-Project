@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
 		<div class="header head"></div>
 		<br>
 		<h1>Login Here!</h1>
@@ -35,7 +36,9 @@
 			</div>
 		</form>
 
-
+	<c:if test="${(\"true\").equals(isNotFound)}">
+	<div><p><c:out value = "${notFoundText}"></c:out></p></div>
+	</c:if>
 
 <!-- <h1>Login Form</h1>
 <form method="POST" action="/company/login">
