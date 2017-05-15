@@ -30,6 +30,9 @@
 	
    
 	<div class="logo">login</div>
+	<c:if test="${(\"true\").equals(isNotFound)}">
+	<div><p><c:out value = "${notFoundText}"></c:out></p></div>
+	</c:if>
 	<!-- Main Form -->
 	<div class="login-form-1">
 	<form method="POST" action="/jobseeker/login" id="login-form" class="text-left" name="jslogin">

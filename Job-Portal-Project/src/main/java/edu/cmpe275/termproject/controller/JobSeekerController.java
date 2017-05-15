@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -133,6 +134,7 @@ public class JobSeekerController {
 	//LOGIN - GET
 	@RequestMapping(value="/jobseeker/login", method=RequestMethod.GET)
 	public String jobSeekerLogin(@ModelAttribute ("username") String username)
+								
 	{
 		
 		return "jobseeker-login";	
@@ -161,24 +163,43 @@ public class JobSeekerController {
 			redirectAttribute.addFlashAttribute("lastName",jobSeekerService.getJobSeeker(username).getLastName());
 			//httpSession.setAttribute("userID", userN);
 			//redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
-			return "redirect:/jobseeker/dashboard";
+			return "redirect:/jobseeker/"+username+"/dashboard";
 		}
-		else
-		return "redirect:/jobseeker/login"; 
-		
+		else{
+			redirectAttribute.addFlashAttribute("notFoundText","Sorry, username/password is invalid");
+			String isNotFound = "true";
+		    redirectAttribute.addFlashAttribute("isNotFound",isNotFound);
+		return "redirect:/jobseeker/login/error"; 
+		}
 		
 	}
 	
+	//LOGIN - GET ERROR
+		@RequestMapping(value="/jobseeker/login/error", method=RequestMethod.GET)
+		public String jobSeekerLogin(@ModelAttribute ("username") String username,
+									 @ModelAttribute ("isNotFound") String isNotFound,
+									 @ModelAttribute ("notFoundText") String notFoundText)
+									
+		{
+			
+			
+			return "jobseeker-login";	
+			
+		}
+	
 
 	//DASHBOARD - GET
-	@RequestMapping(value="/jobseeker/dashboard",method=RequestMethod.GET)
+	@RequestMapping(value="/jobseeker/{username}/dashboard",method=RequestMethod.GET)
 	public String jobSeekerDashBoard(@ModelAttribute("selfIntroduction") String selfIntroduction,
 									 @ModelAttribute("firstName") String firstName,
 									 @ModelAttribute("lastName") String lastName,
 									 @ModelAttribute("picture") String picture,
-									 @ModelAttribute("topJobs") ArrayList<JobPosting> topJobs
-									 ){
+									 @ModelAttribute("topJobs") ArrayList<JobPosting> topJobs,
+									 @PathVariable String username ){
 		System.out.println("Inside GET Jobseeker");
+		if(httpSession.getAttribute(username) !=username){
+			return "redirect:/jobseeker/login";
+		}
 		return "jobseeker-dashboard";
 	}
 	
