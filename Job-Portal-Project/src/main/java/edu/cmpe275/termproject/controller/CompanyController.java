@@ -235,5 +235,17 @@ public class CompanyController {
 		map.addAttribute("company",company);
 		return "companyprofile";
 	}
+	@RequestMapping("/logout")
+	public String logout(){
+		if(session!=null){
+			System.out.println("I am removing email");
+			session.removeAttribute("email");
+			System.out.println("I am removing company");
+			session.removeAttribute("companyId");
+			System.out.println("I am invalidating");
+			session.invalidate();
+		}
+		return "redirect:/company/login";
+	}
 
 }
