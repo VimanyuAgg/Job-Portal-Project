@@ -58,9 +58,12 @@ public class JobApplicationService {
 			JobApplication jobApplication = new JobApplication("Pending", job, applicant, by, profile);
 			jobApplicationDAO.save(jobApplication);
 			
+			System.out.println("line 61");
 			applicant.getApplicationsList().add(jobApplication);
 			jobSeekerDAO.save(applicant);
-			
+
+			System.out.println("line 65");
+
 			job.getApplicants().add(jobApplication);
 			jobPostingDAO.save(job);
 			
@@ -73,18 +76,7 @@ public class JobApplicationService {
 		return "error";
 	}
 
-	public int checkTotalPendingApplications(String email) {
-		// TODO Auto-generated method stub
-		int count=0;
-		List<JobApplication> applications=jobSeekerDAO.findByEmail(email).getApplicationsList();
-		for(JobApplication application:applications){
-			if(application.getStatus().equals("pending"))
-				count++;
-		}
-		return count;
-	}
-
-	public String findApplicants(String jobId) {
+	public List<JobApplication> findApplicants(String jobId) {
 		
 		System.out.println("insde findApplicants()");
 		JobPosting job = jobPostingDAO.findByJobId(jobId);
@@ -96,7 +88,7 @@ public class JobApplicationService {
 		System.out.println("jobId is "+job.getJobLocation());
 		System.out.println("jobId is "+job.getJobResponsibilities());
 		System.out.println("getApplicants size is "+job.getApplicants().size());
-		System.out.println("jobId is "+job.getEligibility());
+		System.out.println("getEligibility is "+job.getEligibility());
 		
 		for(JobApplication applicant : job.getApplicants()){
 			
@@ -106,7 +98,7 @@ public class JobApplicationService {
 			System.out.println(applicant.getStatus());
 		}
 		
-		return null;
+		return job.getApplicants();
 	}
 
 	public boolean checkIfApplicationPending(String jobId, String jobSeekerUsername) {

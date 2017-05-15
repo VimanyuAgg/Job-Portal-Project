@@ -67,6 +67,14 @@ public class JobApplication {
 		this.status = status;
 	}
 
+	public JobSeeker getApplicant() {
+		return applicant;
+	}
+
+	public void setApplicant(JobSeeker applicant) {
+		this.applicant = applicant;
+	}
+
 	public String getPostedOn() {
 		return postedOn;
 	}

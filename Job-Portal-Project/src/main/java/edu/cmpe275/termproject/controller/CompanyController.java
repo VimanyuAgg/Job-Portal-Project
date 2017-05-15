@@ -36,8 +36,13 @@ public class CompanyController {
 	@RequestMapping(value="/company/register", method=RequestMethod.POST)
 	public String registerCompany( HttpServletRequest request, ModelMap map){
 		System.out.println("I am in post");
-		String name=request.getParameter("name"), website=request.getParameter("website"), logoImageUrl=request.getParameter("logoImageUrl"),
-				address=request.getParameter("address"), description=request.getParameter("description"), email=request.getParameter("email"), password=request.getParameter("password");
+		String name=request.getParameter("name"), 
+				website=request.getParameter("website"), 
+				logoImageUrl=request.getParameter("logoImageUrl"),
+				address=request.getParameter("address"), 
+				description=request.getParameter("description"), 
+				email=request.getParameter("email"), 
+				password=request.getParameter("password");
 		Company company=new Company(name, website, logoImageUrl, address, description, email ,password,0, null);
 		Company result=companyService.registerCompany(company);
 		if(result!=null){
@@ -92,7 +97,11 @@ public class CompanyController {
 				
 			}
 	@RequestMapping("/company/{companyId}/welcome")
-	public String companyLandingPage(@PathVariable long companyId){
+	public String companyLandingPage(@PathVariable long companyId, 
+			HttpServletRequest request, ModelMap map){
+		
+		System.out.println("inside companyLandingPage");
+		System.out.println("companyId "+companyId);
 		if(session.getAttribute("companyId")!=null){
 			System.out.println("Not null");
 			System.out.println("Session comapny Id:" + session.getAttribute("companyId"));
@@ -100,14 +109,36 @@ public class CompanyController {
 			String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
 			if(sessionCompanyId.equals(String.valueOf(companyId))){
 				System.out.println("Not equal");
+				List<JobPosting> jobs = companyService.getAllPositions(companyId);
+				
+				if(jobs == null) return "error";
+				
+				for(JobPosting job : jobs){
+					System.out.println(" "+job.getJobId());
+					System.out.println(" "+job.getJobTitle());
+		     		System.out.println(" "+job.getJobResponsibilities());
+					System.out.println(" "+job.getJobDescription());
+		   			System.out.println(" "+	job.getJobSalary());
+					System.out.println(" "+job.getPostedOn());
+					System.out.println(" "+job.getEligibility());
+					System.out.println(" "+job.getJobLocation());
+					System.out.println(" "+job.getJobStatus());
+					System.out.println(" "+job.getTempSize());
+					System.out.println(" "+job.getApplicants());
+					System.out.println(" "+job.getJobPostedByCompany());
+				}
+
+				map.addAttribute("jobs", jobs);
+				
+				System.out.println("returning companyLandingPage");
+
 				return "companylandingpage";
 			}
 			else{
 				return "redirect:/company/login";
 			}
-
 		}
-		return "error";
+		return "redirect:/company/login";
 	}
 	@RequestMapping("/company/{companyId}/positions")
 	public String getAllPositions(@PathVariable long companyId, @RequestParam(value = "status", required=false) String status, ModelMap map){
@@ -157,6 +188,8 @@ public class CompanyController {
 		
 		String findCompany = companyService.getCompanyByEmail(email);
 		String findJobSeeker = jobSeekerService.getJobSeekerByEmail(email);
+		System.out.println("jobseeker with this email is "+findJobSeeker);
+		System.out.println("Company with this email is "+findCompany);
 		if(findCompany != null || findJobSeeker != null){
 			System.out.println("found email");
 			return "emailFound";

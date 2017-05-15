@@ -74,6 +74,9 @@ public class JobSeekerService {
 		
 		JobSeeker jobSeeker = jobSeekerDAO.findByEmail(email);
 		
+		if(jobSeeker != null){
+			return jobSeeker.getUsername();
+		}
 		return null;
 	}
 

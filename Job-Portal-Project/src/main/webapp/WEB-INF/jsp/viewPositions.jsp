@@ -9,7 +9,7 @@ Welcome: ${email}
 
 <h4>Click on a jobID to apply for that job.</h4>
 <form action="/positions/applyjob" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="email" value="email"/>
+<input type="hidden" name="email" value="vimanyu1022007@gmail.com"/>
 <input type="hidden" name="jobId" id="jd"/>
 <input type="hidden" name="profile" value="false" id="pf"/>
 <input type="hidden" name="resume" value="true"  id="rs"/>

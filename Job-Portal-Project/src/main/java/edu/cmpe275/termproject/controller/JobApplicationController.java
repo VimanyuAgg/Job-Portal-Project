@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -101,13 +102,42 @@ public class JobApplicationController {
 
 	// GEt applicants for a particular job
 	//  REquired jobId
-	@RequestMapping(value="/positions/{jobId}/applicants",method=RequestMethod.GET)
-	public String findApplicants(@PathVariable String jobId, 
-			HttpServletRequest request, ModelMap map) throws ParseException{
+	@RequestMapping(value="/positions/applicants",method=RequestMethod.GET)
+	public String findApplicants(HttpServletRequest request, ModelMap map) throws ParseException{
 		
-		jobApplicationService.findApplicants(jobId);
+		System.out.println("inside findApplicants");
 		
-		return "success";
+		String jobId = request.getParameter("jobId");
+		System.out.println("jobId "+jobId);
+		
+		List<JobApplication> applications = jobApplicationService.findApplicants(jobId);
+		
+		List<JobSeeker> applicants = new ArrayList<JobSeeker>();
+		
+		for(JobApplication application : applications){
+			applicants.add(application.getApplicant());
+		}
+		
+		for(JobSeeker applicant : applicants){
+			System.out.println("inside loop");
+			System.out.println(" "+applicant.getAuthenticationCode());
+			System.out.println(" "+applicant.getEducation());
+			System.out.println(" "+applicant.getEmail());
+			System.out.println(" "+applicant.getFirstName());
+			System.out.println(" "+applicant.getJsid());
+			System.out.println(" "+applicant.getLastName());		
+			System.out.println(" "+applicant.getPassword());		
+			System.out.println(" "+applicant.getSkills());		
+			System.out.println(" "+applicant.getUsername());		
+			System.out.println(" "+applicant.getWorkExperience());		
+			System.out.println(" "+applicant.getApplicationsList());		
+		}
+
+		System.out.println("returning ");
+		
+		map.addAttribute("applicants", applicants);
+		
+		return "jobapplicants";
 	}	
 	
 	@RequestMapping(value="/jobseeker/applications/{email}",method=RequestMethod.GET)

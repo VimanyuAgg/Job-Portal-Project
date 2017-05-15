@@ -6,7 +6,8 @@
 <head> 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+<link href="${pageContext.request.contextPath}/css/jobseeker-registration.css" rel="stylesheet"></link>
+	
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jobseeker-registration.css"></link>
@@ -15,6 +16,40 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script src="${pageContext.request.contextPath}/js/jobseeker-registration.js"></script>
+<script>
+$(document).ready(function() {
+	
+	$('#email').blur(function ()
+    { 
+		if($("#email").val() != "" || $("#email").val() != null){
+			$.ajax({
+	            type: "get",
+	            url: "/test",
+	            data: "email=" +$('#email').val(),
+	            success: function(msg){      
+	            	console.log("I am here outside" +msg);
+	                    $('#output').html(msg);
+	                    if(msg.includes("Email Not Available")){
+	                    	console.log("I am here");
+	                    	document.getElementById("output").style.color="Red";
+	                    	document.getElementById("mySubmit").style.backgroundColor="Red";
+	                    	document.getElementById("mySubmit").style.borderColor="Red";
+	                    	document.getElementById("mySubmit").disabled = true;
+	                }else{
+	                	document.getElementById("output").style.color="Green";
+	                	document.getElementById("mySubmit").disabled = false;
+	                	document.getElementById("mySubmit").style.backgroundColor="#62C192";
+	                	document.getElementById("mySubmit").style.borderColor="#62C192";
+
+	                }
+	            }
+	        });	
+		} //if statement closed here
+        
+    });
+
+});
+</script>
 <title>Register</title>
 <!-- <style>
 .form-group.required.col-form-label:after { 
@@ -27,15 +62,12 @@
 </style> -->
 </head>
 <body>
-	<div class="container">
-  <div class="jumbotron">
-    <h1 style="text-align:center">Spring Onion</h1>   
-    </div>
-    </div>
+	<div class="header head"><p style="text-align:left; font-size:30px; font-family:Didot; color:white">Spring Onion</p></div>
 
-<div class="container">
-<div class="jumbotron">
-<div class="text-center"><h1>Registration</h1></div>
+<br>
+		<h1>Register Here!</h1>
+		<br><br>
+<div class="container">		
 
 <form method="POST" action="/jobseeker/register">
 <div class="form-group row">
@@ -115,6 +147,7 @@
      <label for="email"  class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-6">
     <input class="form-control" type="email" id="email" name="email" placeholder="enter your email ID" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
+ 	<div id="output"></div>
   </div>
 </div>
 
@@ -147,7 +180,5 @@
 
 
 
-
-</div>
 </body>
 </html>
