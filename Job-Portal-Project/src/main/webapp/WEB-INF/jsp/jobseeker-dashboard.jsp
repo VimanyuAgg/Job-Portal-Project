@@ -115,7 +115,7 @@ button:hover, a:hover {
         </div>
         </form>
     </div>            
-    <ul class="nav navbar-nav"><li style="color:grey; padding-left:250px"><a>Welcome, ${sessionScope.username}</a></li></ul>
+    <ul class="nav navbar-nav"><li style="color:grey; padding-left:350px"><a>Welcome, ${sessionScope.username}</a></li></ul>
         </div>
         
         
@@ -148,7 +148,7 @@ button:hover, a:hover {
    <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" height="50%" width="50%">
   
   <div class="container1">
-    <p class="title">${firstName}&nbsp; ${lastName}</p>
+   <h5> <p class="title">${firstName}&nbsp; ${lastName}</p></h5>
     <p class="title">${selfIntroduction}</p>
     
   </div>
@@ -162,14 +162,48 @@ button:hover, a:hover {
       <div class="jumbotron">
       	
 		
-		<c:forEach var="topJobValue" items="${topJobs}">
+	<%-- 	<c:forEach var="topJobValue" items="${topJobs}">
 		<div class="row">
 		<c:out value="${topJobValue.getJobTitle()}" />
 		</div>
 		<div class="row">
-		<c:out value="${topJobValue.getJobDescription()}" />
+		<c:out value="${topJobValue.getID()}" />
 		</div>
-		</c:forEach>
+		</c:forEach> --%>
+	
+<table class="table">
+	 <thead><tr>
+      <th>Job Id</th>
+      <th>Job Title</th>
+      <th>Responsibilities</th>
+      <th>Description</th>
+      <th>Salary</th>
+      <th>Posted On</th>
+      <th>Eligibility</th>
+     <!--  <td>Apply with Profile</td>
+      <td>Apply with Resume</td> -->
+    </tr>
+	  <c:forEach items="${topJobs}" var="topJobValue">
+  	    <tbody>
+  	    <tr>
+	      <td><c:out value="${topJobValue.getJobId()}" /></td>
+	      <td><c:out value="${topJobValue.getJobTitle()}" /></td>
+	      <td><c:out value="${topJobValue.getJobResponsibilities()}" /></td>
+	      <td><c:out value="${topJobValue.getJobDescription()}" /></td>
+	      <td><c:out value="${topJobValue.getJobSalary()}" /></td>
+	      <td><c:out value="${topJobValue.getPostedOn()}" /></td>
+	      <td><c:out value="${topJobValue.getEligibility()}" /></td>
+	      <%-- <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
+	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
+	       --%><td>
+	       <form action="/positions" method="GET" >
+	       <input type="submit" value="Apply Now!"/></form></td>
+	    </tr>
+	    </tbody>
+	  </c:forEach>
+	</table>
+
+	
 	
 			
       </div> 
