@@ -87,6 +87,7 @@ public class JobSeekerController {
 		System.out.println("Jobseeker "+firstName+ " saved to DB");
 		jobSeekerService.setAuthCode(authenticationCode_String, username);
 		redirectAttribute.addFlashAttribute("username",username);
+		redirectAttribute.addFlashAttribute("isRedirected","true");
 		return "redirect:/jobseeker/authentication";
 		
 	}
@@ -94,9 +95,15 @@ public class JobSeekerController {
 	//NEED TO HANDLE CASE OF DIRECT URL HIT
 	//AUTHENTICATION - GET
 	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.GET)
-	private String codeAuthenticationGET(@ModelAttribute ("username") String username){
+	private String codeAuthenticationGET(@ModelAttribute ("username") String username,
+										 @ModelAttribute("isRedirected") String isRedirected){
 		
-		return "code-authentication";
+		if (("true").equals(isRedirected)){
+			return "code-authentication";
+		}
+		else{
+			return "redirect:/jobseeker/login";
+		}
 	}
 	
 	//AUTHENTICATION - POST
@@ -201,7 +208,7 @@ public class JobSeekerController {
 		System.out.println("username: "+username);
 		System.out.println("httpsession getAttribute: "+httpSession.getAttribute(username));
 		System.out.println("httpSession getAttString: "+httpSession.getAttribute("username"));
-		if(!httpSession.getAttribute(username).equals(username)){
+		if(!httpSession.getAttribute("username").equals(username)){
 			return "redirect:/jobseeker/login";
 		}
 		return "jobseeker-dashboard";
