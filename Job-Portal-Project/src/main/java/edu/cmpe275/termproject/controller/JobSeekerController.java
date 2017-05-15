@@ -167,7 +167,7 @@ public class JobSeekerController {
 		}
 		else{
 			redirectAttribute.addFlashAttribute("notFoundText","Sorry, username/password is invalid");
-			boolean isNotFound = true;
+			String isNotFound = "true";
 		    redirectAttribute.addFlashAttribute("isNotFound",isNotFound);
 		return "redirect:/jobseeker/login/error"; 
 		}
@@ -177,10 +177,11 @@ public class JobSeekerController {
 	//LOGIN - GET ERROR
 		@RequestMapping(value="/jobseeker/login/error", method=RequestMethod.GET)
 		public String jobSeekerLogin(@ModelAttribute ("username") String username,
-									 @ModelAttribute ("isNotFound") boolean isNotFound,
+									 @ModelAttribute ("isNotFound") String isNotFound,
 									 @ModelAttribute ("notFoundText") String notFoundText)
 									
 		{
+			
 			
 			return "jobseeker-login";	
 			

@@ -30,7 +30,7 @@
 	
    
 	<div class="logo">login</div>
-	<c:if test="${isNotFound}">
+	<c:if test="${(\"true\").equals(isNotFound)}">
 	<div><p><c:out value = "${notFoundText}"></c:out></p></div>
 	</c:if>
 	<!-- Main Form -->
