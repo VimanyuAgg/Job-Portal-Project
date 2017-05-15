@@ -81,7 +81,7 @@
 			
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
-			    <input class="col-md-3 form-control field" type="password" placeholder="Enter password..." name="passwors"><div id="output"></div>
+			    <input class="col-md-3 form-control field" type="password" placeholder="Enter password..." name="password"><div id="output"></div>
 			</div>
 			
 			<div class="form-group row">

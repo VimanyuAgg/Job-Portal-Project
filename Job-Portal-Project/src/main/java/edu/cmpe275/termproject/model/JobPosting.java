@@ -39,7 +39,7 @@ public class JobPosting {
 		this.eligibility=eligibility;
 		this.tempSize = 1;
 		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-		this.applications = new ArrayList<JobApplication>();
+//		this.applications = new ArrayList<JobApplication>();
 	}
 
 	
