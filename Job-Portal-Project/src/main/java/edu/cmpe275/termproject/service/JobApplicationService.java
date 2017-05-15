@@ -84,7 +84,7 @@ public class JobApplicationService {
 		return count;
 	}
 
-	public String findApplicants(String jobId) {
+	public List<JobApplication> findApplicants(String jobId) {
 		
 		System.out.println("insde findApplicants()");
 		JobPosting job = jobPostingDAO.findByJobId(jobId);
@@ -106,7 +106,7 @@ public class JobApplicationService {
 			System.out.println(applicant.getStatus());
 		}
 		
-		return null;
+		return job.getApplicants();
 	}
 
 	public boolean checkIfApplicationPending(String jobId, String jobSeekerUsername) {

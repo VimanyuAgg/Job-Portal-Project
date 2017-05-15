@@ -74,7 +74,36 @@ public class CompanyController {
 			return "redirect:/error";
 	}
 	@RequestMapping("/company/{companyId}/welcome")
-	public String companyLandingPage(){
+	public String companyLandingPage(@PathVariable long companyId, 
+			HttpServletRequest request, ModelMap map){
+		
+		System.out.println("inside companyLandingPage");
+		System.out.println("companyId "+companyId);
+		
+		
+		List<JobPosting> jobs = companyService.getAllPositions(companyId);
+		
+		if(jobs == null) return "error";
+		
+		for(JobPosting job : jobs){
+			System.out.println(" "+job.getJobId());
+			System.out.println(" "+job.getJobTitle());
+     		System.out.println(" "+job.getJobResponsibilities());
+			System.out.println(" "+job.getJobDescription());
+   			System.out.println(" "+	job.getJobSalary());
+			System.out.println(" "+job.getPostedOn());
+			System.out.println(" "+job.getEligibility());
+			System.out.println(" "+job.getJobLocation());
+			System.out.println(" "+job.getJobStatus());
+			System.out.println(" "+job.getTempSize());
+			System.out.println(" "+job.getApplicants());
+			System.out.println(" "+job.getJobPostedByCompany());
+		}
+
+		map.addAttribute("jobs", jobs);
+		
+		System.out.println("returning companyLandingPage");
+
 		return "companylandingpage";
 	}
 	@RequestMapping("/company/{companyId}/positions")

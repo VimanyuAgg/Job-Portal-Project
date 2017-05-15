@@ -105,4 +105,11 @@ public class CompanyService {
 		if(company == null) return null;
 		return "";
 	}
+
+	public List<JobPosting> getAllPositions(long companyId) {
+		Company company = companyDao.findByCompanyId(companyId);
+		if(company == null) return null;
+		
+		return company.getJobPostingList();
+	}
 }

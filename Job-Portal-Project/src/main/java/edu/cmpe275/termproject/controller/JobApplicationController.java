@@ -105,7 +105,8 @@ public class JobApplicationController {
 	public String findApplicants(@PathVariable String jobId, 
 			HttpServletRequest request, ModelMap map) throws ParseException{
 		
-		jobApplicationService.findApplicants(jobId);
+		List<JobApplication> applicants = jobApplicationService.findApplicants(jobId);
+		
 		
 		return "success";
 	}	
