@@ -25,9 +25,15 @@ public class JobSeekerService {
 		// TODO Auto-generated method stub
 		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
 		System.out.println("Inside authenticateJobSeeker"+jobSeeker);
+		if(jobSeeker == null){
+			return "";
+		}
 		System.out.println("firstName: "+jobSeeker.getFirstName());
 		if(jobSeeker.getPassword().equals(password))
-		return username;
+		{
+			System.out.println("Jobseeker exists");
+			return username;
+		}
 		else
 			return "";
 	}

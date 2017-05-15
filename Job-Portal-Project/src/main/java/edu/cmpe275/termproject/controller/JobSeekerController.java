@@ -134,6 +134,7 @@ public class JobSeekerController {
 	//LOGIN - GET
 	@RequestMapping(value="/jobseeker/login", method=RequestMethod.GET)
 	public String jobSeekerLogin(@ModelAttribute ("username") String username)
+								
 	{
 		
 		return "jobseeker-login";	
@@ -164,11 +165,26 @@ public class JobSeekerController {
 			//redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
 			return "redirect:/jobseeker/"+username+"/dashboard";
 		}
-		else
-		return "redirect:/jobseeker/login"; 
-		
+		else{
+			redirectAttribute.addFlashAttribute("notFoundText","Sorry, username/password is invalid");
+			boolean isNotFound = true;
+		    redirectAttribute.addFlashAttribute("isNotFound",isNotFound);
+		return "redirect:/jobseeker/login/error"; 
+		}
 		
 	}
+	
+	//LOGIN - GET ERROR
+		@RequestMapping(value="/jobseeker/login/error", method=RequestMethod.GET)
+		public String jobSeekerLogin(@ModelAttribute ("username") String username,
+									 @ModelAttribute ("isNotFound") boolean isNotFound,
+									 @ModelAttribute ("notFoundText") String notFoundText)
+									
+		{
+			
+			return "jobseeker-login";	
+			
+		}
 	
 
 	//DASHBOARD - GET
