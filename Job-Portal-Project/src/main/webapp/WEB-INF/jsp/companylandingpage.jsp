@@ -8,11 +8,8 @@ Welcome: ${email}
 
 
 <h4>Below are all the jobs your company has posted.</h4>
-<form action="/positions/applyjob" method="GET" enctype="multipart/form-data">
-<input type="hidden" name="email" value="email"/>
+<form action="/positions/applicants" method="GET">
 <input type="hidden" name="jobId" id="jd"/>
-<input type="hidden" name="profile" value="false" id="pf"/>
-<input type="hidden" name="resume" value="true"  id="rs"/>
 	<table>
 	 <tr>
       <td>Job Id</td>
@@ -36,13 +33,22 @@ Welcome: ${email}
 	      <td><c:out value="${job.getEligibility()}" /></td>
 	      <td><c:out value="${job.getJobLocation()}" /></td>
 	      <td><c:out value="${job.getJobStatus()}" /></td>
-	      <td><input type="submit" value="View Candidates!"/></td>
+	      <td><input type="submit" onclick="setJobId(${job.getJobId()})" value="View Applicants!"/></td>
 	    </tr>
 	  </c:forEach>
 	</table>
 </form>
 
-
+<script>
+	function setJobId(val)(
+		var a  = document.getElementById("jd");
+		a.value = "";
+		
+		console.log("console setJobId");
+		
+		a.value = val;
+	)
+</script>
 
 
 <%-- 
