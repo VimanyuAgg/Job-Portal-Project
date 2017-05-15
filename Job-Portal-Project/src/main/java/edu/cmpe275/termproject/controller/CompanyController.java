@@ -144,13 +144,16 @@ public class CompanyController {
 	        }
 	    }*/
 	
-	@RequestMapping(value="/company",method = RequestMethod.GET)
-	public String getCompanyByNames(HttpServletRequest request){
+	@RequestMapping(value="/company/{companyId}/postjob",method = RequestMethod.GET)
+	public String getCompanyByNames(@PathVariable long companyId, 
+			HttpServletRequest request, ModelMap map){
+//		
+//		System.out.println("inside getCompanyByName()");
+//		String companyName = "askl," + request.getParameter("companyName");
+//		List<Company> companies = companyService.getCompanyByName(companyName);
+//		
 		
-		System.out.println("inside getCompanyByName()");
-		String companyName = "askl," + request.getParameter("companyName");
-		List<Company> companies = companyService.getCompanyByName(companyName);
-		
+		map.addAttribute("companyId", companyId);
 		return "postjob";
 	}
 	
@@ -196,5 +199,68 @@ public class CompanyController {
 		map.addAttribute("company",company);
 		return "companyprofile";
 	}
+	
+	@RequestMapping(value="/company/{companyId}/managejobs", method=RequestMethod.GET)
+	public String manageJobs(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
+		
+		System.out.println("inside manageJobs");
+		System.out.println("companyId "+companyId);
+		
+		List<JobPosting> jobs = companyService.getAllPositions(companyId);
+		
+		if(jobs == null) return "error";
+		
+		for(JobPosting job : jobs){
+			System.out.println(" "+job.getJobId());
+			System.out.println(" "+job.getJobTitle());
+     		System.out.println(" "+job.getJobResponsibilities());
+			System.out.println(" "+job.getJobDescription());
+   			System.out.println(" "+	job.getJobSalary());
+			System.out.println(" "+job.getPostedOn());
+			System.out.println(" "+job.getEligibility());
+			System.out.println(" "+job.getJobLocation());
+			System.out.println(" "+job.getJobStatus());
+			System.out.println(" "+job.getTempSize());
+			System.out.println(" "+job.getApplicants());
+			System.out.println(" "+job.getJobPostedByCompany());
+		}
 
+		map.addAttribute("jobs", jobs);
+		
+		System.out.println("returning companyeditjobs");
+
+		return "companyeditjobs";	
+	}
+	
+	@RequestMapping(value="/company/{companyId}/managejobs", method=RequestMethod.GET)
+	public String editJobs(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
+		
+		System.out.println("inside manageJobs");
+		System.out.println("companyId "+companyId);
+		
+		List<JobPosting> jobs = companyService.getAllPositions(companyId);
+		
+		if(jobs == null) return "error";
+		
+		for(JobPosting job : jobs){
+			System.out.println(" "+job.getJobId());
+			System.out.println(" "+job.getJobTitle());
+     		System.out.println(" "+job.getJobResponsibilities());
+			System.out.println(" "+job.getJobDescription());
+   			System.out.println(" "+	job.getJobSalary());
+			System.out.println(" "+job.getPostedOn());
+			System.out.println(" "+job.getEligibility());
+			System.out.println(" "+job.getJobLocation());
+			System.out.println(" "+job.getJobStatus());
+			System.out.println(" "+job.getTempSize());
+			System.out.println(" "+job.getApplicants());
+			System.out.println(" "+job.getJobPostedByCompany());
+		}
+
+		map.addAttribute("jobs", jobs);
+		
+		System.out.println("returning companyeditjobs");
+
+		return "companyeditjobs";	
+	}
 }
