@@ -129,7 +129,7 @@ public class JobApplicationController {
 			System.out.println("inside loop"+application.getStatus());
 		}
 		
-		map.addAttribute("")
+		map.addAttribute("");
 		return "jobseeker-applications";
 	}
 	
