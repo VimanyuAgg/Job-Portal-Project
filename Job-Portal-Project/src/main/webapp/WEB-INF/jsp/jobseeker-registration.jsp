@@ -134,7 +134,7 @@ $(document).ready(function() {
 </div> 
 
 <div class="form-group row">
-     <label for="skills"  class="col-sm-2 col-form-label">Comma Seperated Skills</label>
+     <label for="skills"  class="col-sm-2 col-form-label">Comma Separated Skills</label>
     <div class="col-sm-6">
     <input class="form-control" type="text" id="skills" name="skills" placeholder="Ex - Python, Java, Ruby etc" required>
   </div>
