@@ -75,4 +75,9 @@ public class JobSeekerService {
 		
 		return jobSeekerDAO.findByUsername(username);
 	}
+
+	public JobSeeker findByEmail(String email) {
+		
+		return jobSeekerDAO.findByEmail(email);
+	}
 }

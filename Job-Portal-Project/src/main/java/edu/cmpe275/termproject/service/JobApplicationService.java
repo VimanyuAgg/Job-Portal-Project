@@ -26,13 +26,35 @@ public class JobApplicationService {
 	private JobApplicationDAO jobApplicationDAO;
 
 	public String applyJob(String jobId, String jobSeekerEmail, byte[] by, String profile) {
-		
-		JobSeeker applicant = jobSeekerDAO.findByEmail(jobSeekerEmail);
-		
+
 		System.out.println("inside applyJob ");
-		
+
+		JobSeeker applicant = jobSeekerDAO.findByEmail(jobSeekerEmail);
 		JobPosting job = jobPostingDAO.findByJobId(jobId);
+
 		try{
+			List<JobApplication> applications = applicant.getApplicationsList();
+			
+			// Make sure user has not applied in this job before
+			// and state is not in terminal. req #7.f and #7.e
+			int count  = 0;
+			for(JobApplication application : applications){
+				if(application.getJobPosting().getJobId().equals(job.getJobId())){
+					if(application.getStatus().equals("Pending") || 
+							application.getStatus().equals("Offered")){
+						return "already-applied";
+					}
+				}
+				if(application.getStatus().equals("Pending")) {
+					System.out.println("Application Status Pending ");
+					count++;
+				}
+			}
+			
+			if(count > 5){
+				return "already-applied-in-5";				
+			}
+			
 			JobApplication jobApplication = new JobApplication("Pending", job, applicant, by, profile);
 			jobApplicationDAO.save(jobApplication);
 			
@@ -107,5 +129,26 @@ public class JobApplicationService {
 		
 		
 		return (List<JobApplication>) jobApplicationDAO.findByApplicant(applicant);
+	}
+
+	public void updateApplications(String applicationIds, String action){
+		
+		String ids[] = applicationIds.split(",");
+		
+		for(String id : ids){
+			JobApplication application = jobApplicationDAO.findOne(Long.parseLong(id));
+			String status = application.getStatus();
+			
+			if(action.equals("Cancel") && status.equals("Pending")){
+				application.setStatus("Cancelled");
+				jobApplicationDAO.save(application);
+			}
+
+			else if(action.equals("Reject") && status.equals("Offered")){
+				application.setStatus("OfferRejected");
+				jobApplicationDAO.save(application);			
+			}
+			else continue;
+		}
 	}
 }

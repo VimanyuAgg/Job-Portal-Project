@@ -130,8 +130,6 @@ public class JobSeekerController {
 		
 	}
 	
-
-	
 	//LOGIN - GET
 	@RequestMapping(value="/jobseeker/login", method=RequestMethod.GET)
 	public String jobSeekerLogin(@ModelAttribute ("username") String username)

@@ -1,5 +1,6 @@
 package edu.cmpe275.termproject.controller;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -74,7 +75,7 @@ public class JobApplicationController {
 		            
 		            // prints character
 		            System.out.print(by[j++]);
-					return jobApplicationService.applyJob(jobId, email, by, "none");
+					return jobApplicationService.applyJob(jobId, email, by, "Resume");
 		         }
 			} catch (Exception e) {
 				System.out.println("inside applyJob catch(");
@@ -82,7 +83,7 @@ public class JobApplicationController {
 			} 
 		}
 		else{
-			return jobApplicationService.applyJob(jobId, email, null, "withprofile");
+			return jobApplicationService.applyJob(jobId, email, null, "Profile");
 		}
 		/*
 		if(jobApplicationService.checkTotalPendingApplications(email)>=5){
@@ -108,14 +109,15 @@ public class JobApplicationController {
 		
 		return "success";
 	}	
-
-	@RequestMapping(value="/jobseeker/{username}/applications", method = RequestMethod.GET)
-	public String viewUserApplications(@PathVariable String username, ModelMap map){
+	
+	@RequestMapping(value="/jobseeker/applications/{email}",method=RequestMethod.GET)
+	public String viewUserApps(@PathVariable String email, HttpServletRequest request, ModelMap map){
 		
-		System.out.println("inside viewUserApplications");
-		System.out.println("username "+username);
+		//jobApplicationService.findApplicants(jobId);
+		System.out.println("inside viewUserApps()");
+		System.out.println("email "+email);
 		
-		JobSeeker applicant = jobSeekerService.findByUsername(username);
+		JobSeeker applicant = jobSeekerService.findByEmail(email);
 		
 		List<JobApplication> userApplications = jobApplicationService.findApplications(applicant);
 		
@@ -125,17 +127,50 @@ public class JobApplicationController {
 			System.out.println("inside loop"+application.getPostedOn());
 			System.out.println("inside loop"+application.getProfile());
 			System.out.println("inside loop"+application.getJobPosting());
+			
+			if(application.getProfile().equals("Resume")){
+				try{
+//					FileOutputStream fos = new FileOutputStream("/file.txt");
+//					fos.write(application.getResume());
+//					fos.close();
+				}catch(Exception e){
+					System.out.println("Exception in viewUserApps");
+				}
+			}
+			
 			System.out.println("inside loop"+application.getResume());
 			System.out.println("inside loop"+application.getStatus());
 		}
 		
-		map.addAttribute("");
+		
+		
+		map.addAttribute("applications", userApplications);
 		return "jobseeker-applications";
-	}
+	}	
 	
-	
-	
-	
-	
-	
+	@RequestMapping(value="/updateApplications",method=RequestMethod.GET)
+	public String updateApplications(HttpServletRequest request, ModelMap map){
+		
+		System.out.println("inside updateApplications()");
+		
+		String cancel = request.getParameter("cancel");
+		String reject = request.getParameter("reject");
+		String email = request.getParameter("email");
+
+		System.out.println("cancel "+cancel);
+		System.out.println("reject "+reject);
+		System.out.println("email "+email);
+		
+		if(cancel != null && !cancel.equals("")){
+			System.out.println("inside cancel");
+			jobApplicationService.updateApplications(cancel, "Cancel");
+		}
+		
+		if(reject != null && !reject.equals("")){
+			System.out.println("inside reject");
+			jobApplicationService.updateApplications(reject, "Reject");
+		}
+		
+		return "redirect:/jobseeker/applications/"+email+"";
+	}	
 }
