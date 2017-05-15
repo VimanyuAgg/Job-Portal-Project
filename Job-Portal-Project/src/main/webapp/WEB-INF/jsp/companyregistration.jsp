@@ -19,7 +19,7 @@
                     url: "/test",
                     data: "email=" +$('#email').val(),
                     success: function(msg){      
-                            $('#output').html(msg);
+                            $('#output').html("   "+msg);
                     }
                 });
             });
