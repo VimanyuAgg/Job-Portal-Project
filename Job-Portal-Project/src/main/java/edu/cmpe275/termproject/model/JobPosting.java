@@ -98,7 +98,7 @@ public class JobPosting {
 	private String postedOn;
 	
 	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
-	private List<JobApplication> applications;
+	private List<JobApplication> applications = new ArrayList<JobApplication>();
 
 	@Column(name="ELIGIBILITY")
 	private String eligibility;

@@ -156,6 +156,8 @@ public class CompanyController {
 		
 		String findCompany = companyService.getCompanyByEmail(email);
 		String findJobSeeker = jobSeekerService.getJobSeekerByEmail(email);
+		System.out.println("jobseeker with this email is "+findJobSeeker);
+		System.out.println("Company with this email is "+findCompany);
 		if(findCompany != null || findJobSeeker != null){
 			System.out.println("found email");
 			return "emailFound";
