@@ -34,8 +34,13 @@ public class CompanyController {
 	@RequestMapping(value="/company/register", method=RequestMethod.POST)
 	public String registerCompany( HttpServletRequest request, ModelMap map){
 		System.out.println("I am in post");
-		String name=request.getParameter("name"), website=request.getParameter("website"), logoImageUrl=request.getParameter("logoImageUrl"),
-				address=request.getParameter("address"), description=request.getParameter("description"), email=request.getParameter("email"), password=request.getParameter("password");
+		String name=request.getParameter("name"), 
+				website=request.getParameter("website"), 
+				logoImageUrl=request.getParameter("logoImageUrl"),
+				address=request.getParameter("address"), 
+				description=request.getParameter("description"), 
+				email=request.getParameter("email"), 
+				password=request.getParameter("password");
 		Company company=new Company(name, website, logoImageUrl, address, description, email ,password,0, null);
 		Company result=companyService.registerCompany(company);
 		if(result!=null){

@@ -134,7 +134,10 @@ public class JobApplicationController {
 		}
 
 		System.out.println("returning ");
-		return "success";
+		
+		map.addAttribute("applicants", applicants);
+		
+		return "jobapplicants";
 	}	
 	
 	@RequestMapping(value="/jobseeker/applications/{email}",method=RequestMethod.GET)

@@ -33,21 +33,23 @@ Welcome: ${email}
 	      <td><c:out value="${job.getEligibility()}" /></td>
 	      <td><c:out value="${job.getJobLocation()}" /></td>
 	      <td><c:out value="${job.getJobStatus()}" /></td>
-	      <td><input type="submit" onclick="setJobId(${job.getJobId()})" value="View Applicants!"/></td>
+	      <td><input type="submit" onclick="setJobId('${job.getJobId()}')" value="View Applicants!"/></td>
 	    </tr>
 	  </c:forEach>
 	</table>
 </form>
 
 <script>
-	function setJobId(val)(
+	function setJobId(val){
 		var a  = document.getElementById("jd");
 		a.value = "";
 		
-		console.log("console setJobId");
+		console.log("Form Submitted");
 		
 		a.value = val;
-	)
+		console.log("job id is "+document.getElementById("jd").value);
+		return false;
+	}
 </script>
 
 
