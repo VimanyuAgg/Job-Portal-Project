@@ -132,7 +132,7 @@ button:hover, a:hover {
 
 		<ul>
 			<c:forEach var="topJobValue" items="${topJobs}">
-				<li>${topJobValue}</li>
+				<li>${topJobValue.getJobTitle()}</li>
 			</c:forEach>
 		</ul>
 

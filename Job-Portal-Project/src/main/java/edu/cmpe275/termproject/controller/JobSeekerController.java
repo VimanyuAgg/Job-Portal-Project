@@ -163,6 +163,7 @@ public class JobSeekerController {
 			redirectAttribute.addFlashAttribute("lastName",jobSeekerService.getJobSeeker(username).getLastName());
 			//httpSession.setAttribute("userID", userN);
 			//redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
+			System.out.println("redirecting to dashboard");
 			return "redirect:/jobseeker/"+username+"/dashboard";
 		}
 		else{
@@ -196,8 +197,11 @@ public class JobSeekerController {
 									 @ModelAttribute("picture") String picture,
 									 @ModelAttribute("topJobs") ArrayList<JobPosting> topJobs,
 									 @PathVariable String username ){
-		System.out.println("Inside GET Jobseeker");
-		if(httpSession.getAttribute(username) !=username){
+		System.out.println("Inside GET Jobseeker dashboard");
+		System.out.println("username: "+username);
+		System.out.println("httpsession getAttribute: "+httpSession.getAttribute(username));
+		System.out.println("httpSession getAttString: "+httpSession.getAttribute("username"));
+		if(!httpSession.getAttribute(username).equals(username)){
 			return "redirect:/jobseeker/login";
 		}
 		return "jobseeker-dashboard";
