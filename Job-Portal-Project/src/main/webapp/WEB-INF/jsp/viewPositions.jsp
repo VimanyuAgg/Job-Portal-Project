@@ -15,33 +15,30 @@ Welcome: ${email}
 <input type="hidden" name="resume" value="true"  id="rs"/>
 	<table>
 	 <tr>
-	      <td>Job Id</td>
-	      <td>Job Title</td>
-	      <td>Responsibilities</td>
-	      <td>Description</td>
-	      <td>Salary</td>
-	      <td>Posted On</td>
-	      <td>Eligibility</td>
-	      <td>Apply with Profile</td>
-	      <td>Apply with Resume</td>
-	      
+      <td>Job Id</td>
+      <td>Job Title</td>
+      <td>Responsibilities</td>
+      <td>Description</td>
+      <td>Salary</td>
+      <td>Posted On</td>
+      <td>Eligibility</td>
+      <td>Apply with Profile</td>
+      <td>Apply with Resume</td>
+    </tr>
+	  <c:forEach items="${positions}" var="position">
+  	    <tr>
+	      <td><c:out value="${position.getJobId()}" /></td>
+	      <td><c:out value="${position.getJobTitle()}" /></td>
+	      <td><c:out value="${position.getJobResponsibilities()}" /></td>
+	      <td><c:out value="${position.getJobDescription()}" /></td>
+	      <td><c:out value="${position.getJobSalary()}" /></td>
+	      <td><c:out value="${position.getPostedOn()}" /></td>
+	      <td><c:out value="${position.getEligibility()}" /></td>
+	      <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
+	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
+	      <td><input type="submit" value="Apply Now!"/></td>
 	    </tr>
-	
-		  <c:forEach items="${positions}" var="position">
-	    		
-		  	    <tr>
-			      <td><c:out value="${position.getJobId()}" /></td>
-			      <td><c:out value="${position.getJobTitle()}" /></td>
-			      <td><c:out value="${position.getJobResponsibilities()}" /></td>
-			      <td><c:out value="${position.getJobDescription()}" /></td>
-			      <td><c:out value="${position.getJobSalary()}" /></td>
-			      <td><c:out value="${position.getPostedOn()}" /></td>
-			      <td><c:out value="${position.getEligibility()}" /></td>
-			      <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
-			      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
-			      <td><input type="submit" value="Apply Now!"/></td>
-			    </tr>
-	  	  </c:forEach>
+	  </c:forEach>
 	</table>
 </form>
 

@@ -110,7 +110,7 @@ public class JobApplicationController {
 	}	
 
 	@RequestMapping(value="/jobseeker/{username}/applications", method = RequestMethod.GET)
-	public String viewUserApplications(@PathVariable String username){
+	public String viewUserApplications(@PathVariable String username, ModelMap map){
 		
 		System.out.println("inside viewUserApplications");
 		System.out.println("username "+username);
@@ -129,6 +129,13 @@ public class JobApplicationController {
 			System.out.println("inside loop"+application.getStatus());
 		}
 		
-		return null;
+		map.addAttribute("")
+		return "jobseeker-applications";
 	}
+	
+	
+	
+	
+	
+	
 }
