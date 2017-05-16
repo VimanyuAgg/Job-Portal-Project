@@ -64,7 +64,7 @@ public class CompanyService {
 		return json;
 	}*/
 
-	public List<JobPosting> getAllPositions(long companyId,@RequestParam(value = "status", required=false) String status) {
+	public List<JobPosting> getAllPositions(long companyId, String status) {
 		// TODO Auto-generated method stub
 		Company company = companyDao.findByCompanyId(companyId);
 		if(company==null)

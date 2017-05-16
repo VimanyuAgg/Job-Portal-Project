@@ -129,7 +129,7 @@ public class JobController {
 				// Mail The Applicant
 			}
 		}
-		return "positiondetails";
+		return  "redirect:/company/"+companyId+"/managejobs";
 	}
 	/*private JSONObject generateErrorMessage(String message) {
 		// TODO Auto-generated method stub
