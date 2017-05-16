@@ -170,16 +170,26 @@ public class JobController {
 	
 	
 	// REQUIREMENT No 2
-		@RequestMapping(value="/positions",method=RequestMethod.GET)
+		@RequestMapping(value="/positions/searchByFields",method=RequestMethod.POST)
 		public String findPositions(HttpServletRequest request, ModelMap map){
 			
-			System.out.println("inside findPositions()");
+			System.out.println("inside findPositions()---GET");
 			String jobId = request.getParameter("jobId");
 			String title = request.getParameter("title");
 			String location = request.getParameter("location");
 			String salary = request.getParameter("salary");
 			String status = request.getParameter("status");
 			String postedOn = request.getParameter("postedon");
+			
+			System.out.println("jobId: "+ jobId);
+			System.out.println("title: "+title);
+			System.out.println("location"+location);
+			System.out.println("salary: "+salary);
+			System.out.println("status: "+status);
+			System.out.println("postedon: "+postedOn);
+			
+			
+			
 //			
 //				
 //			
