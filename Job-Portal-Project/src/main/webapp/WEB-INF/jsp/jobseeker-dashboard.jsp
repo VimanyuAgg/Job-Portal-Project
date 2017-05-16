@@ -196,7 +196,7 @@ button:hover, a:hover {
 	      <%-- <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
 	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
 	       --%><td>
-	       <form action="/positions" method="GET" >
+	       <form action="/positions/searchByFields" method="POST" >
 	       <input type="submit" value="Apply Now!"/></form></td>
 	    </tr>
 	    </tbody>
