@@ -7,6 +7,9 @@
 
 package edu.cmpe275.termproject.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -56,7 +59,7 @@ public class JobSeekerController {
 	
 	//REGISTRATION - POST
 	@RequestMapping(value="/jobseeker/register", method=RequestMethod.POST)
-	public String createJobSeeker(HttpServletRequest request, RedirectAttributes redirectAttribute){
+	public String createJobSeeker(HttpServletRequest request, RedirectAttributes redirectAttribute) throws UnsupportedEncodingException, GeneralSecurityException{
 		
 		String firstName=request.getParameter("firstName"), 
 				lastName=request.getParameter("lastName"), 
@@ -151,7 +154,7 @@ public class JobSeekerController {
 	//LOGIN - POST
 	@RequestMapping(value="/jobseeker/login", method=RequestMethod.POST)
 	public String jobSeekerLoginPost(HttpServletRequest request,
-									 RedirectAttributes redirectAttribute){
+									 RedirectAttributes redirectAttribute) throws GeneralSecurityException, IOException{
 		//, RedirectAttributes redirectAttribute
 		String username = request.getParameter("username"),
 		       password = request.getParameter("password");
