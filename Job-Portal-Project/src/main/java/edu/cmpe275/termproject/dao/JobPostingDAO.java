@@ -10,7 +10,27 @@ import org.springframework.data.repository.query.Param;
 import edu.cmpe275.termproject.model.JobPosting;
 
 public interface JobPostingDAO extends CrudRepository<JobPosting, String> {
+	
 	public JobPosting findByJobId(String jobId);
+	
+	@Query("SELECT J FROM JobPosting J WHERE (J.jobDescription LIKE %:desc%)")
+	public List<JobPosting> findByJobDescription(String desc);
+	
+	@Query("SELECT J FROM JobPosting J WHERE (J.jobTitle LIKE %:jobTitle%)")
+	public List<JobPosting> findByJobTitle(String jobTitle);
+	
+	@Query("SELECT J FROM JobPosting J WHERE (J.jobResponsibilities LIKE %:jobResp%)")
+	public List<JobPosting> findByJobResponsibilities (String jobResp);
+	
+	@Query("SELECT J FROM JobPosting J WHERE (J.jobLocation LIKE %:location%)")
+	public List<JobPosting> findByJobLocation (String location);
+	
+	@Query("SELECT J FROM JobPosting J WHERE (J.jobSalary LIKE %:salary%)")
+	public List<JobPosting> findByJobSalary (String salary);
+	
+	@Query("SELECT J FROM JobPosting J WHERE (J.jobStatus LIKE %:status%)")
+	public List<JobPosting> findByJobStatus (String status);
+	
 
 	@Query("SELECT j FROM JobPosting j WHERE (j.tempSize = :tempJobTitle OR LOWER(j.jobTitle) IN (:title)) "
 			+ "AND (j.tempSize = :tempJobLocation OR j.jobLocation IN :jobLocation)"
@@ -36,5 +56,6 @@ public interface JobPostingDAO extends CrudRepository<JobPosting, String> {
 	@Query("SELECT J FROM JobPosting where J.jobSalaray > min AND j.jobSalary<max")
 	public ArrayList<JobPosting> findBySalaryRange(int min, int max);
 
+	
 }
 

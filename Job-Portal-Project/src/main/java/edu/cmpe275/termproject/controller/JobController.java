@@ -151,6 +151,23 @@ public class JobController {
 		return json;
 	}*/
 	
+		@RequestMapping(value="/positions", method=RequestMethod.POST)
+		public String findPositionsOnSearchString(HttpServletRequest request, ModelMap map){
+			String searchString = request.getParameter("searchString");
+			System.out.println("Inside Positions POST for Search String !!");
+			
+			List<JobPosting> searchStringList = new ArrayList<JobPosting>();
+			
+			searchStringList.addAll(jobSerivce.findFromSearchString(searchString));
+			
+			System.out.println("searchStringList Size: "+searchStringList.size());
+			
+			map.addAttribute("positions", searchStringList);
+			
+			return "viewPositions";
+			
+		}
+	
 	
 	// REQUIREMENT No 2
 		@RequestMapping(value="/positions",method=RequestMethod.GET)
@@ -163,6 +180,9 @@ public class JobController {
 			String salary = request.getParameter("salary");
 			String status = request.getParameter("status");
 			String postedOn = request.getParameter("postedon");
+			
+				
+			
 			
 			if(jobId != null && jobId.length() != 0){
 				System.out.println("found jobId "+jobId);

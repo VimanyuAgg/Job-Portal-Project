@@ -39,8 +39,8 @@ public class JobAppliedEmail {
 
 			message.setSubject("Spring Onion almost there..");
 			message.setText("\nDear "+firstName+" "+lastName+","
-					+ "\n\nYou just applied to JOBID:"+jobId+"Titled: "+jobTitle+"at "+companyName+" company"
-					+ "\nThanks for using Spring Onions !"
+					+ "\n\nYou just applied to JobID:"+jobId+" Titled: "+jobTitle+" at "+companyName+" company"
+					+ "\n\nThanks for using Spring Onions !"
 					+ "\n\nCheers,\n" + "Team Spring-Onions"
 					+"\nSpreading tears of happiness!");
 			Transport.send(message);
