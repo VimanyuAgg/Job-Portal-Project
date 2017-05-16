@@ -88,7 +88,7 @@ button:hover, a:hover {
         <!--Navbar-header-->
         <div class="collapse navbar-collapse" id="navbar-collapse">
         
-        <a href="jobseeker/login" class="btn btn-warning navbar-btn navbar-right">logout<span class="glyphicon glyphicon-log-in"></span></a>
+        <a href="/jobseeker/logout" class="btn btn-warning navbar-btn navbar-right">logout<span class="glyphicon glyphicon-log-in"></span></a>
 
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
