@@ -1,5 +1,6 @@
 package edu.cmpe275.termproject.service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import edu.cmpe275.termproject.dao.JobSeekerDAO;
 import edu.cmpe275.termproject.model.JobSeeker;
@@ -10,8 +11,12 @@ public class JobSeekerService {
 	@Autowired
 	private JobSeekerDAO jobSeekerDAO;
 	
+	@Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	//POST
 	public void addJobSeeker(JobSeeker jobSeeker){
+		
 		jobSeekerDAO.save(jobSeeker);
 		
 	}
