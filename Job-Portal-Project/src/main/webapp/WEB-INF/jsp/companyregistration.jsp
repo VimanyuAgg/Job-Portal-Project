@@ -9,7 +9,7 @@
 	<link href="${pageContext.request.contextPath}/css/companyregistration.css" rel="stylesheet"></link>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="companyregistration.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/company-registration.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('#email').keyup(function ()
@@ -51,37 +51,41 @@
 		<form method="POST" action="/company/register">
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
-			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your name..." name="name">
+			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your company name..." name="name">
 			</div>
 			
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
-			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your website..." name="website">
+			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your  company website..." name="website">
+			</div>
+			
+			
+			
+			<div class="form-group row">
+			    <div class="col-md-4"></div>
+			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your HQ address..." name="address">
 			</div>
 			
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
-			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your logo image URL..." name="logoImageUrl">
+			    <input class="col-md-3 form-control field" type="text" placeholder="Enter description..." name="description">
 			</div>
 			
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
-			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your address..." name="address">
-			</div>
-			
-			<div class="form-group row">
-			    <div class="col-md-4"></div>
-			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your description..." name="description">
-			</div>
-			
-			<div class="form-group row">
-			    <div class="col-md-4"></div>
-			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your email..." name="email" id="email"><div id="output"></div>
+			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your contact email..." name="email" id="email"><div id="output"></div>
 			</div>
 			
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
 			    <input class="col-md-3 form-control field" type="password" placeholder="Enter password..." name="password"><div id="output"></div>
+			</div>
+			<div class="form-group row">
+			    <div class="col-md-4"></div>
+			    <label for="file-input">
+        	<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/company-201.jpg" height="90px" width="90px"/>
+    			</label>
+			    <input class="col-md-3 form-control field" type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl">
 			</div>
 			
 			<div class="form-group row">
