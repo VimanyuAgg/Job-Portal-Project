@@ -183,7 +183,7 @@ public class CompanyController {
 			if(sessionCompanyId.equals(String.valueOf(companyId))){
 				System.out.println("Not equal");
 				List<JobPosting> jobs = companyService.getAllPositions(companyId);
-				
+				System.out.println("Line 186"+jobs.size());
 				if(jobs == null) return "error";
 				
 				for(JobPosting job : jobs){

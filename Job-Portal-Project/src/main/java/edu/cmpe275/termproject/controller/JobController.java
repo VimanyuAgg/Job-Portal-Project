@@ -60,7 +60,10 @@ public class JobController {
 		String jobId =request.getParameter("jobId");
 		JobPosting job=new JobPosting(jobId,title, description, responsibilites, offliceLocation, salary, company,"MS");
 		JobPosting jobAdded =jobSerivce.addJob(job);
-		
+		System.out.println(company.getCompanyName()+""+company.getJobPostingList().size());
+		//company.getJobPostingList().add(job);
+		companyService.updateCompany(company);
+		System.out.println(company.getCompanyName()+""+company.getJobPostingList().size());
 		//long jobId = Long.parseLong(request.getParameter("jobId"));
 		
 		
