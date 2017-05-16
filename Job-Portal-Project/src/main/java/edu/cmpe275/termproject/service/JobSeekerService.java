@@ -34,7 +34,7 @@ public class JobSeekerService {
 			return "";
 		}
 		System.out.println("firstName: "+jobSeeker.getFirstName());
-		if(jobSeeker.getPassword().equals(password))
+		if(jobSeeker.getPassword().equals(bCryptPasswordEncoder.encode(password)))
 		{
 			System.out.println("Jobseeker exists");
 			return username;
