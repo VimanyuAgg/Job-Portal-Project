@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.cmpe275.termproject.emailService.JobAppliedEmail;
+import edu.cmpe275.termproject.emailService.JobFieldsChangedEmail;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobApplication;
 import edu.cmpe275.termproject.model.JobPosting;
@@ -60,7 +61,10 @@ public class JobController {
 		String jobId =request.getParameter("jobId");
 		JobPosting job=new JobPosting(jobId,title, description, responsibilites, offliceLocation, salary, company,"MS");
 		JobPosting jobAdded =jobSerivce.addJob(job);
-		
+		System.out.println(company.getCompanyName()+""+company.getJobPostingList().size());
+		//company.getJobPostingList().add(job);
+		companyService.updateCompany(company);
+		System.out.println(company.getCompanyName()+""+company.getJobPostingList().size());
 		//long jobId = Long.parseLong(request.getParameter("jobId"));
 		
 		
@@ -129,7 +133,7 @@ public class JobController {
 				System.out.println(applicant.getFirstName());
 				String email=applicant.getEmail();
 				// Mail The Applicant
-				JobAppliedEmail.EmailTrigger(email, applicant.getFirstName(), applicant.getLastName(), 
+				JobFieldsChangedEmail.somethingChangedInJobEmail(email, applicant.getFirstName(), applicant.getLastName(), 
 											job.getJobId(),job.getJobTitle(), job.getJobPostedByCompany().getCompanyName());
 			}
 		}
