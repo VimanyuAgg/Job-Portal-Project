@@ -8,17 +8,29 @@ Welcome: ${email}
 <h1>All positions:</h1>
 
 <h4>Click on a jobID to apply for that job.</h4>
+<form action="/positions" method="GET">
+	Search By Title<input type="text" name="title" id="rs"/>
+	Search By Salary<input type="text" name="salary" id="rs"/>
+	Search By Date<input type="text" name="postedon" id="rs"/>
+	Search By Location<input type="text" name="location" id="rs"/>
+	Search By Status<input type="text" name="status" id="rs"/>
+	<input type="submit" value="Search Now!"/>
+</form>
+
 <form action="/positions/applyjob" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="email" value="vimanyu1022007@gmail.com"/>
 <input type="hidden" name="jobId" id="jd"/>
 <input type="hidden" name="profile" value="false" id="pf"/>
 <input type="hidden" name="resume" value="true"  id="rs"/>
+
+
 	<table>
 	 <tr>
       <td>Job Id</td>
       <td>Job Title</td>
       <td>Responsibilities</td>
       <td>Description</td>
+      <td>Location</td>
       <td>Salary</td>
       <td>Posted On</td>
       <td>Eligibility</td>
@@ -31,6 +43,7 @@ Welcome: ${email}
 	      <td><c:out value="${position.getJobTitle()}" /></td>
 	      <td><c:out value="${position.getJobResponsibilities()}" /></td>
 	      <td><c:out value="${position.getJobDescription()}" /></td>
+	      <td><c:out value="${position.getJobLocation()}" /></td>
 	      <td><c:out value="${position.getJobSalary()}" /></td>
 	      <td><c:out value="${position.getPostedOn()}" /></td>
 	      <td><c:out value="${position.getEligibility()}" /></td>

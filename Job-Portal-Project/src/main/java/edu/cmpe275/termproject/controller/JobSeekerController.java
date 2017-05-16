@@ -92,7 +92,7 @@ public class JobSeekerController {
 		
 	}
 	
-	//NEED TO HANDLE CASE OF DIRECT URL HIT
+	
 	//AUTHENTICATION - GET
 	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.GET)
 	private String codeAuthenticationGET(@ModelAttribute ("username") String username,
@@ -161,8 +161,10 @@ public class JobSeekerController {
 		
 		String usersess = jobSeekerService.authenticateJobSeeker(username, password);
 		System.out.println("Printing usersess: "+usersess);
+		JobSeeker jobSeeker = jobSeekerService.getJobSeeker(username);
 		if(!usersess.isEmpty()){
 			httpSession.setAttribute("username",username);
+			httpSession.setAttribute("email",jobSeeker.getEmail());
 			redirectAttribute.addFlashAttribute("topJobs",jobService.getTop10NewJobListings());
 			redirectAttribute.addFlashAttribute("selfIntroduction",jobSeekerService.getJobSeeker(username).getSelfIntroduction());
 			redirectAttribute.addFlashAttribute("picture",jobSeekerService.getJobSeeker(username).getPicture());
@@ -214,12 +216,13 @@ public class JobSeekerController {
 		return "jobseeker-dashboard";
 	}
 	
-	
+	//LOGOUT - GET
 	@RequestMapping(value="/jobseeker/logout", method=RequestMethod.GET)
 	public String jobSeekerLogOut(){
 			if(httpSession!=null)
 			{
 				httpSession.removeAttribute("username");
+				httpSession.removeAttribute("email");
 				//System.out.println("removed username:");
 				httpSession.invalidate();
 				

@@ -81,8 +81,8 @@ public class Company {
 	}
 
 
-	public void setVerified(boolean isVerified) {
-		this.isVerified = isVerified;
+	public void setVerified() {
+		this.isVerified = true;
 	}
 
 

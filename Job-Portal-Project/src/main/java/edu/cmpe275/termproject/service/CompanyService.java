@@ -40,7 +40,18 @@ public class CompanyService {
 			return null;
 		}
 	}
-
+	//Sets the email verification status to true
+	public boolean findByEmail(String email){
+		Company company = companyDao.findByEmail(email);
+		if (company != null){
+			company.setVerified();
+			companyDao.save(company);
+			return true;
+		}
+		
+		return false;
+		
+	}
 	/*private JSONObject generateErrorMessage(String message) {
 		// TODO Auto-generated method stub
 		JSONObject json= new JSONObject();
@@ -109,6 +120,11 @@ public class CompanyService {
 		if(company == null) return null;
 		return "";
 	}
+	
+	public Company getCompany(String email){
+		Company company = companyDao.findByEmail(email);
+		return company;
+	}
 
 	public List<JobPosting> getAllPositions(long companyId) {
 		Company company = companyDao.findByCompanyId(companyId);
@@ -117,6 +133,14 @@ public class CompanyService {
 		return company.getJobPostingList();
 	}
 
+
+	public void setAuthCode(String authenticationCode_String, String email) {
+		// TODO Auto-generated method stub
+		Company company  = companyDao.findByEmail(email);
+		company.setAuthenticationCode(authenticationCode_String);
+		companyDao.save(company);
+		System.out.println("Authentication code successfully saved to DAO");
+	}
 	public String editJob() {
 		// TODO Auto-generated method stub
 		return null;
@@ -128,5 +152,6 @@ public class CompanyService {
 		jobPostingDAO.save(job);
 		
 		return "ok";
+
 	}
 }

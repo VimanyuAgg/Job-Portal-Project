@@ -159,35 +159,35 @@ public class JobController {
 			String location = request.getParameter("location");
 			String salary = request.getParameter("salary");
 			String status = request.getParameter("status");
-			String postedOn = request.getParameter("postedOn");
+			String postedOn = request.getParameter("postedon");
 			
-			if(jobId != null){
-				System.out.println("found jobId");
+			if(jobId != null && jobId.length() != 0){
+				System.out.println("found jobId "+jobId);
 				jobId = request.getParameter("jobId") + ",";
 			}
 			
-			if(title != null){
-				System.out.println("found title");
+			if(title != null && title.length() != 0){
+				System.out.println("found title "+title);
 				title = request.getParameter("title") + ",";
 			}
 			
-			if(location != null){
-				System.out.println("found location");
+			if(location != null && location.length() != 0){
+				System.out.println("found location "+location);
 				location = request.getParameter("location") + ",";
 			}
 			
-			if(salary != null){
-				System.out.println("found salary");
+			if(salary != null && salary.length() != 0){
+				System.out.println("found salary "+salary);
 				salary = request.getParameter("salary") + ",";
 			}
 			
-			if(status != null){
-				System.out.println("found status");
+			if(status != null && status.length() != 0){
+				System.out.println("found status " +status);
 				status = request.getParameter("status") + ",";
 			}
 			
-			if(postedOn != null){
-				System.out.println("found postedOn");
+			if(postedOn != null && postedOn.length() != 0){
+				System.out.println("found postedOn "+postedOn);
 				postedOn = request.getParameter("postedOn") + ",";
 			}
 			

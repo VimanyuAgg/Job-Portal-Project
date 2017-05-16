@@ -51,27 +51,27 @@ public class JobService {
 				tempJobLocation = 1, tempJobSalary = 1,
 				tempJobStatus = 1, tempPostedOn = 1;
 		
-		if(title != null){
+		if(title != null && title.length() != 0){
 			tempTitle = 0;
 			jobTitleList = Arrays.asList(title.split(","));
 		}
 		
-		if(location != null){
+		if(location != null && location.length() != 0){
 			tempJobLocation = 0;
 			jobLocationList = Arrays.asList(location.split(","));
 		}
 		
-		if(salary != null){
+		if(salary != null && salary.length() != 0){
 			tempJobSalary = 0;
 			jobSalaryList = Arrays.asList(salary.split(","));
 		}
 		
-		if(status != null){
+		if(status != null && status.length() != 0){
 			tempJobStatus = 0;
 			jobStatusList = Arrays.asList(status.split(","));
 		}
 		
-		if(postedOn != null){
+		if(postedOn != null && postedOn.length() != 0){
 			tempPostedOn = 0;
 			jobPostedOnList = Arrays.asList(postedOn.split(","));
 		}

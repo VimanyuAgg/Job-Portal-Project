@@ -183,7 +183,7 @@ public class JobApplicationController {
 		
 		System.out.println("inside updateApplications()");
 		
-		String cancel = request.getParameter("cancel");
+		String cancel = request.getParameter("cancel"); //cancel is comma separated list of application id
 		String reject = request.getParameter("reject");
 		String email = request.getParameter("email");
 
@@ -201,6 +201,7 @@ public class JobApplicationController {
 			jobApplicationService.updateApplications(reject, "Reject");
 		}
 		
+		//Need to add email service
 		return "redirect:/jobseeker/applications/"+email+"";
 	}	
 }
