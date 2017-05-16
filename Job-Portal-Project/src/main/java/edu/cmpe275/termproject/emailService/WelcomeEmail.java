@@ -46,7 +46,7 @@ public class WelcomeEmail {
         } catch (MessagingException e) { e.printStackTrace();}
 	}
 		
-	
+	//For company
 	public static void welcomeEmailTrigger(String receiverMail,String name){
 		String emailID = "testmyouth@gmail.com";
 		String emailPassword = "Testouth1@";		

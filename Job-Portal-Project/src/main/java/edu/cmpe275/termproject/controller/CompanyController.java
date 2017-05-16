@@ -377,8 +377,15 @@ public class CompanyController {
 			job.setJobStatus("Cancelled");
 			
 			companyService.updateJob(job);
-
-			
+			//find all jobseeker email who have applied for this job
+			//send email
+			List<JobApplication> applicationList = job.getApplicants();
+			for(int i=0;i<applicationList.size();i++){
+				String jobSeekerEmail = applicationList.get(i).getApplicant().getEmail();
+				String jobSeekerFirstName = applicationList.get(i).getApplicant().getFirstName();
+				String jobSeekerLastName = applicationList.get(i).getApplicant().getLastName();
+				
+			}
 		}
 
 		
