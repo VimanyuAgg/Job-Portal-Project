@@ -37,8 +37,8 @@ public class JobFieldsChangedEmail {
             
             message.setSubject("Spring Onion almost there..");
             message.setText("\nDear "+firstName+" "+lastName+","
-					+ "\n\n "+jobId+":"+jobTitle+"at "+companyName+" just got updated"
-					+" You are receiving this email as you have applied to this job posting!"
+					+ "\n\n "+jobId+": "+jobTitle+" at "+companyName+" just got updated"
+					+"\nYou are receiving this email as you have applied to this job posting!"
 					+ "\nThanks for using Spring Onions !"
 					+ "\n\nCheers,\n" + "Team Spring-Onions"
 					+"\nSpreading tears of happiness!");

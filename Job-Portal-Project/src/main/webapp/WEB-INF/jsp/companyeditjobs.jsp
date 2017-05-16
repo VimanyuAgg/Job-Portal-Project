@@ -9,7 +9,7 @@
 </head>
 <body>
 <h4>Below are all the jobs your company has posted.</h4>
-<form action="/company/1/editjobs" method="POST">
+<form action="/company/<%=session.getAttribute("companyId")%>/editjobs" method="POST">
 <input type="hidden" name="jobId" id="jd"/>
 	<table>
 	 <tr>

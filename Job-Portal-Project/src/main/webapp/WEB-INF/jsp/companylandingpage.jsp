@@ -41,7 +41,7 @@ Welcome: ${email}
 
 <%-- <form action="/company/<%=session.getAttribute("companyId")%>/postjob" method="GET">
  --%>
- <form action="/company/1/postjob" method="GET">
+ <form action="/company/<%=session.getAttribute("companyId")%>/postjob" method="GET">
 	<input type="submit" value="Post a new Job"/>
 </form>
 
