@@ -15,7 +15,7 @@
 
 <body>
 <div class="outer">
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded nv">
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded nv" style="height: 70px">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
