@@ -4,6 +4,8 @@
 body{
 	background-color: #f2f5f6;
 	background-image: url("1.jpg");
+	color: white;
+	
 }
 
 .back{
@@ -12,8 +14,12 @@ body{
 	position: absolute;
 }
 
-.xx{
-	position: absolute;
-	z-index: 1;
-	
+.head{
+	background: none;
+	padding:35px;
+}
+
+.banner{
+	font-size: 45px;
+	margin-top: 90px;
 }
