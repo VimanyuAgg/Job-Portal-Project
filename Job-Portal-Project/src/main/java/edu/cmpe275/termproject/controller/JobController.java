@@ -13,6 +13,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import edu.cmpe275.termproject.emailService.JobAppliedEmail;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobApplication;
 import edu.cmpe275.termproject.model.JobPosting;
@@ -127,6 +129,8 @@ public class JobController {
 				System.out.println(applicant.getFirstName());
 				String email=applicant.getEmail();
 				// Mail The Applicant
+				JobAppliedEmail.EmailTrigger(email, applicant.getFirstName(), applicant.getLastName(), 
+											job.getJobId(),job.getJobTitle(), job.getJobPostedByCompany().getCompanyName());
 			}
 		}
 		return  "redirect:/company/"+companyId+"/managejobs";
