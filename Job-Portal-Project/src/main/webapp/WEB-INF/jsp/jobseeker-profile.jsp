@@ -88,27 +88,27 @@ $(document).ready(function() {
 <div class="form-group row" style="margin-top:25px">
    <label for="firstName" class="col-sm-2 col-form-label" >First Name</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" placeholder="Enter your first name" id="firstName" name="firstName" required>
+    <input class="form-control" type="text" placeholder="Enter your first name" id="firstName" name="firstName" value= ${js.getFirstName()} required>
   </div>
 </div>
 <div class="form-group row">
     <label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" placeholder="Enter your last name" id="lastName" name="lastName" required>
+    <input class="form-control" type="text" placeholder="Enter your last name" id="lastName" name="lastName" value= ${js.getLastName()} required>
   </div>
 </div>
 
 <div class="form-group row">
      <label for="selfIntroduction"  class="col-sm-2 col-form-label">Introduction</label>
     <div class="col-sm-6">
-    <textarea class="form-control" rows="4" cols="50" id="selfIntroduction" name="selfIntroduction" placeholder="Tell us about yourself!"></textarea>
+    <textarea class="form-control" rows="4" cols="50" id="selfIntroduction" name="selfIntroduction" placeholder="Tell us about yourself!">${js.getSelfIntroduction()}</textarea>
   </div>
 </div>
 
 <div class="form-group row">
      <label for="education"  class="col-sm-2 col-form-label">Highest Education</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="education" placeholder="Enter highest education" name="education" required>
+    <input class="form-control" type="text" id="education" placeholder="Enter highest education" name="education" value=  ${js.getEducation()}required>
   </div>
 </div>
 
@@ -132,21 +132,23 @@ $(document).ready(function() {
 <div class="form-group row">
      <label for="skills"  class="col-sm-2 col-form-label">Comma Seperated Skills</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="skills" name="skills" placeholder="Ex - Python, Java, Ruby etc" required>
+    <input class="form-control" type="text" id="skills" name="skills" placeholder="Ex - Python, Java, Ruby etc" value= ${js.getSkills()} required>
   </div>
 </div>
 
 <div class="form-group row">
      <label for="username"  class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-6">
-    <input class="form-control" type="text" id="username" name="username" placeholder="Choose a username" required>
+    <!-- <input class="form-control" type="text" id="username" name="username" placeholder="Choose a username" value= ${js.getUsername()} required> -->
+  	${js.getUsername()}
   </div>
 </div>
 
 <div class="form-group row">
      <label for="email"  class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-6">
-    <input class="form-control" type="email" id="email" name="email" placeholder="enter your email ID" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
+    <!-- <input class="form-control" type="email" id="email" name="email" placeholder="enter your email ID" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" value= ${js.getEmail()} required> -->
+   ${js.getEmail()}
  	<div id="output"></div>
   </div>
 </div>
