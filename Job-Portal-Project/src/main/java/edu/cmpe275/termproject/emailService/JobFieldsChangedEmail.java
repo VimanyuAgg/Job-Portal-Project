@@ -30,7 +30,6 @@ public class JobFieldsChangedEmail {
 		    });
 		
 		try {
-			
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("testmyouth@gmail.com"));            
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));

@@ -102,4 +102,8 @@ public class JobService {
 				
 		return positions;
 	}	
+	public List<JobPosting> searchBySalaryRange(int min, int max){
+		ArrayList<JobPosting> jobList = jobPostingDao.findBySalaryRange(min,max);
+		return null;
+	}
 }

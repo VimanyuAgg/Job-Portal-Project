@@ -16,7 +16,10 @@ Welcome: ${email}
 	Search By Status<input type="text" name="status" id="rs"/>
 	<input type="submit" value="Search Now!"/>
 </form>
-
+<form action="/positions" method=POST>
+	<input type="text" name="searchString" />
+	<input type="submit" value="search"/>
+</form>
 <form action="/positions/applyjob" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="email" value="<%= session.getAttribute("email") %>"/>
 <input type="hidden" name="jobId" id="jd"/>

@@ -205,6 +205,9 @@ public class JobController {
 			map.addAttribute("job",job);
 			return "job-details";
 		}
-		
+		@RequestMapping(value="/positions/salarysearch", method=RequestMethod.POST)
+		public void getJobsBySalary(){
+			
+		}
 	
 }
