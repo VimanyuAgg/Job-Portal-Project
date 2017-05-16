@@ -70,6 +70,32 @@ public class Company {
 	@Column(name="SIZE")
 	private int size;
 	
+	@Column(name="VER_STATUS", nullable=true)
+	private boolean isVerified = false;
+	
+	@Column(name="AUTH_CODE",nullable=true)
+	private String authenticationCode = "";
+	
+	public boolean isVerified() {
+		return isVerified;
+	}
+
+
+	public void setVerified(boolean isVerified) {
+		this.isVerified = isVerified;
+	}
+
+
+	public String getAuthenticationCode() {
+		return authenticationCode;
+	}
+
+
+	public void setAuthenticationCode(String authenticationCode) {
+		this.authenticationCode = authenticationCode;
+	}
+
+
 	public String getEmail() {
 		return email;
 	}
