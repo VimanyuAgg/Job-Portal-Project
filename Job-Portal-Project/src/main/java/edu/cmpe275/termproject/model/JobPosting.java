@@ -39,10 +39,23 @@ public class JobPosting {
 		this.eligibility=eligibility;
 		this.tempSize = 1;
 		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+		this.sal = Integer.parseInt(jobSalary);
 //		this.applications = new ArrayList<JobApplication>();
 	}
 
 	
+
+	public int getSal() {
+		return sal;
+	}
+
+
+
+	public void setSal(int salary) {
+		this.sal = salary;
+	}
+
+
 
 	public Company getJobPostedByCompany() {
 		return jobPostedByCompany;
@@ -86,6 +99,9 @@ public class JobPosting {
 	
 	@Column(name="JOB_SAL")
 	private String jobSalary;
+	
+	@Column (name="SAL")
+	private int sal;
 
 	@ManyToOne
 	@JoinColumn(name="companyId")

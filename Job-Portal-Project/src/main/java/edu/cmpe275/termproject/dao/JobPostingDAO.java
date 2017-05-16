@@ -53,7 +53,7 @@ public interface JobPostingDAO extends CrudRepository<JobPosting, String> {
 	@Query("SELECT J FROM JobPosting J ORDER BY J.postedOn DESC")
 	public ArrayList<JobPosting> findTop10jobs(Pageable pageable);
 	
-	@Query("SELECT J FROM JobPosting J where J.jobSalary BETWEEN :min AND :max")
+	@Query("SELECT J FROM JobPosting J where J.sal BETWEEN :min AND :max")
 	public ArrayList<JobPosting> findBySalaryRange(@Param("min") int min, 
 												   @Param("max") int max);
 
