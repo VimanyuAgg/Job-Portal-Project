@@ -36,7 +36,7 @@ import edu.cmpe275.termproject.model.JobSeeker;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobSeekerService;
 import edu.cmpe275.termproject.service.JobService;
-import edu.cmpe275.termproject.service.UserService;
+//import edu.cmpe275.termproject.service.UserService;
 import edud.cmpe275.termproject.websecurity.SecurityConfig;
 
 @Controller
