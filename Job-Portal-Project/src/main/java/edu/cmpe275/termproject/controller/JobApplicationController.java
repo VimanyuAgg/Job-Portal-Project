@@ -58,7 +58,7 @@ public class JobApplicationController {
 		System.out.println("resume "+resume);
 		System.out.println("resumeData "+resumeData);
 		
-		if(resume.equals("true")){
+		if(resumeData!=null){
 			try {
 				Part resumeFile = request.getPart(jobId);
 			    System.out.println("file "+resumeFile);

@@ -89,13 +89,13 @@ padding: 0;
 	</c:if>
 	<!-- Main Form -->
 	<div class="login-form-1">
-	<form method="POST" action="/jobseeker/login" id="login-form" class="text-left" name="jslogin">
+	<form method="POST" action="/company/login" id="login-form" class="text-left" name="jslogin">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
 					<div class="form-group">
 						<label for="username" class="sr-only">Username</label>
-						<input type="text" class="form-control" id="username" name="username" placeholder="username">
+						<input type="text" class="form-control" id="email" name="email" placeholder="email">
 					</div>
 					<div class="form-group">
 						<label for="password" class="sr-only">Password</label>

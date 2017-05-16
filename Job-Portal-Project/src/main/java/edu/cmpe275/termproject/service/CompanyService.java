@@ -34,6 +34,7 @@ public class CompanyService {
 			return null;
 	}
 	
+	
 	//public ResponseEntity<?> addJobPosting(String)
 	public Company getCompany(long companyId){
 		Company company= companyDao.findOne(companyId);
@@ -134,6 +135,7 @@ public class CompanyService {
 	public List<JobPosting> getAllPositions(long companyId) {
 		Company company = companyDao.findByCompanyId(companyId);
 		if(company == null) return null;
+		System.out.println("Line 176 company Id:"+company);
 		
 		return company.getJobPostingList();
 	}
@@ -158,5 +160,11 @@ public class CompanyService {
 		
 		return "ok";
 
+	}
+
+
+	public void updateCompany(Company company) {
+		// TODO Auto-generated method stub
+		companyDao.save(company);
 	}
 }
