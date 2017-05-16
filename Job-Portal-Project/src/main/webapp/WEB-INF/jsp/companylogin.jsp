@@ -18,7 +18,9 @@
 		<div class="header head"></div>
 		<br>
 		<h1>Login Here!</h1>
-		<br><br>
+		<br>
+		<div class="text-center" name="registrationSuccess">${username}</div>
+		<br>
 		<form method="POST" action="/company/login">
 			<div class="form-group row">
 			    <div class="col-md-4"></div>

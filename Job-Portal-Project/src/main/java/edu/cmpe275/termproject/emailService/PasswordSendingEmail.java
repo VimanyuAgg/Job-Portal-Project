@@ -67,7 +67,7 @@ public class PasswordSendingEmail {
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
 
 				message.setSubject("Spring Onion almost there..");
-				message.setText("\nDear Company"+companyName+",\n\nHere is your password: "+
+				message.setText("\nDear Company "+companyName+",\n\nHere is your password: "+
 						password+"\n\nLooking forward to tears of happiness!"
 						+ "\n\nCheers,\n" + "Team Spring-Onions");
 				Transport.send(message);

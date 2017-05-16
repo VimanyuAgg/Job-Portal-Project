@@ -119,7 +119,7 @@ public class CompanyController {
 		
 	}
 	@RequestMapping(value="/company/login", method=RequestMethod.GET)
-	public String getCompanyLoginPage(){
+	public String getCompanyLoginPage( @ModelAttribute("username") String name){
 		
 		System.out.println("inside getCompany()");
 		

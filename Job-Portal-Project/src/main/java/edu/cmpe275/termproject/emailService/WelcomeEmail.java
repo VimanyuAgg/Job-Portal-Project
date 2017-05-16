@@ -70,7 +70,7 @@ public class WelcomeEmail {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
 
 			message.setSubject("Spring Onion almost there..");
-			message.setText("\nDear Company"+name+",\n\nWelcome to Spring Onions !"
+			message.setText("\nDear Company "+name+",\n\nWelcome to Spring Onions !"
 					+ "\n Here is your login id: "+receiverMail
 					+"\n Your password will arrive shortly! Please keep it safe."
 					+ "\nLooking forward to tears of happiness!"
