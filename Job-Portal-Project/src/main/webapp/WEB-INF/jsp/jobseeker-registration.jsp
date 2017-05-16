@@ -21,7 +21,11 @@ $(document).ready(function() {
 	
 	$('#email').blur(function ()
     { 
-		if($("#email").val() != "" || $("#email").val() != null){
+		if($("#email").val() == "" || $("#email").val() == null){
+			$('#output').html("");
+			//alert("emailnull");
+		}
+		else{
 			$.ajax({
 	            type: "get",
 	            url: "/test",
@@ -32,14 +36,14 @@ $(document).ready(function() {
 	                    if(msg.includes("Email Not Available")){
 	                    	console.log("I am here");
 	                    	document.getElementById("output").style.color="Red";
-	                    	document.getElementById("mySubmit").style.backgroundColor="Red";
-	                    	document.getElementById("mySubmit").style.borderColor="Red";
-	                    	document.getElementById("mySubmit").disabled = true;
+	                    	//document.getElementById("mySubmit").style.backgroundColor="Red";
+	                    	//document.getElementById("mySubmit").style.borderColor="Red";
+	                    	//document.getElementById("mySubmit").disabled = true;
 	                }else{
 	                	document.getElementById("output").style.color="Green";
-	                	document.getElementById("mySubmit").disabled = false;
-	                	document.getElementById("mySubmit").style.backgroundColor="#62C192";
-	                	document.getElementById("mySubmit").style.borderColor="#62C192";
+	                	//document.getElementById("mySubmit").disabled = false;
+	                	//document.getElementById("mySubmit").style.backgroundColor="#62C192";
+	                	//document.getElementById("mySubmit").style.borderColor="#62C192";
 
 	                }
 	            }
@@ -130,7 +134,7 @@ $(document).ready(function() {
 </div> 
 
 <div class="form-group row">
-     <label for="skills"  class="col-sm-2 col-form-label">Comma Seperated Skills</label>
+     <label for="skills"  class="col-sm-2 col-form-label">Comma Separated Skills</label>
     <div class="col-sm-6">
     <input class="form-control" type="text" id="skills" name="skills" placeholder="Ex - Python, Java, Ruby etc" required>
   </div>

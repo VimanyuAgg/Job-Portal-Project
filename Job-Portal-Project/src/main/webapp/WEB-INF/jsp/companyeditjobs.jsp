@@ -9,7 +9,7 @@
 </head>
 <body>
 <h4>Below are all the jobs your company has posted.</h4>
-<form action="/company/1/editjob" method="POST">
+<form action="/company/1/editjobs" method="POST">
 <input type="hidden" name="jobId" id="jd"/>
 	<table>
 	 <tr>
@@ -39,7 +39,16 @@
 	  </c:forEach>
 	</table>
 </form>
+<script>
+	function setJobId(val){
+		var a = document.getElementById("jd");
+		jd.value = val;
+		
+		console.log("jobid is "+document.getElementById("jd").value);
+		return false;
+	}
 
+</script>
 
 </body>
 </html>

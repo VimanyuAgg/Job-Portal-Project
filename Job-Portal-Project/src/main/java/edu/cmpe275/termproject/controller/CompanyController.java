@@ -8,22 +8,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobSeekerService;
+import edu.cmpe275.termproject.service.JobService;
 @Controller
 public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
 	@Autowired
 	private JobSeekerService jobSeekerService;
+	@Autowired
+	private JobService jobPostingService;
 	@Autowired
 	HttpSession session;
 	@RequestMapping(value="/company/register", method=RequestMethod.GET)
@@ -64,7 +69,7 @@ public class CompanyController {
 		return "companylogin";
 	}
 	@RequestMapping(value="/company/login", method=RequestMethod.POST)
-	public String companyLogin(HttpServletRequest request){
+	public String companyLogin(HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute){
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		System.out.println("emaillll::::"+email);
@@ -75,51 +80,76 @@ public class CompanyController {
 			//session.setAttribute("companyId", companyId);
 			return "redirect:/company/"+companyId+"/welcome";
 			}
-		else
-			return "redirect:/error";
+		else{
+				redirectAttribute.addFlashAttribute("notFoundText","Sorry, Email/password is invalid");
+				String isNotFound = "true";
+				redirectAttribute.addFlashAttribute("isNotFound",isNotFound);
+				return "redirect:/company/login/error"; 
+			}
 	}
+	//LOGIN - GET ERROR
+			@RequestMapping(value="/company/login/error", method=RequestMethod.GET)
+			public String jobSeekerLogin(@ModelAttribute ("email") String email,
+										 @ModelAttribute ("isNotFound") String isNotFound,
+										 @ModelAttribute ("notFoundText") String notFoundText)
+										
+			{
+				
+				
+				return "companylogin";	
+				
+			}
 	@RequestMapping("/company/{companyId}/welcome")
 	public String companyLandingPage(@PathVariable long companyId, 
 			HttpServletRequest request, ModelMap map){
 		
 		System.out.println("inside companyLandingPage");
 		System.out.println("companyId "+companyId);
-		
-		
-		List<JobPosting> jobs = companyService.getAllPositions(companyId);
-		
-		if(jobs == null) return "error";
-		
-		for(JobPosting job : jobs){
-			System.out.println(" "+job.getJobId());
-			System.out.println(" "+job.getJobTitle());
-     		System.out.println(" "+job.getJobResponsibilities());
-			System.out.println(" "+job.getJobDescription());
-   			System.out.println(" "+	job.getJobSalary());
-			System.out.println(" "+job.getPostedOn());
-			System.out.println(" "+job.getEligibility());
-			System.out.println(" "+job.getJobLocation());
-			System.out.println(" "+job.getJobStatus());
-			System.out.println(" "+job.getTempSize());
-			System.out.println(" "+job.getApplicants());
-			System.out.println(" "+job.getJobPostedByCompany());
+		if(session.getAttribute("companyId")!=null){
+			System.out.println("Not null");
+			System.out.println("Session comapny Id:" + session.getAttribute("companyId"));
+			System.out.println("original company Id:" + String.valueOf(companyId));
+			String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+			if(sessionCompanyId.equals(String.valueOf(companyId))){
+				System.out.println("Not equal");
+				List<JobPosting> jobs = companyService.getAllPositions(companyId);
+				
+				if(jobs == null) return "error";
+				
+				for(JobPosting job : jobs){
+					System.out.println(" "+job.getJobId());
+					System.out.println(" "+job.getJobTitle());
+		     		System.out.println(" "+job.getJobResponsibilities());
+					System.out.println(" "+job.getJobDescription());
+		   			System.out.println(" "+	job.getJobSalary());
+					System.out.println(" "+job.getPostedOn());
+					System.out.println(" "+job.getEligibility());
+					System.out.println(" "+job.getJobLocation());
+					System.out.println(" "+job.getJobStatus());
+					System.out.println(" "+job.getTempSize());
+					System.out.println(" "+job.getApplicants());
+					System.out.println(" "+job.getJobPostedByCompany());
+				}
+
+				map.addAttribute("jobs", jobs);
+				
+				System.out.println("returning companyLandingPage");
+
+				return "companylandingpage";
+			}
+			else{
+				return "redirect:/company/login";
+			}
 		}
-
-		map.addAttribute("jobs", jobs);
-		
-		System.out.println("returning companyLandingPage");
-
-		return "companylandingpage";
+		return "redirect:/company/login";
 	}
 	@RequestMapping("/company/{companyId}/positions")
 	public String getAllPositions(@PathVariable long companyId, @RequestParam(value = "status", required=false) String status, ModelMap map){
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
-		if(session.getAttribute("companyId")==null){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}
-		//if(session.getAttribute("companyId")!=companyId){
-		//	return "error";
-		//}
 		System.out.println("Jobs Size:"+jobs.size());
 		for(JobPosting job: jobs){
 			System.out.println(job.getJobTitle());
@@ -176,18 +206,30 @@ public class CompanyController {
 
 	@RequestMapping(value="/company/{companyId}/profile", method=RequestMethod.GET)
 	public String getCompanyProfilePage(@PathVariable long companyId, ModelMap map){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		Company company=companyService.getCompany(companyId);
 		map.addAttribute("company",company);
 		return "companyprofile";
 	}
 	@RequestMapping(value="/company/{companyId}/edit", method=RequestMethod.GET)
 	public String getCompanyEditPage(@PathVariable long companyId, ModelMap map){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		Company company= companyService.getCompany(companyId);
 		map.addAttribute("company", company);
 		return "company-edit";
 	}
 	@RequestMapping(value="/company/{companyId}/edit", method=RequestMethod.POST)
 	public String editCompany(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		Company company = companyService.getCompany(companyId);
 		company.setCompanyName(request.getParameter("name"));
 		company.setWebsite(request.getParameter("website"));
@@ -224,6 +266,7 @@ public class CompanyController {
 			System.out.println(" "+job.getApplicants());
 			System.out.println(" "+job.getJobPostedByCompany());
 		}
+		
 
 		map.addAttribute("jobs", jobs);
 		
@@ -231,35 +274,62 @@ public class CompanyController {
 
 		return "companyeditjobs";	
 	}
+
+	@RequestMapping("/logout")
+	public String logout(){
+		if(session!=null){
+			System.out.println("I am removing email");
+			session.removeAttribute("email");
+			System.out.println("I am removing company");
+			session.removeAttribute("companyId");
+			System.out.println("I am invalidating");
+			session.invalidate();
+		}
+		return "redirect:/company/login";
+	}
+
 	
-	@RequestMapping(value="/company/{companyId}/managejobs", method=RequestMethod.GET)
+	@RequestMapping(value="/company/{companyId}/editjobs", method=RequestMethod.POST)
 	public String editJobs(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
 		
-		System.out.println("inside manageJobs");
+		System.out.println("inside editJobs");
+		
+		String jobId = request.getParameter("jobId");
+		
+		System.out.println("jobId "+jobId);
 		System.out.println("companyId "+companyId);
 		
-		List<JobPosting> jobs = companyService.getAllPositions(companyId);
+		JobPosting job = jobPostingService.getJob(jobId);
+
+		if(job == null) return "error";
+		map.addAttribute("jobs", companyService.getAllPositions(companyId));
 		
-		if(jobs == null) return "error";
-		
-		for(JobPosting job : jobs){
-			System.out.println(" "+job.getJobId());
-			System.out.println(" "+job.getJobTitle());
-     		System.out.println(" "+job.getJobResponsibilities());
-			System.out.println(" "+job.getJobDescription());
-   			System.out.println(" "+	job.getJobSalary());
-			System.out.println(" "+job.getPostedOn());
-			System.out.println(" "+job.getEligibility());
-			System.out.println(" "+job.getJobLocation());
-			System.out.println(" "+job.getJobStatus());
-			System.out.println(" "+job.getTempSize());
-			System.out.println(" "+job.getApplicants());
-			System.out.println(" "+job.getJobPostedByCompany());
+		if(!(job.getJobStatus().equals("Cancelled") || 
+				job.getJobStatus().equals("OfferRejcted") ||
+				job.getJobStatus().equals("OfferAccepted") ||
+				job.getJobStatus().equals("Rejected"))){
+			job.setJobStatus("Cancelled");
+			
+			companyService.updateJob(job);
 		}
 
-		map.addAttribute("jobs", jobs);
 		
-		System.out.println("returning companyeditjobs");
+		System.out.println(" "+job.getJobId());
+		System.out.println(" "+job.getJobTitle());
+ 		System.out.println(" "+job.getJobResponsibilities());
+		System.out.println(" "+job.getJobDescription());
+		System.out.println(" "+	job.getJobSalary());
+		System.out.println(" "+job.getPostedOn());
+		System.out.println(" "+job.getEligibility());
+		System.out.println(" "+job.getJobLocation());
+		System.out.println(" "+job.getJobStatus());
+		System.out.println(" "+job.getTempSize());
+		System.out.println(" "+job.getApplicants());
+		System.out.println(" "+job.getJobPostedByCompany());
+	
+
+		
+		System.out.println("returning editJobs");
 
 		return "companyeditjobs";	
 	}
