@@ -9,6 +9,8 @@ import edu.cmpe275.termproject.dao.CompanyDAO;
 import edu.cmpe275.termproject.dao.JobApplicationDAO;
 import edu.cmpe275.termproject.dao.JobPostingDAO;
 import edu.cmpe275.termproject.dao.JobSeekerDAO;
+import edu.cmpe275.termproject.emailService.JobAppliedEmail;
+import edu.cmpe275.termproject.emailService.RegistrationEmail;
 import edu.cmpe275.termproject.model.JobApplication;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.model.JobSeeker;
@@ -66,6 +68,10 @@ public class JobApplicationService {
 
 			job.getApplicants().add(jobApplication);
 			jobPostingDAO.save(job);
+			//JOB application applied email - 
+			
+			JobAppliedEmail.EmailTrigger(jobSeekerEmail, applicant.getFirstName(),applicant.getLastName(),
+										 job.getJobTitle(),job.getJobPostedByCompany().getCompanyName(),jobId);
 			
 			System.out.println("size "+job.getApplicants().size());
 			return "success";

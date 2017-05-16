@@ -20,6 +20,7 @@ import edu.cmpe275.termproject.emailService.PasswordSendingEmail;
 import edu.cmpe275.termproject.emailService.RegistrationEmail;
 import edu.cmpe275.termproject.emailService.WelcomeEmail;
 import edu.cmpe275.termproject.model.Company;
+import edu.cmpe275.termproject.model.JobApplication;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobSeekerService;
@@ -368,6 +369,15 @@ public class CompanyController {
 			job.setJobStatus("Cancelled");
 			
 			companyService.updateJob(job);
+			//find all jobseeker email who have applied for this job
+			//send email
+			List<JobApplication> applicationList = job.getApplicants();
+			for(int i=0;i<applicationList.size();i++){
+				String jobSeekerEmail = applicationList.get(i).getApplicant().getEmail();
+				String jobSeekerFirstName = applicationList.get(i).getApplicant().getFirstName();
+				String jobSeekerLastName = applicationList.get(i).getApplicant().getLastName();
+				
+			}
 		}
 
 		
