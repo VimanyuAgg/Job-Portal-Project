@@ -43,7 +43,8 @@ public class JobApplicationController {
 	public String applyJob(HttpServletRequest request, ModelMap map) throws ParseException{
 		
 		String jobId = request.getParameter("jobId");
-		String email = request.getParameter("email");
+	//	String email = request.getParameter("email");
+		String email="vimanyu102202207@gmail.com";
 		String profile = request.getParameter("profile");
 		String resume = request.getParameter("resume");
 		String resumeData = request.getParameter(jobId);

@@ -11,8 +11,8 @@ public class JobSeekerService {
 	@Autowired
 	private JobSeekerDAO jobSeekerDAO;
 	
-	@Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+//	@Autowired
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	//POST
 	public void addJobSeeker(JobSeeker jobSeeker){
