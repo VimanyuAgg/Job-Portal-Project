@@ -1,6 +1,7 @@
 package edu.cmpe275.termproject.controller;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.cmpe275.termproject.model.Company;
+import edu.cmpe275.termproject.model.JobApplication;
 import edu.cmpe275.termproject.model.JobPosting;
+import edu.cmpe275.termproject.model.JobSeeker;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobService;
 @Controller
@@ -119,6 +122,18 @@ public class JobController {
 		job.setJobStatus(status);
 		jobSerivce.addJob(job);
 		map.addAttribute("job",job);
+		List<JobApplication> applications=job.getApplicants();
+		System.out.println(applications.size());
+		if(applications!=null){
+			List<JobSeeker> applicants=new ArrayList<JobSeeker>();
+			for(JobApplication application:applications){
+				applicants.add(application.getApplicant());
+			}
+			for(JobSeeker applicant: applicants){
+				System.out.println("Check MEEE::::");
+				System.out.println(applicant.getFirstName());
+			}
+		}
 		return "positiondetails";
 	}
 	/*private JSONObject generateErrorMessage(String message) {
