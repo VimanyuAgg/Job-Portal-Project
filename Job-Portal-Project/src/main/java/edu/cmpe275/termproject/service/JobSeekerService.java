@@ -16,7 +16,7 @@ public class JobSeekerService {
 	
 	//POST
 	public void addJobSeeker(JobSeeker jobSeeker){
-		
+		jobSeeker.setPassword(bCryptPasswordEncoder.encode(jobSeeker.getPassword()));
 		jobSeekerDAO.save(jobSeeker);
 		
 	}
