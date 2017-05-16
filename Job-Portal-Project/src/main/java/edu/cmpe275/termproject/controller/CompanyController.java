@@ -1,5 +1,8 @@
 package edu.cmpe275.termproject.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +28,7 @@ import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobSeekerService;
 import edu.cmpe275.termproject.service.JobService;
+import edud.cmpe275.termproject.websecurity.SecurityConfig;
 @Controller
 public class CompanyController {
 	@Autowired
@@ -49,7 +53,7 @@ public class CompanyController {
 	
 	
 	@RequestMapping(value="/company/register", method=RequestMethod.POST)
-	public String registerCompany( HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute){
+	public String registerCompany( HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute) throws UnsupportedEncodingException, GeneralSecurityException{
 		System.out.println("I am in post");
 		String name=request.getParameter("name"), 
 				website=request.getParameter("website"), 
@@ -99,7 +103,7 @@ public class CompanyController {
 	
 	//AUTHENTICATION POST
 	@RequestMapping(value="/company/authentication", method = RequestMethod.POST)
-	private String codeAuthenticationPOST(HttpServletRequest request, RedirectAttributes redirectAttribute){
+	private String codeAuthenticationPOST(HttpServletRequest request, RedirectAttributes redirectAttribute) throws GeneralSecurityException, IOException{
 		
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
@@ -117,7 +121,7 @@ public class CompanyController {
 			WelcomeEmail.welcomeEmailTrigger(companyService.getCompany(email).getEmail(), 
 											 companyService.getCompany(email).getCompanyName());
 			PasswordSendingEmail.deliverPasswordEmailCompany(companyService.getCompany(email).getEmail(), 
-					companyService.getCompany(email).getCompanyName(), companyService.getCompany(email).getPassword());
+					companyService.getCompany(email).getCompanyName(), SecurityConfig.decrypt(companyService.getCompany(email).getPassword()));
 			//System.out.println("Jobseeker "+firstName+ " saved to DB");
 			return "redirect:/company/login";
 		}
@@ -135,7 +139,7 @@ public class CompanyController {
 		return "companylogin";
 	}
 	@RequestMapping(value="/company/login", method=RequestMethod.POST)
-	public String companyLogin(HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute){
+	public String companyLogin(HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute) throws GeneralSecurityException, IOException{
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		System.out.println("emaillll::::"+email);
@@ -291,7 +295,7 @@ public class CompanyController {
 		return "company-edit";
 	}
 	@RequestMapping(value="/company/{companyId}/edit", method=RequestMethod.POST)
-	public String editCompany(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
+	public String editCompany(@PathVariable long companyId, ModelMap map, HttpServletRequest request) throws UnsupportedEncodingException, GeneralSecurityException{
 		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
 		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";

@@ -1,21 +1,27 @@
 package edu.cmpe275.termproject.service;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import edu.cmpe275.termproject.dao.JobSeekerDAO;
 import edu.cmpe275.termproject.model.JobSeeker;
+import edud.cmpe275.termproject.websecurity.SecurityConfig;
 
 @Service
 public class JobSeekerService {
 
 	@Autowired
 	private JobSeekerDAO jobSeekerDAO;
-	
+//	
 //	@Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+//	
 	//POST
-	public void addJobSeeker(JobSeeker jobSeeker){
-		//jobSeeker.setPassword(bCryptPasswordEncoder.encode(jobSeeker.getPassword()));
+	public void addJobSeeker(JobSeeker jobSeeker) throws UnsupportedEncodingException, GeneralSecurityException{
+		jobSeeker.setPassword(SecurityConfig.encrypt(jobSeeker.getPassword()));
 		jobSeekerDAO.save(jobSeeker);
 		
 	}
@@ -25,7 +31,7 @@ public class JobSeekerService {
 		jobSeekerDAO.findAll();
 	}
 
-	public String authenticateJobSeeker(String username, String password) {
+	public String authenticateJobSeeker(String username, String password) throws GeneralSecurityException, IOException {
 		// TODO Auto-generated method stub
 		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
 		System.out.println("Inside authenticateJobSeeker"+jobSeeker);
@@ -33,7 +39,13 @@ public class JobSeekerService {
 			return "";
 		}
 		System.out.println("firstName: "+jobSeeker.getFirstName());
-		if(jobSeeker.getPassword().equals(password))
+
+		System.out.println("DB PSW: "+jobSeeker.getPassword());
+		System.out.println("DB DecryptedPassword: "+ SecurityConfig.decrypt(jobSeeker.getPassword()));
+		System.out.println("User PSW: "+password);
+		System.out.println("Encrypted usr PSW:    "+SecurityConfig.encrypt(password));
+		if(password.equals(SecurityConfig.decrypt(jobSeeker.getPassword())))
+
 		{
 			System.out.println("Jobseeker exists");
 			return username;
