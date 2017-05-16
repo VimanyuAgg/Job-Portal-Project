@@ -1,6 +1,5 @@
 package edu.cmpe275.termproject.service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import edu.cmpe275.termproject.dao.JobSeekerDAO;
 import edu.cmpe275.termproject.model.JobSeeker;
@@ -16,7 +15,7 @@ public class JobSeekerService {
 	
 	//POST
 	public void addJobSeeker(JobSeeker jobSeeker){
-		jobSeeker.setPassword(bCryptPasswordEncoder.encode(jobSeeker.getPassword()));
+		//jobSeeker.setPassword(bCryptPasswordEncoder.encode(jobSeeker.getPassword()));
 		jobSeekerDAO.save(jobSeeker);
 		
 	}
@@ -34,7 +33,7 @@ public class JobSeekerService {
 			return "";
 		}
 		System.out.println("firstName: "+jobSeeker.getFirstName());
-		if(jobSeeker.getPassword().equals(bCryptPasswordEncoder.encode(password)))
+		if(jobSeeker.getPassword().equals(password))
 		{
 			System.out.println("Jobseeker exists");
 			return username;

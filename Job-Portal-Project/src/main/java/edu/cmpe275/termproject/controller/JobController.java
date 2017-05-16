@@ -125,6 +125,8 @@ public class JobController {
 			for(JobSeeker applicant: applicants){
 				System.out.println("Check MEEE::::");
 				System.out.println(applicant.getFirstName());
+				String email=applicant.getEmail();
+				// Mail The Applicant
 			}
 		}
 		return "positiondetails";
