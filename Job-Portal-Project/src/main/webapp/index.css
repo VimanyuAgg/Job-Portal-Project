@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+
+body{
+	background-color: #f2f5f6;
+	background-image: url("1.jpg");
+}
+
+.back{
+	width: 100%;
+	z-index: -100;
+	position: absolute;
+}
+
+.xx{
+	position: absolute;
+	z-index: 1;
+	
+}

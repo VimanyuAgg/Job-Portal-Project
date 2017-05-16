@@ -20,6 +20,7 @@ import edu.cmpe275.termproject.emailService.PasswordSendingEmail;
 import edu.cmpe275.termproject.emailService.RegistrationEmail;
 import edu.cmpe275.termproject.emailService.WelcomeEmail;
 import edu.cmpe275.termproject.model.Company;
+import edu.cmpe275.termproject.model.JobApplication;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobSeekerService;
@@ -39,6 +40,14 @@ public class CompanyController {
 		System.out.println("I am here");
 		return "companyregistration";
 	}
+
+	@RequestMapping(value="/in", method=RequestMethod.GET)
+	public String getHome(){
+		
+		return "index";
+	}
+	
+	
 	@RequestMapping(value="/company/register", method=RequestMethod.POST)
 	public String registerCompany( HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute){
 		System.out.println("I am in post");
@@ -368,6 +377,8 @@ public class CompanyController {
 			job.setJobStatus("Cancelled");
 			
 			companyService.updateJob(job);
+
+			
 		}
 
 		
