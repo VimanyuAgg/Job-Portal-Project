@@ -9,7 +9,8 @@
 			<p>Req. No:</p>${job.getJobId()}
 			<p>Status: </p><!-- <input type="text" name="status" value=${job.getJobStatus()} />-->
 			<select name="status">
-  				<option value="opn">Open</option>
+			<option selected disabled>Select Status</option>
+  				<option value="open">Open</option>
   				<option value="closed">Closed</option>
  				 <option value="cencelled">Cancelled</option>
 			</select>

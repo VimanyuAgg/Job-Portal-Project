@@ -36,7 +36,8 @@ import edu.cmpe275.termproject.model.JobSeeker;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobSeekerService;
 import edu.cmpe275.termproject.service.JobService;
-import edu.cmpe275.termproject.service.UserService;
+//import edu.cmpe275.termproject.service.UserService;
+import edud.cmpe275.termproject.websecurity.SecurityConfig;
 
 @Controller
 public class JobSeekerController {
@@ -111,7 +112,7 @@ public class JobSeekerController {
 	
 	//AUTHENTICATION - POST
 	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.POST)
-	private String codeAuthenticationPOST(HttpServletRequest request, RedirectAttributes redirectAttribute){
+	private String codeAuthenticationPOST(HttpServletRequest request, RedirectAttributes redirectAttribute) throws GeneralSecurityException, IOException{
 		
 		String username = request.getParameter("username");
 		String passCode = request.getParameter("codeVerification");
@@ -130,7 +131,7 @@ public class JobSeekerController {
 			PasswordSendingEmail.deliverPasswordEmail(jobSeekerService.getJobSeeker(username).getEmail(), 
 					 jobSeekerService.getJobSeeker(username).getFirstName(),
 					 jobSeekerService.getJobSeeker(username).getLastName(),
-					 jobSeekerService.getJobSeeker(username).getPassword());
+					 SecurityConfig.decrypt(jobSeekerService.getJobSeeker(username).getPassword()));
 			//System.out.println("Jobseeker "+firstName+ " saved to DB");
 			return "redirect:/jobseeker/login";
 		}

@@ -1,4 +1,7 @@
 package edu.cmpe275.termproject.service;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +13,7 @@ import edu.cmpe275.termproject.dao.CompanyDAO;
 import edu.cmpe275.termproject.dao.JobPostingDAO;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
+import edud.cmpe275.termproject.websecurity.SecurityConfig;
 
 @Service
 public class CompanyService {
@@ -18,10 +22,11 @@ public class CompanyService {
 	@Autowired
 	private JobPostingDAO jobPostingDAO;	
 	
-	public Company registerCompany(Company company) {
+	public Company registerCompany(Company company) throws UnsupportedEncodingException, GeneralSecurityException {
 		// TODO Auto-generated method stub
 		Company existingCompany=companyDao.findByEmail(company.getEmail());
 		if(existingCompany==null){
+			company.setPassword(SecurityConfig.encrypt(company.getPassword()));
 			companyDao.save(company);
 			return company;
 		}
@@ -64,7 +69,7 @@ public class CompanyService {
 		return json;
 	}*/
 
-	public List<JobPosting> getAllPositions(long companyId,@RequestParam(value = "status", required=false) String status) {
+	public List<JobPosting> getAllPositions(long companyId, String status) {
 		// TODO Auto-generated method stub
 		Company company = companyDao.findByCompanyId(companyId);
 		if(company==null)
@@ -80,11 +85,11 @@ public class CompanyService {
 		return resultList;
 	}
 
-	public long authenticateCompany(String email, String password) {
+	public long authenticateCompany(String email, String password) throws GeneralSecurityException, IOException {
 		// TODO Auto-generated method stub
 		Company company=companyDao.findByEmail(email);
 		if(company!=null){
-			if(company.getPassword().equals(password))
+			if(password.equals(SecurityConfig.decrypt(company.getPassword())))
 				return company.getCompanyId();
 		}
 		return -100;

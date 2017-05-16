@@ -37,7 +37,8 @@ public class PasswordSendingEmail {
             
             message.setSubject("Spring Onion almost there..");
             message.setText("\nDear "+firstName+" "+lastName+",\n\nHere is your password: "+
-            				password+"\n\nLooking forward to tears of happiness!"
+            				password+"\nPlease keep it safe !"
+            				+"\n\nLooking forward to tears of happiness!"
             				+ "\n\nCheers,\n" + "Team Spring-Onions");
             Transport.send(message);
             System.out.println("Your message is sent successfully to "+receiverMail);

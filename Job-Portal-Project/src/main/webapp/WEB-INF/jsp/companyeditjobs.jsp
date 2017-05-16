@@ -35,6 +35,9 @@
 	      <td><c:out value="${job.getJobLocation()}" /></td>
 	      <td><c:out value="${job.getJobStatus()}" /></td>
 	      <td><input type="submit" onclick="setJobId('${job.getJobId()}')" value="Cancel Applicant!"/></td>
+  	      <td><input type="submit" onclick="setJobId('${job.getJobId()}')" value="Cancel Applicant!"/></td>
+  	      <td><a href="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit">Edit</a></td>
+	   	  
 	    </tr>
 	  </c:forEach>
 	</table>
