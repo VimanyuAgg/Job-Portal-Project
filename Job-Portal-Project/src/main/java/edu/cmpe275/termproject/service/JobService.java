@@ -112,37 +112,56 @@ public class JobService {
 		// TODO Auto-generated method stub
 		String[] searchStringArray = searchString.split(" "); //Include regex to split by comma etc.
 		List<JobPosting> searchStringLists = new ArrayList<JobPosting>();
+		
+		System.out.println("Size of searchStringArray is "+searchStringArray.length);
+		
 		for (String str : searchStringArray){
+			System.out.println("searching based on: "+str);
 			if(jobPostingDao.findByJobDescription(str).size() > 0){
+				System.out.println("Match Found for Description");
 				searchStringLists.addAll(jobPostingDao.findByJobDescription(str));
 			}
 			
+			System.out.println("Searching for job ID");
 			if(jobPostingDao.findByJobId(str) != null){
+				System.out.println("Match Found for JobID");
 				searchStringLists.add(jobPostingDao.findByJobId(str));
 				
 			}
 			
+			System.out.println("Searching for job location");
 			if(jobPostingDao.findByJobLocation(str).size() > 0){
+				System.out.println("Match Found for JobLocation");
 				searchStringLists.addAll(jobPostingDao.findByJobLocation(str));
 			}
 			
+			System.out.println("Searching for job Resp");
 			if(jobPostingDao.findByJobResponsibilities(str).size() > 0){
+				System.out.println("Match Found for Job Responsibilities");
 				searchStringLists.addAll(jobPostingDao.findByJobResponsibilities(str));
 			}
 			
+			System.out.println("Searching for job salary");
 			if(jobPostingDao.findByJobSalary(str).size() > 0){
+				System.out.println("Match Found for Salary");
 				searchStringLists.addAll(jobPostingDao.findByJobSalary(str));
 			}
 			
+			System.out.println("Searching for job status");
 			if(jobPostingDao.findByJobStatus(str).size() > 0){
+				System.out.println("Match Found for Status");
 				searchStringLists.addAll(jobPostingDao.findByJobStatus(str));
 			}
 			
+			System.out.println("Searching for job title");
 			if(jobPostingDao.findByJobTitle(str).size() > 0){
+				System.out.println("Match Found for Job Title");
 				searchStringLists.addAll(jobPostingDao.findByJobTitle(str));
 			}
 			
+			System.out.println("Searching for job company name");
 			if(companyDAO.findByNameCompanyName(str).size() > 0){
+				System.out.println("Match Found for Company Name");
 				List<Company> companies = companyDAO.findByNameCompanyName(str);
 				for (Company company : companies){
 					searchStringLists.addAll(company.getJobPostingList());
@@ -154,8 +173,8 @@ public class JobService {
 		
 		return searchStringLists;
 	}	
-	public List<JobPosting> searchBySalaryRange(int min, int max){
-		ArrayList<JobPosting> jobList = jobPostingDao.findBySalaryRange(min,max);
-		return null;
-	}
+//	public List<JobPosting> searchBySalaryRange(int min, int max){
+//		ArrayList<JobPosting> jobList = jobPostingDao.findBySalaryRange(min,max);
+//		return null;
+//	}
 }
