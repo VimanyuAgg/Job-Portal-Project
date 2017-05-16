@@ -65,7 +65,7 @@ $(document).ready(function() {
 	<div class="header head"><p style="text-align:left; font-size:30px; font-family:Didot; color:white">Spring Onion</p></div>
 
 <br>
-		<h1>Register Here!</h1>
+		<h1>Edit your profile</h1>
 		<br><br>
 <div class="container">		
 

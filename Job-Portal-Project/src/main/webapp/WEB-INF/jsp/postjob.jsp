@@ -5,8 +5,8 @@
 <html lang="en">
 <body>
 <h1>Job Post Form</h1>
-<form method="POST" action="/company/<%=session.getAttribute("companyId")%>/addjob">
-	<p>Requisition Id</p>
+<form method="POST" action="/company/${companyId}/addjob">
+	<p>Job Id</p>
 	<input type="text" name="jobId" />
 	<p>Title</p>
 	<input type="text" name="title" />
@@ -18,6 +18,8 @@
 	<input type="text" name="location" />
 	<p>Salary</p>
 	<input type="text" name="salary" />
+	<p>Eligibility</p>
+	<input type="text" name="eligibility" />
 	<input type="submit"/>
 </form>
 </body>

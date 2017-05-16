@@ -214,7 +214,29 @@ public class JobSeekerController {
 		return "jobseeker-dashboard";
 	}
 	
+	
+	@RequestMapping(value="/jobseeker/logout", method=RequestMethod.GET)
+	public String jobSeekerLogOut(){
+			if(httpSession!=null)
+			{
+				httpSession.removeAttribute("username");
+				//System.out.println("removed username:");
+				httpSession.invalidate();
+				
+			}
+			return "redirect:/jobseeker/login";
+		}
+		
+	
+
+@RequestMapping(value="/jobseeker/profile", method=RequestMethod.GET)
+public String getJobSeekerProfile(){
+	return "jobseeker-profile";
+	
 }
+	
+}
+
 
 //package edu.cmpe275.termproject.controller;
 //

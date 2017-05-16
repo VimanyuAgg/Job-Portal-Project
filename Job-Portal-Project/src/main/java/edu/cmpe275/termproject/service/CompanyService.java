@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.cmpe275.termproject.dao.CompanyDAO;
+import edu.cmpe275.termproject.dao.JobPostingDAO;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
 
@@ -14,6 +15,9 @@ import edu.cmpe275.termproject.model.JobPosting;
 public class CompanyService {
 	@Autowired
 	private CompanyDAO companyDao;
+	@Autowired
+	private JobPostingDAO jobPostingDAO;	
+	
 	public Company registerCompany(Company company) {
 		// TODO Auto-generated method stub
 		Company existingCompany=companyDao.findByEmail(company.getEmail());
@@ -129,11 +133,25 @@ public class CompanyService {
 		return company.getJobPostingList();
 	}
 
+
 	public void setAuthCode(String authenticationCode_String, String email) {
 		// TODO Auto-generated method stub
 		Company company  = companyDao.findByEmail(email);
 		company.setAuthenticationCode(authenticationCode_String);
 		companyDao.save(company);
 		System.out.println("Authentication code successfully saved to DAO");
+	}
+	public String editJob() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String updateJob(JobPosting job) {
+		
+		job.setJobStatus("Cancelled");
+		jobPostingDAO.save(job);
+		
+		return "ok";
+
 	}
 }

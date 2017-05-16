@@ -23,12 +23,15 @@ import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobSeekerService;
+import edu.cmpe275.termproject.service.JobService;
 @Controller
 public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
 	@Autowired
 	private JobSeekerService jobSeekerService;
+	@Autowired
+	private JobService jobPostingService;
 	@Autowired
 	HttpSession session;
 	@RequestMapping(value="/company/register", method=RequestMethod.GET)
@@ -228,13 +231,16 @@ public class CompanyController {
 	        }
 	    }*/
 	
-	@RequestMapping(value="/company",method = RequestMethod.GET)
-	public String getCompanyByNames(HttpServletRequest request){
+	@RequestMapping(value="/company/{companyId}/postjob",method = RequestMethod.GET)
+	public String getCompanyByNames(@PathVariable long companyId, 
+			HttpServletRequest request, ModelMap map){
+//		
+//		System.out.println("inside getCompanyByName()");
+//		String companyName = "askl," + request.getParameter("companyName");
+//		List<Company> companies = companyService.getCompanyByName(companyName);
+//		
 		
-		System.out.println("inside getCompanyByName()");
-		String companyName = "askl," + request.getParameter("companyName");
-		List<Company> companies = companyService.getCompanyByName(companyName);
-		
+		map.addAttribute("companyId", companyId);
 		return "postjob";
 	}
 	
@@ -292,6 +298,40 @@ public class CompanyController {
 		map.addAttribute("company",company);
 		return "companyprofile";
 	}
+	
+	@RequestMapping(value="/company/{companyId}/managejobs", method=RequestMethod.GET)
+	public String manageJobs(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
+		
+		System.out.println("inside manageJobs");
+		System.out.println("companyId "+companyId);
+		
+		List<JobPosting> jobs = companyService.getAllPositions(companyId);
+		
+		if(jobs == null) return "error";
+		
+		for(JobPosting job : jobs){
+			System.out.println(" "+job.getJobId());
+			System.out.println(" "+job.getJobTitle());
+     		System.out.println(" "+job.getJobResponsibilities());
+			System.out.println(" "+job.getJobDescription());
+   			System.out.println(" "+	job.getJobSalary());
+			System.out.println(" "+job.getPostedOn());
+			System.out.println(" "+job.getEligibility());
+			System.out.println(" "+job.getJobLocation());
+			System.out.println(" "+job.getJobStatus());
+			System.out.println(" "+job.getTempSize());
+			System.out.println(" "+job.getApplicants());
+			System.out.println(" "+job.getJobPostedByCompany());
+		}
+		
+
+		map.addAttribute("jobs", jobs);
+		
+		System.out.println("returning companyeditjobs");
+
+		return "companyeditjobs";	
+	}
+
 	@RequestMapping("/logout")
 	public String logout(){
 		if(session!=null){
@@ -305,4 +345,49 @@ public class CompanyController {
 		return "redirect:/company/login";
 	}
 
+	
+	@RequestMapping(value="/company/{companyId}/editjobs", method=RequestMethod.POST)
+	public String editJobs(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
+		
+		System.out.println("inside editJobs");
+		
+		String jobId = request.getParameter("jobId");
+		
+		System.out.println("jobId "+jobId);
+		System.out.println("companyId "+companyId);
+		
+		JobPosting job = jobPostingService.getJob(jobId);
+
+		if(job == null) return "error";
+		map.addAttribute("jobs", companyService.getAllPositions(companyId));
+		
+		if(!(job.getJobStatus().equals("Cancelled") || 
+				job.getJobStatus().equals("OfferRejcted") ||
+				job.getJobStatus().equals("OfferAccepted") ||
+				job.getJobStatus().equals("Rejected"))){
+			job.setJobStatus("Cancelled");
+			
+			companyService.updateJob(job);
+		}
+
+		
+		System.out.println(" "+job.getJobId());
+		System.out.println(" "+job.getJobTitle());
+ 		System.out.println(" "+job.getJobResponsibilities());
+		System.out.println(" "+job.getJobDescription());
+		System.out.println(" "+	job.getJobSalary());
+		System.out.println(" "+job.getPostedOn());
+		System.out.println(" "+job.getEligibility());
+		System.out.println(" "+job.getJobLocation());
+		System.out.println(" "+job.getJobStatus());
+		System.out.println(" "+job.getTempSize());
+		System.out.println(" "+job.getApplicants());
+		System.out.println(" "+job.getJobPostedByCompany());
+	
+
+		
+		System.out.println("returning editJobs");
+
+		return "companyeditjobs";	
+	}
 }
