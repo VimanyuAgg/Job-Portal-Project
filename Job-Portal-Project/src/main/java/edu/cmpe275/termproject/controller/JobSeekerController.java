@@ -92,7 +92,7 @@ public class JobSeekerController {
 		
 	}
 	
-	//NEED TO HANDLE CASE OF DIRECT URL HIT
+	
 	//AUTHENTICATION - GET
 	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.GET)
 	private String codeAuthenticationGET(@ModelAttribute ("username") String username,
