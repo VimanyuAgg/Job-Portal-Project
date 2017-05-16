@@ -4,10 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< HEAD
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-=======
->>>>>>> 1d77872b1e00960787015fc41009227470d69248
+
 import org.springframework.stereotype.Service;
 import edu.cmpe275.termproject.dao.JobSeekerDAO;
 import edu.cmpe275.termproject.model.JobSeeker;
@@ -18,7 +15,6 @@ public class JobSeekerService {
 
 	@Autowired
 	private JobSeekerDAO jobSeekerDAO;
-<<<<<<< HEAD
 //	
 //	@Autowired
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -26,15 +22,6 @@ public class JobSeekerService {
 	//POST
 	public void addJobSeeker(JobSeeker jobSeeker) throws UnsupportedEncodingException, GeneralSecurityException{
 		jobSeeker.setPassword(SecurityConfig.encrypt(jobSeeker.getPassword()));
-=======
-	
-//	@Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-	//POST
-	public void addJobSeeker(JobSeeker jobSeeker){
-		//jobSeeker.setPassword(bCryptPasswordEncoder.encode(jobSeeker.getPassword()));
->>>>>>> 1d77872b1e00960787015fc41009227470d69248
 		jobSeekerDAO.save(jobSeeker);
 		
 	}
