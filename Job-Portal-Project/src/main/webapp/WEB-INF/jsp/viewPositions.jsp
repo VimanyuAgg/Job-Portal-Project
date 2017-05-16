@@ -18,7 +18,7 @@ Welcome: ${email}
 </form>
 
 <form action="/positions/applyjob" method="POST" enctype="multipart/form-data">
-<input type="hidden" name="email" value="vimanyu1022007@gmail.com"/>
+<input type="hidden" name="email" value="<%= session.getAttribute("email") %>"/>
 <input type="hidden" name="jobId" id="jd"/>
 <input type="hidden" name="profile" value="false" id="pf"/>
 <input type="hidden" name="resume" value="true"  id="rs"/>
@@ -39,7 +39,7 @@ Welcome: ${email}
     </tr>
 	  <c:forEach items="${positions}" var="position">
   	    <tr>
-	      <td><c:out value="${position.getJobId()}" /></td>
+	      <td><a href="/positions/${position.getJobId()}"><c:out value="${position.getJobId()}" /></a></td>
 	      <td><c:out value="${position.getJobTitle()}" /></td>
 	      <td><c:out value="${position.getJobResponsibilities()}" /></td>
 	      <td><c:out value="${position.getJobDescription()}" /></td>
