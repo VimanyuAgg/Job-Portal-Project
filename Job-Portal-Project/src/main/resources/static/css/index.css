@@ -5,7 +5,6 @@ body{
 	background-color: #f2f5f6;
 	background-image: url("1.jpg");
 	color: white;
-	
 }
 
 .back{
@@ -23,3 +22,14 @@ body{
 	font-size: 45px;
 	margin-top: 90px;
 }
+
+.nv{
+	background-color: black!Important;
+	margin:0!Important;
+	padding: 0!Important;
+}
+
+.wh{
+	color: white!Important;
+}
+
