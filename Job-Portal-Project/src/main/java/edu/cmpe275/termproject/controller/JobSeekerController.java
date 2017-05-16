@@ -227,9 +227,15 @@ public class JobSeekerController {
 			return "redirect:/jobseeker/login";
 		}
 		
-	}
 	
+
+@RequestMapping(value="/jobseeker/profile", method=RequestMethod.GET)
+public String getJobSeekerProfile(){
+	return "jobseeker-profile";
 	
+}
+	
+}
 
 
 //package edu.cmpe275.termproject.controller;
