@@ -12,6 +12,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +42,10 @@ public class JobApplicationController {
 	// REQUIRED job id and job seeker username
 	@RequestMapping(value="/positions/applyjob",method=RequestMethod.POST)
 	public String applyJob(HttpServletRequest request, ModelMap map) throws ParseException{
-		
+		HttpSession session=request.getSession();
 		String jobId = request.getParameter("jobId");
-		String email = request.getParameter("email");
+		String email=(String) session.getAttribute("email");
+		System.out.println("Line 49");
 		String profile = request.getParameter("profile");
 		String resume = request.getParameter("resume");
 		String resumeData = request.getParameter(jobId);

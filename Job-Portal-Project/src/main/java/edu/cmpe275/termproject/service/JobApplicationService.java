@@ -30,33 +30,37 @@ public class JobApplicationService {
 	public String applyJob(String jobId, String jobSeekerEmail, byte[] by, String profile) {
 
 		System.out.println("inside applyJob ");
-
+		System.out.println("JobSeekerEmail"+jobSeekerEmail);
 		JobSeeker applicant = jobSeekerDAO.findByEmail(jobSeekerEmail);
 		JobPosting job = jobPostingDAO.findByJobId(jobId);
-
+		System.out.println("line 34");
 		try{
+			System.out.println("line 36");
+
 			List<JobApplication> applications = applicant.getApplicationsList();
-			
+			System.out.println("Line 39");
 			// Make sure user has not applied in this job before
 			// and state is not in terminal. req #7.f and #7.e
 			int count  = 0;
-			for(JobApplication application : applications){
-				if(application.getJobPosting().getJobId().equals(job.getJobId())){
-					if(application.getStatus().equals("Pending") || 
-							application.getStatus().equals("Offered")){
-						return "already-applied";
+			if(applications!=null){
+				for(JobApplication application : applications){
+					if(application.getJobPosting().getJobId().equals(job.getJobId())){
+						if(application.getStatus().equals("Pending") || 
+								application.getStatus().equals("Offered")){
+							return "already-applied";
+						}
+					}
+					if(application.getStatus().equals("Pending")) {
+						System.out.println("Application Status Pending ");
+						count++;
 					}
 				}
-				if(application.getStatus().equals("Pending")) {
-					System.out.println("Application Status Pending ");
-					count++;
-				}
 			}
-			
 			if(count > 5){
 				return "already-applied-in-5";				
 			}
-			
+			System.out.println("line 60");
+
 			JobApplication jobApplication = new JobApplication("Pending", job, applicant, by, profile);
 			jobApplicationDAO.save(jobApplication);
 			
