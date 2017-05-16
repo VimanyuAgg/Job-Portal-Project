@@ -87,6 +87,11 @@ public class JobController {
 	@RequestMapping(value="/company/{companyId}/positions/{positionId}/edit", method=RequestMethod.GET)
 	public String editPositionDetailsGet(@PathVariable long companyId, @PathVariable String positionId, HttpServletRequest request, ModelMap map){
 		JobPosting job=jobSerivce.getJob(positionId);
+		if(job==null){
+			System.out.println("NULLLLLLLLLLLLL");
+			map.addAttribute("errorMessage","No job with job id "+positionId+" exists");
+			return "error";
+			}
 		map.addAttribute("job",job);
 		return "editpostion";
 	}
@@ -95,14 +100,23 @@ public class JobController {
 	       String title=request.getParameter("title"), 
 	    		   description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary"), status=request.getParameter("status");
-		Company company=companyService.getCompany(companyId);
-		JobPosting currentJob=jobSerivce.getJob(positionId);
+		//Company company=companyService.getCompany(companyId);
+		JobPosting job=jobSerivce.getJob(positionId);
 		//String title=currentJob.getJobTitle(), description=currentJob.getJobDescription(), responsibilites=currentJob.getJobResponsibilities(),
 		//		offliceLocation=currentJob.getJobLocation(), salary=currentJob.getJobSalary(), status=currentJob.getJobStatus();
-		jobSerivce.removeJob(currentJob);
+		// currentJob= jobSerivce.removeJob(currentJob);
+		if(job==null)
+			return "error";
 		System.out.println("Title:"+title);
-		JobPosting job=new JobPosting(positionId, title, description, responsibilites, offliceLocation, salary, company,"MS");
+		//JobPosting job=new JobPosting(positionId, title, description, responsibilites, offliceLocation, salary, company,"MS");
 		System.out.println("Description:"+job.getJobDescription());
+		job.setJobTitle(title);
+		//job.setEligibility(eligibility);
+		job.setJobDescription(description);
+		job.setJobLocation(offliceLocation);
+		job.setJobResponsibilities(responsibilites);
+		job.setJobSalary(salary);
+		job.setJobStatus(status);
 		jobSerivce.addJob(job);
 		map.addAttribute("job",job);
 		return "positiondetails";
