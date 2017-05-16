@@ -40,6 +40,14 @@ public class CompanyController {
 		System.out.println("I am here");
 		return "companyregistration";
 	}
+
+	@RequestMapping(value="/in", method=RequestMethod.GET)
+	public String getHome(){
+		
+		return "index";
+	}
+	
+	
 	@RequestMapping(value="/company/register", method=RequestMethod.POST)
 	public String registerCompany( HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute){
 		System.out.println("I am in post");
