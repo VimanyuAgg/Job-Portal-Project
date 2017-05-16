@@ -184,4 +184,37 @@ public class JobService {
 		System.out.println("searchSalaryList has size "+searchSalaryList.size());
 		return searchSalaryList;
 	}
+	public List<JobPosting> searchByFields(String jobId, String title, String location, String salary, String status,
+			String postedOn) {
+		// TODO Auto-generated method stub
+		List<JobPosting> searchList = new ArrayList<JobPosting>();
+		
+		if(jobId != null && !jobId.isEmpty()){
+			System.out.println("jobId is not null---finding");
+			searchList.add(jobPostingDao.findByJobId(jobId));
+		}
+		if(title != null && !title.isEmpty()){
+			System.out.println("title is not null---finding");
+			searchList.addAll(jobPostingDao.findByJobTitle(title));
+		}
+		
+		if(location != null && !location.isEmpty()){
+			System.out.println("location is not null---finding");
+			searchList.addAll(jobPostingDao.findByJobLocation(location));
+		}
+		
+		if(salary != null && !salary.isEmpty()){
+			System.out.println("salary is not null---finding");
+			searchList.addAll(jobPostingDao.findByJobSalary(salary));
+		}
+		
+		if(status != null && !status.isEmpty()){
+			System.out.println("status is not null---finding");
+			searchList.addAll(jobPostingDao.findByJobStatus(status));
+		}
+		
+		System.out.println("searchList has size: "+searchList.size());
+		return searchList;
+		
+	}
 }

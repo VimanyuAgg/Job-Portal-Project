@@ -180,42 +180,43 @@ public class JobController {
 			String salary = request.getParameter("salary");
 			String status = request.getParameter("status");
 			String postedOn = request.getParameter("postedon");
-			
-				
-			
-			
-			if(jobId != null && jobId.length() != 0){
-				System.out.println("found jobId "+jobId);
-				jobId = request.getParameter("jobId") + ",";
-			}
-			
-			if(title != null && title.length() != 0){
-				System.out.println("found title "+title);
-				title = request.getParameter("title") + ",";
-			}
-			
-			if(location != null && location.length() != 0){
-				System.out.println("found location "+location);
-				location = request.getParameter("location") + ",";
-			}
-			
-			if(salary != null && salary.length() != 0){
-				System.out.println("found salary "+salary);
-				salary = request.getParameter("salary") + ",";
-			}
-			
-			if(status != null && status.length() != 0){
-				System.out.println("found status " +status);
-				status = request.getParameter("status") + ",";
-			}
-			
-			if(postedOn != null && postedOn.length() != 0){
-				System.out.println("found postedOn "+postedOn);
-				postedOn = request.getParameter("postedOn") + ",";
-			}
-			
-			List<JobPosting> positions = jobSerivce.getPositions(jobId, title, location, salary, status, postedOn);
-			
+//			
+//				
+//			
+//			
+//			if(jobId != null && jobId.length() != 0){
+//				System.out.println("found jobId "+jobId);
+//				jobId = request.getParameter("jobId") + ",";
+//			}
+//			
+//			if(title != null && title.length() != 0){
+//				System.out.println("found title "+title);
+//				title = request.getParameter("title") + ",";
+//			}
+//			
+//			if(location != null && location.length() != 0){
+//				System.out.println("found location "+location);
+//				location = request.getParameter("location") + ",";
+//			}
+//			
+//			if(salary != null && salary.length() != 0){
+//				System.out.println("found salary "+salary);
+//				salary = request.getParameter("salary") + ",";
+//			}
+//			
+//			if(status != null && status.length() != 0){
+//				System.out.println("found status " +status);
+//				status = request.getParameter("status") + ",";
+//			}
+//			
+//			if(postedOn != null && postedOn.length() != 0){
+//				System.out.println("found postedOn "+postedOn);
+//				postedOn = request.getParameter("postedOn") + ",";
+//			}
+//			
+//			List<JobPosting> positions = jobSerivce.getPositions(jobId, title, location, salary, status, postedOn);
+			List<JobPosting> positions = new ArrayList<JobPosting>();
+			positions = jobSerivce.searchByFields(jobId, title, location, salary, status, postedOn);
 			map.addAttribute("positions", positions);
 			return "viewPositions";
 		}
