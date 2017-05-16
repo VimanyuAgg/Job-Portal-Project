@@ -225,9 +225,19 @@ public class JobController {
 			map.addAttribute("job",job);
 			return "job-details";
 		}
-//		@RequestMapping(value="/positions/salarysearch", method=RequestMethod.POST)
-//		public void getJobsBySalary(){
-//			
-//		}
+		
+		@RequestMapping(value="/positions/salarysearch", method=RequestMethod.POST)
+		public String getJobsBySalary(HttpServletRequest request, ModelMap map){
+			int minimum = Integer.valueOf(request.getParameter("min"));
+			System.out.println("min salary: "+minimum);
+			
+			int maximum = Integer.valueOf(request.getParameter("max"));
+			System.out.println("max salary: "+maximum);
+			
+			List<JobPosting> salaryRangeJobsList = jobSerivce.searchBySalaryRange(minimum, maximum);
+			
+			map.addAttribute("positions", salaryRangeJobsList);
+			return "viewPositions";
+		}
 	
 }

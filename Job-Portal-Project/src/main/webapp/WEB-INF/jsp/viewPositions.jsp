@@ -20,6 +20,13 @@ Welcome: ${email}
 	<input type="text" name="searchString" />
 	<input type="submit" value="search"/>
 </form>
+
+<form action="/positions/salarysearch" method=POST>
+	<input type="text" name="min" />
+	<input type="text" name="max" />
+	<input type="submit" value="Search By Salary!"/>
+</form>
+
 <form action="/positions/applyjob" method="POST" enctype="multipart/form-data">
 <input type="hidden" name="email" value="<%= session.getAttribute("email") %>"/>
 <input type="hidden" name="jobId" id="jd"/>

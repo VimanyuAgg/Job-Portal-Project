@@ -177,4 +177,11 @@ public class JobService {
 //		ArrayList<JobPosting> jobList = jobPostingDao.findBySalaryRange(min,max);
 //		return null;
 //	}
+	public List<JobPosting> searchBySalaryRange(int minimum, int maximum) {
+		List<JobPosting> searchSalaryList = new ArrayList<JobPosting>();
+		System.out.println("Inside searchBySalaryRange() JobService.java");
+		searchSalaryList = jobPostingDao.findBySalaryRange(minimum, maximum);
+		System.out.println("searchSalaryList has size "+searchSalaryList.size());
+		return searchSalaryList;
+	}
 }
