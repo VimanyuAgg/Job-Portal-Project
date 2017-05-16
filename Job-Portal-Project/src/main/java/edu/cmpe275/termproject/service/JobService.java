@@ -8,12 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import edu.cmpe275.termproject.dao.CompanyDAO;
 import edu.cmpe275.termproject.dao.JobPostingDAO;
+import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
 @Service
 public class JobService {
 	@Autowired
 	JobPostingDAO jobPostingDao;
+	
+	@Autowired
+	CompanyDAO companyDAO;
+	
 	public JobPosting addJob(JobPosting job){
 		jobPostingDao.save(job);
 		return job;
@@ -101,5 +107,51 @@ public class JobService {
 		}
 				
 		return positions;
+	}
+	public List<JobPosting> findFromSearchString(String searchString) {
+		// TODO Auto-generated method stub
+		String[] searchStringArray = searchString.split(" "); //Include regex to split by comma etc.
+		List<JobPosting> searchStringLists = new ArrayList<JobPosting>();
+		for (String str : searchStringArray){
+			if(jobPostingDao.findByJobDescription(str).size() > 0){
+				searchStringLists.addAll(jobPostingDao.findByJobDescription(str));
+			}
+			
+			if(jobPostingDao.findByJobId(str) != null){
+				searchStringLists.add(jobPostingDao.findByJobId(str));
+				
+			}
+			
+			if(jobPostingDao.findByJobLocation(str).size() > 0){
+				searchStringLists.addAll(jobPostingDao.findByJobLocation(str));
+			}
+			
+			if(jobPostingDao.findByJobResponsibilities(str).size() > 0){
+				searchStringLists.addAll(jobPostingDao.findByJobResponsibilities(str));
+			}
+			
+			if(jobPostingDao.findByJobSalary(str).size() > 0){
+				searchStringLists.addAll(jobPostingDao.findByJobSalary(str));
+			}
+			
+			if(jobPostingDao.findByJobStatus(str).size() > 0){
+				searchStringLists.addAll(jobPostingDao.findByJobStatus(str));
+			}
+			
+			if(jobPostingDao.findByJobTitle(str).size() > 0){
+				searchStringLists.addAll(jobPostingDao.findByJobTitle(str));
+			}
+			
+			if(companyDAO.findByNameCompanyName(str).size() > 0){
+				List<Company> companies = companyDAO.findByNameCompanyName(str);
+				for (Company company : companies){
+					searchStringLists.addAll(company.getJobPostingList());
+				}
+			}
+		}
+			
+		
+		
+		return searchStringLists;
 	}	
 }
