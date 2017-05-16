@@ -39,7 +39,7 @@ Welcome: ${email}
     </tr>
 	  <c:forEach items="${positions}" var="position">
   	    <tr>
-	      <td><c:out value="${position.getJobId()}" /></td>
+	      <td><a href="/positions/${position.getJobId()}"><c:out value="${position.getJobId()}" /></a></td>
 	      <td><c:out value="${position.getJobTitle()}" /></td>
 	      <td><c:out value="${position.getJobResponsibilities()}" /></td>
 	      <td><c:out value="${position.getJobDescription()}" /></td>

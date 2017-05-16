@@ -191,7 +191,12 @@ public class JobController {
 			map.addAttribute("positions", positions);
 			return "viewPositions";
 		}
-		
+		@RequestMapping("/positions/{positionId}")
+		public String getJobDetails(@PathVariable String positionId,ModelMap map){
+			JobPosting job=jobSerivce.getJob(positionId);
+			map.addAttribute("job",job);
+			return "job-details";
+		}
 		
 	
 }
