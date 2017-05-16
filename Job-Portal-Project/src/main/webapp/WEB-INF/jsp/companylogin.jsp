@@ -89,7 +89,7 @@ padding: 0;
 	</c:if>
 	<!-- Main Form -->
 	<div class="login-form-1">
-	<form method="POST" action="/jobseeker/login" id="login-form" class="text-left" name="jslogin">
+	<form method="POST" action="/company/login" id="login-form" class="text-left" name="jslogin">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">
