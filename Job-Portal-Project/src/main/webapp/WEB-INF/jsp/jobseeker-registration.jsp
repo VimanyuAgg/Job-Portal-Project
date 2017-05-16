@@ -180,7 +180,7 @@ $(document).ready(function() {
 
 
 <div class="container" >		
-	<div style="margin-left:37%" class="logo">User Registration!</div>
+	<div style="margin-left:40%" class="logo">User Registration!</div>
 
 	<form method="POST" action="/jobseeker/register">
 	

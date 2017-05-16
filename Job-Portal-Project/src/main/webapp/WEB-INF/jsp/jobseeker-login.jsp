@@ -33,7 +33,8 @@ padding: 0;
 }
 
 .ack{
-	margin-left: 30%;
+	margin-top: 20px;
+	margin-left: 35%;
 }
 
 </style>
