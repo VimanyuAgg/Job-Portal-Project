@@ -93,7 +93,7 @@ button:hover, a:hover {
             <ul class="nav navbar-nav">
                 <li><a href="#">Home</a></li>
        
-                <li><a href="#">Profile</a></li>
+                <li><a href="/jobseeker/profile">Profile</a></li>
                 <li style="color:#9d9d9d">
        		
        		    <form class="navbar-form"  action="/positions" method="GET" id="jobForm">

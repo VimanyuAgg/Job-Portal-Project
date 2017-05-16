@@ -17,6 +17,6 @@
 		<div class="header head"></div>
 		<br>
 		<p id="error">There was some error in your request. Please try again.</p>
-		
+		<p>${errorMessage}</p>
 	</body>
 </html>

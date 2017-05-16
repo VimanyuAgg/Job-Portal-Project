@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,8 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.cmpe275.termproject.emailService.PasswordSendingEmail;
+import edu.cmpe275.termproject.emailService.RegistrationEmail;
+import edu.cmpe275.termproject.emailService.WelcomeEmail;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.service.CompanyService;
@@ -35,7 +40,7 @@ public class CompanyController {
 		return "companyregistration";
 	}
 	@RequestMapping(value="/company/register", method=RequestMethod.POST)
-	public String registerCompany( HttpServletRequest request, ModelMap map){
+	public String registerCompany( HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute){
 		System.out.println("I am in post");
 		String name=request.getParameter("name"), 
 				website=request.getParameter("website"), 
@@ -44,10 +49,19 @@ public class CompanyController {
 				description=request.getParameter("description"), 
 				email=request.getParameter("email"), 
 				password=request.getParameter("password");
+		String authenticationCode_String = RegistrationEmail.generateAuthCode();        
+		RegistrationEmail.registrationEmailTrigger(email, authenticationCode_String);
+		
+		redirectAttribute.addFlashAttribute("name",name);
+		redirectAttribute.addFlashAttribute("email",email);
+		redirectAttribute.addFlashAttribute("isRedirected","true");
+		
 		Company company=new Company(name, website, logoImageUrl, address, description, email ,password,0, null);
 		Company result=companyService.registerCompany(company);
+		companyService.setAuthCode(authenticationCode_String, email);
+		
 		if(result!=null){
-			return "redirect:/company/login";
+			return "redirect:/company/authentication";
 		}else{			
 			return "redirect:/company/register/error";
 		}
@@ -59,8 +73,53 @@ public class CompanyController {
 		return "companyregistration";
 	}
 	
+	//AUTHENTICATION - GET
+	@RequestMapping(value="/company/authentication", method=RequestMethod.GET)
+	private String codeAuthenticationGET(@ModelAttribute ("name") String name,
+										 @ModelAttribute("email") String email,
+			 @ModelAttribute("isRedirected") String isRedirected){
+
+			if (("true").equals(isRedirected)){
+				return "company-code-authentication";
+			}
+			else{
+				return "redirect:/company/login";
+
+			}
+	}
+	
+	//AUTHENTICATION POST
+	@RequestMapping(value="/company/authentication", method = RequestMethod.POST)
+	private String codeAuthenticationPOST(HttpServletRequest request, RedirectAttributes redirectAttribute){
+		
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		System.out.println("name: "+name);
+		System.out.println("email: "+email);
+		String passCode = request.getParameter("codeVerification");
+		boolean userExists = companyService.findByEmail(email);
+		System.out.println("Company Name: "+name);
+		String authCode = companyService.getCompany(email).getAuthenticationCode();
+		System.out.println("Email code: "+authCode);
+		System.out.println("User code: " +passCode);
+		if(userExists&& passCode.equals(authCode)){
+			redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+name);
+			
+			WelcomeEmail.welcomeEmailTrigger(companyService.getCompany(email).getEmail(), 
+											 companyService.getCompany(email).getCompanyName());
+			PasswordSendingEmail.deliverPasswordEmailCompany(companyService.getCompany(email).getEmail(), 
+					companyService.getCompany(email).getCompanyName(), companyService.getCompany(email).getPassword());
+			//System.out.println("Jobseeker "+firstName+ " saved to DB");
+			return "redirect:/company/login";
+		}
+		else {
+			return "company/authentication";
+		}
+		
+		
+	}
 	@RequestMapping(value="/company/login", method=RequestMethod.GET)
-	public String getCompanyLoginPage(){
+	public String getCompanyLoginPage( @ModelAttribute("username") String name){
 		
 		System.out.println("inside getCompany()");
 		

@@ -92,7 +92,7 @@ public class JobSeekerController {
 		
 	}
 	
-	//NEED TO HANDLE CASE OF DIRECT URL HIT
+	
 	//AUTHENTICATION - GET
 	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.GET)
 	private String codeAuthenticationGET(@ModelAttribute ("username") String username,
@@ -227,9 +227,15 @@ public class JobSeekerController {
 			return "redirect:/jobseeker/login";
 		}
 		
-	}
 	
+
+@RequestMapping(value="/jobseeker/profile", method=RequestMethod.GET)
+public String getJobSeekerProfile(){
+	return "jobseeker-profile";
 	
+}
+	
+}
 
 
 //package edu.cmpe275.termproject.controller;
