@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import edu.cmpe275.termproject.model.JobApplication;
+import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.model.JobSeeker;
 import edu.cmpe275.termproject.service.JobApplicationService;
 import edu.cmpe275.termproject.service.JobSeekerService;
+import edu.cmpe275.termproject.service.JobService;
 
 @Controller
 @MultipartConfig
@@ -33,6 +35,9 @@ public class JobApplicationController {
 
 	@Autowired
 	JobApplicationService jobApplicationService;
+
+	@Autowired
+	JobService jobPostingService;
 
 	@Autowired
 	JobSeekerService jobSeekerService;
@@ -113,11 +118,23 @@ public class JobApplicationController {
 	//  REquired jobId
 	@RequestMapping(value="/positions/applicants",method=RequestMethod.GET)
 	public String findApplicants(HttpServletRequest request, ModelMap map) throws ParseException{
+		System.out.println("session: "+session);
 		
+		
+		
+		if(session == null || session.getAttribute("username") == null)
+		{
+			return "redirect:/jobseeker/login";
+		}
+
 		System.out.println("inside findApplicants");
 		
 		String jobId = request.getParameter("jobId");
 		System.out.println("jobId "+jobId);
+		
+		JobPosting job = jobPostingService.getJob(jobId);
+		
+		if(job != null) System.out.println("inside found job");
 		
 		List<JobApplication> applications = jobApplicationService.findApplicants(jobId);
 		
@@ -145,6 +162,9 @@ public class JobApplicationController {
 		System.out.println("returning ");
 		
 		map.addAttribute("applicants", applicants);
+		map.addAttribute("logoImageUrl", job.getJobPostedByCompany().getLogoUrl());
+		map.addAttribute("website", job.getJobPostedByCompany().getAddress());
+		map.addAttribute("address", job.getJobPostedByCompany().getWebsite());
 		
 		return "jobapplicants";
 	}	
