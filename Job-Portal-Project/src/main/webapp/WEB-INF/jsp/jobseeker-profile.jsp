@@ -319,12 +319,21 @@ backhround: #eaedef;
 </div>
 
 <div class="form-group row">
+<<<<<<< HEAD
+ <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
+<select class="ui dropdown" name="workExperience" >
+  <option value="">Work Experience</option>
+  <option value="level1"> less 1 Year </option>
+  <option value="level2"> 1-3 years</option>
+  <option value="level3">More than 3 years</option>
+=======
  <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>&nbsp;&nbsp;&nbsp;
 <select class="col-md-2 ui dropdown">
   <option name="workExperience" selected disabled value="">Work Experience</option>
   <option name="workExperience" value="level1"> less 1 Year </option>
   <option name="workExperience" value="level2"> 1-3 years</option>
   <option name="workExperience" value="level3">More than 3 years</option>
+>>>>>>> 6d406ab7b5b93e859a1727efce460e4bc14a3234
 </select>
  </div>
 </div> 
@@ -346,8 +355,8 @@ backhround: #eaedef;
 
 <div class="form-group row">
      <label for="email"  class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-3">
-    <input class="form-control" type="email" id="email" name="email" placeholder="enter your email ID" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" value= "${email}" required>
+    <div class="col-sm-6">
+    ${email}
    	
  	<div id="output"></div>
   </div>
@@ -360,13 +369,6 @@ backhround: #eaedef;
   </div>
 </div>
 
-<div class="form-group row">
-     <label for="confirmPassword"  class="col-sm-2 col-form-label"> Confirm password</label>
-    <div class="col-sm-3">
-    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd" required>
-  </div>
-  <div class="col-sm-4" id="divCheckPasswordMatch"></div>
-</div>
 
 
 <div class="form-group row">
@@ -379,6 +381,7 @@ backhround: #eaedef;
 
 </div>  
 </form>
+<p>${errorMessage}</p>
 </div>
 
 
