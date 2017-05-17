@@ -169,7 +169,7 @@ backhround: #f2f5f6;
 
 	<div class="form-group row">
 	    <div class="col-md-4"></div>
-	    <input class="col-md-3 form-control field" type="text" placeholder="Enter code..." name="name" id="codeVerification" name="codeVerification" required>
+	    <input class="col-md-3 form-control field" type="text" placeholder="Enter code..." id="codeVerification" name="codeVerification" required>
 	</div>
    <!-- <label for="codeVerification" class="col-sm-2 col-form-label" >Verify your code</label>
     <div class="col-sm-6">

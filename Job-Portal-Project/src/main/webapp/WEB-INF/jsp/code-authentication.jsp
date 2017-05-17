@@ -12,7 +12,7 @@
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/company-registration.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jobseeker-registration.js"></script>
 	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
 	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
     <script type="text/javascript">
@@ -164,11 +164,11 @@ backhround: #f2f5f6;
 
 <div name="head"><h3 style="margin-left:28%">Hi, ${username}. Please enter One Time Password</h3></div><br>
 <%-- <h3 style="margin-left:30%">Hi! ${name}</h3></div><br>
- --%><form method="POST" action="/company/authentication">
+ --%><form method="POST" action="/jobseeker/authentication">
 
 	<div class="form-group row">
 	    <div class="col-md-4"></div>
-	    <input class="col-md-3 form-control field" type="text" placeholder="Enter code..." name="name" id="codeVerification" name="codeVerification" required>
+	    <input class="col-md-3 form-control field" type="text" placeholder="Enter code..." id="codeVerification" name="codeVerification" required>
 	</div>
    <!-- <label for="codeVerification" class="col-sm-2 col-form-label" >Verify your code</label>
     <div class="col-sm-6">
