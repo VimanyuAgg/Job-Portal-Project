@@ -15,7 +15,7 @@
 	<p>Responsibilities</p>
 	<input type="text" name="responsibilities" />
 	<p>Office location</p>
-	<input type="text" name="location" />
+	<input type="number" name="location" />
 	<p>Salary</p>
 	<input type="text" name="salary" />
 	<p>Eligibility</p>
