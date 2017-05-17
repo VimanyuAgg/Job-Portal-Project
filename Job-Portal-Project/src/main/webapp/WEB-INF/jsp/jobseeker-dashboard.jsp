@@ -106,8 +106,9 @@ backhround: #eaedef;
 
 .dp{
 	margin-top: 30px;
-	margin-left: 33%;
-	border-radius: 50%;
+	vertical-align:middle;
+	margin-left: 15%;
+	/*  border-radius: 50%; */
 }
 
 .comp{
@@ -244,7 +245,7 @@ backhround: #eaedef;
 		<div class="col-md-1"></div>
 		<div class="col-md-2 sidebar" style="text-align">
 			<!-- side bar for profile review -->
-			<img class="img-responsive dp" src="${picture}" width="50%">
+			<img class="img-responsive dp" src="${picture}" width="75%">
 		
 			<div class="name">${firstName}&nbsp;${lastName}</div>
  			<br>
