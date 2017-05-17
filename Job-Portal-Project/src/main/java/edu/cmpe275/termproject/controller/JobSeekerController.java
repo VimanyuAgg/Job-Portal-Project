@@ -204,6 +204,12 @@ public class JobSeekerController {
 			}
 			httpSession.setAttribute("username",username);
 			httpSession.setAttribute("email",jobSeeker.getEmail());
+			httpSession.setAttribute("firstName", jobSeeker.getFirstName());
+			httpSession.setAttribute("lastName", jobSeeker.getLastName());
+			httpSession.setAttribute("education", jobSeeker.getEducation());
+			httpSession.setAttribute("skills", jobSeeker.getSkills());
+			httpSession.setAttribute("workExperience", jobSeeker.getWorkExperience());
+			httpSession.setAttribute("picture", jobSeeker.getPicture());
 			redirectAttribute.addFlashAttribute("topJobs",jobService.getTop10NewJobListings());
 			redirectAttribute.addFlashAttribute("selfIntroduction",jobSeekerService.getJobSeeker(username).getSelfIntroduction());
 			redirectAttribute.addFlashAttribute("picture",jobSeekerService.getJobSeeker(username).getPicture());
@@ -253,8 +259,8 @@ public class JobSeekerController {
 		if(httpSession.getAttribute("username") == null || !httpSession.getAttribute("username").equals(username)){
 			return "redirect:/jobseeker/login";
 		}
-		JobSeeker jobSeeker = jobSeekerService.findByUsername(username);
-		httpSession.setAttribute("jobSeeker",jobSeeker);
+		
+		
 		return "jobseeker-dashboard";
 	}
 	
@@ -265,6 +271,13 @@ public class JobSeekerController {
 			{
 				httpSession.removeAttribute("username");
 				httpSession.removeAttribute("email");
+				httpSession.removeAttribute("education");
+				httpSession.removeAttribute("firstName");
+				httpSession.removeAttribute("lastName");
+				httpSession.removeAttribute("education");
+				httpSession.removeAttribute("skills");
+				httpSession.removeAttribute("workExperience");
+				httpSession.removeAttribute("picture");
 				//System.out.println("removed username:");
 				httpSession.invalidate();
 				
