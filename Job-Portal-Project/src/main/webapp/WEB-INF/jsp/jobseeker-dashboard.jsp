@@ -20,10 +20,6 @@
  --%>    
 <style>
 
-	
-    
-    
-
 body{
 	background-color: #eaedef;
 	background-image: url("1.jpg");
@@ -106,8 +102,9 @@ backhround: #eaedef;
 
 .dp{
 	margin-top: 30px;
-	margin-left: 33%;
-	border-radius: 50%;
+	vertical-align:middle;
+	margin-left: 15%;
+	/*  border-radius: 50%; */
 }
 
 .comp{
@@ -219,17 +216,27 @@ backhround: #eaedef;
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
-	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applications</a>
+
+<%-- 	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applications</a>
 	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
+ --%>
+
+	        <!--   <a class="dropdown-item" href="/company/register">View Job History</a> -->
+	        <!--   <a class="dropdown-item" href="/company/register">Edit Profile</a> -->
+
+	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applications</a>
+	         
+
 	        </div>
+	        	     <li class="nav-item active">
+	     <form id="jobs" action="/positions/searchByFields" method="POST">
+	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
+	      </li>
 	      </li>
 	       <li class="nav-item active">
-	        <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
+	        <a class="nav-link mr-sm-2 wh" href="/jobseeker/logout">Log Out <span class="sr-only">(current)</span></a>
 	      </li>
-	     <li class="nav-item active">
-	     <form id="jobs" action="/positions/searchByFields" method="POST">
-	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Job</a></form>
-	      </li>
+
 	    </ul>
 	  </div>
 </div>
@@ -241,7 +248,7 @@ backhround: #eaedef;
 		<div class="col-md-1"></div>
 		<div class="col-md-2 sidebar" style="text-align">
 			<!-- side bar for profile review -->
-			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
+			<img class="img-responsive dp" src="${picture}" width="75%">
 		
 			<div class="name">${firstName}&nbsp;${lastName}</div>
  			<br>
@@ -263,7 +270,7 @@ backhround: #eaedef;
 		  	    <tbody>
 		  	    	<tr class="row item post">
 		  	    		<td style="max-width: 100px">
-		  	    			<img class="img-responsive cl" src="${pageContext.request.contextPath}/img/company-200.png">
+		  	    			<img class="img-responsive cl" src="${topJobValue.jobPostedByCompany.getLogoUrl()}">
 		  	    			<br>
 		  	    			<div class="data" style="color:grey">
 		  	    				<div class="desc">

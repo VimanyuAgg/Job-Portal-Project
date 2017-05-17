@@ -9,33 +9,38 @@
 	
 <title>Job Search</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/company-registration.js"></script>
-	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>   
-	<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"> 
-	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<%-- 	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
+ --%>	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%--     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"></link>
+
+ --%>    
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <style>
 
+	
+    
     
     
 
 body{
-	background-color: white;
+	background-color: #eaedef;
 	background-image: url("1.jpg");
 }
 
 .head{
 	height: 80px;
-	background-color: #62C192;
+	background-color: #163aaf;
 }
 
 .rounder{
@@ -43,27 +48,27 @@ body{
 }
 
 .field{
-	background: #f2f5f6;
+	background: #163aaf;
 	border-style: none;
 	border-bottom-style: solid;
 	border-bottom-width: .5px;
-	border-bottom-color: #62C192;
+	border-bottom-color: #163aaf;
 }
 
 .field:focus {
-  border-color: #62C192;
-  box-shadow: #62C192;  
+  border-color: #163aaf;
+  box-shadow: #163aaf;  
 }
 
 .btn1{
-	background-color: #62C192;
-	border-color: #62C192;
+	background-color: #163aaf;
+	border-color: #163aaf;
 	margin-left: 70px;
 }
 
 .btn1: hover{
-	background-color: #62C192;
-	border-color: #62C192;
+	background-color: #163aaf;
+	border-color: #163aaf;
 }
 
 h1{
@@ -77,15 +82,17 @@ html,
 body{
 margin:0;
 padding: 0;
-backhround: #f2f5f6;
+backhround: #eaedef;
 }
 
-.btn1{
-	background: #62C192;
+.btn{
+    background: #163aaf;
+	color: white;   
 }
+
 
 .nv{
-	background-color: black!Important;
+	background-color: #163aaf!Important;
 }
 
 .wh{
@@ -96,8 +103,10 @@ backhround: #f2f5f6;
 	margin-left: 30%;
 }
 
+
+
 .sidebar{
-	background-color: yellow;
+	background-color: #d1dbff;
 	height: 400px;
 	width: 100%;
 }
@@ -119,7 +128,7 @@ backhround: #f2f5f6;
 .name{
 	text-align: center;
   	margin: 0 auto;
-	width: 250px;
+	width: 200px;
 	margin-top: 10px;
 }
 
@@ -134,12 +143,13 @@ backhround: #f2f5f6;
 }
 
 .item{
-	height: 290px;
 	min-height: 100px;
 	width: 100%;
-	background-color: #f2f5f6;
+	background-color: #d1dbff;
 	margin-left: 5px;
 	margin-top: 10px;
+	min-height: 100px;
+	padding-bottom: 10px;
 }
 
 .cl{
@@ -154,7 +164,48 @@ backhround: #f2f5f6;
 	float: left;
 }
 
+.pagination{
+	margin-left: 42%;
+}
+
+
+.pagination li
+{
+    list-style:none;  
+    float:left;
+    width : 35px;
+    height: 30px;
+    border: .5px solid #163aaf;
+    background-color:white;
+    color: #163aaf;
+    text-align:center;
+    cursor:pointer;
+    margin: 2px;
+}
+
+.pagination li:hover
+{
+    background-color: #163aaf;
+    border:1px solid #163aaf;
+    color: white;
+}
+
+.pagination ul
+{
+    border: 0px;
+    padding: 0px;
+}
+
+.active-class
+{
+	background-color: #163aaf !important;
+    border:.4 px solid #163aaf !important;
+    color: white !important;	
+}
+
+
 </style>
+
 </head>
 <body>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded nv" style="height: 70px">
@@ -162,7 +213,7 @@ backhround: #f2f5f6;
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-	  <a class="navbar-brand wh" href="#">Spring Onions</a>
+	  <a class="navbar-brand wh" href="/jobseeker/<%=session.getAttribute("username")%>/dashboard">Spring Onions</a>
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
@@ -172,21 +223,22 @@ backhround: #f2f5f6;
 	          My Account
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          <a class="dropdown-item" href="/jobseeker/register">View Profile</a>
-	          <a class="dropdown-item" href="/company/register">View Job History</a>
-	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
+	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
+	         <!--  <a class="dropdown-item" href="/company/register">View Job History</a>
+	          <a class="dropdown-item" href="/company/register">Edit Profile</a> -->
 	        </div>
 	      </li>
-	      
-	       <li class="nav-item active">
+	        <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/jobseeker/logout">Log Out <span class="sr-only">(current)</span></a>
 	      </li>
+	     
 	    </ul>
 	  </div>
 </div>
 
 </nav>
-Welcome: ${email}
+
+<center>Welcome: ${email}</center>
 <h1>All positions</h1>
 <div class="panel-group" id="accordion">
     <div class="panel panel-default">

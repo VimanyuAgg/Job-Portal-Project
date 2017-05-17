@@ -187,6 +187,77 @@ public class JobController {
 			
 		}
 	
+		//UNIVERSAL SEARCH
+		@RequestMapping(value="/positions/universalsearch", method=RequestMethod.POST)
+		public String universalSearch(HttpServletRequest request,ModelMap map){
+			
+			
+			System.out.println("Inside universal search");
+			String jobId = request.getParameter("jobId");
+			String title = request.getParameter("title");
+			String location = request.getParameter("location");
+			String salary = null;
+			
+			String status = request.getParameter("status");
+			String postedOn = request.getParameter("postedon");
+			System.out.println("jobId: "+ jobId);
+			System.out.println("title: "+title);
+			System.out.println("location"+location);
+			
+			System.out.println("status: "+status);
+			System.out.println("postedon: "+postedOn);
+			
+			List<JobPosting> positions_fields = new ArrayList<JobPosting>();
+					
+			positions_fields = jobSerivce.searchByFields(jobId, title, location, salary, status, postedOn);
+			
+			System.out.println("Field search positions gave "+positions_fields.size());
+			int minimum = 0;
+			int maximum = 0;
+			try{
+				minimum = Integer.valueOf(request.getParameter("min"));
+			}
+			catch(java.lang.NumberFormatException e){
+				minimum=0;
+			}
+			//minimum = Integer.valueOf(request.getParameter("min"));
+			System.out.println("min salary: "+minimum);
+			try{
+				maximum = Integer.valueOf(request.getParameter("max"));
+			}
+			catch(java.lang.NumberFormatException e){
+				maximum=0;
+			}
+			//maximum = Integer.valueOf(request.getParameter("max"));
+			System.out.println("max salary: "+maximum);
+			
+			List<JobPosting> salaryRangeJobsList = new ArrayList<JobPosting>();
+			salaryRangeJobsList.addAll(jobSerivce.searchBySalaryRange(minimum, maximum));
+			
+			System.out.println("Salary RangeJobsList has size "+salaryRangeJobsList.size());
+			positions_fields.addAll(salaryRangeJobsList); // ORing the salary range and field search
+			
+			System.out.println("After ORing positions_fields is now "+positions_fields.size());
+			String searchString = request.getParameter("searchString");
+			System.out.println(" for Search String !!");
+			
+			List<JobPosting> searchStringList = new ArrayList<JobPosting>();
+			
+			if(searchString !=null && !searchString.isEmpty()){
+				searchStringList.addAll(jobSerivce.findFromSearchString(searchString));
+				//ANDing here
+				System.out.println("Beforing ANDing searchStringList.size() "+ searchStringList.size());
+				searchStringList.retainAll(positions_fields);
+				System.out.println("After ANDing searchStringList is now "+searchStringList.size());
+				map.addAttribute("positions", searchStringList);
+			}
+			else{
+				map.addAttribute("positions",positions_fields);
+			}
+			
+			
+			return "viewPositions";
+		}
 	
 	// REQUIREMENT No 2
 		@RequestMapping(value="/positions/searchByFields",method=RequestMethod.POST)
@@ -207,42 +278,7 @@ public class JobController {
 			System.out.println("postedon: "+postedOn);
 			
 			
-			
-//			
-//				
-//			
-//			
-//			if(jobId != null && jobId.length() != 0){
-//				System.out.println("found jobId "+jobId);
-//				jobId = request.getParameter("jobId") + ",";
-//			}
-//			
-//			if(title != null && title.length() != 0){
-//				System.out.println("found title "+title);
-//				title = request.getParameter("title") + ",";
-//			}
-//			
-//			if(location != null && location.length() != 0){
-//				System.out.println("found location "+location);
-//				location = request.getParameter("location") + ",";
-//			}
-//			
-//			if(salary != null && salary.length() != 0){
-//				System.out.println("found salary "+salary);
-//				salary = request.getParameter("salary") + ",";
-//			}
-//			
-//			if(status != null && status.length() != 0){
-//				System.out.println("found status " +status);
-//				status = request.getParameter("status") + ",";
-//			}
-//			
-//			if(postedOn != null && postedOn.length() != 0){
-//				System.out.println("found postedOn "+postedOn);
-//				postedOn = request.getParameter("postedOn") + ",";
-//			}
-//			
-//			List<JobPosting> positions = jobSerivce.getPositions(jobId, title, location, salary, status, postedOn);
+		
 			List<JobPosting> positions = new ArrayList<JobPosting>();
 			positions = jobSerivce.searchByFields(jobId, title, location, salary, status, postedOn);
 			//positions.get(0).getJobPostedByCompany().getCompanyName()
@@ -256,6 +292,7 @@ public class JobController {
 			return "job-details";
 		}
 		
+		//SALARY SEARCH
 		@RequestMapping(value="/positions/salarysearch", method=RequestMethod.POST)
 		public String getJobsBySalary(HttpServletRequest request, ModelMap map){
 			int minimum = Integer.valueOf(request.getParameter("min"));

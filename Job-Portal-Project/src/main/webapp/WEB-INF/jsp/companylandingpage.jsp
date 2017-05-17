@@ -145,10 +145,12 @@ button:hover, a:hover {
       <div class="row text-center">${selfIntroduction}:<p>Yeda</p></div>
  --%>
 
-   <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" height="50%" width="50%">
+   <img src="${logoImageUrl}" alt="John" height="50%" width="50%">
   
   <div class="container1">
    <h5> <p class="title">Welcome <%=session.getAttribute("companyName")%></p></h5>
+   <p align="center">${address}</p>
+   <p align="center">${website}</p>
   </div>
   </div>
   </div>

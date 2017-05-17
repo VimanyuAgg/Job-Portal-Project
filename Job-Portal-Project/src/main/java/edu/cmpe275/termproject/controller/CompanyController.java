@@ -62,7 +62,7 @@ public class CompanyController {
 		String name=request.getParameter("name"), 
 				website=request.getParameter("website"), 
 				logoImageUrl=request.getParameter("logoImageUrl"),
-				photo=request.getParameter("clogo"),
+				//photo=request.getParameter("clogo"),
 				address=request.getParameter("address"), 
 				description=request.getParameter("description"), 
 				email=request.getParameter("email"), 
@@ -71,7 +71,7 @@ public class CompanyController {
 		RegistrationEmail.registrationEmailTrigger(email, authenticationCode_String);
 		
 		System.out.println("inside registerCompany#################");
-		System.out.println("photo string "+photo);
+		//System.out.println("photo string "+photo);
 		
 		
 		redirectAttribute.addFlashAttribute("name",name);
@@ -177,7 +177,7 @@ public class CompanyController {
 		String password=request.getParameter("password");
 		System.out.println("emaillll::::"+email);
 		long companyId=companyService.authenticateCompany(email, password);
-		if(companyService.authenticateCompany(email, password)!=-100){
+		if(companyService.authenticateCompany(email, password)!=-100 && companyService.getCompany(email).isVerified()){
 			session.setAttribute("email", email);
 			session.setAttribute("companyId", companyId);
 			//session.setAttribute("companyId", companyId);
@@ -236,8 +236,12 @@ public class CompanyController {
 					System.out.println(" "+job.getApplicants());
 					System.out.println(" "+job.getJobPostedByCompany());
 				}
-
+				Company company = companyService.getCompany(companyId);
 				map.addAttribute("jobs", jobs);
+				map.addAttribute("logoImageUrl", company.getLogoUrl());
+				map.addAttribute("description",company.getDescription());
+				map.addAttribute("address",company.getAddress());
+				map.addAttribute("website",company.getWebsite());
 				
 				System.out.println("returning companyLandingPage");
 
