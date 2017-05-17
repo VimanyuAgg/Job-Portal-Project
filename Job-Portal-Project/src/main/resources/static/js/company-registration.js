@@ -15,3 +15,27 @@ function encodeImageFileAsURL(element) {
     }
     reader.readAsDataURL(file);
 }
+
+
+function checkPasswordMatch() {
+	//alert("passwordInput");
+    var password = $("#password").val();
+    var confirmPassword = $("#confirmPassword").val();
+    if ($("#password").val() == "" || $("#password").val() == null)
+    {
+    	$("#divCheckPasswordMatch").html("");
+    	//alert("psswordnull");
+    }
+    else if (password != confirmPassword){
+        $("#divCheckPasswordMatch").html("Passwords do not match!");
+    	$("#divCheckPasswordMatch").css("color","Red"); }
+    else{
+        $("#divCheckPasswordMatch").html("Passwords matched!");
+    	$("#divCheckPasswordMatch").css("color","Green");
+    }
+}
+
+$(document).ready(function () {
+	   $("#password, #confirmPassword").keyup(checkPasswordMatch);
+	   $("#file-input2").change(function(){readURL(this)});
+});

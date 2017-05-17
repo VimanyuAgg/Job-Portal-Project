@@ -201,13 +201,14 @@ backhround: #f2f5f6;
 			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your contact email..." name="email" id="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required><div id="output"></div>
 			</div>
 			
-			<div class="form-group row">
-			    <div class="col-md-4"></div>
-			    <input class="col-md-3 form-control field" type="password" placeholder="Enter password..." title="at least eight symbols containing at least one number, one lower, and one upper letter" id="password" name="password" placeholder="Type your password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required><div id="output"></div>
-			</div>
-			<div class="form-group row">
+				<div class="form-group row">
 		    <div class="col-md-4"></div>
-		    <input class="col-md-3 form-control field" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password..." required>
+		    <input class="col-md-3 form-control field" type="password" id="password" title="at least eight symbols containing at least one number, one lower, and one upper letter" name="password" placeholder="Type your password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+		</div>
+		<div class="form-group row">
+		    <div class="col-md-4"></div>
+		    <input class="col-md-3 form-control field" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd" required>
+			<div id="divCheckPasswordMatch"></div>
 		</div>
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
