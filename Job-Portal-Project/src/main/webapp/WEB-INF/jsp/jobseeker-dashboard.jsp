@@ -175,7 +175,7 @@ backhround: #f2f5f6;
 	          My Account
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          <a class="dropdown-item" href="/jobseeker/register">View Profile</a>
+	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
 	          <a class="dropdown-item" href="/company/register">View Job History</a>
 	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
 	        </div>
