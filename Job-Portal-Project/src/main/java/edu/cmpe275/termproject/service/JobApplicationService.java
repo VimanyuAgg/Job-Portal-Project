@@ -1,5 +1,6 @@
 package edu.cmpe275.termproject.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,10 +128,24 @@ public class JobApplicationService {
 	}
 
 	public List<JobApplication> findApplications(JobSeeker applicant) {
+
+		System.out.println("inside findApplications");
+
+		List<JobApplication> jobApplications = (List<JobApplication>) jobApplicationDAO.findAll();
+		List<JobApplication> result = new ArrayList();
 		
+		for(JobApplication application : jobApplications){
+			System.out.println("inside loop");
+			System.out.println("inside loop list "+application.getApplicant().getJsid());
+			System.out.println("inside loop applicant "+applicant.getJsid());
+			if(application.getApplicant().getJsid() == applicant.getJsid()){
+				System.out.println("inside if, applicant found");
+				result.add(application);
+			}
+			
+		}
 		
-		
-		return (List<JobApplication>) jobApplicationDAO.findByApplicant(applicant);
+		return result;
 	}
 
 	public void updateApplications(String applicationIds, String action){
@@ -138,7 +153,10 @@ public class JobApplicationService {
 		String ids[] = applicationIds.split(",");
 		
 		for(String id : ids){
-			JobApplication application = jobApplicationDAO.findOne(Long.parseLong(id));
+			JobApplication application = jobApplicationDAO.findOne(id);
+			if(application != null) System.out.println("found job application");
+			else System.out.println("not found job application");
+			
 			String status = application.getStatus();
 			
 			if(action.equals("Cancel") && status.equals("Pending")){

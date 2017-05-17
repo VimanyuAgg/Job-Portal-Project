@@ -142,14 +142,17 @@ public class JobApplicationController {
 		return "jobapplicants";
 	}	
 	
-	@RequestMapping(value="/jobseeker/applications/{email}",method=RequestMethod.GET)
+	@RequestMapping(value="/jobseeker/app/{email}",method=RequestMethod.GET)
 	public String viewUserApps(@PathVariable String email, HttpServletRequest request, ModelMap map){
 		
 		//jobApplicationService.findApplicants(jobId);
-		System.out.println("inside viewUserApps()");
+		System.out.println("inside viewUserApps() checked");
 		System.out.println("email "+email);
 		
-		JobSeeker applicant = jobSeekerService.findByEmail(email);
+		JobSeeker applicant = jobSeekerService.findByEmail(email +".com");
+		
+		if(applicant != null) System.out.println("applicant found");
+		else System.out.println("applicant not found");
 		
 		List<JobApplication> userApplications = jobApplicationService.findApplications(applicant);
 		
@@ -170,17 +173,19 @@ public class JobApplicationController {
 				}
 			}
 			
+			//map.addAttribute("applications", userApplications);
+			
 			System.out.println("inside loop"+application.getResume());
 			System.out.println("inside loop"+application.getStatus());
 		}
 		
-		
+		System.out.println("application size "+userApplications.size());
 		
 		map.addAttribute("applications", userApplications);
-		return "jobseeker-applications";
+		return "jobseeker-all-applications";
 	}	
 	
-	@RequestMapping(value="/updateApplications",method=RequestMethod.GET)
+	@RequestMapping(value="/updateApp",method=RequestMethod.GET)
 	public String updateApplications(HttpServletRequest request, ModelMap map){
 		
 		System.out.println("inside updateApplications()");
@@ -204,6 +209,6 @@ public class JobApplicationController {
 		}
 		
 		//Need to add email service
-		return "redirect:/jobseeker/applications/"+email+"";
+		return "redirect:/jobseeker/applications/"+email;
 	}	
 }
