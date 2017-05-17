@@ -2,6 +2,7 @@ package edu.cmpe275.termproject.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -170,9 +171,22 @@ public class JobService {
 				}
 			}
 		}
-			
-		
-		
+		System.out.println("Service Layer: searchStringLists has size "+searchStringLists.size());	
+		HashSet<String> hs = new HashSet<String>(); //String is jobId
+		for (int i=0;i<searchStringLists.size();i++){
+			if(!hs.contains(searchStringLists.get(i).getJobId())){
+				System.out.println("hashset has size(): "+hs.size());
+				System.out.println("Adding "+searchStringLists.get(i).getJobId()+" to hashset");			
+				hs.add(searchStringLists.get(i).getJobId());
+				System.out.println("After adding hashset has size(): "+hs.size());
+				System.out.println("Does hs contains "+searchStringLists.get(i).getJobId()+": "+hs.contains(searchStringLists.get(i).getJobId()));
+			}
+			else{
+				System.out.println("After removing "+searchStringLists.get(i).getJobId());
+				searchStringLists.remove(i);
+				System.out.println("searchStringLists has size "+searchStringLists.size());
+			}
+		}
 		return searchStringLists;
 	}	
 //	public List<JobPosting> searchBySalaryRange(int min, int max){
@@ -215,7 +229,25 @@ public class JobService {
 			searchList.addAll(jobPostingDao.findByJobStatus(status));
 		}
 		
-		System.out.println("searchList has size: "+searchList.size());
+		//System.out.println("searchList has size: "+searchList.size());
+		System.out.println("Service Layer: searchStringLists has size "+searchList.size());	
+		HashSet<String> hs = new HashSet<String>(); //String is jobId
+		for (int i=0;i<searchList.size();i++){
+			if(!hs.contains(searchList.get(i).getJobId())){
+				System.out.println("hashset has size(): "+hs.size());
+				System.out.println("Adding "+searchList.get(i).getJobId()+" to hashset");			
+				hs.add(searchList.get(i).getJobId());
+				System.out.println("After adding hashset has size(): "+hs.size());
+				System.out.println("Does hs contains "+searchList.get(i).getJobId()+": "+hs.contains(searchList.get(i).getJobId()));
+			}
+			else
+			{
+				System.out.println("Removing "+searchList.get(i).getJobId());
+				searchList.remove(i);
+				System.out.println("searchStringLists now has size "+searchList.size());
+			}
+		}
+		
 		return searchList;
 		
 	}
