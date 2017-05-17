@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register Here!</title>
+<title>Dashboard!</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -222,9 +222,12 @@ backhround: #eaedef;
 	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
 	        </div>
 	      </li>
-	      
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
+	      </li>
+	     <li class="nav-item active">
+	     <form id="jobs" action="/positions/searchByFields" method="POST">
+	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Job</a></form>
 	      </li>
 	    </ul>
 	  </div>
