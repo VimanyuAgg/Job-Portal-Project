@@ -213,7 +213,7 @@ backhround: #f2f5f6;
 	  	    <tbody>
 	  	    	<tr class="row item">
 	  	    		<td style="max-width: 100px">
-	  	    			<img class="img-responsive cl" src="${pageContext.request.contextPath}/img/company-200.png">
+	  	    			<img class="img-responsive cl" alt="error" src="${topJobValue.getJobPostedByCompany().getLogoUrl()}">
 	  	    			<br>
 	  	    			<div class="data" style="color:grey">
 	  	    				<div class="desc">

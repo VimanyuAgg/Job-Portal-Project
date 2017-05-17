@@ -139,6 +139,19 @@ padding: 0;
 <h1>Job Post Form</h1>
 <form method="POST" action="/company/${companyId}/addjob">
 	<p>Job Id</p>
+
+	<input type="text" name="jobId" />
+	<p>Title</p>
+	<input type="text" name="title" />
+	<p>Description</p>
+	<input type="text" name="description" />
+	<p>Responsibilities</p>
+	<input type="text" name="responsibilities" />
+	<p>Office location</p>
+	<input type="number" name="location" />
+	<p>Salary</p>
+	<input type="text" name="salary" />
+
 	<input type="text" name="jobId" required/>
 	<p>Title:</p><p> <input type="text" name="title" placeholder="Job Title" required /></p>
 			<p>Location:</p><p> <input type="text" name="location" placeholder="Job Location" /></p>

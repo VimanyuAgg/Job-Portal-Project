@@ -62,6 +62,7 @@ public class CompanyController {
 		String name=request.getParameter("name"), 
 				website=request.getParameter("website"), 
 				logoImageUrl=request.getParameter("logoImageUrl"),
+				photo=request.getParameter("clogo"),
 				address=request.getParameter("address"), 
 				description=request.getParameter("description"), 
 				email=request.getParameter("email"), 
@@ -69,11 +70,15 @@ public class CompanyController {
 		String authenticationCode_String = RegistrationEmail.generateAuthCode();        
 		RegistrationEmail.registrationEmailTrigger(email, authenticationCode_String);
 		
+		System.out.println("inside registerCompany#################");
+		System.out.println("photo string "+photo);
+		
+		
 		redirectAttribute.addFlashAttribute("name",name);
 		redirectAttribute.addFlashAttribute("email",email);
 		redirectAttribute.addFlashAttribute("isRedirected","true");
 		
-		Company company=new Company(name, website, logoImageUrl, address, description, email ,password,0, null);
+		Company company=new Company(name, website, null, address, description, email ,password,0, null);
 		Company result=companyService.registerCompany(company);
 		companyService.setAuthCode(authenticationCode_String, email);
 		
