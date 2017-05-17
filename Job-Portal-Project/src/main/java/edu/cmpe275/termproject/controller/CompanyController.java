@@ -119,14 +119,14 @@ public class CompanyController {
 		System.out.println("name: "+name);
 		System.out.println("email: "+email);
 		String passCode = request.getParameter("codeVerification");
-		boolean userExists = companyService.findByEmail(email);
+		Company userExists = companyService.getCompany(email);
 		System.out.println("Company Name: "+name);
 		String authCode = companyService.getCompany(email).getAuthenticationCode();
 		System.out.println("Email code: "+authCode);
 		System.out.println("User code: " +passCode);
-		if(userExists&& passCode.equals(authCode)){
+		if(userExists != null && passCode.equals(authCode)){
 			redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+name);
-			
+			companyService.saveCompanytoDAO(email);
 			WelcomeEmail.welcomeEmailTrigger(companyService.getCompany(email).getEmail(), 
 											 companyService.getCompany(email).getCompanyName());
 			PasswordSendingEmail.deliverPasswordEmailCompany(companyService.getCompany(email).getEmail(), 
@@ -135,11 +135,35 @@ public class CompanyController {
 			return "redirect:/company/login";
 		}
 		else {
-			return "company/authentication";
+			redirectAttribute.addFlashAttribute("name", name);
+			redirectAttribute.addFlashAttribute("email", email);
+			redirectAttribute.addFlashAttribute("isRedirected","true");
+			redirectAttribute.addFlashAttribute("isBadOTP","true");
+			redirectAttribute.addFlashAttribute("badOTP","Sorry, the OTP you provided is incorrect");
+			
+			return "redirect:/company/authentication/error";
+
 		}
 		
 		
 	}
+	
+	//AUTHENTICATION - GET ERROR
+		@RequestMapping(value="/company/authentication/error", method=RequestMethod.GET)
+		private String codeAuthenticationGETError(@ModelAttribute ("name") String name,
+											 @ModelAttribute("email") String email,
+											 @ModelAttribute("isRedirected") String isRedirected,
+											 @ModelAttribute("badOTP") String badOTP,
+											 @ModelAttribute("isBadOTP") String isBadOTP){
+
+				if (("true").equals(isRedirected)){
+					return "company-code-authentication";
+				}
+				else{
+					return "redirect:/company/login";
+
+				}
+		}
 	@RequestMapping(value="/company/login", method=RequestMethod.GET)
 	public String getCompanyLoginPage( @ModelAttribute("username") String name){
 		
@@ -229,7 +253,7 @@ public class CompanyController {
 	public String getAllPositions(@PathVariable long companyId, @RequestParam(value = "status", required=false) String status, ModelMap map){
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
 		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
-		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+		if(session==null || session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}
 		System.out.println("Jobs Size:"+jobs.size());
@@ -259,6 +283,10 @@ public class CompanyController {
 	@RequestMapping(value="/company/{companyId}/postjob",method = RequestMethod.GET)
 	public String getCompanyByNames(@PathVariable long companyId, 
 			HttpServletRequest request, ModelMap map){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 //		
 //		System.out.println("inside getCompanyByName()");
 //		String companyName = "askl," + request.getParameter("companyName");
@@ -289,7 +317,7 @@ public class CompanyController {
 	@RequestMapping(value="/company/{companyId}/profile", method=RequestMethod.GET)
 	public String getCompanyProfilePage(@PathVariable long companyId, ModelMap map){
 		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
-		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+		if(session==null ||session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}
 		Company company=companyService.getCompany(companyId);
@@ -332,6 +360,10 @@ public class CompanyController {
 	@RequestMapping(value="/company/{companyId}/managejobs", method=RequestMethod.GET)
 	public String manageJobs(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
 		
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		System.out.println("inside manageJobs");
 		System.out.println("companyId "+companyId);
 		
@@ -389,6 +421,10 @@ public class CompanyController {
 		
 		JobPosting job = jobPostingService.getJob(jobId);
 
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		if(job == null) return "error";
 		map.addAttribute("jobs", companyService.getAllPositions(companyId));
 		

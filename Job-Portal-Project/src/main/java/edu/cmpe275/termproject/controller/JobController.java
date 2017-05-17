@@ -32,7 +32,11 @@ public class JobController {
 	JobService jobSerivce;
 	
 	@RequestMapping(value="/company/{companyId}/addjob",method=RequestMethod.GET)
-	public String getJobAddPage(){
+	public String getJobAddPage(@PathVariable String companyId){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		return "postjob";
 	}
 /*	@RequestMapping(value="company/{companyId}/addjob",method=RequestMethod.POST)
@@ -49,7 +53,10 @@ public class JobController {
 	}*/
 	@RequestMapping(value="/company/{companyId}/addjob",method=RequestMethod.POST)
 	public String addJob(@PathVariable long companyId, HttpServletRequest request, ModelMap map) throws ParseException{
-		
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		Company company=companyService.getCompany(companyId);
 		
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
@@ -78,6 +85,10 @@ public class JobController {
 	
 	@RequestMapping("/company/{companyId}/positions/{positionId}")
 	public String getPositionDetails(@PathVariable long companyId, @PathVariable String positionId, ModelMap map){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		JobPosting job=jobSerivce.getJob(positionId);
 		if(job==null){
 			map.addAttribute("errorMessage", "Job with ID "+ positionId +" doesn't exist");
@@ -88,6 +99,10 @@ public class JobController {
 	}
 	@RequestMapping(value="/company/{companyId}/positions/{positionId}/edit", method=RequestMethod.GET)
 	public String editPositionDetailsGet(@PathVariable long companyId, @PathVariable String positionId, HttpServletRequest request, ModelMap map){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		JobPosting job=jobSerivce.getJob(positionId);
 		if(job==null){
 			System.out.println("NULLLLLLLLLLLLL");
@@ -99,7 +114,11 @@ public class JobController {
 	}
 	@RequestMapping(value="/company/{companyId}/positions/{positionId}/edit", method=RequestMethod.POST)
 	public String editPositionDetails(@PathVariable long companyId, @PathVariable String positionId, HttpServletRequest request, ModelMap map) throws ParseException{
-	       String title=request.getParameter("title"), 
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}   
+		String title=request.getParameter("title"), 
 	    		   description=request.getParameter("description"), responsibilites=request.getParameter("responsibilities"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary"), status=request.getParameter("status");
 		//Company company=companyService.getCompany(companyId);
@@ -180,7 +199,6 @@ public class JobController {
 			String salary = request.getParameter("salary");
 			String status = request.getParameter("status");
 			String postedOn = request.getParameter("postedon");
-			
 			System.out.println("jobId: "+ jobId);
 			System.out.println("title: "+title);
 			System.out.println("location"+location);
@@ -227,6 +245,7 @@ public class JobController {
 //			List<JobPosting> positions = jobSerivce.getPositions(jobId, title, location, salary, status, postedOn);
 			List<JobPosting> positions = new ArrayList<JobPosting>();
 			positions = jobSerivce.searchByFields(jobId, title, location, salary, status, postedOn);
+			//positions.get(0).getJobPostedByCompany().getCompanyName()
 			map.addAttribute("positions", positions);
 			return "viewPositions";
 		}
