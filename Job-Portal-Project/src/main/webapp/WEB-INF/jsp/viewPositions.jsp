@@ -8,7 +8,7 @@ Welcome: ${email}
 <h1>All positions:</h1>
 
 <h4>Click on a jobID to apply for that job.</h4>
-<form action="/positions" method="GET">
+<form action="/positions/searchByFields" method="POST">
 	Search By Title<input type="text" name="title" id="rs"/>
 	Search By Salary<input type="text" name="salary" id="rs"/>
 	Search By Date<input type="text" name="postedon" id="rs"/>

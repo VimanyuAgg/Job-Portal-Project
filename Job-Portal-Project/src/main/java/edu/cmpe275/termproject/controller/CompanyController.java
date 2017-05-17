@@ -49,6 +49,11 @@ public class CompanyController {
 		return "index";
 	}
 	
+	@RequestMapping(value="/", method=RequestMethod.GET)
+		public String redirectToHome(){
+			return "redirect:/in";
+		}
+	
 	
 	@RequestMapping(value="/company/register", method=RequestMethod.POST)
 	public String registerCompany( HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute) throws UnsupportedEncodingException, GeneralSecurityException{
