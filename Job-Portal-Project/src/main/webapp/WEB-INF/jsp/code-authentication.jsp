@@ -163,9 +163,12 @@ backhround: #f2f5f6;
 
 
 <div name="head"><h3 style="margin-left:28%">Hi, ${username}. Please enter One Time Password</h3></div><br>
+<c:if test="${(\"true\").equals(isBadOTP)}">
+    <div><p align="center"><c:out value = "${badOTP}"></c:out></p></div>
+    </c:if>
 <%-- <h3 style="margin-left:30%">Hi! ${name}</h3></div><br>
  --%><form method="POST" action="/jobseeker/authentication">
-
+	
 	<div class="form-group row">
 	    <div class="col-md-4"></div>
 	    <input class="col-md-3 form-control field" type="text" placeholder="Enter code..." id="codeVerification" name="codeVerification" required>

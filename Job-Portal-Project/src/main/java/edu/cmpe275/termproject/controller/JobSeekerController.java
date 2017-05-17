@@ -80,8 +80,11 @@ public class JobSeekerController {
 		
 		//If existing job seeker and not verified - then delete
 		JobSeeker existingjobSeeker=jobSeekerService.getJobSeeker(username);
+		System.out.println("Found Existing jobseeker"+ existingjobSeeker);
 		if (existingjobSeeker != null && !existingjobSeeker.isVerified()){
-			 jobSeekerService.remove(existingjobSeeker);
+			System.out.println("deleting the existing user !"); 
+			jobSeekerService.remove(existingjobSeeker);
+			
 		 }
 		
 		jobSeekerService.addJobSeeker(jobSeeker);
@@ -117,12 +120,12 @@ public class JobSeekerController {
 		
 		String username = request.getParameter("username");
 		String passCode = request.getParameter("codeVerification");
-		boolean userExists = jobSeekerService.find(username);
+		JobSeeker userExists = jobSeekerService.getJobSeeker(username);
 		System.out.println("User Name: "+username);
 		String authCode = jobSeekerService.getJobSeeker(username).getAuthenticationCode();
 		System.out.println("Email code: "+authCode);
 		System.out.println("User code: " +passCode);
-		if(userExists&& passCode.equals(authCode)){
+		if(userExists != null && passCode.equals(authCode)){
 			redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
 			
 			WelcomeEmail.welcomeEmailTrigger(jobSeekerService.getJobSeeker(username).getEmail(), 
@@ -133,14 +136,38 @@ public class JobSeekerController {
 					 jobSeekerService.getJobSeeker(username).getFirstName(),
 					 jobSeekerService.getJobSeeker(username).getLastName(),
 					 SecurityConfig.decrypt(jobSeekerService.getJobSeeker(username).getPassword()));
-			//System.out.println("Jobseeker "+firstName+ " saved to DB");
+			jobSeekerService.saveJobSeekerToDB(username);
+			System.out.println("Jobseeker "+username+ " saved to DB");
+			
 			return "redirect:/jobseeker/login";
 		}
 		else {
-			return "jobseeker/authentication";
+			System.out.println("Authentication code did not match");
+			redirectAttribute.addFlashAttribute("username", username);
+			redirectAttribute.addFlashAttribute("isRedirected","true");
+			redirectAttribute.addFlashAttribute("isBadOTP","true");
+			redirectAttribute.addFlashAttribute("badOTP","Sorry, the OTP you provided is incorrect");
+			
+			return "redirect:/jobseeker/authentication/error";
 		}
 		
 		
+	}
+	
+	//AUTHENTICATION GET - ERROR
+	@RequestMapping(value="/jobseeker/authentication/error",method=RequestMethod.GET)
+	private String codeAuthenticationGETError(@ModelAttribute ("username") String username,
+										 @ModelAttribute("isRedirected") String isRedirected,
+										 @ModelAttribute("badOTP") String badOTP,
+										 @ModelAttribute("isBadOTP") String isBadOTP){
+		
+		System.out.println("Inside Authentication GET-ERROR");
+		if (("true").equals(isRedirected)){
+			return "code-authentication";
+		}
+		else{
+			return "redirect:/jobseeker/login";
+		}
 	}
 	
 	//LOGIN - GET
@@ -169,6 +196,12 @@ public class JobSeekerController {
 		System.out.println("Printing usersess: "+usersess);
 		JobSeeker jobSeeker = jobSeekerService.getJobSeeker(username);
 		if(!usersess.isEmpty()){
+			if(!jobSeeker.isVerified()){
+				redirectAttribute.addFlashAttribute("notFoundText", "Sorry you are not verified ! Please re-register and authenticate");
+				String isNotFound = "true";
+				redirectAttribute.addFlashAttribute("isNotFound", isNotFound);
+				return "redirect:/jobseeker/login/error";
+			}
 			httpSession.setAttribute("username",username);
 			httpSession.setAttribute("email",jobSeeker.getEmail());
 			redirectAttribute.addFlashAttribute("topJobs",jobService.getTop10NewJobListings());

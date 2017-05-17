@@ -33,6 +33,7 @@ public class JobSeeker {
 		this.username = username;
 		this.email = email;
 		this.password = password;	
+		this.isVerified = false;
 	}
 	
 	@Id
