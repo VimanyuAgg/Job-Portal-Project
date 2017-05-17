@@ -9,22 +9,26 @@
 	
 <title>Job Search</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/company-registration.js"></script>
-	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>   
-	<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"> 
-	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<%-- 	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
+ --%>	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%--     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"></link>
+
+ --%>    
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <style>
 
+	
     
     
 
@@ -96,6 +100,8 @@ backhround: #f2f5f6;
 	margin-left: 30%;
 }
 
+
+
 .sidebar{
 	background-color: yellow;
 	height: 400px;
@@ -119,7 +125,7 @@ backhround: #f2f5f6;
 .name{
 	text-align: center;
   	margin: 0 auto;
-	width: 250px;
+	width: 200px;
 	margin-top: 10px;
 }
 
@@ -154,7 +160,48 @@ backhround: #f2f5f6;
 	float: left;
 }
 
+.pagination{
+	margin-left: 42%;
+}
+
+
+.pagination li
+{
+    list-style:none;  
+    float:left;
+    width : 35px;
+    height: 30px;
+    border: .5px solid black;
+    background-color:white;
+    color:black;
+    text-align:center;
+    cursor:pointer;
+    margin: 2px;
+}
+
+.pagination li:hover
+{
+    background-color: white;
+    border:1px solid black;
+    color: black;
+}
+
+.pagination ul
+{
+    border: 0px;
+    padding: 0px;
+}
+
+.active-class
+{
+	background-color: black !important;
+    border:.4 px solid black !important;
+    color: white !important;	
+}
+
+
 </style>
+
 </head>
 <body>
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded nv" style="height: 70px">
@@ -172,20 +219,21 @@ backhround: #f2f5f6;
 	          My Account
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          <a class="dropdown-item" href="/jobseeker/register">View Profile</a>
+	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
 	          <a class="dropdown-item" href="/company/register">View Job History</a>
 	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
 	        </div>
 	      </li>
-	      
 	       <li class="nav-item active">
-	        <a class="nav-link mr-sm-2 wh" href="/jobseeker/logout">Log Out <span class="sr-only">(current)</span></a>
+	        <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
 	      </li>
+	     
 	    </ul>
 	  </div>
 </div>
 
 </nav>
+
 Welcome: ${email}
 <h1>All positions</h1>
 <div class="panel-group" id="accordion">

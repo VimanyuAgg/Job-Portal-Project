@@ -319,21 +319,19 @@ backhround: #eaedef;
 </div>
 
 <div class="form-group row">
-<<<<<<< HEAD
  <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
 <select class="ui dropdown" name="workExperience" >
   <option value="">Work Experience</option>
   <option value="level1"> less 1 Year </option>
   <option value="level2"> 1-3 years</option>
   <option value="level3">More than 3 years</option>
-=======
  <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>&nbsp;&nbsp;&nbsp;
 <select class="col-md-2 ui dropdown">
   <option name="workExperience" selected disabled value="">Work Experience</option>
   <option name="workExperience" value="level1"> less 1 Year </option>
   <option name="workExperience" value="level2"> 1-3 years</option>
   <option name="workExperience" value="level3">More than 3 years</option>
->>>>>>> 6d406ab7b5b93e859a1727efce460e4bc14a3234
+
 </select>
  </div>
 </div> 
