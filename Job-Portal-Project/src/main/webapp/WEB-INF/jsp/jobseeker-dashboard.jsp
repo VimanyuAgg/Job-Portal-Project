@@ -217,9 +217,12 @@ backhround: #f2f5f6;
 	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
 	        </div>
 	      </li>
-	      
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
+	      </li>
+	     <li class="nav-item active">
+	     <form id="jobs" action="/positions/searchByFields" method="POST">
+	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Job</a></form>
 	      </li>
 	    </ul>
 	  </div>
