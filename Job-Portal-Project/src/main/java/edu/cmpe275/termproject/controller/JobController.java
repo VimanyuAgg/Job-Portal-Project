@@ -55,7 +55,7 @@ public class JobController {
 		System.out.println(company.getCompanyName()+" "+company.getDescription());
 		String title=request.getParameter("title"), 
 				description=request.getParameter("description"), 
-				responsibilites=request.getParameter("responsibilites"),
+				responsibilites=request.getParameter("responsibilities"),
 				offliceLocation=request.getParameter("location"), 
 				salary=request.getParameter("salary");
 		String jobId =request.getParameter("jobId");
@@ -100,7 +100,7 @@ public class JobController {
 	@RequestMapping(value="/company/{companyId}/positions/{positionId}/edit", method=RequestMethod.POST)
 	public String editPositionDetails(@PathVariable long companyId, @PathVariable String positionId, HttpServletRequest request, ModelMap map) throws ParseException{
 	       String title=request.getParameter("title"), 
-	    		   description=request.getParameter("description"), responsibilites=request.getParameter("responsibilites"),
+	    		   description=request.getParameter("description"), responsibilites=request.getParameter("responsibilities"),
 				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary"), status=request.getParameter("status");
 		//Company company=companyService.getCompany(companyId);
 		JobPosting job=jobSerivce.getJob(positionId);

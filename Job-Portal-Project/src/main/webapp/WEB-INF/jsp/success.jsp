@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-Success!!!
-Welcome: ${email}
-    <c:out value="${email}"></c:out>
-<h1>${message}</h1>
+<h3>${message}</h3>
+    <form action="/company/<%=session.getAttribute("companyId")%>/welcome" method="get">
+    	<input type="submit" value="Go To Dashboard"/>
+    </form>
 </body>
 </html>

@@ -17,6 +17,8 @@
 			<p>Title: <input type="text" name="title" value=${job.getJobTitle()} />
 			<p>Location: </p><input type="text" name="location" value=${job.getJobLocation()} />
 			<p>Description: </p><input type="text" name="description" value=${job.getJobDescription()} />
+			<p>Responsibilities: </p><input type="text"name="responsibilities" value=${job.getJobResponsibilities()} />
+			
 			<p>Salary: </p><input type="text"name="salary" value=${job.getJobSalary()} />
 			<input type="submit" value="Save"/>
 			</form>

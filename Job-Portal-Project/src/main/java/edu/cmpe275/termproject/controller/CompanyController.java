@@ -8,7 +8,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.cmpe275.termproject.emailService.PasswordSendingEmail;
@@ -148,6 +146,8 @@ public class CompanyController {
 			session.setAttribute("email", email);
 			session.setAttribute("companyId", companyId);
 			//session.setAttribute("companyId", companyId);
+			Company company=companyService.getCompany(companyId);
+			session.setAttribute("companyName", company.getCompanyName());
 			return "redirect:/company/"+companyId+"/welcome";
 			}
 		else{
@@ -282,7 +282,11 @@ public class CompanyController {
 		}
 		Company company=companyService.getCompany(companyId);
 		map.addAttribute("company",company);
-		return "companyprofile";
+		System.out.println("line 285 logo url"+company.getLogoUrl());
+
+		//return "companyprofile";
+		return "company-edit";
+
 	}
 	@RequestMapping(value="/company/{companyId}/edit", method=RequestMethod.GET)
 	public String getCompanyEditPage(@PathVariable long companyId, ModelMap map){
@@ -291,6 +295,7 @@ public class CompanyController {
 			return "redirect:/company/login";
 		}
 		Company company= companyService.getCompany(companyId);
+		System.out.println("line 296 logo url"+company.getLogoUrl());
 		map.addAttribute("company", company);
 		return "company-edit";
 	}
@@ -305,7 +310,7 @@ public class CompanyController {
 		company.setWebsite(request.getParameter("website"));
 		company.setAddress(request.getParameter("address"));
 		company.setDescription(request.getParameter("description"));
-		company.setLogoUrl(request.getParameter("logoUrl"));
+		company.setLogoUrl(request.getParameter("logoImageUrl"));
 		companyService.registerCompany(company);
 		System.out.println("I am website:"+company.getWebsite());
 		map.addAttribute("company",company);
@@ -352,6 +357,7 @@ public class CompanyController {
 			session.removeAttribute("email");
 			System.out.println("I am removing company");
 			session.removeAttribute("companyId");
+			session.removeAttribute("companyName");
 			System.out.println("I am invalidating");
 			session.invalidate();
 		}

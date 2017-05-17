@@ -37,8 +37,9 @@ Welcome: ${email}
 	<table>
 	 <tr>
       <td>Job Id</td>
+     <!--   <td>Company</td> --> 
       <td>Job Title</td>
-      <td>Responsibilities</td>
+    <td>Responsibilities</td>
       <td>Description</td>
       <td>Location</td>
       <td>Salary</td>
@@ -51,7 +52,8 @@ Welcome: ${email}
   	    <tr>
 	      <td><a href="/positions/${position.getJobId()}"><c:out value="${position.getJobId()}" /></a></td>
 	      <td><c:out value="${position.getJobTitle()}" /></td>
-	      <td><c:out value="${position.getJobResponsibilities()}" /></td>
+   	      <td><c:out value="${position.getJobTitle()}" /></td>
+<!-- 	      <td><c:out value="${position.getJobResponsibilities()}" /></td> -->
 	      <td><c:out value="${position.getJobDescription()}" /></td>
 	      <td><c:out value="${position.getJobLocation()}" /></td>
 	      <td><c:out value="${position.getJobSalary()}" /></td>

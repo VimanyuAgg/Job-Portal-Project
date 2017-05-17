@@ -8,7 +8,7 @@
 			<form method=Post action="/company/<%=session.getAttribute("companyId")%>/edit">
 			<p>Name: <input name= "name" value="${company.getCompanyName()}"></p>
 			<p>Website: <input name= "website" value="${company.getWebsite()}"> </p>
-			<p>logo Url: <input name= "logoUrl" value="${company.getLogoUrl()}"> </p>
+			<p>Logo Url: <input name= "logoUrl" value="${company.getLogoUrl()}"> </p>
 			<p>Address: <input name= "address" value="${company.getAddress()}"> </p>
 			<p>Description: <input name= "description" value="${company.getDescription()}"> </p>
 			<input type="submit" value="Save"/>
