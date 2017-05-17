@@ -25,7 +25,7 @@
     
 
 body{
-	background-color: white;
+	background-color: #eaedef;
 	background-image: url("1.jpg");
 }
 
@@ -73,15 +73,19 @@ html,
 body{
 margin:0;
 padding: 0;
-backhround: #f2f5f6;
+backhround: #eaedef;
 }
 
+.btn{
+    background: #163aaf;
+	color: white;   
+}
 .btn1{
 	background: #62C192;
 }
 
 .nv{
-	background-color: black!Important;
+	background-color: #163aaf!Important;
 }
 
 .wh{
@@ -95,7 +99,7 @@ backhround: #f2f5f6;
 
 
 .sidebar{
-	background-color: yellow;
+	background-color: #d1dbff;
 	height: 400px;
 	width: 100%;
 }
@@ -132,12 +136,13 @@ backhround: #f2f5f6;
 }
 
 .item{
-	height: 290px;
 	min-height: 100px;
 	width: 100%;
-	background-color: #f2f5f6;
+	background-color: #d1dbff;
 	margin-left: 5px;
 	margin-top: 10px;
+	min-height: 100px;
+	padding-bottom: 10px;
 }
 
 .cl{
@@ -163,9 +168,9 @@ backhround: #f2f5f6;
     float:left;
     width : 35px;
     height: 30px;
-    border: .5px solid black;
+    border: .5px solid #163aaf;
     background-color:white;
-    color:black;
+    color: #163aaf;
     text-align:center;
     cursor:pointer;
     margin: 2px;
@@ -173,9 +178,9 @@ backhround: #f2f5f6;
 
 .pagination li:hover
 {
-    background-color: white;
-    border:1px solid black;
-    color: black;
+    background-color: #163aaf;
+    border:1px solid #163aaf;
+    color: white;
 }
 
 .pagination ul
@@ -186,8 +191,8 @@ backhround: #f2f5f6;
 
 .active-class
 {
-	background-color: black !important;
-    border:.4 px solid black !important;
+	background-color: #163aaf !important;
+    border:.4 px solid #163aaf !important;
     color: white !important;	
 }
 
@@ -217,9 +222,12 @@ backhround: #f2f5f6;
 	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
 	        </div>
 	      </li>
-	      
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
+	      </li>
+	     <li class="nav-item active">
+	     <form id="jobs" action="/positions/searchByFields" method="POST">
+	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Job</a></form>
 	      </li>
 	    </ul>
 	  </div>
@@ -234,8 +242,8 @@ backhround: #f2f5f6;
 			<!-- side bar for profile review -->
 			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
 		
-			<div class="name">Sidharth Bhasin</div>
-			<br>
+			<div class="name">${firstName} &nbsp; <%=session.getAttribute("lastName")%></div>
+ 			<br>
 			<div class="">
 			
 			</div>
@@ -267,20 +275,29 @@ backhround: #f2f5f6;
 		  	    					<c:out value="${topJobValue.getJobResponsibilities()}" />
 		  	    				</div>
 		  	    				
-		  	    				<div class="desc">
+		  	    				<%-- <div class="desc">
 		  	    					Salary: <c:out value="${topJobValue.getJobSalary()}" />
 		  	    				</div>
-		  	    				
+		  	    				 --%>
 		  	    				<div class="desc">
-		  	    					Location: <c:out value="${topJobValue.getEligibility()}" />
+		  	    					Location: <c:out value="${topJobValue.getJobLocation()}" />
 		  	    				</div>
 		  	    				
 		  	    				<div class="desc">
 		  	    					Posted On: <c:out value="${topJobValue.getPostedOn()}" />
 		  	    				</div>
 		  	    				
-		  	    				<div class="desc">
+		  	    				<%-- <div class="desc">
 		  	    					Eligibility: <c:out value="${topJobValue.getEligibility()}" />
+		  	    				</div>
+		  	    				 --%>
+		  	    				 <br>
+		  	    				<div class="desc">
+		  	    					<form action="/positions/${topJobValue.getJobId()}" method="GET" >
+						       			<input type= "submit" class="btn" value="Learn More">
+		  	    					<input type= "submit" class="btn" value="Apply Now">
+						       		</form>
+		  	    					
 		  	    				</div>
 		  	    				
 		  	    			</div>
@@ -290,11 +307,11 @@ backhround: #f2f5f6;
 		  	    			<c:out value="${topJobValue.getJobTitle()}" /><br>
 		  	    			<div class="comp">"${topJobValue.getJobPostedByCompany().getCompanyName()}"</div>
 		  	    		</td>
-				      	<td style="padding-top:27px;margin-left:300px;">
+				      	<%-- <td style="padding-top:27px;margin-left:300px;">
 				       		<form action="/positions/${topJobValue.getJobId()}" method="GET" >
 				       			<input type="submit" value="Apply Now!"/>
 				       		</form>
-				      	</td>
+				      	</td> --%>
 				    </tr>	    
 			    </tbody>
 			    </c:forEach>
