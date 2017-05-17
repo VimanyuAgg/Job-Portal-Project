@@ -20,10 +20,6 @@
  --%>    
 <style>
 
-	
-    
-    
-
 body{
 	background-color: #eaedef;
 	background-image: url("1.jpg");

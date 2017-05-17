@@ -261,8 +261,8 @@ backhround: #eaedef;
 	       -->  </div>
 	      </li>
 	      
-	       <li class="nav-item active">
-	        <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
+	        <li class="nav-item active">
+	        <a class="nav-link mr-sm-2 wh" href="/jobseeker/logout">Log Out <span class="sr-only">(current)</span></a>
 	      </li>
 	    </ul>
 	  </div>
