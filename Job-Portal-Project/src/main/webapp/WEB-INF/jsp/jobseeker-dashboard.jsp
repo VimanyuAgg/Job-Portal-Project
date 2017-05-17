@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register Here!</title>
+<title>Dashboard!</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -117,7 +117,7 @@ backhround: #f2f5f6;
 .name{
 	text-align: center;
   	margin: 0 auto;
-	width: 250px;
+	width: 200px;
 	margin-top: 10px;
 }
 
@@ -235,6 +235,10 @@ backhround: #f2f5f6;
 			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
 		
 			<div class="name">Sidharth Bhasin</div>
+			<br>
+			<div class="">
+			
+			</div>
 		</div>
 		<div class="col-md-7">
 		<!-- job card section -->
@@ -278,15 +282,16 @@ backhround: #f2f5f6;
 		  	    				<div class="desc">
 		  	    					Eligibility: <c:out value="${topJobValue.getEligibility()}" />
 		  	    				</div>
+		  	    				
 		  	    			</div>
 		  	    		</td>
 		  	    		
 		  	    		<td style="padding-top: 24px;font-size: 21px;">
 		  	    			<c:out value="${topJobValue.getJobTitle()}" /><br>
-		  	    			<div class="comp">CompanyName</div>
+		  	    			<div class="comp">"${topJobValue.getJobPostedByCompany().getCompanyName()}"</div>
 		  	    		</td>
 				      	<td style="padding-top:27px;margin-left:300px;">
-				       		<form action="/positions/searchByFields" method="POST" >
+				       		<form action="/positions/${topJobValue.getJobId()}" method="GET" >
 				       			<input type="submit" value="Apply Now!"/>
 				       		</form>
 				      	</td>
