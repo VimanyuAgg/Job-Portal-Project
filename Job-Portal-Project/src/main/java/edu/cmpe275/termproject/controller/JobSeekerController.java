@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -148,6 +149,7 @@ public class JobSeekerController {
 								
 	{
 		
+		
 		return "jobseeker-login";	
 		
 	}
@@ -235,10 +237,20 @@ public class JobSeekerController {
 		}
 		
 	
-
-@RequestMapping(value="/jobseeker/profile", method=RequestMethod.GET)
-public String getJobSeekerProfile(){
-	return "jobseeker-profile";
+	//PROFILE - UPDATE
+	@RequestMapping(value="/jobseeker/{username}/profile", method=RequestMethod.GET)
+	public String getJobSeekerProfile(@PathVariable String username,ModelMap map){
+		
+		JobSeeker jobSeeker = jobSeekerService.findByUsername(username);
+		map.addAttribute("username", username);
+		map.addAttribute("email",jobSeeker.getEmail());
+		map.addAttribute("firstName",jobSeeker.getFirstName());
+		map.addAttribute("lastName",jobSeeker.getLastName());
+		map.addAttribute("selfIntroduction",jobSeeker.getSelfIntroduction());
+		map.addAttribute("education",jobSeeker.getEducation());
+		map.addAttribute("skills",jobSeeker.getSkills());
+				
+		return "jobseeker-profile";
 	
 }
 	
