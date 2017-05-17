@@ -32,12 +32,12 @@ Welcome: ${email}
 <input type="hidden" name="jobId" id="jd"/>
 <input type="hidden" name="profile" value="false" id="pf"/>
 <input type="hidden" name="resume" value="true"  id="rs"/>
-
+	
 
 	<table>
 	 <tr>
       <td>Job Id</td>
-     <!--   <td>Company</td> --> 
+      <td>Company</td>
       <td>Job Title</td>
     <td>Responsibilities</td>
       <td>Description</td>
@@ -51,9 +51,9 @@ Welcome: ${email}
 	  <c:forEach items="${positions}" var="position">
   	    <tr>
 	      <td><a href="/positions/${position.getJobId()}"><c:out value="${position.getJobId()}" /></a></td>
-	      <td><c:out value="${position.getJobTitle()}" /></td>
+	      <td><c:out value="${position.getJobPostedByCompany().getCompanyName()}" /></td>
    	      <td><c:out value="${position.getJobTitle()}" /></td>
-<!-- 	      <td><c:out value="${position.getJobResponsibilities()}" /></td> -->
+	      <td><c:out value="${position.getJobResponsibilities()}" /></td>
 	      <td><c:out value="${position.getJobDescription()}" /></td>
 	      <td><c:out value="${position.getJobLocation()}" /></td>
 	      <td><c:out value="${position.getJobSalary()}" /></td>
