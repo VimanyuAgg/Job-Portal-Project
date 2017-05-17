@@ -117,7 +117,7 @@ backhround: #f2f5f6;
 .name{
 	text-align: center;
   	margin: 0 auto;
-	width: 250px;
+	width: 200px;
 	margin-top: 10px;
 }
 
@@ -235,6 +235,10 @@ backhround: #f2f5f6;
 			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
 		
 			<div class="name">Sidharth Bhasin</div>
+			<br>
+			<div class="">
+			
+			</div>
 		</div>
 		<div class="col-md-7">
 		<!-- job card section -->
@@ -278,15 +282,16 @@ backhround: #f2f5f6;
 		  	    				<div class="desc">
 		  	    					Eligibility: <c:out value="${topJobValue.getEligibility()}" />
 		  	    				</div>
+		  	    				
 		  	    			</div>
 		  	    		</td>
 		  	    		
 		  	    		<td style="padding-top: 24px;font-size: 21px;">
 		  	    			<c:out value="${topJobValue.getJobTitle()}" /><br>
-		  	    			<div class="comp">CompanyName</div>
+		  	    			<div class="comp">"${topJobValue.getJobPostedByCompany().getCompanyName()}"</div>
 		  	    		</td>
 				      	<td style="padding-top:27px;margin-left:300px;">
-				       		<form action="/positions/searchByFields" method="POST" >
+				       		<form action="/positions/${topJobValue.getJobId()}" method="GET" >
 				       			<input type="submit" value="Apply Now!"/>
 				       		</form>
 				      	</td>
