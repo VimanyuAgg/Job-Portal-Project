@@ -62,6 +62,7 @@ public class CompanyController {
 		String name=request.getParameter("name"), 
 				website=request.getParameter("website"), 
 				logoImageUrl=request.getParameter("logoImageUrl"),
+				photo=request.getParameter("clogo"),
 				address=request.getParameter("address"), 
 				description=request.getParameter("description"), 
 				email=request.getParameter("email"), 
@@ -69,11 +70,15 @@ public class CompanyController {
 		String authenticationCode_String = RegistrationEmail.generateAuthCode();        
 		RegistrationEmail.registrationEmailTrigger(email, authenticationCode_String);
 		
+		System.out.println("inside registerCompany#################");
+		System.out.println("photo string "+photo);
+		
+		
 		redirectAttribute.addFlashAttribute("name",name);
 		redirectAttribute.addFlashAttribute("email",email);
 		redirectAttribute.addFlashAttribute("isRedirected","true");
 		
-		Company company=new Company(name, website, logoImageUrl, address, description, email ,password,0, null);
+		Company company=new Company(name, website, null, address, description, email ,password,0, null);
 		Company result=companyService.registerCompany(company);
 		companyService.setAuthCode(authenticationCode_String, email);
 		
@@ -224,7 +229,7 @@ public class CompanyController {
 	public String getAllPositions(@PathVariable long companyId, @RequestParam(value = "status", required=false) String status, ModelMap map){
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
 		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
-		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+		if(session==null || session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}
 		System.out.println("Jobs Size:"+jobs.size());
@@ -254,6 +259,10 @@ public class CompanyController {
 	@RequestMapping(value="/company/{companyId}/postjob",method = RequestMethod.GET)
 	public String getCompanyByNames(@PathVariable long companyId, 
 			HttpServletRequest request, ModelMap map){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 //		
 //		System.out.println("inside getCompanyByName()");
 //		String companyName = "askl," + request.getParameter("companyName");
@@ -284,7 +293,7 @@ public class CompanyController {
 	@RequestMapping(value="/company/{companyId}/profile", method=RequestMethod.GET)
 	public String getCompanyProfilePage(@PathVariable long companyId, ModelMap map){
 		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
-		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+		if(session==null ||session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}
 		Company company=companyService.getCompany(companyId);
@@ -327,6 +336,10 @@ public class CompanyController {
 	@RequestMapping(value="/company/{companyId}/managejobs", method=RequestMethod.GET)
 	public String manageJobs(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
 		
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		System.out.println("inside manageJobs");
 		System.out.println("companyId "+companyId);
 		
@@ -384,6 +397,10 @@ public class CompanyController {
 		
 		JobPosting job = jobPostingService.getJob(jobId);
 
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		if(job == null) return "error";
 		map.addAttribute("jobs", companyService.getAllPositions(companyId));
 		

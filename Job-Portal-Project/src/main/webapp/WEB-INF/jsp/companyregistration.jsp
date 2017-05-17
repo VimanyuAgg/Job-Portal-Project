@@ -174,6 +174,8 @@ backhround: #f2f5f6;
 		<br><br> -->
 
 		<form method="POST" action="/company/register">
+			<input type="hidden" name = "clogo" id="clogo">
+		
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
 			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your company name..." name="name">
@@ -210,11 +212,11 @@ backhround: #f2f5f6;
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
 			    <label for="file-input">
-        			<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/company-201.jpg" height="90px" width="90px"/>
+        			<img class="rounder" id="defaultValue" name="logoImageUrl"  src="${pageContext.request.contextPath}/img/company-201.jpg" height="90px" width="90px"/>
     			</label>
 
 			    <!-- <input class="col-md-3 form-control field" type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl"> -->
-				 <input type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl">
+				 <input type="file" onchange="encodeImageFileAsURL(this)" value="upload logo">
 			</div>
 			
 			<div class="form-group row">

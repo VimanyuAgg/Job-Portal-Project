@@ -38,7 +38,7 @@ public class JobPosting {
 		this.setJobStatus("open");
 		this.eligibility=eligibility;
 		this.tempSize = 1;
-		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+		postedOn = new SimpleDateFormat("MM-dd-yyyy").format(Calendar.getInstance().getTime());
 		this.sal = Integer.parseInt(jobSalary);
 //		this.applications = new ArrayList<JobApplication>();
 	}
@@ -122,21 +122,6 @@ public class JobPosting {
 	
 	@Column(name="TEMPSIZE")
 	private int tempSize;
-	
-	
-//	public JobPosting(long jobId, String jobDescription, String jobTitle, String jobResponsibilities,
-//			String jobLocation, String jobSalary, Company jobPostedByCompany) {
-//		super();
-//		this.jobId = jobId;
-//		this.jobDescription = jobDescription;
-//		this.jobTitle = jobTitle;
-//		this.jobResponsibilities = jobResponsibilities;
-//		this.jobLocation = jobLocation;
-//		this.jobSalary = jobSalary;
-//		this.jobPostedByCompany = jobPostedByCompany;
-//		setJobStatus("open");
-//	}
-
 
 	public JobPosting() {
 		super();
