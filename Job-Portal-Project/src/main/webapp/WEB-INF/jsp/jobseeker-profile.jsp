@@ -171,11 +171,11 @@ $(document).ready(function() {
 </div> -->
 <div class="form-group row">
  <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
-<select class="ui dropdown">
-  <option name="workExperience" value="">Work Experience</option>
-  <option name="workExperience" value="level1"> less 1 Year </option>
-  <option name="workExperience" value="level2"> 1-3 years</option>
-  <option name="workExperience" value="level3">More than 3 years</option>
+<select class="ui dropdown" name="workExperience" >
+  <option value="">Work Experience</option>
+  <option value="level1"> less 1 Year </option>
+  <option value="level2"> 1-3 years</option>
+  <option value="level3">More than 3 years</option>
 </select>
  </div>
 </div> 
@@ -198,7 +198,7 @@ $(document).ready(function() {
 <div class="form-group row">
      <label for="email"  class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-6">
-    <input class="form-control" type="email" id="email" name="email" placeholder="enter your email ID" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" value= "${email}" required>
+    ${email}
    	
  	<div id="output"></div>
   </div>
@@ -211,13 +211,6 @@ $(document).ready(function() {
   </div>
 </div>
 
-<div class="form-group row">
-     <label for="confirmPassword"  class="col-sm-2 col-form-label"> Confirm password</label>
-    <div class="col-sm-6">
-    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd" required>
-  </div>
-  <div class="col-sm-4" id="divCheckPasswordMatch"></div>
-</div>
 
 
 <div class="form-group row">
@@ -229,6 +222,7 @@ $(document).ready(function() {
 
 </div>  
 </form>
+<p>${errorMessage}</p>
 </div>
 
 

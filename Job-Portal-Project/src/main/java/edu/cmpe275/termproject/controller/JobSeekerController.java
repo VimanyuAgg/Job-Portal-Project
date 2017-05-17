@@ -302,15 +302,43 @@ public class JobSeekerController {
 		return "jobseeker-profile";
 	
 }
-	@RequestMapping("/jobseeker/{username}/profile")
-	public void updateProfile(HttpServletRequest request){
+	@RequestMapping(value="/jobseeker/{username}/update", method=RequestMethod.POST)
+	public String updateProfile(@PathVariable String username,HttpServletRequest request, ModelMap map) throws GeneralSecurityException, IOException{
+		System.out.println("inside update post");
 		String firstName=request.getParameter("firstName");
 		String lastName=request.getParameter("lastName");
 		String introduction=request.getParameter("selfIntroduction");
 		String education=request.getParameter("education");
-		//String 
+		String skills=request.getParameter("skills");
+		String workExperience=request.getParameter("workExperience");
+		String password=request.getParameter("password");
+		JobSeeker jobSeeker=jobSeekerService.getJobSeeker(username);
+		if(!SecurityConfig.decrypt(jobSeeker.getPassword()).equals(password)){
+			return "redirect:/jobseeker/{username}/update/error";
+		}
+
+		jobSeeker.setFirstName(firstName);
+		jobSeeker.setLastName(lastName);
+		jobSeeker.setSelfIntroduction(introduction);
+		jobSeeker.setEducation(education);
+		jobSeeker.setSkills(skills);
+		jobSeeker.setWorkExperience(workExperience);
+		jobSeekerService.updateJobSeeker(jobSeeker);
+		if(map.get("errorMessage")!=null){
+			map.addAttribute("errorMessage","");
+		}
+		System.out.println("updated");
+
+		return "jobseeker-dashboard";
 	}
-	
+	@RequestMapping("/jobseeker/{username}/update/error")
+	public String jobSeekerUpdate(ModelMap map)
+	{
+		
+		map.addAttribute("errorMessage","Incorrect Password");
+		return "jobseeker-profile";	
+		
+	}
 }
 
 
