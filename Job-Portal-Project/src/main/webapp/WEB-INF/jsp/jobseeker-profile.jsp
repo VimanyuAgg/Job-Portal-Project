@@ -369,16 +369,6 @@ backhround: #eaedef;
   </div>
 </div>
 
-<<<<<<< HEAD
-=======
-<div class="form-group row">
-     <label for="confirmPassword"  class="col-sm-2 col-form-label"> Confirm password</label>
-    <div class="col-sm-3">
-    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd" required>
-  </div>
-  <div class="col-sm-4" id="divCheckPasswordMatch"></div>
-</div>
->>>>>>> 6d406ab7b5b93e859a1727efce460e4bc14a3234
 
 
 <div class="form-group row">
