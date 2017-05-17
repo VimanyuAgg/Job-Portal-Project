@@ -129,7 +129,7 @@ padding: 0;
 			<p>Location:</p><p> <input type="text" name="location" placeholder="Job Location" /></p>
 			<p>Description:</p>
 			<p>
-			    <textarea class="form-control" rows="4" cols="50" name="description" placeholder="Breif description of the job!"></textarea>
+			    <textarea class="form-control" rows="9" cols="50" name="description" placeholder="Breif description of the job!"></textarea>
 			</p>
 			<p>Responsibilities:</p><p>
 			
