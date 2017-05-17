@@ -242,8 +242,8 @@ backhround: #eaedef;
 			<!-- side bar for profile review -->
 			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
 		
-<%-- 			<div class="name"><%=session.getAttribute("jobSeeker").getFirstName()%>&nbsp;<%=session.getAttribute("jobSeeker").getFirstName()%></div>
- --%>			<br>
+			<div class="name">${firstName} &nbsp; <%=session.getAttribute("lastName")%></div>
+ 			<br>
 			<div class="">
 			
 			</div>
