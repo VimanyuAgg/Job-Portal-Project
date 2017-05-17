@@ -26,10 +26,8 @@
 
 	
     
-    
-
 body{
-	background-color: white;
+	background-color: #eaedef;
 	background-image: url("1.jpg");
 }
 
@@ -77,15 +75,19 @@ html,
 body{
 margin:0;
 padding: 0;
-backhround: #f2f5f6;
+backhround: #eaedef;
 }
 
+.btn{
+    background: #163aaf;
+	color: white;   
+}
 .btn1{
 	background: #62C192;
 }
 
 .nv{
-	background-color: black!Important;
+	background-color: #163aaf!Important;
 }
 
 .wh{
@@ -96,8 +98,10 @@ backhround: #f2f5f6;
 	margin-left: 30%;
 }
 
+
+
 .sidebar{
-	background-color: yellow;
+	background-color: #d1dbff;
 	height: 400px;
 	width: 100%;
 }
@@ -119,7 +123,7 @@ backhround: #f2f5f6;
 .name{
 	text-align: center;
   	margin: 0 auto;
-	width: 250px;
+	width: 200px;
 	margin-top: 10px;
 }
 
@@ -134,12 +138,13 @@ backhround: #f2f5f6;
 }
 
 .item{
-	height: 290px;
 	min-height: 100px;
 	width: 100%;
-	background-color: #f2f5f6;
+	background-color: #d1dbff;
 	margin-left: 5px;
 	margin-top: 10px;
+	min-height: 100px;
+	padding-bottom: 10px;
 }
 
 .cl{
@@ -154,7 +159,49 @@ backhround: #f2f5f6;
 	float: left;
 }
 
+.pagination{
+	margin-left: 42%;
+}
+
+
+.pagination li
+{
+    list-style:none;  
+    float:left;
+    width : 35px;
+    height: 30px;
+    border: .5px solid #163aaf;
+    background-color:white;
+    color: #163aaf;
+    text-align:center;
+    cursor:pointer;
+    margin: 2px;
+}
+
+.pagination li:hover
+{
+    background-color: #163aaf;
+    border:1px solid #163aaf;
+    color: white;
+}
+
+.pagination ul
+{
+    border: 0px;
+    padding: 0px;
+}
+
+.active-class
+{
+	background-color: #163aaf !important;
+    border:.4 px solid #163aaf !important;
+    color: white !important;	
+}
+
+
 </style>
+
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -165,7 +212,7 @@ backhround: #f2f5f6;
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-	  <a class="navbar-brand wh" href="#">Spring Onions</a>
+	  <a class="navbar-brand wh" href="/jobseeker/<%=session.getAttribute("username")%>/dashboard">Spring Onions</a>
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
@@ -175,9 +222,9 @@ backhround: #f2f5f6;
 	          My Account
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          <a class="dropdown-item" href="/jobseeker/register">View Profile</a>
-	          <a class="dropdown-item" href="/company/register">View Job History</a>
-	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
+	           <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
+				<a class="dropdown-item" href="/company/register">View Job History</a>
+	        <!--   <a class="dropdown-item" href="/company/register">Edit Profile</a> -->
 	        </div>
 	      </li>
 	      
@@ -189,9 +236,11 @@ backhround: #f2f5f6;
 </div>
 
 </nav>
-You cant apply for this job. <br>
+<center>You can not apply for this job. <br>
 You have already applied for this job. <br>
-Either your job status is Accepted or Pending.
+Either your job status is Accepted or Pending.<br/>
+<form action="/jobseeker/<%=session.getAttribute("username")%>/dashboard" Method="GET">
+<button>Back to dashboard</button></form></center>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
