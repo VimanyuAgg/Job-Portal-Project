@@ -338,55 +338,7 @@ a.btn.bx:hover {
 
 
 
-<div class="row outer">
-	
-		<div class="col-md-1"></div>
-		<div class="col-md-2 sidebar" style="text-align">
-			<!-- side bar for profile review -->
-			<img class="img-responsive dp" src="${logoImageUrl}" width="75%">
-		
-			<div class="name"><%=session.getAttribute("companyName")%></div>
- 			<br>
-			<div class="name">${address}</div>
-			<div class="name">${website}</div>
-		</div>
-		
-				<div class="col-md-7">
-				<!-- job card section -->
-		
-				<form method="POST" action="/company/${companyId}/addjob">
-				
-					<p>Job Id</p>
-	<input type="text" name="jobId" placeholder="#Job Id" required/>
-	<p>Title:</p><p> <input type="text" name="title" placeholder="Job Title" required /></p>
-			<p>Location:</p><p> <input type="text" name="location" placeholder="Job Location" /></p>
-			<p>Description:</p>
-			<p>
-			    <textarea class="form-control" rows="4" cols="50" name="description" placeholder="Breif description of the job!"></textarea>
-			</p>
-			<p>Responsibilities:</p><p>
-			
-		    <textarea class="form-control" rows="4" cols="50" name="responsibilities" placeholder="Responsibilites!"></textarea>
-			
-			<p>Salary:</p><p><input type="number"name="salary"  placeholder="Salary Offered in USD"/> </p>
-	<p>Eligibility</p>
-	<input type="text" name="eligibility" placeholder="Eligibility" />
-	<p>
-	<input type="submit" class = "btn btn-primary btn1" value="Post Job" style=" margin: auto;align-self: center;display: block;"/>
-	</p>
-</form>
-		</div>	
-	
-
-		<div class="col-md-2">
-		<!-- right section -->
-	
-		</div>
-	</div>
-		
-
-
-
+<%-- 
 <div class="container">
 	<div class="row" style="padding-top:30px"></div>
 	<h4 align="center">Below are all the jobs your company has posted.</h4>
@@ -420,7 +372,7 @@ a.btn.bx:hover {
 	</div>
 
 </div>
-
+ --%>
 <script>
 	function setJobId(val){
 		var a = document.getElementById("jd");
