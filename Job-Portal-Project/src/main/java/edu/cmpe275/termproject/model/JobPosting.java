@@ -38,7 +38,7 @@ public class JobPosting {
 		this.setJobStatus("open");
 		this.eligibility=eligibility;
 		this.tempSize = 1;
-		postedOn = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+		postedOn = new SimpleDateFormat("MM-dd-yyyy").format(Calendar.getInstance().getTime());
 		this.sal = Integer.parseInt(jobSalary);
 //		this.applications = new ArrayList<JobApplication>();
 	}

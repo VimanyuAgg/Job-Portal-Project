@@ -224,7 +224,7 @@ public class CompanyController {
 	public String getAllPositions(@PathVariable long companyId, @RequestParam(value = "status", required=false) String status, ModelMap map){
 		List<JobPosting> jobs=companyService.getAllPositions(companyId, status);
 		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
-		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+		if(session==null || session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}
 		System.out.println("Jobs Size:"+jobs.size());
@@ -254,6 +254,10 @@ public class CompanyController {
 	@RequestMapping(value="/company/{companyId}/postjob",method = RequestMethod.GET)
 	public String getCompanyByNames(@PathVariable long companyId, 
 			HttpServletRequest request, ModelMap map){
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 //		
 //		System.out.println("inside getCompanyByName()");
 //		String companyName = "askl," + request.getParameter("companyName");
@@ -284,7 +288,7 @@ public class CompanyController {
 	@RequestMapping(value="/company/{companyId}/profile", method=RequestMethod.GET)
 	public String getCompanyProfilePage(@PathVariable long companyId, ModelMap map){
 		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
-		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+		if(session==null ||session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}
 		Company company=companyService.getCompany(companyId);
@@ -327,6 +331,10 @@ public class CompanyController {
 	@RequestMapping(value="/company/{companyId}/managejobs", method=RequestMethod.GET)
 	public String manageJobs(@PathVariable long companyId, ModelMap map, HttpServletRequest request){
 		
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		System.out.println("inside manageJobs");
 		System.out.println("companyId "+companyId);
 		
@@ -384,6 +392,10 @@ public class CompanyController {
 		
 		JobPosting job = jobPostingService.getJob(jobId);
 
+		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
+			return "redirect:/company/login";
+		}
 		if(job == null) return "error";
 		map.addAttribute("jobs", companyService.getAllPositions(companyId));
 		
