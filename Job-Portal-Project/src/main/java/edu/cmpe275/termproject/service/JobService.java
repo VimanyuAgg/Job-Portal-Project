@@ -34,7 +34,7 @@ public class JobService {
 	public ArrayList<JobPosting> getTop10NewJobListings(){
 		//ArrayList<JobPosting> jobList = new ArrayList<JobPosting>();
 		PageRequest pr = new PageRequest(1,1);
-		ArrayList<JobPosting> jobList = jobPostingDao.findTop10jobs(pr);
+		ArrayList<JobPosting> jobList = jobPostingDao.findTop10jobs();
 		 System.out.println("inside job service - jobList size: "+jobList.size());
 		
 		return jobList;
