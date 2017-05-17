@@ -27,6 +27,7 @@ public class CompanyService {
 		Company existingCompany=companyDao.findByEmail(company.getEmail());
 		if(existingCompany==null){
 			company.setPassword(SecurityConfig.encrypt(company.getPassword()));
+			
 			companyDao.save(company);
 			return company;
 		}

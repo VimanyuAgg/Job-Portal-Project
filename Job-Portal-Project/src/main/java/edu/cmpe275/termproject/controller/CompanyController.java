@@ -78,7 +78,7 @@ public class CompanyController {
 		redirectAttribute.addFlashAttribute("email",email);
 		redirectAttribute.addFlashAttribute("isRedirected","true");
 		
-		Company company=new Company(name, website, null, address, description, email ,password,0, null);
+		Company company=new Company(name, website, logoImageUrl, address, description, email ,password,0, null);
 		Company result=companyService.registerCompany(company);
 		companyService.setAuthCode(authenticationCode_String, email);
 		

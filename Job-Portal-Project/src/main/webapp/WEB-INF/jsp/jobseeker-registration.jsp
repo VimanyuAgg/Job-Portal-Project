@@ -19,7 +19,10 @@
 <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
 <script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
 
-
+<script>
+  UPLOADCARE_PUBLIC_KEY = "fa5724d4e1f724578152";
+</script>
+<script charset="utf-8" src="//ucarecdn.com/libs/widget/2.10.3/uploadcare.full.min.js"></script>
 
 
 <style>
@@ -185,8 +188,9 @@ $(document).ready(function() {
 
 <div class="container" >		
 	<div style="margin-left:40%" class="logo">User Registration!</div>
+	<br>
 
-	<form method="POST" action="/jobseeker/register">
+	<form method="POST" action="/jobseeker/register" enctype="multipart/form-data">
 	
 		
 		<div class="form-group row">
@@ -194,7 +198,9 @@ $(document).ready(function() {
 		    <label for="file-input">
    				<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
 			</label>
-			<input id="file-input" type="file" onchange="encodeImageFileAsURL(this)" name="picture"/>
+			<!-- <input id="file-input" type="file" onchange="encodeImageFileAsURL(#file-input2.value)" name="picture"/> -->
+			<input type="hidden" id="file-input2" role="uploadcare-uploader" name="picture" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
+			
 		</div>
 		
 		<%-- <div class="form-group row">

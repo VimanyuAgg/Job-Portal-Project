@@ -195,9 +195,10 @@ backhround: #f2f5f6;
 	<div class="col-md-1"></div>
 	<div class="col-md-2 sidebar" style="text-align">
 		<!-- side bar for profile review -->
-		<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
+		<img class="img-responsive dp" src="${picture}" width="34%">
 	
-		<div class="name">Sidharth Bhasin</div>
+		<div class="name"><p>${firstName} ${lastName}</div>
+		<div class="name">${selfIntroduction}</div>
 	</div>
 	<div class="col-md-7">
 	<!-- job card section -->

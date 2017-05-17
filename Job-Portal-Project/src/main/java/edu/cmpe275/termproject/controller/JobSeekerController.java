@@ -7,7 +7,11 @@
 
 package edu.cmpe275.termproject.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -16,9 +20,15 @@ import java.util.UUID;
 
 import javax.mail.Message;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -61,7 +71,62 @@ public class JobSeekerController {
 	
 	//REGISTRATION - POST
 	@RequestMapping(value="/jobseeker/register", method=RequestMethod.POST)
-	public String createJobSeeker(HttpServletRequest request, RedirectAttributes redirectAttribute) throws UnsupportedEncodingException, GeneralSecurityException{
+	public String createJobSeeker(HttpServletRequest request, RedirectAttributes redirectAttribute) throws GeneralSecurityException, IOException, ServletException{
+		
+		//System.out.println("Upload care ---"+request.getParameter("my_pic"));
+		
+//		String p = request.getParameter("picture");
+//		List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+//		System.out.println("printing picture: "+ p);
+//		if(request.getParameter("picture") != null){
+//			System.out.println("picture found !");
+//			try{
+//				System.out.println("try-1");
+//				Part filePart = request.getPart("picture");
+//				System.out.println("try-2");
+//				InputStream fileContent = filePart.getInputStream();
+//				System.out.println("try-3");
+//				//File uploads = new File(properties.getProperty("upload.location"));
+//				//File uploads = new File("/");
+//				OutputStream outputStream = new FileOutputStream(new File("/"));
+//				System.out.println("try-4");
+//				int r = 0;
+//	            byte[] byteStream = new byte[32768];
+//	            
+//	            while(fileContent.read(byteStream) != -1){
+//	            	outputStream.write(byteStream, 0, r);
+//	            }
+//	            System.out.println("try-5");
+//			}
+//			catch (Exception e){
+//				e.printStackTrace();
+//			}
+			
+			
+//			System.out.println("picture found !");
+//			 DiskFileItemFactory factory = new DiskFileItemFactory();
+//			 factory.setSizeThreshold(1024 * 1024 * 2);
+//			 factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
+//			 ServletContext context = request.getServletContext();
+//			 String uploadFolder = context.getRealPath("/") + File.separator + "data";
+//			 ServletFileUpload upload = new ServletFileUpload(factory);
+//			 upload.setSizeMax(1024 * 1024);
+//			 try {
+//				 List items = upload.parseRequest(request);
+//		            Iterator iter = items.iterator();
+//		            while (iter.hasNext()) {
+//		                FileItem item = (FileItem) iter.next();
+//
+//		                if (!item.isFormField()) {
+//		                    String fileName = new File(item.getName()).getName();
+//		                    String filePath = uploadFolder + File.separator + fileName;
+//		                    File uploadedFile = new File(filePath);
+//		                    System.out.println(filePath);
+//		                    // saves the file to upload directory
+//		                    item.write(uploadedFile);
+//		                }
+//		            }
+//			 }
 		
 		String firstName=request.getParameter("firstName"), 
 				lastName=request.getParameter("lastName"), 
@@ -239,12 +304,11 @@ public class JobSeekerController {
 
 	//DASHBOARD - GET
 	@RequestMapping(value="/jobseeker/{username}/dashboard",method=RequestMethod.GET)
-	public String jobSeekerDashBoard(@ModelAttribute("selfIntroduction") String selfIntroduction,
-									 @ModelAttribute("firstName") String firstName,
-									 @ModelAttribute("lastName") String lastName,
-									 @ModelAttribute("picture") String picture,
-									 @ModelAttribute("topJobs") ArrayList<JobPosting> topJobs,
-									 @PathVariable String username ){
+	public String jobSeekerDashBoard(@PathVariable String username, ModelMap map){
+		
+		JobSeeker jobSeeker = jobSeekerService.getJobSeeker(username);
+		
+		
 		System.out.println("Inside GET Jobseeker dashboard");
 		System.out.println("username: "+username);
 		System.out.println("httpsession getAttribute: "+httpSession.getAttribute(username));
@@ -252,6 +316,11 @@ public class JobSeekerController {
 		if(httpSession.getAttribute("username") == null || !httpSession.getAttribute("username").equals(username)){
 			return "redirect:/jobseeker/login";
 		}
+		map.addAttribute("topJobs",jobService.getTop10NewJobListings());
+		map.addAttribute("firstName", jobSeeker.getFirstName());
+		map.addAttribute("lastName", jobSeeker.getLastName());
+		map.addAttribute("picture",jobSeeker.getPicture());
+		map.addAttribute("selfIntroduction", jobSeeker.getSelfIntroduction());
 		return "jobseeker-dashboard";
 	}
 	
