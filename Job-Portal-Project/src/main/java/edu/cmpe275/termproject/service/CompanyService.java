@@ -47,7 +47,7 @@ public class CompanyService {
 		}
 	}
 	//Sets the email verification status to true
-	public boolean findByEmail(String email){
+	public boolean saveCompanytoDAO(String email){
 		Company company = companyDao.findByEmail(email);
 		if (company != null){
 			company.setVerified();

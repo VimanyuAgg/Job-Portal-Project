@@ -164,6 +164,9 @@ backhround: #f2f5f6;
 <div class="container" style="background-color:#f2f5f6" style="padding-top:30cm">
 <BR><BR>
 <div name="head"><h3 style="margin-left:28%">Hi, ${name}. Please enter One Time Password</h3></div><br>
+<c:if test="${(\"true\").equals(isBadOTP)}">
+    <div><p align="center"><c:out value = "${badOTP}"></c:out></p></div>
+    </c:if>
 <%-- <h3 style="margin-left:30%">Hi! ${name}</h3></div><br>
  --%><form method="POST" action="/company/authentication">
 
