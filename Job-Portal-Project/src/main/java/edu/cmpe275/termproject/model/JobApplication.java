@@ -31,7 +31,7 @@ public class JobApplication {
 	@Id
 	@Column(name="APPLICATION_ID")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private String id;
 	
 	@Column(name="APPLICATION_STATUS")
 	private String status;
@@ -51,11 +51,11 @@ public class JobApplication {
 	@Lob
 	private byte[] resume;
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
