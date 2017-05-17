@@ -4,14 +4,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head> 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>-->
+
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/company-registration.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jobseeker-registration.js"></script>
 <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
 <script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
 
@@ -88,14 +92,14 @@ padding: 0;
 }
 
 </style>
-<script type="text/javascript">
+<script>
 $(document).ready(function() {
 	
 	$('#email').blur(function ()
     { 
 		if($("#email").val() == "" || $("#email").val() == null){
 			$('#output').html("");
-			alert("emailnull");
+			//alert("emailnull");
 		}
 		else{
 			$.ajax({
@@ -251,15 +255,17 @@ $(document).ready(function() {
 		
 		<div class="form-group row">
 		    <div class="col-md-4"></div>
-		    <input class="col-md-3 form-control field" type="text" id="email" name="email" placeholder="Enter your email ID" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required><div id="output"></div>
+		    <input class="col-md-3 form-control field" type="email" id="email" name="email" placeholder="Enter your email ID" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
+		    <div id="output"></div>
 		</div>
 		<div class="form-group row">
 		    <div class="col-md-4"></div>
-		    <input class="col-md-3 form-control field" type="password" title="at least eight symbols containing at least one number, one lower, and one upper letter" id="password" name="password" placeholder="Type your password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+		    <input class="col-md-3 form-control field" type="password" id="password" title="at least eight symbols containing at least one number, one lower, and one upper letter" name="password" placeholder="Type your password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
 		</div>
 		<div class="form-group row">
 		    <div class="col-md-4"></div>
 		    <input class="col-md-3 form-control field" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd" required>
+			<div id="divCheckPasswordMatch"></div>
 		</div>
 		
 		<div class="form-group row">

@@ -1,4 +1,5 @@
 function checkPasswordMatch() {
+	//alert("passwordInput");
     var password = $("#password").val();
     var confirmPassword = $("#confirmPassword").val();
     if ($("#password").val() == "" || $("#password").val() == null)
