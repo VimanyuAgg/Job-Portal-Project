@@ -54,6 +54,10 @@ $(document).ready(function() {
 
 });
 </script>
+<script>
+  UPLOADCARE_PUBLIC_KEY = "fa5724d4e1f724578152";
+</script>
+<script charset="utf-8" src="//ucarecdn.com/libs/widget/2.10.3/uploadcare.full.min.js"></script>
 <title>Edit your profile</title>
  
 <style>
@@ -279,14 +283,18 @@ backhround: #eaedef;
 <div class="form-group row">
 <label for="lastName" class="col-sm-2 col-form-label">Profile picture:</label>
     <div class="col-sm-6">
-    
+<%--     
 <div class="col-md-2 rounder image-upload">
     <label for="file-input">
         <img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
     </label>
 
     <input id="file-input" type="file" onchange="encodeImageFileAsURL(this)" name="picture"/>
-</div>
+</div> --%>
+	   <div class="form-group row">
+			<div class="col-md-4"></div>
+			<input type="hidden" id="file-input2" role="uploadcare-uploader" name="picture" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
+		</div>
 </div>
 </div>
 
@@ -320,18 +328,11 @@ backhround: #eaedef;
 
 <div class="form-group row">
  <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
-<select class="ui dropdown" name="workExperience" >
+<select  class="ui dropdown" name="workExperience" >
   <option value="">Work Experience</option>
   <option value="level1"> less 1 Year </option>
   <option value="level2"> 1-3 years</option>
   <option value="level3">More than 3 years</option>
- <label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>&nbsp;&nbsp;&nbsp;
-<select class="col-md-2 ui dropdown">
-  <option name="workExperience" selected disabled value="">Work Experience</option>
-  <option name="workExperience" value="level1"> less 1 Year </option>
-  <option name="workExperience" value="level2"> 1-3 years</option>
-  <option name="workExperience" value="level3">More than 3 years</option>
-
 </select>
  </div>
 </div> 

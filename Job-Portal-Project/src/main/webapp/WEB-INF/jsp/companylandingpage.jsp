@@ -4,156 +4,336 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Spring Onions</title>
-    <meta name="description" content="Spring Onions">
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+ <title>Dashboard!</title>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/company-registration.js"></script>
+<%-- 	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
+ --%>	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%--     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"></link>
+ --%>    
 <style>
-.cliente {
-    margin-top:10px;
-    border: #cdcdcd medium solid;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-}
-.jobPost {
-    margin-top:10px;
-    border: #cdcdcd;
-    box-shadow: 5px 5px grey;
-}
-    
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
+
+body{
+	background-color: #eaedef;
+	background-image: url("1.jpg");
 }
 
-.container1 {
-    padding: 0 16px;
+.head{
+	height: 80px;
+	background-color: #62C192;
 }
 
-.title {
-    color: grey;
-    font-size: 18px;
+.rounder{
+	border-radius: 50%;
 }
 
-button {
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
+.field{
+	background: #f2f5f6;
+	border-style: none;
+	border-bottom-style: solid;
+	border-bottom-width: .5px;
+	border-bottom-color: #62C192;
+}
+
+.field:focus {
+  border-color: #62C192;
+  box-shadow: #62C192;  
+}
+
+.btn1{
+	background-color: #62C192;
+	border-color: #62C192;
+	margin-left: 70px;
+}
+
+.btn1: hover{
+	background-color: #62C192;
+	border-color: #62C192;
+}
+
+h1{
+	margin-left: 520px;
+}
+
+#error{
+	text-align: middle;
+}
+html,
+body{
+margin:0;
+padding: 0;
+backhround: #eaedef;
+}
+
+.btn{
+    background: #163aaf;
+	color: white;   
+}
+.btn1{
+	background: #62C192;
+}
+
+.nv{
+	background-color: #163aaf!Important;
+}
+
+.wh{
+	color: white!Important;
+}
+
+.ack{
+	margin-left: 30%;
+}
+
+
+
+.sidebar{
+	background-color: #d1dbff;
+	height: 400px;
+	width: 100%;
+}
+
+.dp{
+	margin-top: 30px;
+	vertical-align:middle;
+	margin-left: 12%;
+	/*  border-radius: 50%; */
+}
+
+.comp{
+	font-size: 14px;
+}
+
+.outer{
+	margin-top: 60px;
+}
+
+.name{
+	text-align: center;
+  	margin: 0 auto;
+	width: 200px;
+	margin-top: 10px;
+}
+
+.data{
+	margin-left: 100px;
+    min-width: 100%;
+    width: 657px;
+}
+
+.desc{
+
+}
+
+.item{
+	min-height: 100px;
+	width: 100%;
+	background-color: #d1dbff;
+	margin-left: 5px;
+	margin-top: 10px;
+	min-height: 100px;
+	padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.cl{
+	width: 69px;
+	height: 69px;
+	border-radius: 50%;
+	margin-left: 8px;
+	margin-top: 8px;
+}
+
+.headd{
+	float: left;
+}
+
+.pagination{
+	margin-left: 42%;
+}
+
+
+.pagination li
+{
+    list-style:none;  
+    float:left;
+    width : 35px;
+    height: 30px;
+    border: .5px solid #163aaf;
+    background-color:white;
+    color: #163aaf;
+    text-align:center;
+    cursor:pointer;
+    margin: 2px;
+}
+
+.pagination li:hover
+{
+    background-color: #163aaf;
+    border:1px solid #163aaf;
     color: white;
-    background-color: #000;
-    text-align: center;
-    cursor: pointer;
-    width: 100%;
-    font-size: 18px;
 }
 
-a {
-    text-decoration: none;
-    font-size: 22px;
-    color: black;
+.pagination ul
+{
+    border: 0px;
+    padding: 0px;
 }
 
-button:hover, a:hover {
-    opacity: 0.7;
+.active-class
+{
+	background-color: #163aaf !important;
+    border:.4 px solid #163aaf !important;
+    color: white !important;	
 }
 
+.desc2{
+	float: left;
+}
 </style>
 
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
-    <div class="container">
-        <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <!-- <a href="#jobSeekerProfile" class="btn btn-warning navbar-btn navbar-right"><i class="icomoon icon-stack"></i></a>
-         --></div>
-        <!--Navbar-header-->
-        <div class="collapse navbar-collapse" id="navbar-collapse">
-        
-        <a href="/jobseeker/logout" class="btn btn-warning navbar-btn navbar-right">logout<span class="glyphicon glyphicon-log-in"></span></a>
 
-            <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-       
-                <li><a href="/jobseeker/profile">Profile</a></li>
-                <li style="color:#9d9d9d">
-       		
-       		    <form class="navbar-form"  action="/positions" method="GET" id="jobForm">
-       		    <div class="input-group">
-       
-                <a href="#" onclick="document.getElementById('jobForm').submit();">Job</a>
-            
-                 </div>   
-                </form> </li>
-       		</ul>
-                
-                <div class="col-sm-3 col-md-3">
-        <form class="navbar-form" role="search">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="text-search">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-            </div>
-        </div>
-        </form>
-    </div>            
-    <ul class="nav navbar-nav"><li style="color:grey; padding-left:350px"><a>Welcome, ${sessionScope.username}</a></li></ul>
-        </div>
-        
-        
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded nv" style="height: 70px">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="container">
+	  <a class="navbar-brand wh" href="#">Spring Onions</a>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav ml-auto">
+	      
+	      <li class="nav-item active dropdown">
+	        <a class="nav-link dropdown-toggle wh" data-toggle="dropdown">
+	          My Account
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/postjob">Post a New Job</a>
+		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/managejobs">Manage Current Jobs</a>
+	        </div>
+	      <!-- <li class="nav-item active">
+	     	<form id="jobs" action="/positions/searchByFields" method="POST">
+	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
+	      </li> -->
+	     
+	       <li class="nav-item active">
+	        <a class="nav-link mr-sm-2 wh" href="/logout">Log Out <span class="sr-only">(current)</span></a>
+	      </li>
 
-    </div> <!-- End container-->
+	    </ul>
+	  </div>
+</div>
+
+</nav>
 
 
-</nav> <!--End navbar-->
-
-<div class="container">
-  <div class="jumbotron">
-    <h1 style="text-align:center">Spring Onions</h1>   
-    </div>
-    </div>
-
-<!-- Start of container -->
-<div class="container">
-  <div class="row text-center">
-    <div class="col-sm-4">
-    <div class="card">
-
-  <%-- <img src="${pageContext.request.contextPath}/img/user-200.png" alt="John" style="width:100%"> --%>
-
-    
+<div class="row outer">
+	
+		<div class="col-md-1"></div>
+		<div class="col-md-2 sidebar" style="text-align">
+			<!-- side bar for profile review -->
+			<img class="img-responsive dp" src="${logoImageUrl}" width="75%">
+		
+			<div class="name"><%=session.getAttribute("companyName")%></div>
+ 			<br>
+			<div class="name">${address}</div>
+			<div class="name">${website}</div>
+		</div>
+		
+				<div class="col-md-7">
+		<!-- job card section -->
+		<form action="/positions/applicants" method="GET">
+				  	    						<input type="hidden" name="jobId" id="jd"/>
+		
+			<table class="table list-of-posts">
+		 		<thead>
+					<tr>
+			      		<th>Your Job History</th>
+			    	</tr>
+			    </thead>
+			    
+				<c:forEach items="${jobs}" var="job">
+		  	    <tbody>
+		  	    	<tr class="row item post">
+		  	    		<td style="max-width: 100px">
+		  	    			<img class="img-responsive cl" src="${job.jobPostedByCompany.getLogoUrl()}">
+		  	    			<br>
+		  	    			<div class="data" style="color:grey">
+		  	    				<div class="desc">
+		  	    					Description<br>
+		  	    					<c:out value="${job.getJobDescription()}" />
+		  	    				</div>
+		  	    				
+		  	    				<div class="desc">
+		  	    					Responsibilities<br>
+		  	    					<c:out value="${job.getJobResponsibilities()}" />
+		  	    				</div>
+		  	    				
+		  	    				<div class="desc">
+		  	    					Location: <c:out value="${job.getJobLocation()}" />
+		  	    				</div>
+		  	    				
+		  	    				<div class="desc">
+		  	    					Posted On: <c:out value="${job.getPostedOn()}" />
+		  	    				</div>
+		  	    				
+		  	    				<%-- <div class="desc">
+		  	    					Eligibility: <c:out value="${topJobValue.getEligibility()}" />
+		  	    				</div>
+		  	    				 --%>
+		  	    				 <br>
+		  	    				<div class="desc desc2">
+		  	    					<%-- <form action="/positions/${job.getJobId()}" method="GET">
+ 			  	    					<input type="submit" class="btn" value="Learn More"/>
+			  	    				</form> --%>
  
-    <%-- <div class="row text-center">${username}: <p>Vim</p></div>
-      <div class="row text-center">${selfIntroduction}:<p>Yeda</p></div>
- --%>
+		  	    						<input type="submit" class="btn" onclick="setJobId('${job.getJobId()}')" value="View Applicants!"/>
+		  	    				</div>
+		  	    				
+		  	    			</div>
+		  	    		</td>
+		  	    		
+		  	    		<td style="padding-top: 24px;font-size: 21px;">
+		  	    			<c:out value="${job.getJobTitle()}" /><br>
+		  	    			<c:out value="${job.getJobId()}" /><br>
+		  	    		</td>
+				    </tr>	    
+			    </tbody>
+			    </c:forEach>
+			</table>
+		  	    					</form>
+			
+		
+		</div>	
+	
 
-   <img src="${logoImageUrl}" alt="John" height="50%" width="50%">
-  
-  <div class="container1">
-   <h5> <p class="title">Welcome <%=session.getAttribute("companyName")%></p></h5>
-   <p align="center">${address}</p>
-   <p align="center">${website}</p>
-  </div>
-  </div>
-  </div>
+		<div class="col-md-2">
+		<!-- right section -->
+	
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-2"></div>
+		
+		<div class="col-md-7">
+			<div class="pagination"></div>
+		</div>
+	</div>
+
+
+
+<!-- 
+
  <div class="col-sm-8">
       <div class="jobPost" style=
     "width: 880px;">
@@ -177,8 +357,6 @@ button:hover, a:hover {
 	  <c:forEach items="${jobs}" var="job">
 	  <tbody>
   	    <tr>
-	      <td><c:out value="${job.getJobId()}" /></td>
-	      <td><c:out value="${job.getJobTitle()}" /></td>
 	      <td><c:out value="${job.getJobResponsibilities()}" /></td>
 	      <td><c:out value="${job.getJobDescription()}" /></td>
 	      <td><c:out value="${job.getJobSalary()}" /></td>
@@ -209,8 +387,7 @@ button:hover, a:hover {
 </div>
 </div></div>
  
-  </div>
-  </div>
+ -->
 <script>
 	function setJobId(val){
 		var a  = document.getElementById("jd");
@@ -225,31 +402,12 @@ button:hover, a:hover {
 </script>
 
 
-<%-- 
 
-<h1>Positions Posted:</h1>
-<table>
- <tr>
-      <td>Job Id</td>
-      <td>Job Title</td>
-      <td>Status</td>
-      
-    </tr>
-  <c:forEach items="${positions}" var="position">
-    <tr>
-      <td><a href="/company/<%=session.getAttribute("companyId")%>/positions/${position.getJobId()}"><c:out value="${position.getJobId()}" /></a></td>
-      <td><c:out value="${position.getJobTitle()}" /></td>
-            <td><c:out value="${position.getJobStatus()}" /></td>
-    </tr>
-  </c:forEach>
-</table>
- <form method="GET" action="/company/<%=session.getAttribute("companyId")%>/addjob">
-	<input type="submit" value="Post a new position"/>
-</form>
-<form method="GET" action="/company/<%=session.getAttribute("companyId")%>/profile">
-	<input type="submit" value="My Account"/>
-</form>
---%>
+<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+<script src="${pageContext.request.contextPath}/js/paginate.js"></script>
+<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  
  </body>
 </html>
