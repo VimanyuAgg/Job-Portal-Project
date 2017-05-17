@@ -351,10 +351,10 @@ public class CompanyController {
 		company.setAddress(request.getParameter("address"));
 		company.setDescription(request.getParameter("description"));
 		company.setLogoUrl(request.getParameter("logoImageUrl"));
-		companyService.registerCompany(company);
+		companyService.updateCompany(company);
 		System.out.println("I am website:"+company.getWebsite());
 		map.addAttribute("company",company);
-		return "companyprofile";
+		return "redirect:/company/"+companyId+"/welcome";
 	}
 	
 	@RequestMapping(value="/company/{companyId}/managejobs", method=RequestMethod.GET)

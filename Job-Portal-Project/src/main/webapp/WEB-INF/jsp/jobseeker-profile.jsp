@@ -120,7 +120,7 @@ $(document).ready(function() {
 		<br><br>
 <div class="container">		
 
-<form method="POST" action="/jobseeker/register">
+<form method="POST" action="/jobseeker/<%=session.getAttribute("username")%>/update">
 <div class="form-group row">
 <label for="lastName" class="col-sm-2 col-form-label">Profile picture:</label>
     <div class="col-sm-6">

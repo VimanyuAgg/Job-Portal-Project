@@ -63,7 +63,7 @@ body{
 }
 
 h1{
-    margin-left: 520px;
+  text-align:center;
 }
 
 #error{
@@ -98,34 +98,21 @@ padding: 0;
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="container">
+    <div class="container">
       <a class="navbar-brand wh" href="#">Spring Onions</a>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle wh" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Login
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/jobseeker/login">Login as User</a>
-              <a class="dropdown-item" href="/company/login">Login as Company</a>
-            </div>
-          </li>
-          
-          <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle wh" data-toggle="dropdown">
-              Register
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/jobseeker/register">Register as User</a>
-              <a class="dropdown-item" href="/company/register">Register as Company</a>
-            </div>
-          </li>
-          
-           <li class="nav-item active">
-            <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
-          </li>
+	      <ul class="ml-auto navbar-nav"> 
+	      <li class="nav-item active ">
+ 			 <a class="nav-link mr-sm-2 wh">
+	     <%=session.getAttribute("companyName")%></a>
+	      </li>
+	       <li class="nav-item active">
+      		 <a class="nav-link mr-sm-2 wh" href="/company/<%=session.getAttribute("companyId")%>/welcome">My Account <span class="sr-only">(current)</span></a>
+	      </li>
+	       <li class="nav-item active">
+	        <a class="nav-link mr-sm-2 wh" href="/logout">Log Out <span class="sr-only">(current)</span></a>
+	      </li>
         </ul>
       </div>
 </div>
@@ -134,25 +121,10 @@ padding: 0;
 
 <br>
 <div class="container">
-		
-		<div>
 <h1>Job Post Form</h1>
 <form method="POST" action="/company/${companyId}/addjob">
 	<p>Job Id</p>
-
-	<input type="text" name="jobId" />
-	<p>Title</p>
-	<input type="text" name="title" />
-	<p>Description</p>
-	<input type="text" name="description" />
-	<p>Responsibilities</p>
-	<input type="text" name="responsibilities" />
-	<p>Office location</p>
-	<input type="number" name="location" />
-	<p>Salary</p>
-	<input type="text" name="salary" />
-
-	<input type="text" name="jobId" required/>
+	<input type="text" name="jobId" placeholder="#Job Id" required/>
 	<p>Title:</p><p> <input type="text" name="title" placeholder="Job Title" required /></p>
 			<p>Location:</p><p> <input type="text" name="location" placeholder="Job Location" /></p>
 			<p>Description:</p>
@@ -163,10 +135,12 @@ padding: 0;
 			
 		    <textarea class="form-control" rows="4" cols="50" name="responsibilities" placeholder="Responsibilites!"></textarea>
 			
-			<p>Salary:</p><p><input type="text"name="salary"  placeholder="Salary Offered"/> </p>
+			<p>Salary:</p><p><input type="number"name="salary"  placeholder="Salary Offered in USD"/> </p>
 	<p>Eligibility</p>
-	<input type="text" name="eligibility" />
-	<input type="submit"/>
+	<input type="text" name="eligibility" placeholder="Eligibility" />
+	<p>
+	<input type="submit" class = "btn btn-primary btn1" value="Post Job" style=" margin: auto;align-self: center;display: block;"/>
+	</p>
 </form>
 </body>
 </html>
