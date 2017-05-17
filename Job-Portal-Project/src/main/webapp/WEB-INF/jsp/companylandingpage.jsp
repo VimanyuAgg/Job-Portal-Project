@@ -251,6 +251,8 @@ backhround: #eaedef;
 		
 				<div class="col-md-7">
 		<!-- job card section -->
+		<form action="/positions/applicants" method="GET">
+				  	    						<input type="hidden" name="jobId" id="jd"/>
 		
 			<table class="table list-of-posts">
 		 		<thead>
@@ -294,10 +296,7 @@ backhround: #eaedef;
  			  	    					<input type="submit" class="btn" value="Learn More"/>
 			  	    				</form> --%>
  
-		  	    					<form action="/positions/applicants" method="GET">
-		  	    						<input type="hidden" name="jobId" id="jd"/>
 		  	    						<input type="submit" class="btn" onclick="setJobId('${job.getJobId()}')" value="View Applicants!"/>
-		  	    					</form>
 		  	    				</div>
 		  	    				
 		  	    			</div>
@@ -311,6 +310,7 @@ backhround: #eaedef;
 			    </tbody>
 			    </c:forEach>
 			</table>
+		  	    					</form>
 			
 		
 		</div>	
