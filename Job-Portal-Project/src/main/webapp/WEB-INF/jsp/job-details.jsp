@@ -24,146 +24,238 @@
 
 <style>
 
-
 body{
-    background-color: #f2f5f6;
+	background-color: #eaedef;
+	background-image: url("1.jpg");
 }
 
 .head{
-    height: 80px;
-    background-color: #62C192;
+	height: 80px;
+	background-color: #62C192;
 }
 
+
 .rounder{
-    border-radius: 50%;
+	border-radius: 50%;
 }
 
 .field{
-    background: #f2f5f6;
-    border-style: none;
-    border-bottom-style: solid;
-    border-bottom-width: .5px;
-    border-bottom-color: #62C192;
+	background: #f2f5f6;
+	border-style: none;
+	border-bottom-style: solid;
+	border-bottom-width: .5px;
+	border-bottom-color: #163aaf;
 }
 
 .field:focus {
-  border-color: #62C192;
-  box-shadow: #62C192;  
+  border-color: #163aaf;
+  box-shadow: #163aaf;  
 }
 
 .btn1{
-    background-color: #62C192;
-    border-color: #62C192;
-    margin-left: 70px;
+	background-color: #163aaf;
+	border-color: #62C192;
+	margin-left: 60%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
 }
-
 .btn1: hover{
-    background-color: #62C192;
-    border-color: #62C192;
+	background-color: #163aaf;
+	border-color: #163aaf;
 }
 
 h1{
-    margin-left: 520px;
+	margin-left: 30%;
 }
 
 #error{
-    text-align: middle;
+	text-align: middle;
 }
-
+html,
 body{
 margin:0;
 padding: 0;
-}
-
-.btn1{
-    background: #62C192;
+backhround: #eaedef;
 }
 
 .nv{
-    background-color: black!Important;
+	background-color: #163aaf!Important;
 }
 
 .wh{
-    color: white!Important;
+	color: white!Important;
 }
 
 .ack{
-    margin-left: 30%;
+	margin-left: 30%;
 }
 
+
+
+.sidebar{
+	background-color: #d1dbff;
+	height: 400px;
+	width: 100%;
+}
+
+.dp{
+	margin-top: 30px;
+	margin-left: 33%;
+	border-radius: 50%;
+}
+
+.comp{
+	font-size: 14px;
+}
+
+.outer{
+	margin-top: 60px;
+}
+
+.name{
+	text-align: center;
+  	margin: 0 auto;
+	width: 200px;
+	margin-top: 10px;
+}
+
+.data{
+	margin-left: 100px;
+    min-width: 100%;
+    width: 657px;
+}
+
+.desc{
+
+}
+
+.item{
+	min-height: 100px;
+	width: 100%;
+	background-color: #d1dbff;
+	margin-left: 5px;
+	margin-top: 10px;
+	min-height: 100px;
+	padding-bottom: 10px;
+}
+
+.cl{
+	width: 69px;
+	height: 69px;
+	border-radius: 50%;
+	margin-left: 8px;
+	margin-top: 8px;
+}
+
+.headd{
+	float: left;
+}
+
+.block{
+	background-color: #d1dbff;
+	padding 20px;
+	min-height: 100px;
+	margin: 10px;
+}
 </style>
 	<body>
-	<nav class="navbar navbar-toggleable-md navbar-light bg-faded nv">
+	<nav class="navbar navbar-toggleable-md navbar-light bg-faded nv" style="height: 70px">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-      <a class="navbar-brand wh" href="#">Spring Onions</a>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle wh" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Login
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/jobseeker/login">Login as User</a>
-              <a class="dropdown-item" href="/company/login">Login as Company</a>
-            </div>
-          </li>
-          
-          <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle wh" data-toggle="dropdown">
-              Register
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/jobseeker/register">Register as User</a>
-              <a class="dropdown-item" href="/company/register">Register as Company</a>
-            </div>
-          </li>
-          
-           <li class="nav-item active">
-            <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-      </div>
+	  <a class="navbar-brand wh" href="#">Spring Onions</a>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav ml-auto">
+	      
+	      <li class="nav-item active dropdown">
+	        <a class="nav-link dropdown-toggle wh" data-toggle="dropdown">
+	          My Account
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
+	          <a class="dropdown-item" href="/company/register">View Job History</a>
+	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
+	        </div>
+	      </li>
+	      
+	       <li class="nav-item active">
+	        <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
+	      </li>
+	    </ul>
+	  </div>
 </div>
 
 </nav>
-
 <br>
 <div class="container">
-	<h1>Job Details</h1>
 		
-		<div>
-		<form action="/positions/applyjob" method="POST" enctype="multipart/form-data">
-			<input type="hidden" name="email" value="<%= session.getAttribute("email") %>"/>
-			<input type="hidden" name="jobId" id="jd"/>
-			<input type="hidden" name="profile" value="false" id="pf"/>
-			<input type="hidden" name="resume" value="true"  id="rs"/>
-			<p>Req. No: ${job.getJobId()}</p>
-			<p>Company: ${job.getJobPostedByCompany().getCompanyName()}</p>
-			<p>Status: ${job.getJobStatus()}</p>
-			<p>Title: ${job.getJobTitle()}</p>
-			<p>Location: ${job.getJobLocation()}</p>
-			<p>Description: ${job.getJobDescription()}</p>
-			<p>Salary: ${job.getJobSalary()}</p>
-			<table>
-			<tr>
-				<td>Apply with Profile</td>
-      			<td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${job.getJobId()}')"/></td>
-      			
-      		</tr>
-      		<tr>
-      			<td>Apply with Resume</td>
-	      		<td><input type="file" name="${job.getJobId()}" id="${job.getJobId()}" onclick="resumeUpload('${job.getJobId()}')"/></td>
-	      		<td><input type="submit" class = "btn btn-primary btn1" value="Apply Now!"/></td>
-	    	</tr>
-      		</table>
-		 	
-		</form>
-		
-		</div>
+		<div class="row ">
+			<div class="col-md-3"></div>
+			<div class="col-md-5 block">
+				<h1>Job Details</h1>
+				<form action="/positions/applyjob" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="email" value="<%= session.getAttribute("email") %>"/>
+					<input type="hidden" name="jobId" id="jd"/>
+					<input type="hidden" name="profile" value="false" id="pf"/>
+					<input type="hidden" name="resume" value="true"  id="rs"/>
+					<table style="margin-left: 18%;">
+						<tr>
+							<td>Job ID</td>
+							<td>${job.getJobId()}</td>
+						</tr>
+						
+						<tr>
+							<td>Company Name</td>
+							<td>${job.getJobPostedByCompany().getCompanyName()}</td>
+						</tr>
+						
+						<tr>
+							<td>Status</td>
+							<td>${job.getJobStatus()}</td>
+						</tr>
+						
+						<tr>
+							<td>Title</td>
+							<td>${job.getJobTitle()}</td>
+						</tr>
+						
+						<tr>
+							<td>Location</td>
+							<td>${job.getJobLocation()}</td>
+						</tr>
+						
+						<tr>
+							<td>Description</td>
+							<td>${job.getJobDescription()}</td>
+						</tr>
+						
+						<tr>
+							<td>Salary</td>
+							<td>${job.getJobSalary()}</td>
+						</tr>
+						
+						<tr>
+						<td>Apply with Profile</td>
+		      			<td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${job.getJobId()}')"/></td>
+		      			
+			      		</tr>
+			      		<tr>
+			      			<td>Apply with Resume</td>
+				      		<td><input type="file" name="${job.getJobId()}" id="${job.getJobId()}" onclick="resumeUpload('${job.getJobId()}')"/></td>
+				    	</tr>
+						
+						<tr>
+							<td><input type="submit" class = "btn btn-primary btn1" value="Apply Now!"/></td>
+						</tr>
+					</table>
+					
+				 	
+				</form>
+			</div>
+			<div class="col-md-3"></div>
 </div>
 <script>
 	function disableResumeButton(obj, val){
