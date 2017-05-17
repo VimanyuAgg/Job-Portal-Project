@@ -337,6 +337,7 @@ button:hover, a:hover {
 	      <td><c:out value="${topJobValue.getJobSalary()}" /></td>
 	      <td><c:out value="${topJobValue.getPostedOn()}" /></td>
 	      <td><c:out value="${topJobValue.getEligibility()}" /></td>
+
 	      <%-- <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
 	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
 	       --%><td>

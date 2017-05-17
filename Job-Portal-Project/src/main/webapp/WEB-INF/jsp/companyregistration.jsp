@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.js"></script>
+
 	
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -23,6 +24,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style>
     body{
+
 	background-color: #f2f5f6;
 }
 
@@ -90,6 +92,7 @@ backhround: #f2f5f6;
 }
     </style>
     
+
     <!-- <script type="text/javascript">
         $(document).ready(function() {
             $('#email').keyup(function ()
@@ -129,6 +132,7 @@ backhround: #f2f5f6;
 		<!-- <div class="header head"></div>-->
 		<nav class="navbar navbar-toggleable-md navbar-light bg-faded nv">
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
@@ -162,11 +166,13 @@ backhround: #f2f5f6;
 	    </ul>
 	  </div>
 </div>
+
 </nav>
 		<div class="logo" style="margin-left: 40%">Register Here!</div>
 		<br>
 		<!-- <h1>Register Here!</h1>
 		<br><br> -->
+
 		<form method="POST" action="/company/register">
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
@@ -177,8 +183,6 @@ backhround: #f2f5f6;
 			    <div class="col-md-4"></div>
 			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your  company website..." name="website">
 			</div>
-			
-			
 			
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
@@ -202,8 +206,9 @@ backhround: #f2f5f6;
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
 			    <label for="file-input">
-        	<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/company-201.jpg" height="90px" width="90px"/>
+        			<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/company-201.jpg" height="90px" width="90px"/>
     			</label>
+
 			    <!-- <input class="col-md-3 form-control field" type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl"> -->
 				 <input type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl">
 			</div>
@@ -213,11 +218,6 @@ backhround: #f2f5f6;
 				<button id="mySubmit" type="submit" class="col-md-2 btn btn-primary btn1">Submit</button>		
 			</div>
 		</form>
-		
-		 
-		
-	
-	
 	</body>
 
 </html>
