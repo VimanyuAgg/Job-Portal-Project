@@ -51,6 +51,7 @@ public class CompanyController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 		public String redirectToHome(){
+			System.out.println("In REDITECT TO HOMMMEEEE");
 			return "redirect:/in";
 		}
 	
@@ -178,6 +179,7 @@ public class CompanyController {
 	public String companyLandingPage(@PathVariable long companyId, 
 			HttpServletRequest request, ModelMap map){
 		
+		System.out.println("I am in Welocmeeeeeeeee");
 		System.out.println("inside companyLandingPage");
 		System.out.println("companyId "+companyId);
 		if(session.getAttribute("companyId")!=null){

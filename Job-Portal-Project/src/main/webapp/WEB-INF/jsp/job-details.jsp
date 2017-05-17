@@ -135,12 +135,14 @@ padding: 0;
 <div class="container">
 	<h1>Job Details</h1>
 		
+		<div>
 		<form action="/positions/applyjob" method="POST" enctype="multipart/form-data">
 			<input type="hidden" name="email" value="<%= session.getAttribute("email") %>"/>
 			<input type="hidden" name="jobId" id="jd"/>
 			<input type="hidden" name="profile" value="false" id="pf"/>
 			<input type="hidden" name="resume" value="true"  id="rs"/>
 			<p>Req. No: ${job.getJobId()}</p>
+			<p>Company: ${job.getJobPostedByCompany().getCompanyName()}</p>
 			<p>Status: ${job.getJobStatus()}</p>
 			<p>Title: ${job.getJobTitle()}</p>
 			<p>Location: ${job.getJobLocation()}</p>
@@ -149,17 +151,19 @@ padding: 0;
 			<table>
 			<tr>
 				<td>Apply with Profile</td>
-      			<td>Apply with Resume</td>
+      			<td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${job.getJobId()}')"/></td>
+      			
       		</tr>
       		<tr>
-      			<td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${job.getJobId()}')"/></td>
+      			<td>Apply with Resume</td>
 	      		<td><input type="file" name="${job.getJobId()}" id="${job.getJobId()}" onclick="resumeUpload('${job.getJobId()}')"/></td>
-	      		<td><input type="submit" value="Apply Now!"/></td>
+	      		<td><input type="submit" class = "btn btn-primary btn1" value="Apply Now!"/></td>
 	    	</tr>
       		</table>
 		 	
 		</form>
-
+		
+		</div>
 </div>
 <script>
 	function disableResumeButton(obj, val){
