@@ -113,11 +113,7 @@ public class JobApplicationController {
 	//  REquired jobId
 	@RequestMapping(value="/positions/applicants",method=RequestMethod.GET)
 	public String findApplicants(HttpServletRequest request, ModelMap map) throws ParseException{
-		System.out.println("session: "+session);
-		if(session == null || session.getAttribute("username") == null)
-		{
-			return "redirect:/jobseeker/login";
-		}
+		
 		System.out.println("inside findApplicants");
 		
 		String jobId = request.getParameter("jobId");
@@ -203,11 +199,7 @@ public class JobApplicationController {
 	
 	@RequestMapping(value="/updateApp",method=RequestMethod.GET)
 	public String updateApplications(HttpServletRequest request, ModelMap map){
-		System.out.println("session: "+session);
-		if(session == null || session.getAttribute("username") == null)
-		{
-			return "redirect:/jobseeker/login";
-		}
+		
 		System.out.println("inside updateApplications()");
 		
 		String cancel = request.getParameter("cancel"); //cancel is comma separated list of application id
