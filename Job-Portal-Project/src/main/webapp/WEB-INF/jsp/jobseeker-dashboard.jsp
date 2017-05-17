@@ -244,7 +244,7 @@ backhround: #eaedef;
 		<div class="col-md-1"></div>
 		<div class="col-md-2 sidebar" style="text-align">
 			<!-- side bar for profile review -->
-			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
+			<img class="img-responsive dp" src="${picture}" width="50%">
 		
 			<div class="name">${firstName}&nbsp;${lastName}</div>
  			<br>
@@ -266,7 +266,7 @@ backhround: #eaedef;
 		  	    <tbody>
 		  	    	<tr class="row item post">
 		  	    		<td style="max-width: 100px">
-		  	    			<img class="img-responsive cl" src="${pageContext.request.contextPath}/img/company-200.png">
+		  	    			<img class="img-responsive cl" src="${topJobValue.jobPostedByCompany.getLogoUrl()}">
 		  	    			<br>
 		  	    			<div class="data" style="color:grey">
 		  	    				<div class="desc">
