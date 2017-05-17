@@ -217,7 +217,7 @@ $(document).ready(function(){
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-	  <a class="navbar-brand wh" href="#">Spring Onions</a>
+	  <a class="navbar-brand wh" href="/jobseeker/<%=session.getAttribute("username")%>/dashboard">Spring Onions</a>
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
@@ -228,8 +228,8 @@ $(document).ready(function(){
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
-	          <a class="dropdown-item" href="/jobseeker/applications/<%=session.getAttribute("email")%>">View Applications</a>
-	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
+	     <%--      <a class="dropdown-item" href="/jobseeker/applications/<%=session.getAttribute("email")%>">View Applications</a>
+	          <a class="dropdown-item" href="/company/register">Edit Profile</a> --%>
 	        </div>
 	      </li>
 	       <li class="nav-item active">
