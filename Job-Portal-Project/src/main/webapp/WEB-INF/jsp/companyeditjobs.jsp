@@ -400,7 +400,7 @@ a.btn.bx:hover {
 	  	<p>Job Id: ${job.getJobId()}</p>
 	  	<p>Job Title:${job.getJobTitle()}</p>
 	  	<p>Responsibilities: ${job.getJobResponsibilities()}</p>
-	  	<p>Description: {job.getJobDescription()}</p>
+	  	<p>Description: ${job.getJobDescription()}</p>
 	  	<p>Salary: ${job.getJobSalary()}</p>
 	  	<p>Posted On: ${job.getPostedOn()}</p>
 	  	<p>Eligibility: ${job.getEligibility()}</p>

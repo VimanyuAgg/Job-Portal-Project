@@ -140,7 +140,7 @@ padding: 0;
 			<p>Location:</p><p> <input type="text" name="location" placeholder="Job Location" value=${job.getJobLocation()} /></p>
 			<p>Description:</p>
 			<p>
-			    <textarea class="form-control" rows="4" cols="50" name="description" placeholder="Breif description of the job!">${job.getJobDescription()}</textarea>
+			    <textarea class="form-control" rows="9" cols="50" name="description" placeholder="Breif description of the job!">${job.getJobDescription()}</textarea>
 			</p>
 			<p>Responsibilities:</p><p>
 			

@@ -266,11 +266,14 @@ backhround: #eaedef;
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body"><div id="form2" class="#collapse">
 <form action="/positions/searchByFields" method="POST">
-	Search By Title<input type="text" name="title" id="rs"/>
-	Search By Salary<input type="text" name="salary" id="rs"/>
-	Search By Date<input type="text" name="postedon" id="rs"/>
-	Search By Location<input type="text" name="location" id="rs"/>
-	Search By Status<input type="text" name="status" id="rs"/>
+	<table>
+	<tr><td>
+	<tr><td>Search By Title</td><td><input type="text" name="title" id="rs"/></td></tr>
+	<tr><td>Search By Salary</td><td><input type="text" name="salary" id="rs"/></td></tr>
+	<tr><td>Search By Date</td><td><input type="text" name="postedon" id="rs"/></td></tr>
+	<tr><td>Search By Location</td><td><input type="text" name="location" id="rs"/></td></tr>
+	<tr><td>Search By Status</td><td><input type="text" name="status" id="rs"/></td></tr>
+	</table>
 	<input type="submit" value="Search Now!"/>
 </form>
 </div></div>
@@ -302,14 +305,15 @@ backhround: #eaedef;
       <div id="collapse4" class="panel-collapse collapse">
         <div class="panel-body"><div id="form4" class="#collapse">
 <form action="/positions/universalsearch" method=POST>
-	Search By Free-Text<input type="text" name="searchString" />
-	Search By Title<input type="text" name="title" id="rs"/>
-	Search By Date<input type="text" name="postedon" id="rs"/>
-	Search By Location<input type="text" name="location" id="rs"/>
-	Search By Status<input type="text" name="status" id="rs"/>
-	Min Range<input type="text" name="min" />
-	Max Range<input type="text" name="max" />
-	
+	<table>
+	<tr><td>Search By Free-Text</td><td><input type="text" name="searchString" /></td></tr>
+	<tr><td>Search By Title</td><td><input type="text" name="title" id="rs"/></td></tr>
+	<tr><td>Search By Date</td><td><input type="text" name="postedon" id="rs"/></td></tr>
+	<tr><td>Search By Location</td><td><input type="text" name="location" id="rs"/></td></tr>
+	<tr><td>Search By Status</td><td><input type="text" name="status" id="rs"/></td></tr>
+	<tr><td>Min Range</td><td><input type="text" name="min" /></td></tr>
+	<tr><td>Max Range</td><td><input type="text" name="max" /></td></tr>
+	</table>
 	<input type="submit" value="Universal search"/>
 </form>
 </div></div>
