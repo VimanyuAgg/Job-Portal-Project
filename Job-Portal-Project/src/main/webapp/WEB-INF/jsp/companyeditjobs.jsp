@@ -136,53 +136,42 @@ padding: 0;
 
 </nav>
 
-<h4>Below are all the jobs your company has posted.</h4>
-<form action="/company/<%=session.getAttribute("companyId")%>/editjobs" method="POST">
-<input type="hidden" name="jobId" id="jd"/>
-	<table>
-	<thead>
-	 <tr>
-      <th style="text-align:center">Job Id</th>
-      <th style="text-align:center">Job Title</th>
-      <th style="text-align:center">Responsibilities</th>
-      <th style="text-align:center">Description</th>
-      <th style="text-align:center">Salary</th>
-      <th style="text-align:center">Posted On</th>
-      <th style="text-align:center">Eligibility</th>
-      <th style="text-align:center">Location</th>
-      <th style="text-align:center">Status</th>
-    </tr>
-          </thead>
+
+
+<div class="container">
+	<div class="row" style="padding-top:30px"></div>
+	<h4 align="center">Below are all the jobs your company has posted.</h4>
+	<br>
+	<hr>
+	<div max-width="100%">
+	<form action="/company/<%=session.getAttribute("companyId")%>/editjobs" method="POST" enctype="multipart/form-data">
+	<input type="hidden" name="jobId" id="jd"/>
     <tbody>
 	  <c:forEach items="${jobs}" var="job">
-  	    <tr>
-	      <td align=center><c:out value="${job.getJobId()}" /></td>
-	      <td align=center><c:out value="${job.getJobTitle()}" /></td>
-	      <td align=center><c:out value="${job.getJobResponsibilities()}" /></td>
-	      <td align=center><c:out value="${job.getJobDescription()}" /></td>
-	      <td align=center><c:out value="${job.getJobSalary()}" /></td>
-	      <td align=center><c:out value="${job.getPostedOn()}" /></td>
-	      <td align=center><c:out value="${job.getEligibility()}" /></td>
-	      <td align=center><c:out value="${job.getJobLocation()}" /></td>
-	      <td align=center><c:out value="${job.getJobStatus()}" /></td>
-	      <!-- <td align=center><input type="submit" onclick="setJobId('${job.getJobId()}')" value="Cancel Applicant!"/></td>
-  	      <td><a href="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit">Edit</a></td> -->
-	    </tr>
-	    <tr>
-	    	 		<td></td>
-	    	 		<td></td>
-	    	 		<td></td>
-	    	      <td align=center><input type="submit" onclick="setJobId('${job.getJobId()}')" value="Cancel Applicant!"/></td>
-	      	      <td></td>
-	      	      <td><a href="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit">Edit</a></td>
-	    			<td></td>
-	    			<td></td>
-	    			<td></td>
-	    </tr>
+	  	<p>Job Id: ${job.getJobId()}</p>
+	  	<p>Job Title:${job.getJobTitle()}</p>
+	  	<p>Responsibilities: ${job.getJobResponsibilities()}</p>
+	  	<p>Description: {job.getJobDescription()}</p>
+	  	<p>Salary: ${job.getJobSalary()}</p>
+	  	<p>Posted On: ${job.getPostedOn()}</p>
+	  	<p>Eligibility: ${job.getEligibility()}</p>
+	  	<p>Location: ${job.getJobLocation()}</p>
+	  	<p>Status: ${job.getJobStatus()}</p>
+	  	<table align="center">
+	  		<tr>
+	  			<td></td>
+	  			<td><p><a href="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit">Edit this Job Posting</a></p></td>
+	  			<td><input class="btn btn-primary btn1" type="submit" onclick="setJobId('${job.getJobId()}')" value="Remove Job"/></td>
+	  		</tr>
+	  	</table>
+	  	<hr>
 	  </c:forEach>
 	  </tbody>
-	</table>
 </form>
+	</div>
+
+</div>
+
 <script>
 	function setJobId(val){
 		var a = document.getElementById("jd");
