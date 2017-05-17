@@ -22,6 +22,10 @@
     <link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
     <script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script>
+  UPLOADCARE_PUBLIC_KEY = "fa5724d4e1f724578152";
+</script>
+<script charset="utf-8" src="//ucarecdn.com/libs/widget/2.10.3/uploadcare.full.min.js"></script>
     <style>
     body{
 
@@ -212,11 +216,12 @@ backhround: #f2f5f6;
 			<div class="form-group row">
 			    <div class="col-md-4"></div>
 			    <label for="file-input">
-        			<img class="rounder" id="defaultValue" name="logoImageUrl"  src="${pageContext.request.contextPath}/img/company-201.jpg" height="90px" width="90px"/>
+        			<%-- <img class="rounder" id="defaultValue" name="logoImageUrl"  src="${pageContext.request.contextPath}/img/company-201.jpg" height="90px" width="90px"/> --%>
+    			<p>Logo (Optional)</p><input type="hidden" id="file-input2" role="uploadcare-uploader" name="logoImageUrl" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
     			</label>
 
 			    <!-- <input class="col-md-3 form-control field" type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl"> -->
-				 <input type="file" onchange="encodeImageFileAsURL(this)" value="upload logo">
+				 <!-- <input type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"> -->
 			</div>
 			
 			<div class="form-group row">

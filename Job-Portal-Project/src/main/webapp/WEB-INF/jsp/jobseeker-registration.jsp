@@ -193,15 +193,18 @@ $(document).ready(function() {
 	<form method="POST" action="/jobseeker/register" enctype="multipart/form-data">
 	
 		
-		<div class="form-group row">
+		<div class=" row">
 		    <div class="col-md-4"></div>
-		    <label for="file-input">
-   				<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
-			</label>
+		    <p>Upload pic (Optional)</p>		    		
+	   </div>
 			<!-- <input id="file-input" type="file" onchange="encodeImageFileAsURL(#file-input2.value)" name="picture"/> -->
+	   <div class="form-group row">
+			<div class="col-md-4"></div>
 			<input type="hidden" id="file-input2" role="uploadcare-uploader" name="picture" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
-			
 		</div>
+			
+			
+		
 		
 		<%-- <div class="form-group row">
 			<label for="lastName" class="col-sm-2 col-form-label">Profile picture:</label>
