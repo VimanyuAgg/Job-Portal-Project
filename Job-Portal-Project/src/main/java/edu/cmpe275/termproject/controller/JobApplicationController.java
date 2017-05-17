@@ -37,12 +37,19 @@ public class JobApplicationController {
 	@Autowired
 	JobSeekerService jobSeekerService;
 
+	@Autowired
+	HttpSession session;
 	
 	// APPLY FOR JOB
 	// REQUIRED job id and job seeker username
 	@RequestMapping(value="/positions/applyjob",method=RequestMethod.POST)
 	public String applyJob(HttpServletRequest request, ModelMap map) throws ParseException{
-		HttpSession session=request.getSession();
+		System.out.println("session: "+session);
+		if(session != null && session.getAttribute("username") != null)
+		{
+			return "redirect:/jobseeker/login";
+		}
+		
 		String jobId = request.getParameter("jobId");
 		String email=(String) session.getAttribute("email");
 		System.out.println("Line 49");
@@ -106,7 +113,11 @@ public class JobApplicationController {
 	//  REquired jobId
 	@RequestMapping(value="/positions/applicants",method=RequestMethod.GET)
 	public String findApplicants(HttpServletRequest request, ModelMap map) throws ParseException{
-		
+		System.out.println("session: "+session);
+		if(session != null && session.getAttribute("username") != null)
+		{
+			return "redirect:/jobseeker/login";
+		}
 		System.out.println("inside findApplicants");
 		
 		String jobId = request.getParameter("jobId");
@@ -144,7 +155,11 @@ public class JobApplicationController {
 	
 	@RequestMapping(value="/jobseeker/app/{email}",method=RequestMethod.GET)
 	public String viewUserApps(@PathVariable String email, HttpServletRequest request, ModelMap map){
-		
+		System.out.println("session: "+session);
+		if(session != null && session.getAttribute("username") != null)
+		{
+			return "redirect:/jobseeker/login";
+		}
 		//jobApplicationService.findApplicants(jobId);
 		System.out.println("inside viewUserApps() checked");
 		System.out.println("email "+email);
@@ -187,7 +202,11 @@ public class JobApplicationController {
 	
 	@RequestMapping(value="/updateApp",method=RequestMethod.GET)
 	public String updateApplications(HttpServletRequest request, ModelMap map){
-		
+		System.out.println("session: "+session);
+		if(session != null && session.getAttribute("username") != null)
+		{
+			return "redirect:/jobseeker/login";
+		}
 		System.out.println("inside updateApplications()");
 		
 		String cancel = request.getParameter("cancel"); //cancel is comma separated list of application id
