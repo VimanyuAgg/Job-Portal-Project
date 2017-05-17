@@ -218,7 +218,7 @@ backhround: #eaedef;
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
-	          <a class="dropdown-item" href="/company/register">View Job History</a>
+	          <a class="dropdown-item" href="/jobseeker/applications/<%=session.getAttribute("email")%>">View Applications</a>
 	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
 	        </div>
 	      </li>
@@ -242,7 +242,7 @@ backhround: #eaedef;
 			<!-- side bar for profile review -->
 			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
 		
-			<div class="name">${firstName} &nbsp; <%=session.getAttribute("lastName")%></div>
+			<div class="name">${firstName}&nbsp;${lastName}</div>
  			<br>
 			<div class="">
 			
