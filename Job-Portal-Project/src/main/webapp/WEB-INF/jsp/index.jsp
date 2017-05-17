@@ -11,7 +11,11 @@
 <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"></link>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/company-registration.js"></script>
-
+<style>
+.nv{
+    background-color: #163aaf!Important;
+}
+</style>
 
 <body>
 <div class="outer">
