@@ -269,6 +269,12 @@ public class JobSeekerController {
 			}
 			httpSession.setAttribute("username",username);
 			httpSession.setAttribute("email",jobSeeker.getEmail());
+			httpSession.setAttribute("firstName", jobSeeker.getFirstName());
+			httpSession.setAttribute("lastName", jobSeeker.getLastName());
+			httpSession.setAttribute("education", jobSeeker.getEducation());
+			httpSession.setAttribute("skills", jobSeeker.getSkills());
+			httpSession.setAttribute("workExperience", jobSeeker.getWorkExperience());
+			httpSession.setAttribute("picture", jobSeeker.getPicture());
 			redirectAttribute.addFlashAttribute("topJobs",jobService.getTop10NewJobListings());
 			redirectAttribute.addFlashAttribute("selfIntroduction",jobSeekerService.getJobSeeker(username).getSelfIntroduction());
 			redirectAttribute.addFlashAttribute("picture",jobSeekerService.getJobSeeker(username).getPicture());
@@ -313,14 +319,17 @@ public class JobSeekerController {
 		System.out.println("username: "+username);
 		System.out.println("httpsession getAttribute: "+httpSession.getAttribute(username));
 		System.out.println("httpSession getAttString: "+httpSession.getAttribute("username"));
+
 		if(httpSession.getAttribute("username") == null || !httpSession.getAttribute("username").equals(username)){
 			return "redirect:/jobseeker/login";
 		}
+
 		map.addAttribute("topJobs",jobService.getTop10NewJobListings());
 		map.addAttribute("firstName", jobSeeker.getFirstName());
 		map.addAttribute("lastName", jobSeeker.getLastName());
 		map.addAttribute("picture",jobSeeker.getPicture());
 		map.addAttribute("selfIntroduction", jobSeeker.getSelfIntroduction());
+
 		return "jobseeker-dashboard";
 	}
 	
@@ -331,6 +340,13 @@ public class JobSeekerController {
 			{
 				httpSession.removeAttribute("username");
 				httpSession.removeAttribute("email");
+				httpSession.removeAttribute("education");
+				httpSession.removeAttribute("firstName");
+				httpSession.removeAttribute("lastName");
+				httpSession.removeAttribute("education");
+				httpSession.removeAttribute("skills");
+				httpSession.removeAttribute("workExperience");
+				httpSession.removeAttribute("picture");
 				//System.out.println("removed username:");
 				httpSession.invalidate();
 				
@@ -342,8 +358,8 @@ public class JobSeekerController {
 	//PROFILE - UPDATE
 	@RequestMapping(value="/jobseeker/{username}/profile", method=RequestMethod.GET)
 	public String getJobSeekerProfile(@PathVariable String username,ModelMap map){
-		
 		JobSeeker jobSeeker = jobSeekerService.findByUsername(username);
+		httpSession.setAttribute("jobSeeker",jobSeeker);
 		map.addAttribute("username", username);
 		map.addAttribute("email",jobSeeker.getEmail());
 		map.addAttribute("firstName",jobSeeker.getFirstName());
@@ -355,7 +371,43 @@ public class JobSeekerController {
 		return "jobseeker-profile";
 	
 }
-	
+	@RequestMapping(value="/jobseeker/{username}/update", method=RequestMethod.POST)
+	public String updateProfile(@PathVariable String username,HttpServletRequest request, ModelMap map) throws GeneralSecurityException, IOException{
+		System.out.println("inside update post");
+		String firstName=request.getParameter("firstName");
+		String lastName=request.getParameter("lastName");
+		String introduction=request.getParameter("selfIntroduction");
+		String education=request.getParameter("education");
+		String skills=request.getParameter("skills");
+		String workExperience=request.getParameter("workExperience");
+		String password=request.getParameter("password");
+		JobSeeker jobSeeker=jobSeekerService.getJobSeeker(username);
+		if(!SecurityConfig.decrypt(jobSeeker.getPassword()).equals(password)){
+			return "redirect:/jobseeker/{username}/update/error";
+		}
+
+		jobSeeker.setFirstName(firstName);
+		jobSeeker.setLastName(lastName);
+		jobSeeker.setSelfIntroduction(introduction);
+		jobSeeker.setEducation(education);
+		jobSeeker.setSkills(skills);
+		jobSeeker.setWorkExperience(workExperience);
+		jobSeekerService.updateJobSeeker(jobSeeker);
+		if(map.get("errorMessage")!=null){
+			map.addAttribute("errorMessage","");
+		}
+		System.out.println("updated");
+
+		return "jobseeker-dashboard";
+	}
+	@RequestMapping("/jobseeker/{username}/update/error")
+	public String jobSeekerUpdate(ModelMap map)
+	{
+		
+		map.addAttribute("errorMessage","Incorrect Password");
+		return "jobseeker-profile";	
+		
+	}
 }
 
 

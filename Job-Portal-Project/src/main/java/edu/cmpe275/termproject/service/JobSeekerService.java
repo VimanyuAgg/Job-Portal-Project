@@ -25,6 +25,9 @@ public class JobSeekerService {
 		jobSeekerDAO.save(jobSeeker);
 		
 	}
+	public void updateJobSeeker(JobSeeker jobSeeker) throws UnsupportedEncodingException, GeneralSecurityException{
+		jobSeekerDAO.save(jobSeeker);
+	}
 	
 	//GET-ALL
 	public void getAllUsers(){
