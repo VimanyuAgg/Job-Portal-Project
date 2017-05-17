@@ -8,13 +8,23 @@ Welcome: ${email}
 <h1>All positions:</h1>
 
 <h4>Click on a jobID to apply for that job.</h4>
-<form action="/positions" method="GET">
+<form action="/positions/searchByFields" method="POST">
 	Search By Title<input type="text" name="title" id="rs"/>
 	Search By Salary<input type="text" name="salary" id="rs"/>
 	Search By Date<input type="text" name="postedon" id="rs"/>
 	Search By Location<input type="text" name="location" id="rs"/>
 	Search By Status<input type="text" name="status" id="rs"/>
 	<input type="submit" value="Search Now!"/>
+</form>
+<form action="/positions" method=POST>
+	<input type="text" name="searchString" />
+	<input type="submit" value="search"/>
+</form>
+
+<form action="/positions/salarysearch" method=POST>
+	<input type="text" name="min" />
+	<input type="text" name="max" />
+	<input type="submit" value="Search By Salary!"/>
 </form>
 
 <form action="/positions/applyjob" method="POST" enctype="multipart/form-data">

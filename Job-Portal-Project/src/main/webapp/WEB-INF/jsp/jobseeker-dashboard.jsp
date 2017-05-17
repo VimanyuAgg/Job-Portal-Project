@@ -173,6 +173,7 @@ button:hover, a:hover {
 
 </head>
 <body>
+
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded nv" style="height: 70px">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -224,6 +225,64 @@ button:hover, a:hover {
 </div>
 
     
+<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
+    <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <!-- <a href="#jobSeekerProfile" class="btn btn-warning navbar-btn navbar-right"><i class="icomoon icon-stack"></i></a>
+         --></div>
+        <!--Navbar-header-->
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+        
+        <a href="/jobseeker/logout" class="btn btn-warning navbar-btn navbar-right">logout<span class="glyphicon glyphicon-log-in"></span></a>
+
+            <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+       
+                <li><a href="/jobseeker/profile">Profile</a></li>
+                <li style="color:#9d9d9d">
+       		
+       		    <form class="navbar-form"  action="/positions" method="GET" id="jobForm">
+       		    <div class="input-group">
+       
+                <a href="#" onclick="document.getElementById('jobForm').submit();">Job</a>
+            
+                 </div>   
+                </form> </li>
+       		</ul>
+                
+                <div class="col-sm-3 col-md-3">
+        <form class="navbar-form" role="search">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="text-search">
+            <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        </form>
+    </div>            
+    <ul class="nav navbar-nav"><li style="color:grey; padding-left:350px"><a>Welcome, ${sessionScope.username}</a></li></ul>
+        </div>
+        
+        
+
+    </div> <!-- End container-->
+
+
+</nav> <!--End navbar-->
+
+    <div class="container">
+  <div class="jumbotron">
+    <h1 style="text-align:center">Spring Onion</h1>   
+    </div>
+    </div>
+
 
 <!-- Start of container -->
 <div class="container">
@@ -278,8 +337,15 @@ button:hover, a:hover {
 	      <td><c:out value="${topJobValue.getJobSalary()}" /></td>
 	      <td><c:out value="${topJobValue.getPostedOn()}" /></td>
 	      <td><c:out value="${topJobValue.getEligibility()}" /></td>
+<<<<<<< HEAD
 
 	       <form action="/positions" method="GET" >
+=======
+	      <%-- <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
+	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
+	       --%><td>
+	       <form action="/positions/searchByFields" method="POST" >
+>>>>>>> 110792079052880ace02131362ed86cb99c06067
 	       <input type="submit" value="Apply Now!"/></form></td>
 	    </tr>
 	    </tbody>
