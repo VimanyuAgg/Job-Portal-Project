@@ -78,7 +78,7 @@ public class JobController {
 		map.addAttribute("message", "Job has been posted!");
 		
 		if(jobAdded!=null)
-			return "success";
+			return "companyjoppost-success";
 		else 
 			return "error";
 	}
