@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.cmpe275.term-project</groupId>
   <artifactId>Job-Portal-Project</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>Job-Portal-Project Maven Webapp</name>
+  <name>Job-Portal-Project-Webapp</name>
   <url>http://maven.apache.org</url>
   
   
@@ -116,6 +116,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                <executable>true</executable>
                 <finalName>Job-Portal-Project</finalName>                
                 </configuration>
             </plugin>
