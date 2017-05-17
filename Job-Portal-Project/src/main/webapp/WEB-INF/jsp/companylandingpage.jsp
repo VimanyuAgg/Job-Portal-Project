@@ -236,6 +236,8 @@ backhround: #eaedef;
 </nav>
 
 
+
+
 <div class="row outer">
 	
 		<div class="col-md-1"></div>
@@ -284,6 +286,10 @@ backhround: #eaedef;
 		  	    				
 		  	    				<div class="desc">
 		  	    					Posted On: <c:out value="${job.getPostedOn()}" />
+		  	    				</div>
+		  	    				
+		  	    				<div class="desc">
+		  	    					Status : <c:out value="${job.getJobStatus()}" />
 		  	    				</div>
 		  	    				
 		  	    				<%-- <div class="desc">

@@ -291,6 +291,10 @@ a.btn.bx:hover {
 		  	    					Posted On: <c:out value="${job.getPostedOn()}" />
 		  	    				</div>
 		  	    				
+		  	    				<div class="desc">
+		  	    					Status : <c:out value="${job.getJobStatus()}" />
+		  	    				</div>
+		  	    				
 		  	    				<%-- <div class="desc">
 		  	    					Eligibility: <c:out value="${topJobValue.getEligibility()}" />
 		  	    				</div>
