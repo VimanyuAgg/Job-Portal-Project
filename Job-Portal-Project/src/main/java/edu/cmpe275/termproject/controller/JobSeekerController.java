@@ -375,6 +375,7 @@ public class JobSeekerController {
 	public String updateProfile(@PathVariable String username,HttpServletRequest request, ModelMap map) throws GeneralSecurityException, IOException{
 		System.out.println("inside update post");
 		String firstName=request.getParameter("firstName");
+		String picture= request.getParameter("picture");
 		String lastName=request.getParameter("lastName");
 		String introduction=request.getParameter("selfIntroduction");
 		String education=request.getParameter("education");
@@ -386,6 +387,7 @@ public class JobSeekerController {
 			return "redirect:/jobseeker/{username}/update/error";
 		}
 
+		jobSeeker.setPicture(picture);
 		jobSeeker.setFirstName(firstName);
 		jobSeeker.setLastName(lastName);
 		jobSeeker.setSelfIntroduction(introduction);
@@ -398,7 +400,7 @@ public class JobSeekerController {
 		}
 		System.out.println("updated");
 
-		return "jobseeker-dashboard";
+		return "redirect:/jobseeker/"+username+"/dashboard";
 	}
 	@RequestMapping("/jobseeker/{username}/update/error")
 	public String jobSeekerUpdate(ModelMap map)

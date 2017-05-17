@@ -45,7 +45,7 @@ public class JobApplicationController {
 	@RequestMapping(value="/positions/applyjob",method=RequestMethod.POST)
 	public String applyJob(HttpServletRequest request, ModelMap map) throws ParseException{
 		System.out.println("session: "+session);
-		if(session != null && session.getAttribute("username") != null)
+		if(session == null || session.getAttribute("username") == null)
 		{
 			return "redirect:/jobseeker/login";
 		}
@@ -114,7 +114,7 @@ public class JobApplicationController {
 	@RequestMapping(value="/positions/applicants",method=RequestMethod.GET)
 	public String findApplicants(HttpServletRequest request, ModelMap map) throws ParseException{
 		System.out.println("session: "+session);
-		if(session != null && session.getAttribute("username") != null)
+		if(session == null || session.getAttribute("username") == null)
 		{
 			return "redirect:/jobseeker/login";
 		}
@@ -156,7 +156,8 @@ public class JobApplicationController {
 	@RequestMapping(value="/jobseeker/app/{email}",method=RequestMethod.GET)
 	public String viewUserApps(@PathVariable String email, HttpServletRequest request, ModelMap map){
 		System.out.println("session: "+session);
-		if(session != null && session.getAttribute("username") != null)
+		if(session == null || session.getAttribute("username") == null)
+			
 		{
 			return "redirect:/jobseeker/login";
 		}
@@ -203,7 +204,7 @@ public class JobApplicationController {
 	@RequestMapping(value="/updateApp",method=RequestMethod.GET)
 	public String updateApplications(HttpServletRequest request, ModelMap map){
 		System.out.println("session: "+session);
-		if(session != null && session.getAttribute("username") != null)
+		if(session == null || session.getAttribute("username") == null)
 		{
 			return "redirect:/jobseeker/login";
 		}
