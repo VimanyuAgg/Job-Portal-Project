@@ -173,33 +173,5 @@ backhround: #f2f5f6;
 				<button id="mySubmit" type="submit" class="col-md-2 btn btn-primary btn1">Submit</button>		
 			</div>
 		</form>
-		
-		 
-		
-	
-	
 	</body>
-
-
-
-	<!-- <body>
-		<h1>Registration Here!</h1>
-		<form method="POST" action="/company/register">
-			<p>Name</p>
-			<input type="text" name="name" />
-			<p>Website</p>
-			<input type="text" name="website" />
-			<p>logoImageUrl</p>
-			<input type="text" name="logoImageUrl" />
-			<p>address</p>
-			<input type="text" name="address" />
-			<p>description</p>
-			<input type="text" name="description" />
-			<p>email</p>
-			<input type="text" name="email" id="email"/>        <div id="output"></div>
-			<p>Password</p>
-			<input type="text" name="password" />
-			<input type="submit"/>
-		</form>
-</body> -->
 </html>

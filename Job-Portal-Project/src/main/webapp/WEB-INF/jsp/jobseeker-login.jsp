@@ -28,6 +28,13 @@ padding: 0;
 	background-color: black!Important;
 }
 
+.btn1{
+	background-color: #62C192;
+	border-color: #62C192;
+	margin-left: 70px;
+}
+
+
 .wh{
 	color: white!Important;
 }
@@ -35,6 +42,19 @@ padding: 0;
 .ack{
 	margin-top: 20px;
 	margin-left: 35%;
+}
+
+.field{
+	background: #f2f5f6;
+	border-style: none;
+	border-bottom-style: solid;
+	border-bottom-width: .5px;
+	border-bottom-color: #62C192;
+}
+
+.field:focus {
+  border-color: #62C192;
+  box-shadow: #62C192;  
 }
 
 </style>
@@ -83,7 +103,7 @@ padding: 0;
 
 <div class="ack" name="registrationSuccess">${username}</div>
 <div class ="jumbotron" style="text-align:center">
-	<div class="logo">User Login</div>
+	<h3>User Login</h3>
 	<c:if test="${(\"true\").equals(isNotFound)}">
 	<div><p><c:out value = "${notFoundText}"></c:out></p></div>
 	</c:if>
@@ -91,25 +111,27 @@ padding: 0;
 	<div class="login-form-1">
 	<form method="POST" action="/jobseeker/login" id="login-form" class="text-left" name="jslogin">
 			<div class="login-form-main-message"></div>
-			<div class="main-login-form">
-				<div class="login-group">
-					<div class="form-group">
-						<label for="username" class="sr-only">Username</label>
-						<input type="text" class="form-control" id="username" name="username" placeholder="username">
-					</div>
-					<div class="form-group">
-						<label for="password" class="sr-only">Password</label>
-						<input type="password" class="form-control" id="password" name="password" placeholder="password">
-					</div>
-				</div>
-				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+			<div class="form-group row">
+			    <div class="col-md-5"></div>
+			    <input class="col-md-3 form-control field" type="text" placeholder="Enter your contact email..." name="email" id="email"><div id="output"></div>
 			</div>
+			
+			<div class="form-group row">
+			    <div class="col-md-5"></div>
+			    <input class="col-md-3 form-control field" id="password" name="password" placeholder="password"><div id="output"></div>
+			</div>
+			
+			<div class="form-group row">
+			    <div class="col-sm-5"></div>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="mySubmit" type="submit" class="col-md-1 btn btn-primary btn1">Submit</button>		
+			</div>
+<!-- 				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+ -->			</div>
 			<div class="etc-login-form">
 				<p>new user? <a href="/jobseeker/register">create new account</a></p>
 			</div>
 		</form>
 	</div>
-	</div>
-
+</div>
 </body>
 </html>

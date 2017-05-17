@@ -146,6 +146,29 @@ button:hover, a:hover {
     opacity: 0.7;
 } */
 
+.sidebar{
+	background-color: yellow;
+	height: 400px;
+	width: 100%;
+}
+
+.dp{
+	margin-top: 30px;
+	margin-left: 33%;
+	border-radius: 50%;
+}
+
+.outer{
+	margin-top: 60px;
+}
+
+.name{
+	text-align: center;
+  	margin: 0 auto;
+	width: 250px;
+	margin-top: 10px;
+}
+
 </style>
 
 </head>
@@ -179,13 +202,28 @@ button:hover, a:hover {
 </div>
 
 </nav>
- <!--End navbar-->
 
-    <div class="container">
-  <div class="jumbotron">
-    <h1 style="text-align:center">Spring Onion</h1>   
-    </div>
-    </div>
+<div class="row outer">
+	
+	<div class="col-md-1"></div>
+	<div class="col-md-3 sidebar" style="text-align">
+	<!-- side bar for profile review -->
+		<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
+	
+		<div class="name">Sidharth Bhasin</div>
+	</div>
+	<div class="col-md-6">
+	<!-- job card section -->
+	
+	
+	</div>
+	<div class="col-md-2">
+	<!-- right section -->
+		
+	</div>
+</div>
+
+    
 
 <!-- Start of container -->
 <div class="container">
@@ -248,9 +286,6 @@ button:hover, a:hover {
 	  </c:forEach>
 	</table>
 
-	
-	
-			
       </div> 
      </div>
   
