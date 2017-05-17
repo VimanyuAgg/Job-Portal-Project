@@ -63,7 +63,7 @@ body{
 }
 
 h1{
-    margin-left: 520px;
+    text-align: center;
 }
 
 #error{
@@ -102,9 +102,13 @@ padding: 0;
       <a class="navbar-brand wh" href="#">Spring Onions</a>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	      <ul> 
+	      <ul class="ml-auto navbar-nav"> 
+	      <li class="nav-item active ">
+ 			 <a class="nav-link mr-sm-2 wh">
+	     <%=session.getAttribute("companyName")%></a>
+	      </li>
 	       <li class="nav-item active">
-      		 <a class="nav-link mr-sm-2 wh" href="/company/<%=session.getAttribute("companyId")%>/profile">My Account <span class="sr-only">(current)</span></a>
+      		 <a class="nav-link mr-sm-2 wh" href="/company/<%=session.getAttribute("companyId")%>/welcome">My Account <span class="sr-only">(current)</span></a>
 	      </li>
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/logout">Log Out <span class="sr-only">(current)</span></a>
