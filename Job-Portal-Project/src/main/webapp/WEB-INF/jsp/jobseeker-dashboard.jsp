@@ -237,74 +237,10 @@ backhround: #eaedef;
 
 	<div class="row outer">
 	
-
-	<div class="col-md-1"></div>
-	<div class="col-md-2 sidebar" style="text-align">
-		<!-- side bar for profile review -->
-		<img class="img-responsive dp" src="${picture}" width="34%">
-	
-		<div class="name"><p>${firstName} ${lastName}</div>
-		<div class="name">${selfIntroduction}</div>
-	</div>
-	<div class="col-md-7">
-	<!-- job card section -->
-	
-		<table id="myTable" class="table">
-	 		<thead>
-				<tr>
-		      		<th>Popular Jobs</th>
-		    	</tr>
-		    </thead>
-		    
-			<c:forEach items="${topJobs}" var="topJobValue">
-	  	    <tbody>
-	  	    	<tr class="row item">
-	  	    		<td style="max-width: 100px">
-	  	    			<img class="img-responsive cl" alt="error" src="${topJobValue.getJobPostedByCompany().getLogoUrl()}">
-	  	    			<br>
-	  	    			<div class="data" style="color:grey">
-	  	    				<div class="desc">
-	  	    					Description<br>
-	  	    					<c:out value="${topJobValue.getJobDescription()}" />
-	  	    				</div>
-	  	    				
-	  	    				<div class="desc">
-	  	    					Responsibilities<br>
-	  	    					<c:out value="${topJobValue.getJobResponsibilities()}" />
-	  	    				</div>
-	  	    				
-	  	    				<div class="desc">
-	  	    					Salary: <c:out value="${topJobValue.getJobSalary()}" />
-	  	    				</div>
-	  	    				
-	  	    				<div class="desc">
-	  	    					Location: <c:out value="${topJobValue.getEligibility()}" />
-	  	    				</div>
-	  	    				
-	  	    				<div class="desc">
-	  	    					Posted On: <c:out value="${topJobValue.getPostedOn()}" />
-	  	    				</div>
-	  	    				
-	  	    				<div class="desc">
-	  	    					Eligibility: <c:out value="${topJobValue.getEligibility()}" />
-	  	    				</div>
-	  	    			</div>
-	  	    		</td>
-	  	    		
-	  	    		<td style="padding-top: 24px;font-size: 21px;">
-	  	    			<c:out value="${topJobValue.getJobTitle()}" /><br>
-	  	    			<div class="comp">CompanyName</div>
-	  	    		</td>
-			      	<td style="padding-top:27px;margin-left:300px;">
-			       		<form action="/positions/searchByFields" method="POST" >
-			       			<input type="submit" value="Apply Now!"/>
-			       		</form>
-			      	</td>
-			    </tr>	    
-		    </tbody>
-		    </c:forEach>
-		</table>
-
+		<div class="col-md-1"></div>
+		<div class="col-md-2 sidebar" style="text-align">
+			<!-- side bar for profile review -->
+			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
 		
 			<div class="name">${firstName}&nbsp;${lastName}</div>
  			<br>
