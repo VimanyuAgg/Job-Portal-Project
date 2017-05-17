@@ -252,7 +252,7 @@ backhround: #eaedef;
 				<div class="col-md-7">
 		<!-- job card section -->
 		<form action="/positions/applicants" method="GET">
-				  	    						<input type="hidden" name="jobId" id="jd"/>
+			<input type="hidden" name="jobId" id="jd"/>
 		
 			<table class="table list-of-posts">
 		 		<thead>

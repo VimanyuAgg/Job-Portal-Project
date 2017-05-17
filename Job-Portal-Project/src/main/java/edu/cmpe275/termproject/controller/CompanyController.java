@@ -286,18 +286,24 @@ public class CompanyController {
 	
 	@RequestMapping(value="/company/{companyId}/postjob",method = RequestMethod.GET)
 	public String getCompanyByNames(@PathVariable long companyId, 
-			HttpServletRequest request, ModelMap map){
+		HttpServletRequest request, ModelMap map){
+		
+		
+		
+		
 		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
 		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}
-//		
-//		System.out.println("inside getCompanyByName()");
-//		String companyName = "askl," + request.getParameter("companyName");
-//		List<Company> companies = companyService.getCompanyByName(companyName);
-//		
 		
-		map.addAttribute("companyId", companyId);
+		Company company = companyService.getCompany(companyId);
+
+		map.addAttribute("companyId", company.getCompanyId());
+		map.addAttribute("website", company.getWebsite());
+		map.addAttribute("logoImageUrl", company.getLogoUrl());
+		map.addAttribute("address", company.getAddress());
+		
+		
 		return "postjob";
 	}
 	
@@ -390,6 +396,12 @@ public class CompanyController {
 			System.out.println(" "+job.getJobPostedByCompany());
 		}
 		
+		Company company = companyService.getCompany(companyId);
+
+		map.addAttribute("companyId", company.getCompanyId());
+		map.addAttribute("website", company.getWebsite());
+		map.addAttribute("logoImageUrl", company.getLogoUrl());
+		map.addAttribute("address", company.getAddress());
 
 		map.addAttribute("jobs", jobs);
 		
