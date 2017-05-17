@@ -54,10 +54,11 @@ public class JobSeekerService {
 			return "";
 	}
 
-	public boolean find(String username) {
+	public boolean saveJobSeekerToDB(String username) {
 		// TODO Auto-generated method stub
 		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(username);
 		if(jobSeeker != null){
+			System.out.println("setting verification status to True for user: "+username);
 			jobSeeker.setVerified();
 			jobSeekerDAO.save(jobSeeker);
 			return true;
@@ -83,6 +84,7 @@ public class JobSeekerService {
 		// TODO Auto-generated method stub
 		
 		jobSeekerDAO.delete(existingjobSeeker);
+		System.out.println("Service Layer - JobSeeker deleted from DB");
 		
 	}
 
