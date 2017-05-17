@@ -249,9 +249,12 @@ public class JobSeekerController {
 		System.out.println("username: "+username);
 		System.out.println("httpsession getAttribute: "+httpSession.getAttribute(username));
 		System.out.println("httpSession getAttString: "+httpSession.getAttribute("username"));
+
 		if(httpSession.getAttribute("username") == null || !httpSession.getAttribute("username").equals(username)){
 			return "redirect:/jobseeker/login";
 		}
+		JobSeeker jobSeeker = jobSeekerService.findByUsername(username);
+		httpSession.setAttribute("jobSeeker",jobSeeker);
 		return "jobseeker-dashboard";
 	}
 	
@@ -273,8 +276,8 @@ public class JobSeekerController {
 	//PROFILE - UPDATE
 	@RequestMapping(value="/jobseeker/{username}/profile", method=RequestMethod.GET)
 	public String getJobSeekerProfile(@PathVariable String username,ModelMap map){
-		
 		JobSeeker jobSeeker = jobSeekerService.findByUsername(username);
+		httpSession.setAttribute("jobSeeker",jobSeeker);
 		map.addAttribute("username", username);
 		map.addAttribute("email",jobSeeker.getEmail());
 		map.addAttribute("firstName",jobSeeker.getFirstName());
@@ -286,6 +289,14 @@ public class JobSeekerController {
 		return "jobseeker-profile";
 	
 }
+	@RequestMapping("/jobseeker/{username}/profile")
+	public void updateProfile(HttpServletRequest request){
+		String firstName=request.getParameter("firstName");
+		String lastName=request.getParameter("lastName");
+		String introduction=request.getParameter("selfIntroduction");
+		String education=request.getParameter("education");
+		//String 
+	}
 	
 }
 

@@ -35,6 +35,9 @@ public class CompanyService {
 	}
 	
 	
+	public void updateCompany(Company company){
+		companyDao.save(company);
+	}
 	//public ResponseEntity<?> addJobPosting(String)
 	public Company getCompany(long companyId){
 		Company company= companyDao.findOne(companyId);
@@ -163,8 +166,4 @@ public class CompanyService {
 	}
 
 
-	public void updateCompany(Company company) {
-		// TODO Auto-generated method stub
-		companyDao.save(company);
-	}
 }

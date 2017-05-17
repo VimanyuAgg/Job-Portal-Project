@@ -63,7 +63,7 @@ body{
 }
 
 h1{
-    margin-left: 520px;
+    text-align: center;
 }
 
 #error{
@@ -102,30 +102,17 @@ padding: 0;
       <a class="navbar-brand wh" href="#">Spring Onions</a>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle wh" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Login
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/jobseeker/login">Login as User</a>
-              <a class="dropdown-item" href="/company/login">Login as Company</a>
-            </div>
-          </li>
-          
-          <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle wh" data-toggle="dropdown">
-              Register
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/jobseeker/register">Register as User</a>
-              <a class="dropdown-item" href="/company/register">Register as Company</a>
-            </div>
-          </li>
-          
-           <li class="nav-item active">
-            <a class="nav-link mr-sm-2 wh" href="#">About <span class="sr-only">(current)</span></a>
-          </li>
+	      <ul class="ml-auto navbar-nav"> 
+	      <li class="nav-item active ">
+ 			 <a class="nav-link mr-sm-2 wh">
+	     <%=session.getAttribute("companyName")%></a>
+	      </li>
+	       <li class="nav-item active">
+      		 <a class="nav-link mr-sm-2 wh" href="/company/<%=session.getAttribute("companyId")%>/welcome">My Account <span class="sr-only">(current)</span></a>
+	      </li>
+	       <li class="nav-item active">
+	        <a class="nav-link mr-sm-2 wh" href="/logout">Log Out <span class="sr-only">(current)</span></a>
+	      </li>
         </ul>
       </div>
 </div>
@@ -150,7 +137,7 @@ padding: 0;
 			<!--   <label for="file-input">
    				<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
 			</label>-->
-			<p>Name:</p><p> <input name= "name" value="${company.getCompanyName()} required"></p>
+			<p>Name:</p><p> <input name= "name" value="${company.getCompanyName()}" required></p>
 			<p>Website:</p><p> <input name= "website" value="${company.getWebsite()}"> </p>
 			<p>Address:</p><p> 
 			    <textarea class="form-control" rows="2" cols="20" name="address" placeholder="Please enter your address!">${company.getAddress()}</textarea>
