@@ -78,7 +78,7 @@ backhround: #f2f5f6;
 }
 
 .nv{
-	background-color: black!Important;
+	background-color: #163aaf!Important;
 }
 
 .wh{
@@ -157,7 +157,7 @@ backhround: #f2f5f6;
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-	  <a class="navbar-brand wh" href="#">Spring Onions</a>
+	  <a class="navbar-brand wh" href="/jobseeker/<%=session.getAttribute("username")%>/dashboard">Spring Onions</a>
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
@@ -167,9 +167,9 @@ backhround: #f2f5f6;
 	          My Account
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          <a class="dropdown-item" href="/jobseeker/register">View Profile</a>
+	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
 	          <a class="dropdown-item" href="/company/register">View Job History</a>
-	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
+	         <!--  <a class="dropdown-item" href="/company/register">Edit Profile</a> -->
 	        </div>
 	      </li>
 	      
@@ -182,9 +182,12 @@ backhround: #f2f5f6;
 
 </nav>
 
-
+<center>
 You cant apply for this job. <br>
 You have reached the limit of 5 Pending Applications. <br>
+<form action="/jobseeker/<%=session.getAttribute("username")%>/dashboard" Method="GET">
+<button>Back to dashboard</button></form></center>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
