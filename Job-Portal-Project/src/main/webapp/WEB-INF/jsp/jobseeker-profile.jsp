@@ -249,7 +249,7 @@ backhround: #eaedef;
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-	  <a class="navbar-brand wh" href="/jobseeker/<%=session.getAttribute("username")%>/dashboard">Spring Onions</a>
+	  <a class="navbar-brand wh" href="#">Spring Onions</a>
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
@@ -260,20 +260,32 @@ backhround: #eaedef;
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
-	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Job History</a>
-	         <!--  <a class="dropdown-item" href="/company/register">Edit Profile</a>
-	       -->  </div>
+
+<%-- 	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applications</a>
+	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
+ --%>
+
+	        <!--   <a class="dropdown-item" href="/company/register">View Job History</a> -->
+	        <!--   <a class="dropdown-item" href="/company/register">Edit Profile</a> -->
+
+	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applications</a>
+	         
+
+	        </div>
+	        	     <li class="nav-item active">
+	     <form id="jobs" action="/positions/searchByFields" method="POST">
+	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
 	      </li>
-	      
-	        <li class="nav-item active">
+	      </li>
+	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/jobseeker/logout">Log Out <span class="sr-only">(current)</span></a>
 	      </li>
+
 	    </ul>
 	  </div>
 </div>
 
 </nav>
-
 <br>
 		<h1>Edit your profile</h1>
 		<br><br>
