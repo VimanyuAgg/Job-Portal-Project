@@ -199,6 +199,11 @@ backhround: #eaedef;
 }
 </style>
 
+<script>
+  UPLOADCARE_PUBLIC_KEY = "fa5724d4e1f724578152";
+</script>
+<script charset="utf-8" src="//ucarecdn.com/libs/widget/2.10.3/uploadcare.full.min.js"></script>
+
 </head>
 <body>
 
@@ -270,7 +275,8 @@ backhround: #eaedef;
     			</label>
 
 			    <!-- <input class="col-md-3 form-control field" type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl"> -->
-				 <input type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl">
+				 
+				 <input type="hidden" id="file-input2" role="uploadcare-uploader" name="logoImageUrl" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
 			</div>
 			<!--   <label for="file-input">
    				<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
@@ -306,11 +312,12 @@ backhround: #eaedef;
 			
 			<div >
 			    <label for="file-input">
-        			<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/company-201.jpg" height="90px" width="90px"/>
+        			
     			</label>
 
 			    <!-- <input class="col-md-3 form-control field" type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl"> -->
-				 <input type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl">
+				 
+				 <input type="hidden" id="file-input2" role="uploadcare-uploader" name="logoImageUrl" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
 			</div>
 			<!--   <label for="file-input">
    				<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
