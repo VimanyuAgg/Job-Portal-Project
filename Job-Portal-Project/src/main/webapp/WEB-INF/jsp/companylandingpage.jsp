@@ -219,6 +219,7 @@ backhround: #eaedef;
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/postjob">Post a New Job</a>
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/managejobs">Manage Current Jobs</a>
+		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/edit">Edit your Profile</a>
 	        </div>
 	      <!-- <li class="nav-item active">
 	     	<form id="jobs" action="/positions/searchByFields" method="POST">
