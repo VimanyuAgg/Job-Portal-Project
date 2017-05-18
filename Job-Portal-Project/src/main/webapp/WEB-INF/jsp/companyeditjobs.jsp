@@ -205,7 +205,6 @@ a.btn.bx:hover {
 
 </head>
 <body>
-
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded nv" style="height: 70px">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -216,6 +215,11 @@ a.btn.bx:hover {
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
 	      
+	         <li class="nav-item active">
+	        <a class="nav-link mr-sm-2 wh" href="/company/<%=session.getAttribute("companyId")%>/welcome">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      
+	      
 	      <li class="nav-item active dropdown">
 	        <a class="nav-link dropdown-toggle wh" data-toggle="dropdown">
 	          My Account
@@ -223,6 +227,7 @@ a.btn.bx:hover {
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/postjob">Post a New Job</a>
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/managejobs">Manage Current Jobs</a>
+		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/edit">Edit your Profile</a>
 	        </div>
 	      <!-- <li class="nav-item active">
 	     	<form id="jobs" action="/positions/searchByFields" method="POST">
@@ -238,7 +243,6 @@ a.btn.bx:hover {
 </div>
 
 </nav>
-
 
 
 <div class="row outer">

@@ -212,6 +212,11 @@ backhround: #eaedef;
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
 	      
+	         <li class="nav-item active">
+	        <a class="nav-link mr-sm-2 wh" href="/company/<%=session.getAttribute("companyId")%>/welcome">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      
+	      
 	      <li class="nav-item active dropdown">
 	        <a class="nav-link dropdown-toggle wh" data-toggle="dropdown">
 	          My Account
