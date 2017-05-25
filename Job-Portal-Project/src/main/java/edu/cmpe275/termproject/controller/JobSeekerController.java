@@ -450,7 +450,7 @@ public class JobSeekerController {
 		else if(result.equals("Marked as interested")){
 			resultJson +="\""+result+"\"}";
 		}
-		return new ResponseEntity<String>.ok(resultJson);
+		return new ResponseEntity<String>(resultJson, responseHeaders, HttpStatus.CREATED);
 		
 		
 	}

@@ -27,16 +27,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 		 
-function interested(){		
-	/* alert($('#hiddenJobID').val()); */
+function interested(a){		
+	 alert(String(a)); 
 		 $.ajax({
 	            
-			 	 type: "post",
+			  	 type: "post",
 	            url: "/jobseeker/markInterested",
-	            data: "jobId=" +$('#hiddenJobID').val(),
-	            success: function(msg){  
-	            	console.log(msg);
-	            } 
+	            data: "jobId=" +String(a),
+	            success: function(msg, status){  
+	            	alert("hi");
+	            	document.getElementById("interestMsg").innerHTML +=  msg["result"]; 
+	            },
+	            error: function(err){
+	            console.log(err);	
+	           //  alert(err);
+	            }
 		 });
 }
 </script>
@@ -261,7 +266,8 @@ backhround: #eaedef;
 
 </nav>
 
-<center>Welcome: ${email}</center>
+
+<div id="interestMsg"></div>
 <h1>All positions</h1>
 <div class="panel-group" id="accordion">
     <div class="panel panel-default">
@@ -386,9 +392,9 @@ backhround: #eaedef;
 	      <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
 	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
 	      <td><input type="submit" value="Apply Now!"/></td>
-	      <td><input type="button" value="Mark as interested!" onClick="interested();"/></td>
-	      <td><input type="hidden" value="${position.getJobId()}" id="hiddenJobID"/></td>
-	      
+	      <td><input type="button" value="Mark as interested!" onClick="interested('${position.getJobId()}');"/></td>
+	      <%-- <td><input type="hidden" value="${position.getJobId()}" id="hiddenJobID"/></td>
+	       --%>
 	    </tr>
 	  </c:forEach>
 	  </tbody>
