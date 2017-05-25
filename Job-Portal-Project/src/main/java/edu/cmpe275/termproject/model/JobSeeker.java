@@ -5,9 +5,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -80,7 +84,10 @@ public class JobSeeker {
 	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
 	private List<JobApplication> applicationsList = new ArrayList<JobApplication>();
 	
-	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinTable(name = "JOBSEEKER_INTERESTEDJOB", 
+			joinColumns={@JoinColumn(name="personId", referencedColumnName="JSID")}, 
+			   inverseJoinColumns = { @JoinColumn(name="jobId",referencedColumnName="JOB_ID") })
 	private List<JobPosting> interestedList = new ArrayList<JobPosting>();
 	
 	
