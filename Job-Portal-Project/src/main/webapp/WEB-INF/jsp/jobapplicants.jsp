@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -248,6 +250,7 @@ backhround: #eaedef;
 		
 				<div class="col-md-7">
 		<!-- job card section -->
+
 		<%-- <form action="/company/<%=session.getAttribute("companyId")%>/positions/${jobid}/edit" method="GET">
 			<table class="table">
 		 		<thead>
@@ -262,8 +265,12 @@ backhround: #eaedef;
 			    </thead>
 		    </table>
 		</form> --%>
-		<form action="/positions/applicants" method="GET">
-			<input type="hidden" name="jobId" id="jd" value="${jobid}"/>
+		<%-- <form action="/positions/applicants" method="GET">
+			<input type="hidden" name="jobId" id="jd" value="${jobid}"/> --%>
+
+		<form action="/positions/applicants/cancel" method="GET">
+					<input type="hidden" name="applicationId" id="ad"/>
+
 		
 			<table class="table list-of-posts">
 		 		<thead>
@@ -273,7 +280,7 @@ backhround: #eaedef;
 			    	
 			    </thead>
 			    
-				<c:forEach items="${applicants}" var="applicant">
+				<c:forEach items="${applicants}" var="applicant" varStatus="status">
 		  	    <tbody>
 		  	    	<tr class="row item post">
 		  	    		<td style="max-width: 100px">
@@ -282,7 +289,15 @@ backhround: #eaedef;
 		  	    		</td>
 		  	    		
 		  	    		<td style="color:grey" style="padding-top: 24px;font-size: 21px;">
-		  	    			
+		  	    			<div class="desc">
+		  	    					Application Id<br>
+		  	    					<c:out value=" ${applications[status.index].getId()}" />
+		  	    				</div>
+		  	    				<div class="desc">
+		  	    					Status<br>
+		  	    					<c:out value=" ${applications[status.index].getStatus()}" />
+		  	    				</div>
+		  	    				
 		  	    			<div class="desc">
 		  	    					Username<br>
 		  	    					<c:out value="${applicant.getUsername()}" />
@@ -321,8 +336,16 @@ backhround: #eaedef;
 		  	    			<c:out value="${job.getJobTitle()}" /><br>
 		  	    			<c:out value="${job.getJobId()}" /><br>
 		  	    		</td>
-				    </tr>	    
+				    </tr>
+   						<tr>
+   						<td>
+   						<input type="submit" class="btn" onclick="setApplicationId('${applications[status.index].getId()}')" value="Cancel Application!"/>
+			    		</td>
+			    		</tr>
+			        
 			    </tbody>
+			    
+			    
 			    </c:forEach>
 			</table>
 		  	    					</form>
@@ -344,6 +367,19 @@ backhround: #eaedef;
 			<div class="pagination"></div>
 		</div>
 	</div>
+	
+	<script>
+	function setApplicationId(val){
+		var a  = document.getElementById("ad");
+		a.value = "";
+		
+		console.log("Form Submitted");
+		
+		a.value = val;
+		console.log("application id is "+document.getElementById("ad").value);
+		return false;
+	}
+</script>
 
 
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>

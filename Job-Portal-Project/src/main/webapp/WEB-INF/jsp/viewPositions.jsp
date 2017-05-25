@@ -22,16 +22,40 @@
 <%--     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"></link>
 
  --%>    
+ <link href="${pageContext.request.contextPath}/css/snackbar.css" rel="stylesheet"></link>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+		 
+function interested(a){		
+		 $.ajax({
+	            
+			  	 type: "post",
+	            url: "/jobseeker/markInterested",
+	            data: "jobId=" +String(a),
+	            success: function(msg, status){  
+	            	
+	            	document.getElementById("snackbar").innerHTML +=  msg["result"]; 
+	            	
+	            	var x = document.getElementById("snackbar");
+
+	                // Add the "show" class to DIV
+	                x.className = "show";
+
+	                // After 3 seconds, remove the show class from DIV
+	                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	            	
+	            },
+	            error: function(err){
+	            console.log(err);	
+	           //  alert(err);
+	            }
+		 });
+}
+</script>
 
 <style>
-
-	
-    
-    
-    
 
 body{
 	background-color: #eaedef;
@@ -214,7 +238,7 @@ backhround: #eaedef;
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-	  <a class="navbar-brand wh" href="#">Spring Onions</a>
+	  <a class="navbar-brand wh" href="/jobseeker/<%=session.getAttribute("username")%>/dashboard">Spring Onions</a>
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
@@ -237,11 +261,11 @@ backhround: #eaedef;
 	         
 
 	        </div>
-	        	     <li class="nav-item active">
+<!-- 	        	     <li class="nav-item active">
 	     <form id="jobs" action="/positions/searchByFields" method="POST">
 	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
 	      </li>
-	      </li>
+ -->	      </li>
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/jobseeker/logout">Log Out <span class="sr-only">(current)</span></a>
 	      </li>
@@ -252,7 +276,9 @@ backhround: #eaedef;
 
 </nav>
 
-<center>Welcome: ${email}</center>
+
+<div id="interestMsg"></div>
+<div id="snackbar"></div>
 <h1>All positions</h1>
 <div class="panel-group" id="accordion">
     <div class="panel panel-default">
@@ -365,7 +391,7 @@ backhround: #eaedef;
     <tbody>
 	  <c:forEach items="${positions}" var="position">
   	    <tr>
-	      <td><a href="/positions/${position.getJobId()}"><c:out value="${position.getJobId()}" /></a></td>
+	      <td><a href="/positions/${position.getJobId()}" id="jobid"><c:out value="${position.getJobId()}" /></a></td>
 	      <td><c:out value="${position.getJobPostedByCompany().getCompanyName()}" /></td>
    	      <td><c:out value="${position.getJobTitle()}" /></td>
 	      <td><c:out value="${position.getJobResponsibilities()}" /></td>
@@ -377,6 +403,9 @@ backhround: #eaedef;
 	      <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
 	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
 	      <td><input type="submit" value="Apply Now!"/></td>
+	      <td><input type="button" value="Mark as interested!" onClick="interested('${position.getJobId()}');"/></td>
+	      <%-- <td><input type="hidden" value="${position.getJobId()}" id="hiddenJobID"/></td>
+	       --%>
 	    </tr>
 	  </c:forEach>
 	  </tbody>

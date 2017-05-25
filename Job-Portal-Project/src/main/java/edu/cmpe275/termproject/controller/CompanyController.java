@@ -398,6 +398,9 @@ public class CompanyController {
 		companyService.updateCompany(company);
 		System.out.println("I am website:"+company.getWebsite());
 		map.addAttribute("company",company);
+		if(session.getAttribute("companyName") != null){
+			session.setAttribute("companyName",company.getCompanyName());
+		}
 		return "redirect:/company/"+companyId+"/welcome";
 	}
 	
