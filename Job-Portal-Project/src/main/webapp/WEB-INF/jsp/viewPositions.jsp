@@ -36,7 +36,7 @@ function interested(a){
 	            data: "jobId=" +String(a),
 	            success: function(msg, status){  
 	            	
-	            	document.getElementById("snackbar").innerHTML +=  msg["result"]; 
+	            	document.getElementById("snackbar").innerHTML =  msg["result"]; 
 	            	
 	            	var x = document.getElementById("snackbar");
 

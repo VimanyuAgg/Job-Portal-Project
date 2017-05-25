@@ -493,6 +493,7 @@ public class CompanyController {
 			companyService.updateJob(job);
 			//find all jobseeker email who have applied for this job
 			//send email
+			//send mail to interested people also
 			List<JobApplication> applicationList = job.getApplicants();
 			for(int i=0;i<applicationList.size();i++){
 				String jobSeekerEmail = applicationList.get(i).getApplicant().getEmail();

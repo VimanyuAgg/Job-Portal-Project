@@ -10,10 +10,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -85,13 +87,13 @@ public class JobPosting {
 	@Column(name="JOB_ID", unique=true)
 	private String jobId;
 	
-	@Column(name="JOB_DESC", length= 3000)
+	@Column(name="JOB_DESC")
 	private String jobDescription;
 	
 	@Column(name="JOB_TITLE")
 	private String jobTitle;
 	
-	@Column(name="JOB_RESP", length= 3000)
+	@Column(name="JOB_RESP")
 	private String jobResponsibilities;
 	
 	@Column(name="JOB_LCTN")
@@ -115,6 +117,16 @@ public class JobPosting {
 	
 	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
 	private List<JobApplication> applications = new ArrayList<JobApplication>();
+	
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+			name="JOBPOST_INT_APPLICANTS",
+			joinColumns={@JoinColumn(name="JOB_ID", referencedColumnName="JOB_ID")},
+			inverseJoinColumns={@JoinColumn(name="INTERESTED_JSID" ,referencedColumnName="JSID")}
+			)
+	private List<JobSeeker> interestedApplicants = new ArrayList<JobSeeker>();
+
+	
 
 	@Column(name="ELIGIBILITY")
 	private String eligibility;
@@ -197,5 +209,15 @@ public class JobPosting {
 
 	public List<JobApplication> getApplicants() {
 		return this.applications;
+	}
+	
+	public List<JobSeeker> getInterestedApplicants() {
+		return interestedApplicants;
+	}
+
+
+
+	public void setInterestedApplicants(List<JobSeeker> interestedApplicants) {
+		this.interestedApplicants = interestedApplicants;
 	}
 }

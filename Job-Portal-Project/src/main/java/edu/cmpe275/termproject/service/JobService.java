@@ -277,6 +277,8 @@ public class JobService {
 		
 		System.out.println("Interested Job does not exist with jobseeker");
 		System.out.println("Adding it to interested Jobs");
+		interestedJob.getInterestedApplicants().add(jobSeeker);
+		jobPostingDao.save(interestedJob);
 		jobSeeker.getInterestedList().add(interestedJob);
 		System.out.println("Added to interested Jobs... Saving changes to DB");
 		jobSeekerDAO.save(jobSeeker);
@@ -287,14 +289,24 @@ public class JobService {
 	public String markApplicationAsUninterested(String jobId, String userName) {
 		// TODO Auto-generated method stub
 		JobPosting interestedJob = jobPostingDao.findByJobId(jobId);
+		System.out.println("job ID to be removed"+ jobId);
 		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(userName);
-		
+		System.out.println("Printing current interested list" + jobSeeker.getInterestedList().size());
+		for(int i=0;i<jobSeeker.getInterestedList().size();i++)
+		{
+			
+			System.out.println(jobSeeker.getInterestedList().get(i).getJobId());
+		}
 		for(int i=0;i<jobSeeker.getInterestedList().size();i++){
 			if(jobSeeker.getInterestedList().get(i).getJobId().equals(jobId)){
 				System.out.println("Job Id found to delete");
 				jobSeeker.getInterestedList().remove(i);
 				System.out.println("Job deleted... Saving to DAO");
 				jobSeekerDAO.save(jobSeeker);
+				
+				interestedJob.getInterestedApplicants().remove(jobSeeker);
+				jobPostingDao.save(interestedJob);
+				
 				return "Marked as uninterested";
 			}
 		}
