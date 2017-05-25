@@ -415,7 +415,11 @@ public class JobSeekerController {
 			return "redirect:/jobseeker/login";
 		}
 		JobSeeker jobSeeker = jobSeekerService.getJobSeeker(username);
-		
+		System.out.println("Printing interested list");
+		for(int i=0;i<jobSeeker.getInterestedList().size();i++){
+			System.out.println(jobSeeker.getInterestedList().get(i).getJobId());
+			
+		}
 		map.addAttribute("interestedJobs",jobSeeker.getInterestedList());
 	
 		return "jobseeker-interestedjobs";
@@ -448,6 +452,27 @@ public class JobSeekerController {
 			resultJson +="\""+result+"\"}";
 		}
 		else if(result.equals("Marked as interested")){
+			resultJson +="\""+result+"\"}";
+		}
+		return new ResponseEntity<String>(resultJson, responseHeaders, HttpStatus.CREATED);
+		
+		
+	}
+	
+	@RequestMapping(value="/jobseeker/markUninterested", method=RequestMethod.POST)
+	public ResponseEntity<String> markApplicationAsUninterested( HttpServletRequest request){
+		
+		String jobId = request.getParameter("jobId");
+		String userName = (String) httpSession.getAttribute("username");
+		String result = jobService.markApplicationAsUninterested(jobId,userName);
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+		String resultJson = "{\"result\":";
+		if(result.equals("Marked as uninterested")){
+			resultJson += "\""+result+"\"}";
+		}
+		else if(result.equals("This job doesn't exist in interested list")){
 			resultJson +="\""+result+"\"}";
 		}
 		return new ResponseEntity<String>(resultJson, responseHeaders, HttpStatus.CREATED);

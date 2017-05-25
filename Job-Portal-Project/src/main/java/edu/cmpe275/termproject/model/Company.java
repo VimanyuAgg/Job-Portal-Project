@@ -53,10 +53,10 @@ public class Company {
 	@Column(name="COMPANY_LOGO_URL", nullable=true)
 	private String logoUrl;
 	
-	@Column(name="COMPANY_ADDRESS")
+	@Column(name="COMPANY_ADDRESS",length= 3000)
 	private String address;
 	
-	@Column(name="COMPANY_DESC", nullable=true)
+	@Column(name="COMPANY_DESC", nullable=true, length= 3000)
 	private String description;
 
 	@OneToMany(mappedBy="jobPostedByCompany", cascade=CascadeType.ALL)

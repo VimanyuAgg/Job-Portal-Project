@@ -85,13 +85,13 @@ public class JobPosting {
 	@Column(name="JOB_ID", unique=true)
 	private String jobId;
 	
-	@Column(name="JOB_DESC")
+	@Column(name="JOB_DESC", length= 3000)
 	private String jobDescription;
 	
 	@Column(name="JOB_TITLE")
 	private String jobTitle;
 	
-	@Column(name="JOB_RESP")
+	@Column(name="JOB_RESP", length= 3000)
 	private String jobResponsibilities;
 	
 	@Column(name="JOB_LCTN")
