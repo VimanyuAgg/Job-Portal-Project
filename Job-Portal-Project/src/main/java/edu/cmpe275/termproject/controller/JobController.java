@@ -108,7 +108,7 @@ public class JobController {
 			System.out.println("NULLLLLLLLLLLLL");
 			map.addAttribute("errorMessage","No job with job id "+positionId+" exists");
 			return "error";
-			}
+		}
 		map.addAttribute("job",job);
 		
 		System.out.println("eligibility "+job.getEligibility());
