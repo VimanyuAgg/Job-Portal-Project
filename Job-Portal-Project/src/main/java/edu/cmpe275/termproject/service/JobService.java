@@ -11,12 +11,17 @@ import org.springframework.stereotype.Service;
 
 import edu.cmpe275.termproject.dao.CompanyDAO;
 import edu.cmpe275.termproject.dao.JobPostingDAO;
+import edu.cmpe275.termproject.dao.JobSeekerDAO;
 import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobPosting;
+import edu.cmpe275.termproject.model.JobSeeker;
 @Service
 public class JobService {
 	@Autowired
 	JobPostingDAO jobPostingDao;
+	
+	@Autowired
+	JobSeekerDAO jobSeekerDAO;
 	
 	@Autowired
 	CompanyDAO companyDAO;
@@ -249,6 +254,28 @@ public class JobService {
 		}
 		
 		return searchList;
+		
+	}
+	public String markApplicationAsInterested(String jobId, String userName) {
+		// TODO Auto-generated method stub
+		
+		JobPosting interestedJob = jobPostingDao.findByJobId(jobId);
+		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(userName);
+		
+		for(int i=0;i<jobSeeker.getApplicationsList().size();i++){
+			if (jobSeeker.getApplicationsList().get(i).getId().equals(jobId)){
+				//JobSeeker has already applied cannot mark it is as interested
+				return "You have already applied to this job!";
+				
+			}
+		}
+		System.out.println("Interested Job does not exist with jobseeker");
+		System.out.println("Adding it to interested Jobs");
+		jobSeeker.getInterestedList().add(interestedJob);
+		System.out.println("Added to interested Jobs... Saving changes to DB");
+		jobSeekerDAO.save(jobSeeker);
+		System.out.println("Save Successful !");
+		return "Marked as interested";
 		
 	}
 }

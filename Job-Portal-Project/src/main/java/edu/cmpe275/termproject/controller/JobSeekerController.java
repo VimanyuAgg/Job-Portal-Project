@@ -30,6 +30,7 @@ import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -408,6 +409,21 @@ public class JobSeekerController {
 		
 		map.addAttribute("errorMessage","Incorrect Password");
 		return "jobseeker-profile";	
+		
+	}
+	
+	@RequestMapping(value="/jobseeker/markInterested", method=RequestMethod.POST)
+	public String markApplicationAsInterested( HttpServletRequest request){
+		
+		if(httpSession.getAttribute("username") == null){
+			return "redirect:/jobseeker/login";
+		}
+		
+		String jobId = request.getParameter("jobId");
+		String userName = (String) httpSession.getAttribute("username");
+		String result = jobService.markApplicationAsInterested(jobId,userName);
+		
+		return result;
 		
 	}
 }
