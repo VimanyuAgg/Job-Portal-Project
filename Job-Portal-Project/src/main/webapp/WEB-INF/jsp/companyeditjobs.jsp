@@ -229,12 +229,8 @@ a.btn.bx:hover {
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/managejobs">Manage Current Jobs</a>
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/edit">Edit your Profile</a>
 	        </div>
-	      <!-- <li class="nav-item active">
-	     	<form id="jobs" action="/positions/searchByFields" method="POST">
-	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
-	      </li> -->
 	     
-	       <li class="nav-item active">
+		  <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/logout">Log Out <span class="sr-only">(current)</span></a>
 	      </li>
 
@@ -305,12 +301,9 @@ a.btn.bx:hover {
 		  	    				 --%>
 		  	    				 <br>
 		  	    				<div class="desc desc2">
-		  	    					<%-- <form action="/positions/${job.getJobId()}" method="GET">
- 			  	    					<input type="submit" class="btn" value="Learn More"/>
-			  	    				</form> --%>
-									<a id="cli" class="btn bx" href="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit" onclick="col()">Edit this Job Posting</a>
-<%-- 	  							<input type="submit" class="btn" action="" onclick="setJobId('${job.getJobId()}')" value="View Applicants!"/>
- --%>	  							<input class="btn" type="submit" onclick="setJobId('${job.getJobId()}')" value="Remove Job"/>   						
+		  	    					
+							<a id="cli" class="btn bx" href="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit" onclick="col()">Edit this Job Posting</a>
+  							<input class="btn" type="submit" onclick="setJobId('${job.getJobId()}')" value="Remove Job"/>   						
 		  	    				</div>
 		  	    				
 		  	    			</div>

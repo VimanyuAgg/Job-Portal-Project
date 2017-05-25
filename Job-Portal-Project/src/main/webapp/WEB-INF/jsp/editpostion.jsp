@@ -264,8 +264,8 @@ backhround: #eaedef;
   				<option value="closed">Closed</option>
  				 <option value="cencelled">Cancelled</option>
 			</select> </p>
-			<p>Title:</p><p> <input type="text" name="title" value=${job.getJobTitle()} placeholder="Job Title" required /></p>
-			<p>Location:</p><p> <input type="text" name="location" placeholder="Job Location" value=${job.getJobLocation()} /></p>
+			<p>Title:</p><p> <input type="text" name="title" value="${job.getJobTitle()}" placeholder="Job Title" required /></p>
+			<p>Location:</p><p> <input type="text" name="location" placeholder="Job Location" value="${job.getJobLocation()}" /></p>
 			<p>Description:</p>
 			<p>
 			    <textarea class="form-control" rows="9" cols="50" name="description" placeholder="Breif description of the job!">${job.getJobDescription()}</textarea>
@@ -274,8 +274,8 @@ backhround: #eaedef;
 			
 		    <textarea class="form-control" rows="4" cols="50" name="responsibilities" placeholder="Responsibilites!">${job.getJobResponsibilities()}</textarea>
 			
-			<p>Salary:</p><p><input type="text"name="salary" value=${job.getJobSalary()} placeholder="Salary Offered"/> </p>
-			<input type="submit" class = "btn btn-primary btn1" value="Post" style=" margin: auto;align-self: center;display: block;"/>
+			<p>Salary:</p><p><input type="text"name="salary" value="${job.getJobSalary()}" placeholder="Salary Offered"/> </p>
+			<input type="submit" class = "btn btn-primary btn1" value="Save Changes" style=" margin: auto;align-self: center;display: block;"/>
 			</form>
 		</div>	
 	
