@@ -29,7 +29,6 @@
 <script>
 		 
 function interested(a){		
-	 alert(String(a)); 
 		 $.ajax({
 	            
 			  	 type: "post",
@@ -239,7 +238,7 @@ backhround: #eaedef;
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-	  <a class="navbar-brand wh" href="#">Spring Onions</a>
+	  <a class="navbar-brand wh" href="/jobseeker/<%=session.getAttribute("username")%>/dashboard">Spring Onions</a>
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
@@ -262,11 +261,11 @@ backhround: #eaedef;
 	         
 
 	        </div>
-	        	     <li class="nav-item active">
+<!-- 	        	     <li class="nav-item active">
 	     <form id="jobs" action="/positions/searchByFields" method="POST">
 	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
 	      </li>
-	      </li>
+ -->	      </li>
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/jobseeker/logout">Log Out <span class="sr-only">(current)</span></a>
 	      </li>
