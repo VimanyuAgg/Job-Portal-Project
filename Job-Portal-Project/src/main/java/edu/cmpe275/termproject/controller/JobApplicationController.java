@@ -203,6 +203,7 @@ public class JobApplicationController {
 		else System.out.println("applicant not found");
 		
 		List<JobApplication> userApplications = jobApplicationService.findApplications(applicant);
+		System.out.println("result fetched");
 		
 		for(JobApplication application : userApplications){
 			System.out.println("inside loop");
@@ -240,10 +241,12 @@ public class JobApplicationController {
 		
 		String cancel = request.getParameter("cancel"); //cancel is comma separated list of application id
 		String reject = request.getParameter("reject");
+		String accept = request.getParameter("accept");
 		String email = request.getParameter("email");
 
 		System.out.println("cancel "+cancel);
 		System.out.println("reject "+reject);
+		System.out.println("accept "+accept);
 		System.out.println("email "+email);
 		
 		if(cancel != null && !cancel.equals("")){
@@ -254,6 +257,11 @@ public class JobApplicationController {
 		if(reject != null && !reject.equals("")){
 			System.out.println("inside reject");
 			jobApplicationService.updateApplications(reject, "Reject");
+		}
+		
+		if(accept != null && !accept.equals("")){
+			System.out.println("inside accept");
+			jobApplicationService.updateApplications(accept, "Accept");
 		}
 		
 		//Need to add email service
@@ -285,4 +293,54 @@ public class JobApplicationController {
 			return "redirect:/positions/applicants";
 		}
 	}
+	
+	@RequestMapping(value="/position/{jobId}/offer/{jsId}",method=RequestMethod.GET)
+	public String giveOffer(@PathVariable String jobId, @PathVariable String jsId, 
+			HttpServletRequest request, ModelMap map){
+		
+		System.out.println("inside giveOffer()");
+		System.out.println("session: "+session);
+
+		System.out.println("jobId "+jobId);
+		System.out.println("jsId "+jsId);
+
+		if(session == null){
+			return "redirect:/jobseeker/login";
+		}
+		
+		JobSeeker applicant = jobSeekerService.findByEmail(".com");
+		
+		if(applicant != null) System.out.println("applicant found");
+		else System.out.println("applicant not found");
+		
+		List<JobApplication> userApplications = jobApplicationService.findApplications(applicant);
+		
+		for(JobApplication application : userApplications){
+			System.out.println("inside loop");
+			System.out.println("inside loop "+application.getId());
+			System.out.println("inside loop"+application.getPostedOn());
+			System.out.println("inside loop"+application.getProfile());
+			System.out.println("inside loop"+application.getJobPosting());
+			
+			if(application.getProfile().equals("Resume")){
+				try{
+//					FileOutputStream fos = new FileOutputStream("/file.txt");
+//					fos.write(application.getResume());
+//					fos.close();
+				}catch(Exception e){
+					System.out.println("Exception in viewUserApps");
+				}
+			}
+			
+			//map.addAttribute("applications", userApplications);
+			
+			System.out.println("inside loop"+application.getResume());
+			System.out.println("inside loop"+application.getStatus());
+		}
+		
+		System.out.println("application size "+userApplications.size());
+		
+		map.addAttribute("applications", userApplications);
+		return "jobseeker-all-applications";
+	}	
 }

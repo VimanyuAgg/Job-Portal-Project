@@ -304,8 +304,9 @@ backhround: #eaedef;
 		  	    				 --%>
 		  	    				 <br>
 		  	    				<div class="desc">
-		  	    					<form action="/positions/${interestedJobValue.getJobId()}" method="GET" >
-						       			<input type= "submit" class="btn" value="Mark as uninterested">
+		  	    					<form action="/jobseeker/markUninterested" method="POST" >
+		  	    					<input type="hidden" value ="${interestedJobValue.getJobId()}" name="jobId">
+						       			<input type= "submit" class="btn" value="Mark as uninterested" onsubmit="setTimeout(function () { window.location.reload(); }, 5)">
 		  	    						
 						       		</form>
 		  	    					

@@ -12,6 +12,7 @@ import edu.cmpe275.termproject.dao.JobPostingDAO;
 import edu.cmpe275.termproject.dao.JobSeekerDAO;
 import edu.cmpe275.termproject.emailService.JobAppliedEmail;
 import edu.cmpe275.termproject.emailService.RegistrationEmail;
+import edu.cmpe275.termproject.model.Company;
 import edu.cmpe275.termproject.model.JobApplication;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.model.JobSeeker;
@@ -168,14 +169,30 @@ public class JobApplicationService {
 			String status = application.getStatus();
 			
 			if(action.equals("Cancel") && status.equals("Pending")){
+				System.out.println("inside Pending");
 				application.setStatus("Cancelled");
 				jobApplicationDAO.save(application);
 			}
 
 			else if(action.equals("Reject") && status.equals("Offered")){
+				System.out.println("inside Offered");
 				application.setStatus("OfferRejected");
 				jobApplicationDAO.save(application);			
 			}
+			
+			else if(action.equals("Accept") && status.equals("Offered")){
+				System.out.println("inside OfferAccepted");
+				application.setStatus("OfferAccpeted");
+				jobApplicationDAO.save(application);
+				
+				//Company company = application.getJobPosting().getJobPostedByCompany();
+				// mark the field in Company's job as Filled
+				application.getJobPosting().setJobStatus("Filled");
+				jobPostingDAO.save(application.getJobPosting());
+				// email all other applicants that position is filled
+				
+			}
+			
 			else continue;
 		}
 	}

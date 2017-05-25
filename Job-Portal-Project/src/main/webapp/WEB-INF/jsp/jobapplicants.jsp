@@ -341,6 +341,7 @@ backhround: #eaedef;
 	  	    				<br>
 	  	    				
 	  	    				<div class="desc">
+								<a id="cli" class="btn bx" href="/position/${job.getJobId()}/offer/${applicant.getJsid()}">Extend Offer</a>
 								<input type="submit" class="btn" onclick="setApplicationId('${applications[status.index].getId()}')" value="Cancel Application"/>
 	  	    				</div>
 	  	    				<br>
