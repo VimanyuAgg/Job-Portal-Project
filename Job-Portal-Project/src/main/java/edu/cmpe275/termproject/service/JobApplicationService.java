@@ -171,4 +171,17 @@ public class JobApplicationService {
 			else continue;
 		}
 	}
+	public boolean companyCancelApplication(String applicationId) {
+		// TODO Auto-generated method stub
+		JobApplication application= jobApplicationDAO.findOne(applicationId);
+		String status=application.getStatus();
+		if(status.equalsIgnoreCase("Cancelled") || status.equalsIgnoreCase("OfferAccepted") || status.equalsIgnoreCase("OfferRejected") || status.equalsIgnoreCase("Cancelled")){
+			return false;
+		}
+		else{
+			application.setStatus("Cancelled");
+			jobApplicationDAO.save(application);
+			return true;
+		}
+	}
 }

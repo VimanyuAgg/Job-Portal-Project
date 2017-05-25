@@ -160,7 +160,7 @@ public class JobApplicationController {
 		}
 
 		System.out.println("returning ");
-		
+		map.addAttribute("applications",applications);
 		map.addAttribute("applicants", applicants);
 		map.addAttribute("logoImageUrl", job.getJobPostedByCompany().getLogoUrl());
 		map.addAttribute("website", job.getJobPostedByCompany().getAddress());
@@ -243,4 +243,17 @@ public class JobApplicationController {
 		//Need to add email service
 		return "redirect:/jobseeker/applications/"+email;
 	}	
+	@RequestMapping("/positions/applicants/cancel")
+	public String companyCancelApplication(ModelMap mop, HttpServletRequest request){
+		String applicationId=request.getParameter("applicationId");
+		boolean result=jobApplicationService.companyCancelApplication(applicationId);
+		if(result)
+			return "redirect:/company/"+session.getAttribute("companyId")+"/welcome";
+			//return "success";
+		else{
+			mop.addAttribute("errorMessage","Cannot cancel an application in terminal state");
+
+			return "error";
+		}
+	}
 }
