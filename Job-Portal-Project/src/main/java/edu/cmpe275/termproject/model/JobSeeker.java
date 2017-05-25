@@ -54,7 +54,7 @@ public class JobSeeker {
 	@Column(name="PICTURE")
 	private String picture;
 	
-	@Column(name="SELF_INTRO", nullable=true)
+	@Column(name="SELF_INTRO", length= 3000, nullable=true)
 	private String selfIntroduction;
 	
 	@Column(name="WRK_EXP")
@@ -63,7 +63,7 @@ public class JobSeeker {
 	@Column(name="EDU")
 	private String education;
 	
-	@Column(name="SKILLS")
+	@Column(name="SKILLS", length= 3000)
 	private String skills;
 	
 	@Column(name="USER_NAME", unique=true)
