@@ -247,7 +247,7 @@ backhround: #eaedef;
 			<div class="name">${address}</div>
 			<div class="name">${website}</div>
 		</div>
-		
+		<div>${errorMessage}</div>
 				<div class="col-md-7">
 		<!-- job card section -->
 
