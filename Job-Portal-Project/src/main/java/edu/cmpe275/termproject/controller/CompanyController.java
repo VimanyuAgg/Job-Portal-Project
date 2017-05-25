@@ -3,6 +3,7 @@ package edu.cmpe275.termproject.controller;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -208,7 +209,6 @@ public class CompanyController {
 	public String companyLandingPage(@PathVariable long companyId, 
 			HttpServletRequest request, ModelMap map){
 		
-		System.out.println("I am in Welocmeeeeeeeee");
 		System.out.println("inside companyLandingPage");
 		System.out.println("companyId "+companyId);
 		if(session.getAttribute("companyId")!=null){
@@ -218,31 +218,65 @@ public class CompanyController {
 			String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
 			if(sessionCompanyId.equals(String.valueOf(companyId))){
 				System.out.println("Not equal");
+				List<JobPosting> result = new ArrayList<>();
 				List<JobPosting> jobs = companyService.getAllPositions(companyId);
 				System.out.println("Line 186"+jobs.size());
+				
+				String open = request.getParameter("open");
+				String filled = request.getParameter("filled");
+				String cancelled = request.getParameter("cancelled");
+				
+				System.out.println("open "+open);
+				System.out.println("filled "+filled);
+				System.out.println("cancelled "+cancelled);
+				
 				if(jobs == null) return "error";
 				
 				for(JobPosting job : jobs){
+					if(open != null && open.length() != 0 && 
+							job.getJobStatus().equals("open")){
+						System.out.println("inside open");
+						result.add(job);
+					}
+					else if(filled != null && filled.length() != 0 && 
+							job.getJobStatus().equals("filled")){
+						System.out.println("inside filled");
+						result.add(job);
+					}
+					else if(cancelled != null && cancelled.length() != 0 && 
+							job.getJobStatus().equals("Cancelled")){
+						System.out.println("inside cancelled");
+						result.add(job);
+					}
+					else if( (open == null || open.length() == 0)
+							&& (filled == null || filled.length() == 0)
+							&& (cancelled == null || cancelled.length() == 0)){
+						System.out.println("inside else");
+						result.add(job);
+					}
 					System.out.println(" "+job.getJobId());
-					System.out.println(" "+job.getJobTitle());
-		     		System.out.println(" "+job.getJobResponsibilities());
-					System.out.println(" "+job.getJobDescription());
-		   			System.out.println(" "+	job.getJobSalary());
-					System.out.println(" "+job.getPostedOn());
-					System.out.println(" "+job.getEligibility());
-					System.out.println(" "+job.getJobLocation());
+//					System.out.println(" "+job.getJobTitle());
+//		     		System.out.println(" "+job.getJobResponsibilities());
+//					System.out.println(" "+job.getJobDescription());
+//		   			System.out.println(" "+	job.getJobSalary());
+//					System.out.println(" "+job.getPostedOn());
+//					System.out.println(" "+job.getEligibility());
+//					System.out.println(" "+job.getJobLocation());
 					System.out.println(" "+job.getJobStatus());
-					System.out.println(" "+job.getTempSize());
-					System.out.println(" "+job.getApplicants());
-					System.out.println(" "+job.getJobPostedByCompany());
+//					System.out.println(" "+job.getTempSize());
+//					System.out.println(" "+job.getApplicants());
+//					System.out.println(" "+job.getJobPostedByCompany());
 				}
 				Company company = companyService.getCompany(companyId);
-				map.addAttribute("jobs", jobs);
+				map.addAttribute("jobs", result);
 				map.addAttribute("logoImageUrl", company.getLogoUrl());
 				map.addAttribute("description",company.getDescription());
 				map.addAttribute("address",company.getAddress());
 				map.addAttribute("website",company.getWebsite());
-				
+				System.out.println("open is ##### "+open);
+				map.addAttribute("open", open);
+				map.addAttribute("filled", filled);
+				map.addAttribute("cancelled", cancelled);
 				System.out.println("returning companyLandingPage");
 
 				return "companylandingpage";

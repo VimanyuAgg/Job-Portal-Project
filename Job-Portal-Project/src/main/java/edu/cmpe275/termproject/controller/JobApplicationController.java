@@ -160,7 +160,12 @@ public class JobApplicationController {
 		}
 
 		System.out.println("returning ");
+
+		
+		map.addAttribute("jobid", jobId);
+
 		map.addAttribute("applications",applications);
+
 		map.addAttribute("applicants", applicants);
 		map.addAttribute("logoImageUrl", job.getJobPostedByCompany().getLogoUrl());
 		map.addAttribute("website", job.getJobPostedByCompany().getAddress());

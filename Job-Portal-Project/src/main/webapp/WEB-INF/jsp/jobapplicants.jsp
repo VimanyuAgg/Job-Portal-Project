@@ -222,11 +222,7 @@ backhround: #eaedef;
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/postjob">Post a New Job</a>
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/managejobs">Manage Current Jobs</a>
 	        </div>
-	      <!-- <li class="nav-item active">
-	     	<form id="jobs" action="/positions/searchByFields" method="POST">
-	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
-	      </li> -->
-	     
+	      
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/logout">Log Out <span class="sr-only">(current)</span></a>
 	      </li>
@@ -254,14 +250,34 @@ backhround: #eaedef;
 		
 				<div class="col-md-7">
 		<!-- job card section -->
+
+		<%-- <form action="/company/<%=session.getAttribute("companyId")%>/positions/${jobid}/edit" method="GET">
+			<table class="table">
+		 		<thead>
+					<tr>
+				      	<th>Job Applicants</th>
+			    	</tr>
+			    	<tr>
+				    	<td>
+				    		<input type="submit" class="btn" value="Edit this job"/>
+				    	</td>
+			    	</tr>
+			    </thead>
+		    </table>
+		</form> --%>
+		<%-- <form action="/positions/applicants" method="GET">
+			<input type="hidden" name="jobId" id="jd" value="${jobid}"/> --%>
+
 		<form action="/positions/applicants/cancel" method="GET">
 					<input type="hidden" name="applicationId" id="ad"/>
+
 		
 			<table class="table list-of-posts">
 		 		<thead>
 					<tr>
-			      		<th>Your Job History</th>
+				      	<th>Job Applicants</th>
 			    	</tr>
+			    	
 			    </thead>
 			    
 				<c:forEach items="${applicants}" var="applicant" varStatus="status">

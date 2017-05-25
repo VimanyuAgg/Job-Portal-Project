@@ -200,7 +200,7 @@ backhround: #eaedef;
 </style>
 
 </head>
-<body>
+<body onload="initial()">
 
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded nv" style="height: 70px">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -240,9 +240,6 @@ backhround: #eaedef;
 
 </nav>
 
-
-
-
 <div class="row outer">
 	
 		<div class="col-md-1"></div>
@@ -257,17 +254,34 @@ backhround: #eaedef;
 		</div>
 		
 				<div class="col-md-7">
+		<form id="form" action="/company/<%=session.getAttribute("companyId")%>/welcome" method="GET">
+			<input type="hidden" name="open" id="op" value="${open}">
+			<input type="hidden" name="filled" id="fi" value="${filled}">
+			<input type="hidden" name="cancelled" id="can" value="${cancelled}">
+			<table class="table">
+	 		<thead>
+				<tr>
+		      		<th>Your Job History</th>
+		    	</tr>
+		    	<tr>
+			    	<td>
+			    		<h4>Filter Jobs:</h4>
+			    		
+					    <input id="open" type="checkbox" value="Open" onclick="addStatus()">Open&nbsp;&nbsp;&nbsp;
+					    <input id="filled" type="checkbox" value="Filled" onclick="addStatus()">Filled&nbsp;&nbsp;&nbsp;
+					    <input id="cancelled" type="checkbox" value="Cancelled" onclick="addStatus()">Cancelled&nbsp;&nbsp;&nbsp;
+					    
+			    	</td>
+		    	</tr>
+		    </thead>
+		    </table>
+		</form>
 		<!-- job card section -->
 		<form action="/positions/applicants" method="GET">
 			<input type="hidden" name="jobId" id="jd"/>
 		
 			<table class="table list-of-posts">
-		 		<thead>
-					<tr>
-			      		<th>Your Job History</th>
-			    	</tr>
-			    </thead>
-			    
+		 		
 				<c:forEach items="${jobs}" var="job">
 		  	    <tbody>
 		  	    	<tr class="row item post">
@@ -297,19 +311,12 @@ backhround: #eaedef;
 		  	    					Status : <c:out value="${job.getJobStatus()}" />
 		  	    				</div>
 		  	    				
-		  	    				<%-- <div class="desc">
-		  	    					Eligibility: <c:out value="${topJobValue.getEligibility()}" />
-		  	    				</div>
-		  	    				 --%>
-		  	    				 <br>
+		  	    				<br>
 		  	    				<div class="desc desc2">
-		  	    					<%-- <form action="/positions/${job.getJobId()}" method="GET">
- 			  	    					<input type="submit" class="btn" value="Learn More"/>
-			  	    				</form> --%>
- 
-		  	    						<input type="submit" class="btn" onclick="setJobId('${job.getJobId()}')" value="View Applicants!"/>
+									<a id="cli" class="btn bx" href="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit" onclick="col()">Edit this Job Posting</a>
+  									<input class="btn" type="submit" onclick="setJobId('${job.getJobId()}')" value="Cancel Job"/>   						
+		  	    					<input type="submit" class="btn" onclick="setJobId('${job.getJobId()}')" value="View Applicants"/>
 		  	    				</div>
-		  	    				
 		  	    			</div>
 		  	    		</td>
 		  	    		
@@ -321,9 +328,7 @@ backhround: #eaedef;
 			    </tbody>
 			    </c:forEach>
 			</table>
-		  	    					</form>
-			
-		
+		 </form>
 		</div>	
 	
 
@@ -340,65 +345,6 @@ backhround: #eaedef;
 			<div class="pagination"></div>
 		</div>
 	</div>
-
-
-
-<!-- 
-
- <div class="col-sm-8">
-      <div class="jobPost" style=
-    "width: 880px;">
-      <div class="jumbotron"style="padding:0px;">
-     
-
-<h4>Below are all the jobs your company has posted.</h4>
-<form action="/positions/applicants" method="GET">
-<input type="hidden" name="jobId" id="jd"/>
-	<table class="table">
-<thead><tr>      <td>Job Id</td>
-      <td>Job Title</td>
-      <td>Responsibilities</td>
-      <td>Description</td>
-      <td>Salary</td>
-      <td>Posted On</td>
-      <td>Eligibility</td>
-      <td>Location</td>
-      <td>Status</td>
-    </tr></thead>
-	  <c:forEach items="${jobs}" var="job">
-	  <tbody>
-  	    <tr>
-	      <td><c:out value="${job.getJobResponsibilities()}" /></td>
-	      <td><c:out value="${job.getJobDescription()}" /></td>
-	      <td><c:out value="${job.getJobSalary()}" /></td>
-	      <td><c:out value="${job.getPostedOn()}" /></td>
-	      <td><c:out value="${job.getEligibility()}" /></td>
-	      <td><c:out value="${job.getJobLocation()}" /></td>
-	      <td><c:out value="${job.getJobStatus()}" /></td>
-	      <td><input type="submit" onclick="setJobId('${job.getJobId()}')" value="View Applicants!"/></td>
-	    </tr>
-	    </tbody>
-	  </c:forEach>
-	</table>
-</form>
-
-<%-- <form action="/company/<%=session.getAttribute("companyId")%>/postjob" method="GET">
- --%>
- <form action="/company/<%=session.getAttribute("companyId")%>/postjob" method="GET">
-	<input type="submit" value="Post a new Job" style="
-    /* float: left; */
-    margin-bottom: 15px;"/>
-</form>
-
-<form action="/company/<%=session.getAttribute("companyId")%>/managejobs" method="GET">
-	<input type="submit" value="Manage Current Jobs" style="
-    /* float: left; */
-    margin-bottom: 15px;"/>
-</form>
-</div>
-</div></div>
- 
- -->
 <script>
 	function setJobId(val){
 		var a  = document.getElementById("jd");
@@ -410,9 +356,78 @@ backhround: #eaedef;
 		console.log("job id is "+document.getElementById("jd").value);
 		return false;
 	}
+	
+	function addStatus(){
+		console.log("in addStatus()");
+		if ($('#open').is(':checked')) {
+			var a = document.getElementById("op");
+			a.value = "open";
+		}
+		else{
+			var a = document.getElementById("op");
+			a.value = "";
+		}
+		if ($('#filled').is(':checked')) {
+			var a = document.getElementById("fi");
+			a.value = "filled";
+		}
+		else{
+			var a = document.getElementById("fi");
+			a.value = "";
+		}
+		if ($('#cancelled').is(':checked')) {
+			var a = document.getElementById("can");
+			a.value = "cancelled";
+		}
+		else{
+			var a = document.getElementById("can");
+			a.value = "";
+		}
+		$('#form').submit();
+	}
 </script>
 
+<script type="text/javascript">
 
+	function initial(){
+		console.log("inside initial");
+		var open = document.getElementById("op").value;
+		var filled = document.getElementById("fi").value;
+		var cancelled = document.getElementById("can").value;
+	
+		if(open == undefined || open == ""){
+				
+		}
+		else{
+			document.getElementById("open").checked = true;
+		}
+			
+		if(filled == undefined || filled == ""){
+			
+		}
+		else{
+			document.getElementById("filled").checked = true;
+		}
+		
+		if(cancelled == undefined || cancelled == ""){
+			
+		}
+		else{
+			console.log("checking cancelled");
+			document.getElementById("cancelled").checked = true;
+		}
+		
+		console.log("open "+document.getElementById("op").value);
+		console.log("filled "+document.getElementById("fi").value);
+		console.log("cancelled "+document.getElementById("can").value);
+	}
+
+	function col(){
+		var a = document.getElementById("cli");
+		cli.style.color = "white!Important";
+	}
+
+</script>
 
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 <script src="${pageContext.request.contextPath}/js/paginate.js"></script>

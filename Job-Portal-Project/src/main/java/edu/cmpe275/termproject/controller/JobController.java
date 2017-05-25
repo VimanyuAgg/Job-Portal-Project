@@ -110,22 +110,40 @@ public class JobController {
 			return "error";
 			}
 		map.addAttribute("job",job);
+		
+		System.out.println("eligibility "+job.getEligibility());
+		System.out.println("desc "+job.getJobDescription());
+		System.out.println("jobid "+job.getJobId());
+		System.out.println(" "+job.getJobLocation());
+		System.out.println(" "+job.getJobResponsibilities());
+		System.out.println(" "+job.getJobSalary());
+		System.out.println(" "+job.getJobStatus());
+		System.out.println(" "+job.getJobTitle());
+				
+		
+		
 		return "editpostion";
 	}
 	@RequestMapping(value="/company/{companyId}/positions/{positionId}/edit", method=RequestMethod.POST)
 	public String editPositionDetails(@PathVariable long companyId, @PathVariable String positionId, HttpServletRequest request, ModelMap map) throws ParseException{
+		
+		System.out.println("inside editPositionDetails");
+		
 		String sessionCompanyId=String.valueOf(session.getAttribute("companyId"));
+		
 		if(session.getAttribute("companyId")==null || !sessionCompanyId.equals(String.valueOf(companyId))){
 			return "redirect:/company/login";
 		}   
-		String title=request.getParameter("title"), 
-	    		   description=request.getParameter("description"), responsibilites=request.getParameter("responsibilities"),
-				offliceLocation=request.getParameter("location"), salary=request.getParameter("salary"), status=request.getParameter("status");
-		//Company company=companyService.getCompany(companyId);
+		
+		String title = request.getParameter("title"), 
+	    		description=request.getParameter("description"), 
+	    		responsibilites=request.getParameter("responsibilities"),
+				offliceLocation=request.getParameter("location"), 
+				salary=request.getParameter("salary"), 
+				status=request.getParameter("status");
+		
 		JobPosting job=jobSerivce.getJob(positionId);
-		//String title=currentJob.getJobTitle(), description=currentJob.getJobDescription(), responsibilites=currentJob.getJobResponsibilities(),
-		//		offliceLocation=currentJob.getJobLocation(), salary=currentJob.getJobSalary(), status=currentJob.getJobStatus();
-		// currentJob= jobSerivce.removeJob(currentJob);
+		
 		if(job==null)
 			return "error";
 		System.out.println("Title:"+title);
