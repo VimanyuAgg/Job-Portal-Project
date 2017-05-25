@@ -275,6 +275,7 @@ $(document).ready(function(){
 			<input type="hidden" name="email" value="<%=session.getAttribute("email")%>"/>
 			<input type="hidden" id="reject" name="reject" value=""/>
 			<input type="hidden" id="cancel" name="cancel" value=""/>
+			<input type="hidden" id="accept" name="accept" value=""/>
 			
 			<table class="table list-of-posts">
 		 		<thead>
@@ -314,8 +315,9 @@ $(document).ready(function(){
 		  	    				
 		  	    				 <br>
 		  	    				<div class="desc">
-										<input type="radio" onclick="addCancel('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Cancel
-			  							<input type="radio" onclick="addReject('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Reject
+										<input type="radio" onclick="addCancel('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Cancel&nbsp;&nbsp;
+			  							<input type="radio" onclick="addReject('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Reject&nbsp;&nbsp;
+			  							<input type="radio" onclick="addAccept('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">AcceptOffer
 		  	    				</div>  
 		  	    			</div>
 		  	    		</td>
@@ -375,6 +377,16 @@ function addReject(str){
 	console.log("inside addCancel");
 
 	var a = document.getElementById("reject");
+	a.value = a.value + str + ",";
+	
+	console.log("val "+a.value);
+	return false;
+}
+
+function addAccept(str){
+	console.log("inside addAccept");
+
+	var a = document.getElementById("accept");
 	a.value = a.value + str + ",";
 	
 	console.log("val "+a.value);
