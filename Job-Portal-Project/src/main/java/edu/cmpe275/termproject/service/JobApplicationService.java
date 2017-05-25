@@ -191,4 +191,7 @@ public class JobApplicationService {
 			return true;
 		}
 	}
+	public JobApplication getApplication(String applicationId){
+		return jobApplicationDAO.findOne(applicationId);
+	}
 }

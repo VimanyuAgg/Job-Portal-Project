@@ -247,12 +247,15 @@ public class JobApplicationController {
 	public String companyCancelApplication(ModelMap mop, HttpServletRequest request){
 		String applicationId=request.getParameter("applicationId");
 		boolean result=jobApplicationService.companyCancelApplication(applicationId);
-		if(result)
+		if(result){
+			//Email the Candidate the status - 7G
+			JobApplication application=jobApplicationService.getApplication(applicationId);
+			String email=application.getApplicant().getEmail();
+			//Email the Candidate the status - 7G
 			return "redirect:/company/"+session.getAttribute("companyId")+"/welcome";
-			//return "success";
+			}
 		else{
 			mop.addAttribute("errorMessage","Cannot cancel an application in terminal state");
-
 			return "error";
 		}
 	}
