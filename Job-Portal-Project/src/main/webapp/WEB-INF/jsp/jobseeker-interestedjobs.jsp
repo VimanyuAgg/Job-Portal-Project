@@ -275,6 +275,11 @@ backhround: #eaedef;
 		  	    			<br>
 		  	    			<div class="data" style="color:grey">
 		  	    				<div class="desc">
+		  	    					Job ID<br>
+		  	    					<c:out value="${interestedJobValue.getJobId()}" />
+		  	    				</div>
+		  	    				
+		  	    				<div class="desc">
 		  	    					Description<br>
 		  	    					<c:out value="${interestedJobValue.getJobDescription()}" />
 		  	    				</div>
