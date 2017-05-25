@@ -246,7 +246,7 @@ public class JobApplicationController {
 		}
 		
 		//Need to add email service
-		return "redirect:/jobseeker/applications/"+email;
+		return "redirect:/jobseeker/app/"+email;
 	}	
 	@RequestMapping("/positions/applicants/cancel")
 	public String companyCancelApplication(ModelMap mop, HttpServletRequest request){
