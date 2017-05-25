@@ -291,7 +291,7 @@ $(document).ready(function(){
 		  	    			<br>
 		  	    			<div class="data" style="color:grey">
 		  	    				<div class="desc">
-		  	    					Application ID<br>
+		  	    					Job ID<br>
 		  	    					<c:out value="${application.getJobPosting().getJobId()}" />
 		  	    				</div>
 		  	    				
