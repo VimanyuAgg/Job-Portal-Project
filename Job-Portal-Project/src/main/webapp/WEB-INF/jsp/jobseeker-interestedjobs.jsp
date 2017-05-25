@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Applications!</title>
+<title>Interested Jobs!</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -19,10 +19,6 @@
 <%--     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"></link>
  --%>    
 <style>
-
-	
-    
-    
 
 body{
 	background-color: #eaedef;
@@ -106,8 +102,9 @@ backhround: #eaedef;
 
 .dp{
 	margin-top: 30px;
-	margin-left: 33%;
-	border-radius: 50%;
+	vertical-align:middle;
+	margin-left: 15%;
+	/*  border-radius: 50%; */
 }
 
 .comp{
@@ -200,15 +197,6 @@ backhround: #eaedef;
 
 </style>
 
-
-<script>
-$(document).ready(function(){
-	$("select").change(function() {
-	  alert( "Handler for .change() called." );
-	});
-});
-</script>
-
 </head>
 <body>
 
@@ -217,7 +205,7 @@ $(document).ready(function(){
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-	  <a class="navbar-brand wh" href="/jobseeker/<%=session.getAttribute("username")%>/dashboard">Spring Onions</a>
+	  <a class="navbar-brand wh" href=""/jobseeker/<%=session.getAttribute("username")%>/dashboard"">Spring Onions</a>
 	
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
@@ -236,7 +224,8 @@ $(document).ready(function(){
 	        <!--   <a class="dropdown-item" href="/company/register">View Job History</a> -->
 	        <!--   <a class="dropdown-item" href="/company/register">Edit Profile</a> -->
 
-	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applications</a>
+	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applied Jobs</a>
+	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/viewInterestedJobs">View Interested Jobs</a>
 	         
 
 	        </div>
@@ -260,7 +249,7 @@ $(document).ready(function(){
 		<div class="col-md-1"></div>
 		<div class="col-md-2 sidebar" style="text-align">
 			<!-- side bar for profile review -->
-			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
+			<img class="img-responsive dp" src="${picture}" width="75%">
 		
 			<div class="name">${firstName}&nbsp;${lastName}</div>
  			<br>
@@ -271,33 +260,33 @@ $(document).ready(function(){
 		<div class="col-md-7">
 		<!-- job card section -->
 		
-			<form action="/updateApp" method="GET">
-			<input type="hidden" name="email" value="<%=session.getAttribute("email")%>"/>
-			<input type="hidden" id="reject" name="reject" value=""/>
-			<input type="hidden" id="cancel" name="cancel" value=""/>
-			
 			<table class="table list-of-posts">
 		 		<thead>
 					<tr>
-			      		<th>Your Job History</th>
+			      		<th>Jobs of Interest</th>
 			    	</tr>
 			    </thead>
 			    
-				<c:forEach items="${applications}" var="application">
+				<c:forEach items="${interestedJobs}" var="interestedJobValue">
 		  	    <tbody>
 		  	    	<tr class="row item post">
 		  	    		<td style="max-width: 100px">
-		  	    			<img class="img-responsive cl" src="${pageContext.request.contextPath}/img/company-200.png">
+		  	    			<img class="img-responsive cl" src="${interestedJobValue.jobPostedByCompany.getLogoUrl()}">
 		  	    			<br>
 		  	    			<div class="data" style="color:grey">
 		  	    				<div class="desc">
-		  	    					Application ID<br>
-		  	    					<c:out value="${application.getJobPosting().getJobId()}" />
+		  	    					Job ID<br>
+		  	    					<c:out value="${interestedJobValue.getJobId()}" />
 		  	    				</div>
 		  	    				
 		  	    				<div class="desc">
-		  	    					Status<br>
-		  	    					<c:out value="${application.getStatus()}" />
+		  	    					Description<br>
+		  	    					<c:out value="${interestedJobValue.getJobDescription()}" />
+		  	    				</div>
+		  	    				
+		  	    				<div class="desc">
+		  	    					Responsibilities<br>
+		  	    					<c:out value="${interestedJobValue.getJobResponsibilities()}" />
 		  	    				</div>
 		  	    				
 		  	    				<%-- <div class="desc">
@@ -305,39 +294,43 @@ $(document).ready(function(){
 		  	    				</div>
 		  	    				 --%>
 		  	    				<div class="desc">
-		  	    					Applied On: <c:out value="${topJobValue.getJobPosting().getJobLocation()}" />
+		  	    					Location: <c:out value="${interestedJobValue.getJobLocation()}" />
 		  	    				</div>
 		  	    				
 		  	    				<div class="desc">
-		  	    					Applied through: <c:out value="${application.getProfile()}" />
+		  	    					Posted On: <c:out value="${interestedJobValue.getPostedOn()}" />
 		  	    				</div>
 		  	    				
+		  	    				<%-- <div class="desc">
+		  	    					Eligibility: <c:out value="${topJobValue.getEligibility()}" />
+		  	    				</div>
+		  	    				 --%>
 		  	    				 <br>
 		  	    				<div class="desc">
-										<input type="radio" onclick="addCancel('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Cancel
-			  							<input type="radio" onclick="addReject('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Reject
-		  	    				</div>  
+		  	    					<form action="/positions/${interestedJobValue.getJobId()}" method="GET" >
+						       			<input type= "submit" class="btn" value="Mark as uninterested">
+		  	    						
+						       		</form>
+		  	    					
+		  	    				</div>
+		  	    				
 		  	    			</div>
 		  	    		</td>
 		  	    		
-		  	    		 <td style="padding-top: 24px;font-size: 21px;">
-		  	    			<c:out value="${application.getJobPosting().getJobTitle()}" /><br>
-		  	    			<div class="comp">"${application.getJobPosting().getJobPostedByCompany().getCompanyName()}"</div>
-		  	    		</td> 
-				    </tr>	  
-				    
-				      
+		  	    		<td style="padding-top: 24px;font-size: 21px;">
+		  	    			<c:out value="${interestedJobValue.getJobTitle()}" /><br>
+		  	    			<div class="comp">"${interestedJobValue.getJobPostedByCompany().getCompanyName()}"</div>
+		  	    		</td>
+				      	<%-- <td style="padding-top:27px;margin-left:300px;">
+				       		<form action="/positions/${topJobValue.getJobId()}" method="GET" >
+				       			<input type="submit" value="Apply Now!"/>
+				       		</form>
+				      	</td> --%>
+				    </tr>	    
 			    </tbody>
 			    </c:forEach>
-			    
-			    <tr>
-			    	<td>
-			    	
-			    	<input type="submit" value="Submit Changes!"/>
-			    	</td>
-			    </tr>
 			</table>
-			</form>
+			
 		
 		</div>
 		<div class="col-md-2">
@@ -358,30 +351,5 @@ $(document).ready(function(){
 <script src="${pageContext.request.contextPath}/js/custom.js"></script>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
-<script>
-function addCancel(str){
-	console.log("inside addCancel "+str);
-	
-	var a = document.getElementById("cancel");
-	a.value = a.value + str + ",";
-	
-	console.log("val "+a.value);
-	return false;
-}
-
-function addReject(str){
-	console.log("inside addCancel");
-
-	var a = document.getElementById("reject");
-	a.value = a.value + str + ",";
-	
-	console.log("val "+a.value);
-	return false;
-}
-</script>
-
-
 </body>
 </html>
