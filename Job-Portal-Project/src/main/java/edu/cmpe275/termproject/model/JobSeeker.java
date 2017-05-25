@@ -80,6 +80,19 @@ public class JobSeeker {
 	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
 	private List<JobApplication> applicationsList = new ArrayList<JobApplication>();
 	
+	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
+	private List<JobPosting> interestedList = new ArrayList<JobPosting>();
+	
+	
+	
+	public List<JobPosting> getInterestedList() {
+		return interestedList;
+	}
+
+	public void setInterestedList(List<JobPosting> interestedList) {
+		this.interestedList = interestedList;
+	}
+
 	public boolean isVerified() {
 		return isVerified;
 	}
