@@ -415,7 +415,11 @@ public class JobSeekerController {
 			return "redirect:/jobseeker/login";
 		}
 		JobSeeker jobSeeker = jobSeekerService.getJobSeeker(username);
-		
+		System.out.println("Printing interested list");
+		for(int i=0;i<jobSeeker.getInterestedList().size();i++){
+			System.out.println(jobSeeker.getInterestedList().get(i).getJobId());
+			
+		}
 		map.addAttribute("interestedJobs",jobSeeker.getInterestedList());
 	
 		return "jobseeker-interestedjobs";
