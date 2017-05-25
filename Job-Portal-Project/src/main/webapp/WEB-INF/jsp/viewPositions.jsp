@@ -387,7 +387,7 @@ backhround: #eaedef;
 	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
 	      <td><input type="submit" value="Apply Now!"/></td>
 	      <td><input type="button" value="Mark as interested!" onClick="interested();"/></td>
-	      <td><input type="hidden" value="${position.jobID()}" id="hiddenJobID"/></td>
+	      <td><input type="hidden" value="${position.getJobId()}" id="hiddenJobID"/></td>
 	      
 	    </tr>
 	  </c:forEach>
