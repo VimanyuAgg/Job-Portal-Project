@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.cmpe275.termproject.emailService.JobApplicationCancelEmail;
 import edu.cmpe275.termproject.model.JobApplication;
 import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.model.JobSeeker;
@@ -257,6 +258,10 @@ public class JobApplicationController {
 			JobApplication application=jobApplicationService.getApplication(applicationId);
 			String email=application.getApplicant().getEmail();
 			//Email the Candidate the status - 7G
+			JobApplicationCancelEmail.jobCancelEmail(email, application.getApplicant().getFirstName(),
+					application.getApplicant().getLastName(), 
+					application.getJobPosting().getJobId(), application.getJobPosting().getJobTitle(),
+					application.getJobPosting().getJobPostedByCompany().getCompanyName());
 			return "redirect:/company/"+session.getAttribute("companyId")+"/welcome";
 			}
 		else{

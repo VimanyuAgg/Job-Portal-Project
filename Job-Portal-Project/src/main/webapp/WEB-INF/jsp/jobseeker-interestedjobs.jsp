@@ -274,10 +274,7 @@ backhround: #eaedef;
 		  	    			<img class="img-responsive cl" src="${interestedJobValue.jobPostedByCompany.getLogoUrl()}">
 		  	    			<br>
 		  	    			<div class="data" style="color:grey">
-		  	    				<div class="desc">
-		  	    					Job ID<br>
-		  	    					<c:out value="${interestedJobValue.getJobId()}" />
-		  	    				</div>
+		  	    				
 		  	    				
 		  	    				<div class="desc">
 		  	    					Description<br>
@@ -318,8 +315,11 @@ backhround: #eaedef;
 		  	    		</td>
 		  	    		
 		  	    		<td style="padding-top: 24px;font-size: 21px;">
-		  	    			<c:out value="${interestedJobValue.getJobTitle()}" /><br>
-		  	    			<div class="comp">"${interestedJobValue.getJobPostedByCompany().getCompanyName()}"</div>
+		  	    			<c:out value="${interestedJobValue.getJobTitle()}-${interestedJobValue.getJobId()}" /><br>
+		  	    			<div class="comp">"${interestedJobValue.getJobPostedByCompany().getCompanyName()}"
+		  	    			
+		  	    			
+		  	    			</div>
 		  	    		</td>
 				      	<%-- <td style="padding-top:27px;margin-left:300px;">
 				       		<form action="/positions/${topJobValue.getJobId()}" method="GET" >
