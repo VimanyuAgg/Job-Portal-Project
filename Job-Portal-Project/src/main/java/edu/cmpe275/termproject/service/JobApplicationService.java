@@ -156,7 +156,7 @@ public class JobApplicationService {
 	}
 
 	public void updateApplications(String applicationIds, String action){
-		
+		System.out.println("Line 159 in Update Applications");
 		String ids[] = applicationIds.split(",");
 		
 		for(String id : ids){
