@@ -297,6 +297,10 @@ public class JobService {
 				jobSeeker.getInterestedList().remove(i);
 				System.out.println("Job deleted... Saving to DAO");
 				jobSeekerDAO.save(jobSeeker);
+				
+				interestedJob.getInterestedApplicants().remove(jobSeeker);
+				jobPostingDao.save(interestedJob);
+				
 				return "Marked as uninterested";
 			}
 		}
