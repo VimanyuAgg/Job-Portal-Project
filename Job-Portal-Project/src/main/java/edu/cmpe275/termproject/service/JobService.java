@@ -277,6 +277,8 @@ public class JobService {
 		
 		System.out.println("Interested Job does not exist with jobseeker");
 		System.out.println("Adding it to interested Jobs");
+		interestedJob.getInterestedApplicants().add(jobSeeker);
+		jobPostingDao.save(interestedJob);
 		jobSeeker.getInterestedList().add(interestedJob);
 		System.out.println("Added to interested Jobs... Saving changes to DB");
 		jobSeekerDAO.save(jobSeeker);
@@ -301,6 +303,10 @@ public class JobService {
 				jobSeeker.getInterestedList().remove(i);
 				System.out.println("Job deleted... Saving to DAO");
 				jobSeekerDAO.save(jobSeeker);
+				
+				interestedJob.getInterestedApplicants().remove(jobSeeker);
+				jobPostingDao.save(interestedJob);
+				
 				return "Marked as uninterested";
 			}
 		}

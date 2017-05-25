@@ -222,10 +222,17 @@ backhround: #eaedef;
 	                    	document.getElementById("mySubmit").disabled = false;
 	                    	document.getElementById("mySubmit").style.backgroundColor="#62C192";
 	                    	document.getElementById("mySubmit").style.borderColor="#62C192";
-	
+                        	document.getElementById("mySubmit").disabled = false;
 	                    }
 	                }
 	            });
+        	}
+        	else{
+            	document.getElementById("mySubmit").disabled = false;
+            	document.getElementById("mySubmit").style.backgroundColor="#62C192";
+            	document.getElementById("mySubmit").style.borderColor="#62C192";
+                $('#output').html("");
+
         	}
         });
 
@@ -309,7 +316,7 @@ backhround: #eaedef;
 		    <textarea class="form-control" rows="4" cols="50" name="responsibilities" placeholder="Responsibilites!">${job.getJobResponsibilities()}</textarea>
 			
 			<p>Salary:</p><p><input type="text"name="salary" value="${job.getJobSalary()}" placeholder="Salary Offered"/> </p>
-			<input type="submit" class = "btn btn-primary btn1" value="Save Changes" style=" margin: auto;align-self: center;display: block;"/>
+			<input id="mySubmit" type="submit" class = "btn btn-primary btn1" value="Save Changes" style=" margin: auto;align-self: center;display: block;"/>
 			</form>
 		</div>	
 	
