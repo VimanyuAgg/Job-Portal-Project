@@ -284,4 +284,20 @@ public class JobService {
 		return "Marked as interested";
 		
 	}
+	public String markApplicationAsUninterested(String jobId, String userName) {
+		// TODO Auto-generated method stub
+		JobPosting interestedJob = jobPostingDao.findByJobId(jobId);
+		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(userName);
+		
+		for(int i=0;i<jobSeeker.getInterestedList().size();i++){
+			if(jobSeeker.getInterestedList().get(i).getJobId().equals(jobId)){
+				System.out.println("Job Id found to delete");
+				jobSeeker.getInterestedList().remove(i);
+				System.out.println("Job deleted... Saving to DAO");
+				jobSeekerDAO.save(jobSeeker);
+				return "Marked as uninterested";
+			}
+		}
+		return "This job doesn't exist in interested list";
+	}
 }
