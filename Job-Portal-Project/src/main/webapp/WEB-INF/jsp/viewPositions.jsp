@@ -25,13 +25,22 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script>
+		 
+function interested(){		
+	/* alert($('#hiddenJobID').val()); */
+		 $.ajax({
+	            
+			 	 type: "post",
+	            url: "/jobseeker/markInterested",
+	            data: "jobId=" +$('#hiddenJobID').val(),
+	            success: function(msg){  
+	            	console.log(msg);
+	            } 
+		 });
+}
+</script>
 <style>
-
-	
-    
-    
-    
 
 body{
 	background-color: #eaedef;
@@ -365,7 +374,7 @@ backhround: #eaedef;
     <tbody>
 	  <c:forEach items="${positions}" var="position">
   	    <tr>
-	      <td><a href="/positions/${position.getJobId()}"><c:out value="${position.getJobId()}" /></a></td>
+	      <td><a href="/positions/${position.getJobId()}" id="jobid"><c:out value="${position.getJobId()}" /></a></td>
 	      <td><c:out value="${position.getJobPostedByCompany().getCompanyName()}" /></td>
    	      <td><c:out value="${position.getJobTitle()}" /></td>
 	      <td><c:out value="${position.getJobResponsibilities()}" /></td>
@@ -377,6 +386,9 @@ backhround: #eaedef;
 	      <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
 	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
 	      <td><input type="submit" value="Apply Now!"/></td>
+	      <td><input type="button" value="Mark as interested!" onClick="interested();"/></td>
+	      <td><input type="hidden" value="${position.jobID()}" id="hiddenJobID"/></td>
+	      
 	    </tr>
 	  </c:forEach>
 	  </tbody>
