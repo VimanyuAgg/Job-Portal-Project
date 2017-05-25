@@ -248,8 +248,8 @@ backhround: #eaedef;
 	        </div>
 	        	     <li class="nav-item active">
 	     <form id="jobs" action="/positions/searchByFields" method="POST">
-	       <!--  <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
- -->	      </li>
+	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
+	      </li>
 	      </li>
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/jobseeker/logout">Log Out <span class="sr-only">(current)</span></a>
@@ -387,7 +387,7 @@ backhround: #eaedef;
 	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
 	      <td><input type="submit" value="Apply Now!"/></td>
 	      <td><input type="button" value="Mark as interested!" onClick="interested();"/></td>
-	      <td><input type="hidden" value="${position.jobID()}" id="hiddenJobID"/></td>
+	      <td><input type="hidden" value="${position.getJobId()}" id="hiddenJobID"/></td>
 	      
 	    </tr>
 	  </c:forEach>
