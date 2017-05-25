@@ -421,7 +421,7 @@ public class JobSeekerController {
 			
 		}
 		map.addAttribute("interestedJobs",jobSeeker.getInterestedList());
-	
+		map.addAttribute("picture",jobSeeker.getPicture());
 		return "jobseeker-interestedjobs";
 		
 	}
