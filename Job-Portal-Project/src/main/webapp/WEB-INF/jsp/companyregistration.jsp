@@ -97,7 +97,7 @@ backhround: #f2f5f6;
     </style>
     
 
-    <!-- <script type="text/javascript">
+     <script type="text/javascript">
         $(document).ready(function() {
             $('#email').keyup(function ()
             {
@@ -127,7 +127,7 @@ backhround: #f2f5f6;
 
         });
     </script>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     
 </head>

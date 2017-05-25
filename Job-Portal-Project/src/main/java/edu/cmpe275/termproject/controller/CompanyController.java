@@ -231,15 +231,18 @@ public class CompanyController {
 				System.out.println("cancelled "+cancelled);
 				
 				if(jobs == null) return "error";
-				
+				System.out.println("jobs size "+jobs.size());
+
 				for(JobPosting job : jobs){
+					System.out.println("inside for-loop");
+					System.out.println("job status "+job.getJobStatus());
 					if(open != null && open.length() != 0 && 
-							job.getJobStatus().equals("open")){
+							job.getJobStatus().equals("Open")){
 						System.out.println("inside open");
 						result.add(job);
 					}
 					else if(filled != null && filled.length() != 0 && 
-							job.getJobStatus().equals("filled")){
+							job.getJobStatus().equals("Filled")){
 						System.out.println("inside filled");
 						result.add(job);
 					}
@@ -518,5 +521,49 @@ public class CompanyController {
 		System.out.println("returning editJobs");
 
 		return "companyeditjobs";	
+	}
+	
+	@RequestMapping(value="/checkapplicant", method=RequestMethod.GET)
+	public String checkApplicant(ModelMap map, HttpServletRequest request){
+		
+		System.out.println("inside checkApplicant()");
+		
+		String jobId = request.getParameter("jobid");
+		
+		System.out.println("jobId "+jobId);
+		
+		JobPosting job = jobPostingService.getJob(jobId);
+
+		if(session.getAttribute("companyId") == null){
+			return "redirect:/company/login";
+		}
+		
+		if(job == null) return "error";
+		
+		List<JobApplication> applicationList = job.getApplicants();
+		for(JobApplication jobApplication : applicationList){
+			
+			if(jobApplication.getStatus().equals("OfferAccepted")){
+				return "cannot";
+			}
+			
+		}
+				
+//		System.out.println(" "+job.getJobId());
+//		System.out.println(" "+job.getJobTitle());
+// 		System.out.println(" "+job.getJobResponsibilities());
+//		System.out.println(" "+job.getJobDescription());
+//		System.out.println(" "+	job.getJobSalary());
+//		System.out.println(" "+job.getPostedOn());
+//		System.out.println(" "+job.getEligibility());
+//		System.out.println(" "+job.getJobLocation());
+//		System.out.println(" "+job.getJobStatus());
+//		System.out.println(" "+job.getTempSize());
+//		System.out.println(" "+job.getApplicants());
+//		System.out.println(" "+job.getJobPostedByCompany());
+	
+		System.out.println("returning checkApplicant");
+
+		return "good";	
 	}
 }

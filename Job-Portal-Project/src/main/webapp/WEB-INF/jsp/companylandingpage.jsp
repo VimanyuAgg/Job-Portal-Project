@@ -197,6 +197,10 @@ backhround: #eaedef;
 .desc2{
 	float: left;
 }
+
+a:hover{
+	color:white;
+}
 </style>
 
 </head>
@@ -222,7 +226,7 @@ backhround: #eaedef;
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/postjob">Post a New Job</a>
-		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/managejobs">Manage Current Jobs</a>
+		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/welcome">Manage Current Jobs</a>
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/edit">Edit your Profile</a>
 	        </div>
 	      <!-- <li class="nav-item active">
@@ -265,7 +269,7 @@ backhround: #eaedef;
 		    	</tr>
 		    	<tr>
 			    	<td>
-			    		<h4>Filter Jobs:</h4>
+			    		Filter Jobs:&nbsp;
 			    		
 					    <input id="open" type="checkbox" value="Open" onclick="addStatus()">Open&nbsp;&nbsp;&nbsp;
 					    <input id="filled" type="checkbox" value="Filled" onclick="addStatus()">Filled&nbsp;&nbsp;&nbsp;
@@ -314,8 +318,7 @@ backhround: #eaedef;
 		  	    				<br>
 		  	    				<div class="desc desc2">
 									<a id="cli" class="btn bx" href="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit" onclick="col()">Edit this Job Posting</a>
-  									<input class="btn" type="submit" onclick="setJobId('${job.getJobId()}')" value="Cancel Job"/>   						
-		  	    					<input type="submit" class="btn" onclick="setJobId('${job.getJobId()}')" value="View Applicants"/>
+ 									<input type="submit" class="btn" onclick="setJobId('${job.getJobId()}')" value="View Applicants"/>
 		  	    				</div>
 		  	    			</div>
 		  	    		</td>

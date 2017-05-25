@@ -120,7 +120,11 @@ public class JobController {
 		System.out.println(" "+job.getJobStatus());
 		System.out.println(" "+job.getJobTitle());
 				
-		
+		Company company = companyService.getCompany(companyId);
+		map.addAttribute("logoImageUrl", company.getLogoUrl());
+		map.addAttribute("description",company.getDescription());
+		map.addAttribute("address",company.getAddress());
+		map.addAttribute("website",company.getWebsite());
 		
 		return "editpostion";
 	}
@@ -174,7 +178,7 @@ public class JobController {
 											job.getJobId(),job.getJobTitle(), job.getJobPostedByCompany().getCompanyName());
 			}
 		}
-		return  "redirect:/company/"+companyId+"/managejobs";
+		return  "redirect:/company/"+companyId+"/welcome";
 	}
 	/*private JSONObject generateErrorMessage(String message) {
 		// TODO Auto-generated method stub

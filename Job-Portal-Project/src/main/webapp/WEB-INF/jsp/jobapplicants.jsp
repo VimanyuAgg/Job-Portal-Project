@@ -290,59 +290,68 @@ backhround: #eaedef;
 		  	    		
 		  	    		<td style="color:grey" style="padding-top: 24px;font-size: 21px;">
 		  	    			<div class="desc">
-		  	    					Application Id<br>
-		  	    					<c:out value=" ${applications[status.index].getId()}" />
-		  	    				</div>
-		  	    				<div class="desc">
-		  	    					Status<br>
-		  	    					<c:out value=" ${applications[status.index].getStatus()}" />
-		  	    				</div>
-		  	    				
-		  	    			<div class="desc">
-		  	    					Username<br>
-		  	    					<c:out value="${applicant.getUsername()}" />
-		  	    				</div>
-		  	    				
-		  	    				<div class="desc">
-		  	    					Name<br>
-		  	    					<c:out value="${applicant.getFirstName()}" />
-		  	    				</div>
-		  	    				
-		  	    				<div class="desc">
-		  	    					Introduction<br>
-	      							<c:out value="${applicant.getSelfIntroduction()}" />
-		  	    				</div>
-		  	    				
-		  	    				<div class="desc">
-		  	    					Email<br>
-		  	    					<c:out value="${applicant.getEmail()}" />
-		  	    				</div>
-		  	    				
-		  	    				<div class="desc">
-		  	    					Work Experience<br>
-		  	    					<c:out value="${applicant.getWorkExperience()}" />
-		  	    				</div>
-		  	    				
-		  	    				<div class="desc">
-		  	    					Education:&nbsp; <c:out value="${applicant.getEducation()}" />
-		  	    				</div>
-		  	    				
-		  	    				<div class="desc">
-		  	    					Skills:&nbsp; <c:out value="${applicant.getSkills()}" />
-		  	    				</div>
-		  	    				
-		  	    				<br>
+	  	    					Application Id:&nbsp;&nbsp;
+	  	    					<c:out value=" ${applications[status.index].getId()}" />
+	  	    				</div>
+	  	    				<br>
+	  	    				<div class="desc">
+	  	    					Status:&nbsp;&nbsp;
+	  	    					<c:out value=" ${applications[status.index].getStatus()}" />
+	  	    				</div>
+	  	    				<br>
+	  	    				
+	  	    				<div class="desc">
+	  	    					Username:&nbsp;&nbsp;
+	  	    					<c:out value="${applicant.getUsername()}" />
+	  	    				</div>
+	  	    				<br>
+	  	    				
+	  	    				<div class="desc">
+	  	    					Name:&nbsp;&nbsp;
+	  	    					<c:out value="${applicant.getFirstName()}" />
+	  	    				</div>
+	  	    				<br>
+	  	    				
+	  	    				<div class="desc">
+	  	    					Introduction:&nbsp;&nbsp;
+      							<c:out value="${applicant.getSelfIntroduction()}" />
+	  	    				</div>
+	  	    				<br>
+	  	    				
+	  	    				<div class="desc">
+	  	    					Email:&nbsp;&nbsp;
+	  	    					<c:out value="${applicant.getEmail()}" />
+	  	    				</div>
+	  	    				<br>
+	  	    				
+	  	    				<div class="desc">
+	  	    					Work Experience:&nbsp;&nbsp;
+	  	    					<c:out value="${applicant.getWorkExperience()}" />
+	  	    				</div>
+	  	    				<br>
+	  	    				
+	  	    				<div class="desc">
+	  	    					Education:&nbsp; <c:out value="${applicant.getEducation()}" />
+	  	    				</div>
+	  	    				<br>
+	  	    				
+	  	    				<div class="desc">
+	  	    					Skills:&nbsp; <c:out value="${applicant.getSkills()}" />
+	  	    				</div>
+	  	    				<br>
+	  	    				
+	  	    				<div class="desc">
+								<input type="submit" class="btn" onclick="setApplicationId('${applications[status.index].getId()}')" value="Cancel Application"/>
+	  	    				</div>
+	  	    				<br>
+	  	    				
+	  	    				<br>
 		  	    				
 		  	    			<c:out value="${job.getJobTitle()}" /><br>
 		  	    			<c:out value="${job.getJobId()}" /><br>
 		  	    		</td>
 				    </tr>
-   						<tr>
-   						<td>
-   						<input type="submit" class="btn" onclick="setApplicationId('${applications[status.index].getId()}')" value="Cancel Application!"/>
-			    		</td>
-			    		</tr>
-			        
+   					
 			    </tbody>
 			    
 			    

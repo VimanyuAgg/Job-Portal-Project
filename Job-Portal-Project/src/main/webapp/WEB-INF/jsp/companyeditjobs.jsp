@@ -240,7 +240,6 @@ a.btn.bx:hover {
 
 </nav>
 
-
 <div class="row outer">
 	
 		<div class="col-md-1"></div>

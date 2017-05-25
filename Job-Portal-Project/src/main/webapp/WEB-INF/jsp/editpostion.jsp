@@ -199,6 +199,40 @@ backhround: #eaedef;
 }
 </style>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select[name="status"]').change(function ()
+        {
+        	if ($(this).val() == "Cancelled"){
+	            $.ajax({
+	                type: "get",
+	                url: "/checkapplicant",
+	                data: "jobid=" +$('#jobidd').val(),
+	                success: function(msg){      
+	                	console.log("I am here outside" +msg);
+	                        $('#output').html(msg);
+	                        if(msg.includes("Job can't be cancelled. There is a candidate with OfferAccpeted Status.")){
+	                        	console.log("I am here");
+	                        	document.getElementById("output").style.color="Red";
+	                        	document.getElementById("mySubmit").style.backgroundColor="Red";
+	                        	document.getElementById("mySubmit").style.borderColor="Red";
+	                        	document.getElementById("mySubmit").disabled = true;
+	                    }else{
+	                    	document.getElementById("output").style.color="Green";
+	                    	document.getElementById("mySubmit").disabled = false;
+	                    	document.getElementById("mySubmit").style.backgroundColor="#62C192";
+	                    	document.getElementById("mySubmit").style.borderColor="#62C192";
+	
+	                    }
+	                }
+	            });
+        	}
+        });
+
+    });
+</script>
+
+
 </head>
 <body>
 
@@ -238,7 +272,8 @@ backhround: #eaedef;
 	
 
 <div class="row outer">
-	
+		<input type="hidden" id="jobidd" name="jobidd" value="${job.getJobId()}">
+		
 		<div class="col-md-1"></div>
 		<div class="col-md-2 sidebar" style="text-align">
 			<!-- side bar for profile review -->
@@ -250,20 +285,19 @@ backhround: #eaedef;
 			<div class="name">${website}</div>
 		</div>
 		
-				<div class="col-md-7">
+		<div class="col-md-7">
 		<!-- job card section -->
 		<form method="POST" action="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit">
-
 			
 			<p>Req. No:	${job.getJobId()}</p>
 			<p>Status:<p><!-- <input type="text" name="status" value=${job.getJobStatus()} />-->
 			<p>
-			<select name="status">
+			<select name="status" id="status">
 			<option selected disabled>Select Status</option>
-  				<option value="open">Open</option>
-  				<option value="closed">Closed</option>
- 				 <option value="cencelled">Cancelled</option>
-			</select> </p>
+  				<option value="Open">Open</option>
+  				<option value="Filled">Closed</option>
+ 				 <option value="Cancelled">Cancelled</option>
+			</select> </p><div id="output"></div>
 			<p>Title:</p><p> <input type="text" name="title" value="${job.getJobTitle()}" placeholder="Job Title" required /></p>
 			<p>Location:</p><p> <input type="text" name="location" placeholder="Job Location" value="${job.getJobLocation()}" /></p>
 			<p>Description:</p>
