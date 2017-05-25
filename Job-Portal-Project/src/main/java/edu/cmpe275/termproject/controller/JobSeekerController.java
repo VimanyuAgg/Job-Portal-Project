@@ -30,6 +30,11 @@ import org.apache.tomcat.util.http.fileupload.FileItem;
 import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -402,6 +407,21 @@ public class JobSeekerController {
 
 		return "redirect:/jobseeker/"+username+"/dashboard";
 	}
+	
+	//VIEW INTERESTED JOBS	
+	@RequestMapping(value="/jobseeker/{username}/viewInterestedJobs",method=RequestMethod.GET)
+	public String viewAllInterestedJobs(@PathVariable("username") String username, ModelMap map){
+		if(httpSession.getAttribute("username") == null){
+			return "redirect:/jobseeker/login";
+		}
+		JobSeeker jobSeeker = jobSeekerService.getJobSeeker(username);
+		
+		map.addAttribute("interestedJobs",jobSeeker.getInterestedList());
+	
+		return "allInterestedJobs";
+		
+	}
+	
 	@RequestMapping("/jobseeker/{username}/update/error")
 	public String jobSeekerUpdate(ModelMap map)
 	{
@@ -410,181 +430,28 @@ public class JobSeekerController {
 		return "jobseeker-profile";	
 		
 	}
+	
+	@RequestMapping(value="/jobseeker/markInterested", method=RequestMethod.POST)
+	public ResponseEntity<String> markApplicationAsInterested( HttpServletRequest request){
+		
+		String jobId = request.getParameter("jobId");
+		String userName = (String) httpSession.getAttribute("username");
+		String result = jobService.markApplicationAsInterested(jobId,userName);
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.setContentType(MediaType.APPLICATION_JSON);
+		String resultJson = "{\"result\":";
+		if(result.equals("You have already applied to this job!")){
+			resultJson += "\""+result+"\"}";
+		}
+		else if(result.equals("This job is already in your interest list")){
+			resultJson +="\""+result+"\"}";
+		}
+		else if(result.equals("Marked as interested")){
+			resultJson +="\""+result+"\"}";
+		}
+		return new ResponseEntity<String>(resultJson, responseHeaders, HttpStatus.CREATED);
+		
+		
+	}
 }
-
-
-//package edu.cmpe275.termproject.controller;
-//
-//import java.util.UUID;
-//
-//import javax.mail.Message;
-//import javax.mail.internet.MimeMessage;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpSession;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.ModelAttribute;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-//
-//import edu.cmpe275.termproject.emailService.RegistrationEmail;
-//import edu.cmpe275.termproject.emailService.WelcomeEmail;
-//import edu.cmpe275.termproject.model.Company;
-//import edu.cmpe275.termproject.model.JobSeeker;
-//import edu.cmpe275.termproject.service.CompanyService;
-//import edu.cmpe275.termproject.service.JobSeekerService;
-//import edu.cmpe275.termproject.service.UserService;
-//
-//@Controller
-//public class JobSeekerController {
-//	
-//	@Autowired
-//	private JobSeekerService jobSeekerService;
-//	
-//	@Autowired
-//	HttpSession httpSession;
-//	
-//	//REGISTRATION - GET
-//	@RequestMapping(value="/jobseeker/register", method=RequestMethod.GET)
-//	public String getJobSeekerView(){
-//		return "jobseeker-registration";
-//		
-//	}
-//	
-//	//REGISTRATION - POST
-//	@RequestMapping(value="/jobseeker/register", method=RequestMethod.POST)
-//	public String createJobSeeker(HttpServletRequest request, RedirectAttributes redirectAttribute){
-//		
-//		String firstName=request.getParameter("firstName"), 
-//				lastName=request.getParameter("lastName"), 
-//				picture=request.getParameter("picture"),
-//				selfIntroduction=request.getParameter("selfIntroduction"), 
-//				workExperience=request.getParameter("workExperience"), 
-//				education=request.getParameter("education"), 
-//			    skills=request.getParameter("skills"), 
-//			    password=request.getParameter("password"),
-//			    username=request.getParameter("username"),
-//			    email = request.getParameter("email");
-//		
-//		JobSeeker jobSeeker=new JobSeeker(firstName,lastName, picture, selfIntroduction,
-//				workExperience, education, skills, username, email, password, null);
-//		
-//		jobSeekerService.addJobSeeker(jobSeeker);
-//		
-//        String authenticationCode_String = RegistrationEmail.generateAuthCode();
-//        
-//		RegistrationEmail.registrationEmailTrigger(email, authenticationCode_String);
-//		System.out.println("Jobseeker "+firstName+ " saved to DB");
-//		jobSeekerService.setAuthCode(authenticationCode_String, username);
-//		redirectAttribute.addFlashAttribute("username",username);
-//		boolean isRedirectedFromRegistration = true;
-//		redirectAttribute.addFlashAttribute("redirected",isRedirectedFromRegistration);
-//		redirectAttribute.addFlashAttribute("firstName",firstName);
-//		redirectAttribute.addFlashAttribute("lastName",lastName);
-//		redirectAttribute.addFlashAttribute("picture",picture);
-//		redirectAttribute.addFlashAttribute("selfIntroduction",selfIntroduction);
-//		redirectAttribute.addFlashAttribute("workExperience",workExperience);
-//		redirectAttribute.addFlashAttribute("education",education);
-//		redirectAttribute.addFlashAttribute("skills",skills);
-//		redirectAttribute.addFlashAttribute("password",password);
-//		redirectAttribute.addFlashAttribute("username",username);
-//		redirectAttribute.addFlashAttribute("email",email);
-//		
-//		return "redirect:/jobseeker/authentication";
-//		
-//	}
-//	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.GET)
-//	private String codeAuthenticationGET(@ModelAttribute ("username") String username,
-//										 @ModelAttribute("redirected") boolean isRedirected,
-//										 @ModelAttribute("firstName") String firstName,
-//										 @ModelAttribute("picture") String picture,
-//										 @ModelAttribute("selfIntroduction")String selfIntroducio){
-//		try{
-//			if(isRedirected){
-//				JobSeeker jobSeeker=new JobSeeker(firstName,lastName, picture, selfIntroduction,
-//						workExperience, education, skills, username, email, password, null);
-//				
-//				jobSeekerService.addJobSeeker(jobSeeker);
-//				
-//				return "code-authentication";
-//			}
-//			else{
-//				return "session-error";
-//			}
-//			
-//		}catch (Exception e){
-//			return "session-error";
-//		}
-//		
-//	}
-//	
-//	@RequestMapping(value="/jobseeker/authentication",method=RequestMethod.POST)
-//	private String codeAuthenticationPOST(HttpServletRequest request, RedirectAttributes redirectAttribute){
-//		
-//		String username = request.getParameter("username");
-//		String passCode = request.getParameter("codeVerification");
-//		boolean userExists = jobSeekerService.find(username);
-//		System.out.println("User Name: "+username);
-//		String authCode = jobSeekerService.getJobSeeker(username).getAuthenticationCode();
-//		System.out.println("Email code: "+authCode);
-//		System.out.println("User code: " +passCode);
-//		if(userExists&& passCode.equals(authCode)){
-//			redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
-//			
-//			WelcomeEmail.welcomeEmailTrigger(jobSeekerService.getJobSeeker(username).getEmail(), username);
-//			//System.out.println("Jobseeker "+firstName+ " saved to DB");
-//			return "redirect:/jobseeker/login";
-//		}
-//		else {
-//			return "jobseeker/authentication";
-//		}
-//		
-//		
-//	}
-//	
-//	
-//	//Removing jobseeker/created path
-//	
-////	@RequestMapping(value="/jobseeker/created", method=RequestMethod.GET)
-////	public String jobSeekerCreated(@ModelAttribute ("username") String username){
-////		return "jobseeker-created";
-////		
-////	}
-//	
-//	@RequestMapping(value="/jobseeker/dashboard",method=RequestMethod.GET)
-//	public String jobSeekerDashBoard(){
-//		return "jobseeker-dashboard";
-//	}
-//	
-//	@RequestMapping(value="/jobseeker/login", method=RequestMethod.GET)
-//	public String jobSeekerLogin(@ModelAttribute ("username") String username)
-//	{
-//		
-//		return "jobseeker-login";
-//	
-//		
-//	}
-//	
-//	@RequestMapping(value="/jobseeker/login", method=RequestMethod.POST)
-//	public String jobSeekerLoginPost(HttpServletRequest request){
-//		//, RedirectAttributes redirectAttribute
-//		String username = request.getParameter("username"),
-//		       password = request.getParameter("password");
-//		
-//		String usersess = jobSeekerService.authenticateJobSeeker(username, password);
-//		System.out.println(usersess);
-//		if(!usersess.isEmpty()){
-//			httpSession.setAttribute("username",username);
-//			//httpSession.setAttribute("userID", userN);
-//			//redirectAttribute.addFlashAttribute("username","Thank you for registering with us, "+username);
-//			return "redirect:/jobseeker/dashboard";
-//		}
-//		else
-//		return "redirect:/usersession-error"; 
-//		
-//		
-//	}
-//	
-//}

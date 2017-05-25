@@ -224,7 +224,8 @@ backhround: #eaedef;
 	        <!--   <a class="dropdown-item" href="/company/register">View Job History</a> -->
 	        <!--   <a class="dropdown-item" href="/company/register">Edit Profile</a> -->
 
-	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applications</a>
+	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applied Jobs</a>
+	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/viewInterestedJobs">View Interested Jobs</a>
 	         
 
 	        </div>
