@@ -269,6 +269,12 @@ public class JobService {
 				
 			}
 		}
+		for(int i=0;i<jobSeeker.getInterestedList().size();i++){
+			if(jobSeeker.getInterestedList().get(i).getJobId().equals(jobId)){
+				return "This job is already in your interest list";
+			}
+		}
+		
 		System.out.println("Interested Job does not exist with jobseeker");
 		System.out.println("Adding it to interested Jobs");
 		jobSeeker.getInterestedList().add(interestedJob);

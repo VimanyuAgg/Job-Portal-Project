@@ -65,6 +65,13 @@ public class JobApplicationService {
 			JobApplication jobApplication = new JobApplication("Pending", job, applicant, by, profile);
 			jobApplicationDAO.save(jobApplication);
 			
+			for(int i=0;i<applicant.getInterestedList().size();i++){
+				if(applicant.getInterestedList().get(i).getJobId().equals(jobId)){
+					System.out.println("job id exists in interested jobs list");
+					applicant.getInterestedList().remove(i);
+					System.out.println("removed the job posting from applicant's interested jobs list");
+				}
+			}
 			System.out.println("line 61");
 			applicant.getApplicationsList().add(jobApplication);
 			jobSeekerDAO.save(applicant);

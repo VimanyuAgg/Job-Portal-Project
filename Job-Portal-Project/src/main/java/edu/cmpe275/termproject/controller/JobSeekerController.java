@@ -403,6 +403,21 @@ public class JobSeekerController {
 
 		return "redirect:/jobseeker/"+username+"/dashboard";
 	}
+	
+	//VIEW INTERESTED JOBS	
+	@RequestMapping(value="/jobseeker/{username}/viewInterestedJobs",method=RequestMethod.GET)
+	public String viewAllInterestedJobs(@PathVariable("username") String username, ModelMap map){
+		if(httpSession.getAttribute("username") == null){
+			return "redirect:/jobseeker/login";
+		}
+		JobSeeker jobSeeker = jobSeekerService.getJobSeeker(username);
+		
+		map.addAttribute("interestedJobs",jobSeeker.getInterestedList());
+	
+		return "allInterestedJobs";
+		
+	}
+	
 	@RequestMapping("/jobseeker/{username}/update/error")
 	public String jobSeekerUpdate(ModelMap map)
 	{
