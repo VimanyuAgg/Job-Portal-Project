@@ -158,8 +158,9 @@ public class JobApplicationService {
 	public void updateApplications(String applicationIds, String action){
 		System.out.println("Line 159 in Update Applications");
 		String ids[] = applicationIds.split(",");
-		
+		System.out.println("Applciation IDs::"+applicationIds);
 		for(String id : ids){
+			System.out.println("line 163::"+id);
 			JobApplication application = jobApplicationDAO.findOne(id);
 			if(application != null) System.out.println("found job application");
 			else System.out.println("not found job application");

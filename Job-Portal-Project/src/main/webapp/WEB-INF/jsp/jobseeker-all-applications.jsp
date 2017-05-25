@@ -314,8 +314,8 @@ $(document).ready(function(){
 		  	    				
 		  	    				 <br>
 		  	    				<div class="desc">
-										<input type="radio" onclick="addCancel('${application.getJobPosting().getJobId()}')" name="${application.getJobPosting().getJobId()}" value="${application.getJobPosting().getJobId()}">Cancel
-			  							<input type="radio" onclick="addReject('${application.getJobPosting().getJobId()}')" name="${application.getJobPosting().getJobId()}" value="${application.getJobPosting().getJobId()}">Reject
+										<input type="radio" onclick="addCancel('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Cancel
+			  							<input type="radio" onclick="addReject('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Reject
 		  	    				</div>  
 		  	    			</div>
 		  	    		</td>
