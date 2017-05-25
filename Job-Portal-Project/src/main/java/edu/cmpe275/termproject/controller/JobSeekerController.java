@@ -418,7 +418,7 @@ public class JobSeekerController {
 		
 		map.addAttribute("interestedJobs",jobSeeker.getInterestedList());
 	
-		return "allInterestedJobs";
+		return "jobseeker-interestedjobs";
 		
 	}
 	
