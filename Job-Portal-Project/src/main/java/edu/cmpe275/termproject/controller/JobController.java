@@ -177,6 +177,13 @@ public class JobController {
 				JobFieldsChangedEmail.somethingChangedInJobEmail(email, applicant.getFirstName(), applicant.getLastName(), 
 											job.getJobId(),job.getJobTitle(), job.getJobPostedByCompany().getCompanyName());
 			}
+			
+			//Sending mail to interestedApplicants
+			for(JobSeeker js : job.getInterestedApplicants()){
+				JobFieldsChangedEmail.somethingChangedInJobEmail_Interested(js.getEmail(), js.getFirstName(),
+																		js.getLastName(),job.getJobId(), 
+																		job.getJobTitle(), job.getJobPostedByCompany().getCompanyName());
+			}
 		}
 		return  "redirect:/company/"+companyId+"/welcome";
 	}
