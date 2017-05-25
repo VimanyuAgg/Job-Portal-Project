@@ -287,8 +287,14 @@ public class JobService {
 	public String markApplicationAsUninterested(String jobId, String userName) {
 		// TODO Auto-generated method stub
 		JobPosting interestedJob = jobPostingDao.findByJobId(jobId);
+		System.out.println("job ID to be removed"+ jobId);
 		JobSeeker jobSeeker = jobSeekerDAO.findByUsername(userName);
-		
+		System.out.println("Printing current interested list" + jobSeeker.getInterestedList().size());
+		for(int i=0;i<jobSeeker.getInterestedList().size();i++)
+		{
+			
+			System.out.println(jobSeeker.getInterestedList().get(i).getJobId());
+		}
 		for(int i=0;i<jobSeeker.getInterestedList().size();i++){
 			if(jobSeeker.getInterestedList().get(i).getJobId().equals(jobId)){
 				System.out.println("Job Id found to delete");

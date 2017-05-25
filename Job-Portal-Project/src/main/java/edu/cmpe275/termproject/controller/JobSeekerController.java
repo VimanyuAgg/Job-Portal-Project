@@ -460,7 +460,7 @@ public class JobSeekerController {
 	}
 	
 	@RequestMapping(value="/jobseeker/markUninterested", method=RequestMethod.POST)
-	public ResponseEntity<String> markApplicationAsUninterested( HttpServletRequest request){
+	public String markApplicationAsUninterested( HttpServletRequest request){
 		
 		String jobId = request.getParameter("jobId");
 		String userName = (String) httpSession.getAttribute("username");
@@ -475,8 +475,17 @@ public class JobSeekerController {
 		else if(result.equals("This job doesn't exist in interested list")){
 			resultJson +="\""+result+"\"}";
 		}
-		return new ResponseEntity<String>(resultJson, responseHeaders, HttpStatus.CREATED);
+//		return new ResponseEntity<String>(resultJson, responseHeaders, HttpStatus.CREATED);
+		return "redirect:/jobseeker/"+userName+"/viewInterestedJobs";
 		
 		
 	}
+
+	
+	
+	
+	
 }
+
+
+
