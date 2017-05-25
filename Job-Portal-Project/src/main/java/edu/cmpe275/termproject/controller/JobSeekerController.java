@@ -442,15 +442,15 @@ public class JobSeekerController {
 		responseHeaders.setContentType(MediaType.APPLICATION_JSON);
 		String resultJson = "{\"result\":";
 		if(result.equals("You have already applied to this job!")){
-			resultJson +=result;
+			resultJson += "\""+result+"\"}";
 		}
 		else if(result.equals("This job is already in your interest list")){
-			resultJson +=result;
+			resultJson +="\""+result+"\"}";
 		}
 		else if(result.equals("Marked as interested")){
-			resultJson +=result;
+			resultJson +="\""+result+"\"}";
 		}
-		return new ResponseEntity<String>(resultJson, responseHeaders, HttpStatus.CREATED);
+		return new ResponseEntity<String>.ok(resultJson);
 		
 		
 	}
