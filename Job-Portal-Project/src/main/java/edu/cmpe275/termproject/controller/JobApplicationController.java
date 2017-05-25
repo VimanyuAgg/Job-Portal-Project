@@ -18,9 +18,11 @@ import javax.servlet.http.Part;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.cmpe275.termproject.emailService.JobApplicationCancelEmail;
 import edu.cmpe275.termproject.model.JobApplication;
@@ -118,7 +120,8 @@ public class JobApplicationController {
 	// GEt applicants for a particular job
 	//  REquired jobId
 	@RequestMapping(value="/positions/applicants",method=RequestMethod.GET)
-	public String findApplicants(HttpServletRequest request, ModelMap map) throws ParseException{
+	public String findApplicants(HttpServletRequest request, ModelMap map,
+			@ModelAttribute ("jobId_redir") String jobId_redir, @ModelAttribute ("errorMessage") String errorMessage) throws ParseException{
 		System.out.println("session: "+session);
 		
 		if(session == null){
@@ -127,7 +130,13 @@ public class JobApplicationController {
 
 		System.out.println("inside findApplicants");
 		
-		String jobId = request.getParameter("jobId");
+		String jobId = "";
+		if (jobId_redir == null || jobId_redir.isEmpty()){
+			jobId= request.getParameter("jobId");
+		}
+		else{
+			jobId=jobId_redir;
+		}
 		System.out.println("jobId "+jobId);
 		
 		JobPosting job = jobPostingService.getJob(jobId);
@@ -168,6 +177,7 @@ public class JobApplicationController {
 		map.addAttribute("logoImageUrl", job.getJobPostedByCompany().getLogoUrl());
 		map.addAttribute("website", job.getJobPostedByCompany().getAddress());
 		map.addAttribute("address", job.getJobPostedByCompany().getWebsite());
+		map.addAttribute("errorMessage",errorMessage);
 		
 		return "jobapplicants";
 	}	
@@ -255,9 +265,11 @@ public class JobApplicationController {
 		return "redirect:/jobseeker/app/"+email;
 	}	
 	@RequestMapping("/positions/applicants/cancel")
-	public String companyCancelApplication(ModelMap mop, HttpServletRequest request){
+	public String companyCancelApplication(ModelMap mop, HttpServletRequest request,
+											RedirectAttributes redirectAttribute){
 		String applicationId=request.getParameter("applicationId");
 		boolean result=jobApplicationService.companyCancelApplication(applicationId);
+		redirectAttribute.addAttribute("jobId_redir", jobApplicationService.getApplication(applicationId).getJobPosting().getJobId());
 		if(result){
 			//Email the Candidate the status - 7G
 			JobApplication application=jobApplicationService.getApplication(applicationId);
@@ -267,11 +279,15 @@ public class JobApplicationController {
 					application.getApplicant().getLastName(), 
 					application.getJobPosting().getJobId(), application.getJobPosting().getJobTitle(),
 					application.getJobPosting().getJobPostedByCompany().getCompanyName());
-			return "redirect:/company/"+session.getAttribute("companyId")+"/welcome";
+			
+			
+			return "redirect:/positions/applicants";
 			}
 		else{
-			mop.addAttribute("errorMessage","Cannot cancel an application in terminal state");
-			return "error";
+			
+			redirectAttribute.addAttribute("errorMessage","Cannot cancel an application in terminal state");
+			
+			return "redirect:/positions/applicants";
 		}
 	}
 	

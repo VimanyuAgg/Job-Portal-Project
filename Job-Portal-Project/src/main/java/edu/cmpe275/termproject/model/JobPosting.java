@@ -118,7 +118,7 @@ public class JobPosting {
 	@OneToMany(targetEntity=JobApplication.class, cascade=CascadeType.ALL)
 	private List<JobApplication> applications = new ArrayList<JobApplication>();
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany
 	@JoinTable(
 			name="JOBPOST_INT_APPLICANTS",
 			joinColumns={@JoinColumn(name="JOB_ID", referencedColumnName="JOB_ID")},
