@@ -121,10 +121,7 @@ public class JobApplicationController {
 	public String findApplicants(HttpServletRequest request, ModelMap map) throws ParseException{
 		System.out.println("session: "+session);
 		
-		
-		
-		if(session == null)
-		{
+		if(session == null){
 			return "redirect:/company/login";
 		}
 
@@ -164,7 +161,7 @@ public class JobApplicationController {
 
 		
 		map.addAttribute("jobid", jobId);
-
+		//map.addAttribute("job", job);
 		map.addAttribute("applications",applications);
 
 		map.addAttribute("applicants", applicants);
