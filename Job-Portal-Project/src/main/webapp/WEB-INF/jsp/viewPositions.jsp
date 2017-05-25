@@ -22,6 +22,7 @@
 <%--     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"></link>
 
  --%>    
+ <link href="${pageContext.request.contextPath}/css/snackbar.css" rel="stylesheet"></link>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -35,8 +36,17 @@ function interested(a){
 	            url: "/jobseeker/markInterested",
 	            data: "jobId=" +String(a),
 	            success: function(msg, status){  
-	            	alert("hi");
-	            	document.getElementById("interestMsg").innerHTML +=  msg["result"]; 
+	            	
+	            	document.getElementById("snackbar").innerHTML +=  msg["result"]; 
+	            	
+	            	var x = document.getElementById("snackbar");
+
+	                // Add the "show" class to DIV
+	                x.className = "show";
+
+	                // After 3 seconds, remove the show class from DIV
+	                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	            	
 	            },
 	            error: function(err){
 	            console.log(err);	
@@ -45,6 +55,7 @@ function interested(a){
 		 });
 }
 </script>
+
 <style>
 
 body{
@@ -268,6 +279,7 @@ backhround: #eaedef;
 
 
 <div id="interestMsg"></div>
+<div id="snackbar"></div>
 <h1>All positions</h1>
 <div class="panel-group" id="accordion">
     <div class="panel panel-default">
