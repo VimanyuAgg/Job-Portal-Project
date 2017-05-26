@@ -167,28 +167,19 @@ backhround: #f2f5f6;
 <c:if test="${(\"true\").equals(isBadOTP)}">
     <div><p align="center"><c:out value = "${badOTP}"></c:out></p></div>
     </c:if>
-<%-- <h3 style="margin-left:30%">Hi! ${name}</h3></div><br>
- --%><form method="POST" action="/company/authentication">
+	<form method="POST" action="/company/authentication">
 
 	<div class="form-group row">
 	    <div class="col-md-4"></div>
 	    <input class="col-md-3 form-control field" type="text" placeholder="Enter code..." id="codeVerification" name="codeVerification" required>
 	</div>
-   <!-- <label for="codeVerification" class="col-sm-2 col-form-label" >Verify your code</label>
-    <div class="col-sm-6">
-    <input class="form-control" type="text" placeholder="Enter your verification code" id="codeVerification" name="codeVerification" required="True">
-  </div> -->
+   
   
   <div class="form-group row">
     <div class="col-sm-4"></div>
 	<button id="mySubmit" type="submit" class="col-md-2 btn btn-primary btn1" id="submit" name="submit">Submit</button>		
 </div>
-<!-- <div class="form-group row">
-    <div class="col-sm-2"></div>
-    <div class="col-sm-4">    
-    <input class="btn btn-info form-control" type="submit" id="submit" name="submit">
-	<div class="col-sm-6"></div>
-</div> -->
+
 </div>
 <input type="hidden" name="name" value="${name}" />
 <input type="hidden" name="email" value="${email}" />             

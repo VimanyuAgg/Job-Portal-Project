@@ -244,13 +244,8 @@ public class JobSeekerController {
 	
 	//LOGIN - GET
 	@RequestMapping(value="/jobseeker/login", method=RequestMethod.GET)
-	public String jobSeekerLogin(@ModelAttribute ("username") String username)
-								
-	{
-		
-		
+	public String jobSeekerLogin(@ModelAttribute ("username") String username)					{
 		return "jobseeker-login";	
-		
 	}
 	
 	//LOGIN - POST
@@ -484,16 +479,6 @@ public class JobSeekerController {
 			resultJson +="\""+result+"\"}";
 		}
 //		return new ResponseEntity<String>(resultJson, responseHeaders, HttpStatus.CREATED);
-		return "redirect:/jobseeker/"+userName+"/viewInterestedJobs";
-		
-		
-	}
-
-	
-	
-	
-	
+		return "redirect:/jobseeker/"+userName+"/viewInterestedJobs";	
+	}	
 }
-
-
-

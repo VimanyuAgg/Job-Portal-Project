@@ -9,5 +9,6 @@ public interface JobSeekerDAO extends CrudRepository<JobSeeker,Long>{
 
 	JobSeeker findByUsername(String username);
 	JobSeeker findByEmail(String email);
+	JobSeeker findByJsid(Long jsid);
 
 }

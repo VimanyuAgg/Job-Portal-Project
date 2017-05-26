@@ -199,6 +199,11 @@ backhround: #eaedef;
 .desc2{
 	float: left;
 }
+
+a:hover{
+	color: white;
+}
+
 </style>
 
 </head>
@@ -286,9 +291,12 @@ backhround: #eaedef;
 		  	    	<tr class="row item post">
 		  	    		<td style="max-width: 100px">
 		  	    			<img class="img-responsive cl" src="${applicant.getPicture()}">
-		  	    			<br>
 		  	    		</td>
+		  	    		<td style="padding-top: 24px;font-size: 21px;">
+		  	    			JobTitle:&nbsp; <c:out value="${job.getJobTitle()}" /><br>
+		  	    			JobId:&nbsp; <c:out value="${job.getJobId()}" /><br>
 		  	    		
+		  	    		</td>
 		  	    		<td style="color:grey" style="padding-top: 24px;font-size: 21px;">
 		  	    			<div class="desc">
 	  	    					Application Id:&nbsp;&nbsp;
@@ -342,15 +350,24 @@ backhround: #eaedef;
 	  	    				<br>
 	  	    				
 	  	    				<div class="desc">
+	  	    					<%-- <c:set var = "stat" scope = "session" value = "${applications[status.index].getStatus()}"/>
+					  	    	
+				  	    		<c:if test = "${stat == 'Pending'}">
+									<input type="submit" class="btn" onclick="setApplicationId('${applications[status.index].getId()}')" value="Reject Application"/>
+								</c:if>
+								<c:if test = "${stat != 'Offered'}">
+									<c:if test = "${stat != 'Cancelled'}">
+										<a id="cli" class="btn bx" href="/position/${job.getJobId()}/offer/${applicant.getJsid()}">Extend Offer</a>
+									</c:if>
+								</c:if> --%>
+								<input type="submit" class="btn" onclick="setApplicationId('${applications[status.index].getId()}')" value="Reject Application"/>
 								<a id="cli" class="btn bx" href="/position/${job.getJobId()}/offer/${applicant.getJsid()}">Extend Offer</a>
-								<input type="submit" class="btn" onclick="setApplicationId('${applications[status.index].getId()}')" value="Cancel Application"/>
+							
 	  	    				</div>
 	  	    				<br>
 	  	    				
 	  	    				<br>
 		  	    				
-		  	    			<c:out value="${job.getJobTitle()}" /><br>
-		  	    			<c:out value="${job.getJobId()}" /><br>
 		  	    		</td>
 				    </tr>
    			    </tbody>

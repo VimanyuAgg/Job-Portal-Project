@@ -294,12 +294,12 @@ $(document).ready(function(){
 		  	    			<br>
 		  	    			<div class="data" style="color:grey">
 		  	    				<div class="desc">
-		  	    					Job ID<br>
+		  	    					Job ID:
 		  	    					<c:out value="${application.getJobPosting().getJobId()}" />
 		  	    				</div>
 		  	    				
 		  	    				<div class="desc">
-		  	    					Status<br>
+		  	    					Status:
 		  	    					<c:out value="${application.getStatus()}" />
 		  	    				</div>
 		  	    				
@@ -308,7 +308,7 @@ $(document).ready(function(){
 		  	    				</div>
 		  	    				 --%>
 		  	    				<div class="desc">
-		  	    					Applied On: <c:out value="${topJobValue.getJobPosting().getJobLocation()}" />
+		  	    					Job Title: <c:out value="${application.getJobPosting().getJobTitle()}" />
 		  	    				</div>
 		  	    				
 		  	    				<div class="desc">

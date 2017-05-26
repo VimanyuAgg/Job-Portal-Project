@@ -152,44 +152,6 @@ backhround: #eaedef;
 	float: left;
 }
 
-.pagination{
-	margin-left: 42%;
-}
-
-
-.pagination li
-{
-    list-style:none;  
-    float:left;
-    width : 35px;
-    height: 30px;
-    border: .5px solid #163aaf;
-    background-color:white;
-    color: #163aaf;
-    text-align:center;
-    cursor:pointer;
-    margin: 2px;
-}
-
-.pagination li:hover
-{
-    background-color: #163aaf;
-    border:1px solid #163aaf;
-    color: white;
-}
-
-.pagination ul
-{
-    border: 0px;
-    padding: 0px;
-}
-
-.active-class
-{
-	background-color: #163aaf !important;
-    border:.4 px solid #163aaf !important;
-    color: white !important;	
-}
 
 
 </style>

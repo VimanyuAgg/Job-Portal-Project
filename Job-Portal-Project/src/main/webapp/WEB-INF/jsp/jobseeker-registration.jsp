@@ -202,24 +202,6 @@ $(document).ready(function() {
 			<div class="col-md-4"></div>
 			<input type="hidden" id="file-input2" role="uploadcare-uploader" name="picture" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
 		</div>
-			
-			
-		
-		
-		<%-- <div class="form-group row">
-			<label for="lastName" class="col-sm-2 col-form-label">Profile picture:</label>
-    		<div class="col-sm-6">
-    
-				<div class="col-md-2 rounder image-upload">
-    				<label for="file-input">
-        				<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
-    				</label>
-
-    				<input id="file-input" type="file" onchange="encodeImageFileAsURL(this)" name="picture"/>
-				</div>
-			</div>
-		</div> --%>
-
 
 		<div class="form-group row">
 		    <div class="col-md-4"></div>
@@ -281,84 +263,8 @@ $(document).ready(function() {
 		    <div class="col-md-3"></div>
 		    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="col-md-3 field btn btn-info form-control btn1" type="submit" id="submit" name="submit">
 		</div>
-		
-		<div class="form-group required">
-			<!-- <div class="form-group row" style="margin-top:25px">
-   				<label for="firstName" class="col-sm-2 col-form-label" >First Name</label>
-    			<div class="col-sm-6">
-    				<input class="form-control" type="text" placeholder="Enter your first name" id="firstName" name="firstName" required>
-  				</div>
-			</div> -->
 
-			<!-- <div class="form-group row">
-    			<label for="lastName" class="col-sm-2 col-form-label">Last Name:</label>
-    			<div class="col-sm-6">
-			    	<input class="form-control" type="text" placeholder="Enter your last name" id="lastName" name="lastName" required>
-			    </div>
-			</div> -->
 
-			<!-- <div class="form-group row">
-			    <label for="selfIntroduction"  class="col-sm-2 col-form-label">Introduction</label>
-			    <div class="col-sm-6">
-			    	<textarea class="form-control" rows="4" cols="50" id="selfIntroduction" name="selfIntroduction" placeholder="Tell us about yourself!"></textarea>
-			  	</div>
-			</div> -->
-
-			<!-- <div class="form-group row">
-			 	<label for="workExperience"  class="col-sm-2 col-form-label">Work Experience</label>
-				<select class="ui dropdown">
-				  <option name="workExperience" value="">Work Experience</option>
-				  <option name="workExperience" value="level1"> less 1 Year </option>
-				  <option name="workExperience" value="level2"> 1-3 years</option>
-				  <option name="workExperience" value="level3">More than 3 years</option>
-				</select>
-			</div> -->
-		</div> 
-<!-- 
-		<div class="form-group row">
-		    <label for="skills"  class="col-sm-2 col-form-label">Comma Separated Skills</label>
-		    <div class="col-sm-6">
-		    	<input class="form-control" type="text" id="skills" name="skills" placeholder="Ex - Python, Java, Ruby etc" required>
-		  	</div>
-		</div> -->
-
-		<!-- <div class="form-group row">
-		     <label for="username"  class="col-sm-2 col-form-label">Username</label>
-		    <div class="col-sm-6">
-		    <input class="form-control" type="text" id="username" name="username" placeholder="Choose a username" required>
-		  </div>
-		</div> -->
-<!-- 
-		<div class="form-group row">
-		     <label for="email"  class="col-sm-2 col-form-label">Email</label>
-		    <div class="col-sm-6">
-		    <input class="form-control" type="email" id="email" name="email" placeholder="enter your email ID" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" required>
-		 	<div id="output"></div>
-		  </div>
-		</div> -->
-
-	<!-- 	<div class="form-group row">
-		     <label for="password"  class="col-sm-2 col-form-label">Password</label>
-		    <div class="col-sm-6">
-		    <input class="form-control" type="password" title="at least eight symbols containing at least one number, one lower, and one upper letter" id="password" name="password" placeholder="Type your password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-		  </div>
-		</div> -->
-	<!-- 	
-		<div class="form-group row">
-		     <label for="confirmPassword"  class="col-sm-2 col-form-label"> Confirm password</label>
-		    <div class="col-sm-6">
-		    <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your passowrd" required>
-		  </div>
-		  <div class="col-sm-4" id="divCheckPasswordMatch"></div>
-		</div>
-		 -->
-		
-		<!-- <div class="form-group row">
-		    <div class="col-sm-2"></div>
-		    <div class="col-sm-4">    
-		    <input class="btn btn-info form-control" type="submit" id="submit" name="submit">
-			<div class="col-sm-6"></div>
-		</div> -->
 </div>
 </form>
 </div>

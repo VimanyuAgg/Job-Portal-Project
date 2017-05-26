@@ -337,42 +337,6 @@ a.btn.bx:hover {
 	</div>
 
 
-
-<%-- 
-<div class="container">
-	<div class="row" style="padding-top:30px"></div>
-	<h4 align="center">Below are all the jobs your company has posted.</h4>
-	<br>
-	<hr>
-	<div max-width="100%">
-	<form action="/company/<%=session.getAttribute("companyId")%>/editjobs" method="POST" enctype="multipart/form-data">
-	<input type="hidden" name="jobId" id="jd"/>
-    <tbody>
-	  <c:forEach items="${jobs}" var="job">
-	  	<p>Job Id: ${job.getJobId()}</p>
-	  	<p>Job Title:${job.getJobTitle()}</p>
-	  	<p>Responsibilities: ${job.getJobResponsibilities()}</p>
-	  	<p>Description: ${job.getJobDescription()}</p>
-	  	<p>Salary: ${job.getJobSalary()}</p>
-	  	<p>Posted On: ${job.getPostedOn()}</p>
-	  	<p>Eligibility: ${job.getEligibility()}</p>
-	  	<p>Location: ${job.getJobLocation()}</p>
-	  	<p>Status: ${job.getJobStatus()}</p>
-	  	<table>
-	  		<tr>
-	  			<td></td>
-	  			<td><a id="cli" href="/company/<%=session.getAttribute("companyId")%>/positions/${job.getJobId()}/edit">Edit this Job Posting</a></p></td>
-	  			<td><input class="btn btn-primary btn1" type="submit" onclick="setJobId('${job.getJobId()}')" value="Remove Job"/></td>
-	  		</tr>
-	  	</table>
-	  	<hr>
-	  </c:forEach>
-	  </tbody>
-</form>
-	</div>
-
-</div>
- --%>
 <script>
 	function setJobId(val){
 		var a = document.getElementById("jd");

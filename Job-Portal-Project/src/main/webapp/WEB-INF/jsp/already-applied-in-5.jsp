@@ -178,8 +178,7 @@ backhround: #f2f5f6;
 	      </li>
 	    </ul>
 	  </div>
-</div>
-
+	</div>
 </nav>
 
 <center>

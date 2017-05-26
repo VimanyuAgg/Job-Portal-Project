@@ -13,11 +13,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/company-registration.js"></script>
-<%-- 	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
- --%>	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
+	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%--     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"></link>
- --%>    
+    
 <style>
 
 body{
@@ -231,10 +229,7 @@ backhround: #eaedef;
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/managejobs">Manage Current Jobs</a>
 		         <a class="dropdown-item" href="/company/<%=session.getAttribute("companyId")%>/edit">Edit your Profile</a>
 	        </div>
-	      <!-- <li class="nav-item active">
-	     	<form id="jobs" action="/positions/searchByFields" method="POST">
-	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
-	      </li> -->
+	      
 	     
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/logout">Log Out <span class="sr-only">(current)</span></a>
@@ -274,13 +269,9 @@ backhround: #eaedef;
         			<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/company-201.jpg" height="90px" width="90px"/>
     			</label>
 
-			    <!-- <input class="col-md-3 form-control field" type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl"> -->
-				 
-				 <input type="hidden" id="file-input2" role="uploadcare-uploader" name="logoImageUrl" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
+			    <input type="hidden" id="file-input2" role="uploadcare-uploader" name="logoImageUrl" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
 			</div>
-			<!--   <label for="file-input">
-   				<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
-			</label>-->
+			
 			Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name= "name" value="${company.getCompanyName()}" required><br>
 			Website:&nbsp;&nbsp;<input name= "website" value="${company.getWebsite()}"> <br>
 			Address: 
@@ -300,36 +291,3 @@ backhround: #eaedef;
 	
 		</div>
 	</div>
-
-
-<%-- 
-
-<div class="container">
-	<h1>Company Details</h1>
-		
-		<div>
-			<form method=Post action="/company/<%=session.getAttribute("companyId")%>/edit">
-			
-			<div >
-			    <label for="file-input">
-        			
-    			</label>
-
-			    <!-- <input class="col-md-3 form-control field" type="file" onchange="encodeImageFileAsURL(this)" value="upload logo"  name="logoImageUrl"> -->
-				 
-				 <input type="hidden" id="file-input2" role="uploadcare-uploader" name="logoImageUrl" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
-			</div>
-			<!--   <label for="file-input">
-   				<img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
-			</label>-->
-			<p>Name:</p><p> <input name= "name" value="${company.getCompanyName()}" required></p>
-			<p>Website:</p><p> <input name= "website" value="${company.getWebsite()}"> </p>
-			<p>Address:</p><p> 
-			    <textarea class="form-control" rows="2" cols="20" name="address" placeholder="Please enter your address!">${company.getAddress()}</textarea>
-			<p>Description:</p><p>
-			 <textarea class="form-control" rows="4" cols="50" name="description" placeholder="Please enter your address!">${company.getDescription()}</textarea>
-			<br>
-			<input type="submit"class = "btn btn-primary btn1" value="Save Changes!" style=" margin: auto;align-self: center;display: block;"/>
-			</form>
-		</body>
-	</html> --%>

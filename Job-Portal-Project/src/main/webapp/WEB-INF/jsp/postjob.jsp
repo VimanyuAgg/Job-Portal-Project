@@ -160,45 +160,6 @@ backhround: #eaedef;
 	float: left;
 }
 
-.pagination{
-	margin-left: 42%;
-}
-
-
-.pagination li
-{
-    list-style:none;  
-    float:left;
-    width : 35px;
-    height: 30px;
-    border: .5px solid #163aaf;
-    background-color:white;
-    color: #163aaf;
-    text-align:center;
-    cursor:pointer;
-    margin: 2px;
-}
-
-.pagination li:hover
-{
-    background-color: #163aaf;
-    border:1px solid #163aaf;
-    color: white;
-}
-
-.pagination ul
-{
-    border: 0px;
-    padding: 0px;
-}
-
-.active-class
-{
-	background-color: #163aaf !important;
-    border:.4 px solid #163aaf !important;
-    color: white !important;	
-}
-
 .desc2{
 	float: left;
 }
@@ -291,27 +252,5 @@ backhround: #eaedef;
 	
 		</div>
 	</div>
-		
-
-
-	<!-- <p>Job Id</p>
-	<input type="text" name="jobId" placeholder="#Job Id" required/>
-	<p>Title:</p><p> <input type="text" name="title" placeholder="Job Title" required /></p>
-			<p>Location:</p><p> <input type="text" name="location" placeholder="Job Location" /></p>
-			<p>Description:</p>
-			<p>
-			    <textarea class="form-control" rows="4" cols="50" name="description" placeholder="Breif description of the job!"></textarea>
-			</p>
-			<p>Responsibilities:</p><p>
-			
-		    <textarea class="form-control" rows="4" cols="50" name="responsibilities" placeholder="Responsibilites!"></textarea>
-			
-			<p>Salary:</p><p><input type="number"name="salary"  placeholder="Salary Offered in USD"/> </p>
-	<p>Eligibility</p>
-	<input type="text" name="eligibility" placeholder="Eligibility" />
-	<p>
-	<input type="submit" class = "btn btn-primary btn1" value="Post Job" style=" margin: auto;align-self: center;display: block;"/>
-	</p>
-</form> -->
 </body>
 </html>
