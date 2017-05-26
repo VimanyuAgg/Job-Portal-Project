@@ -38,10 +38,9 @@ public class CongratulatoryEmail {
 			message.setFrom(new InternetAddress("springonionscmpe275@gmail.com"));            
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
 
-			message.setSubject("Spring Onion almost there..");
+			message.setSubject("Congratulations - ACCEPTED for "+jobId+" Position "+jobTitle+" :"+companyName);
 			message.setText("\nDear "+firstName+" "+lastName+","
 					+ "\n\n Congratulations !!! \n\nThis is to inform you that you have been selected for job posting "+jobId+": "+jobTitle+" at "+companyName
-					+"\nPlease accept the offer from the portal !"
 					+ "\nThanks for using Spring Onions !"
 					+ "\n\nCheers,\n" + "Team Spring-Onions"
 					+"\nSpreading tears of happiness!");

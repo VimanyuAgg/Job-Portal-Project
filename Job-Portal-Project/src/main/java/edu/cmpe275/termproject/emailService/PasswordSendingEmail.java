@@ -39,7 +39,7 @@ public class PasswordSendingEmail {
             message.setFrom(new InternetAddress("springonionscmpe275@gmail.com"));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
             
-            message.setSubject("Spring Onion almost there..");
+            message.setSubject("[CONFIDENTIAL] Spring Onion almost there..");
             message.setText("\nDear "+firstName+" "+lastName+",\n\nHere is your password: "+
             				password+"\nPlease keep it safe !"
             				+"\n\nLooking forward to tears of happiness!"
@@ -75,7 +75,7 @@ public class PasswordSendingEmail {
 	            message.setFrom(new InternetAddress("springonionscmpe275@gmail.com"));            
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
 
-				message.setSubject("Spring Onion almost there..");
+				message.setSubject("[CONFIDENTIAL] Spring Onion almost there..");
 				message.setText("\nDear Company "+companyName+",\n\nHere is your password: "+
 						password+"\n\nLooking forward to tears of happiness!"
 						+ "\n\nCheers,\n" + "Team Spring-Onions");

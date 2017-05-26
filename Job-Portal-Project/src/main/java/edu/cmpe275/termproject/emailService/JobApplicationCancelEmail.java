@@ -38,7 +38,7 @@ public class JobApplicationCancelEmail {
 			message.setFrom(new InternetAddress("springonionscmpe275@gmail.com"));            
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
 
-			message.setSubject("Spring Onion almost there..");
+			message.setSubject(jobId+" Position "+jobTitle+" :"+companyName+" no longer available");
 			message.setText("\nDear "+firstName+" "+lastName+","
 					+ "\n\n This is to inform you that job posting "+jobId+": "+jobTitle+" at "+companyName+" has been removed"
 					+"\nYou are receiving this email as you had applied to this job posting!"
@@ -76,7 +76,7 @@ public class JobApplicationCancelEmail {
 			message.setFrom(new InternetAddress("springonionscmpe275@gmail.com"));            
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
 
-			message.setSubject("Spring Onion almost there..");
+			message.setSubject(jobId+" Position "+jobTitle+" :"+companyName+" no longer available");
 			message.setText("\nDear "+firstName+" "+lastName+","
 					+ "\n\n This is to inform you that job posting "+jobId+": "+jobTitle+" at "+companyName+" has been filled "
 					+"as company decided to move on with other candidate."

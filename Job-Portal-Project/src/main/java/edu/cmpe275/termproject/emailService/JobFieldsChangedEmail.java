@@ -38,7 +38,7 @@ public class JobFieldsChangedEmail {
             message.setFrom(new InternetAddress("springonionscmpe275@gmail.com"));            
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
             
-            message.setSubject("Spring Onion almost there..");
+            message.setSubject(jobId+" Position "+jobTitle+" :"+companyName+" updated");
             message.setText("\nDear "+firstName+" "+lastName+","
 					+ "\n\n "+jobId+": "+jobTitle+" at "+companyName+" just got updated"
 					+"\nYou are receiving this email as you have applied to this job posting!"
@@ -76,7 +76,7 @@ public class JobFieldsChangedEmail {
 			message.setFrom(new InternetAddress("springonionscmpe275@gmail.com"));            
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
 
-			message.setSubject("Spring Onion almost there..");
+			message.setSubject(jobId+" Position "+jobTitle+" :"+companyName+" updated");
 			message.setText("\nDear "+firstName+" "+lastName+","
 					+ "\n\n "+jobId+": "+jobTitle+" at "+companyName+" just got updated"
 					+"\nYou are receiving this email as you have this job posting in your interested list!"

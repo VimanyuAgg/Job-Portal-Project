@@ -41,7 +41,7 @@ public class JobAppliedEmail {
             message.setFrom(new InternetAddress("springonionscmpe275@gmail.com"));            
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
 
-			message.setSubject("Spring Onion almost there..");
+			message.setSubject("Application successful -"+jobId+" :"+jobTitle+" at "+companyName);
 			message.setText("\nDear "+firstName+" "+lastName+","
 					+ "\n\nYou just applied to JobID:"+jobId+" Titled: "+jobTitle+" at "+companyName+" company"
 					+ "\n\nThanks for using Spring Onions !"

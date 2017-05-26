@@ -35,7 +35,7 @@ public class WelcomeEmail {
             message.setFrom(new InternetAddress("testmyouth@gmail.com"));            
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
             
-            message.setSubject("Spring Onion almost there..");
+            message.setSubject("Welcome to Spring Onions..");
             message.setText("\nDear "+firstName+" "+lastName+",\n\nWelcome to Spring Onions !"
             		+ "\n Here is your user id: "+username
             		+"\n Your password will arrive shortly! Please keep them safe."
@@ -72,7 +72,7 @@ public class WelcomeEmail {
             message.setFrom(new InternetAddress("springonionscmpe275@gmail.com"));            
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiverMail));
 
-			message.setSubject("Spring Onion almost there..");
+			message.setSubject("Welcome to Spring Onions..");
 			message.setText("\nDear Company "+name+",\n\nWelcome to Spring Onions !"
 					+ "\n Here is your login id: "+receiverMail
 					+"\n Your password will arrive shortly! Please keep it safe."
