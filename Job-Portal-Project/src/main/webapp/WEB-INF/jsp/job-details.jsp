@@ -194,7 +194,7 @@ backhround: #eaedef;
 		
 		<div class="row ">
 			<div class="col-md-3"></div>
-			<div class="col-md-5 block">
+			<div class="col-md-6 block">
 				<h1>Job Details</h1>
 				<form action="/positions/applyjob" method="POST" enctype="multipart/form-data">
 					<input type="hidden" name="email" value="<%= session.getAttribute("email") %>"/>
