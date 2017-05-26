@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,9 @@ import edu.cmpe275.termproject.model.JobPosting;
 import edu.cmpe275.termproject.model.JobSeeker;
 import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobService;
+
 @Controller
+@Transactional
 public class JobController {
 	@Autowired
 	CompanyService companyService;
