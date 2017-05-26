@@ -234,7 +234,7 @@ backhround: #eaedef;
 </nav>
 
 
-<div style="color: Red; text-align:center">Error: ${errorMessage}!</div>
+<div style="color: Red; text-align:center">${errorMessage}</div>
 
 
 <div class="row outer">
