@@ -18,7 +18,7 @@ public class PasswordSendingEmail {
 //		String emailPassword = "Testouth1@";		
 		
 		String emailID = "springonionscmpe275@gmail.com";
-		String emailPassword = "spring-onions123";
+		String emailPassword = ###CONTACT COLLABORATORS ###;
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
@@ -54,7 +54,7 @@ public class PasswordSendingEmail {
 //			String emailPassword = "Testouth1@";		
 
 		String emailID = "springonionscmpe275@gmail.com";
-		String emailPassword = "spring-onions123";
+		String emailPassword = ###CONTACT COLLABORATORS ###;
 		
 		Properties properties = new Properties();
 			properties.put("mail.smtp.auth", "true");
