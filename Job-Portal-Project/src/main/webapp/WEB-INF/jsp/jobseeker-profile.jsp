@@ -197,44 +197,6 @@ backhround: #eaedef;
 	float: left;
 }
 
-.pagination{
-	margin-left: 42%;
-}
-
-
-.pagination li
-{
-    list-style:none;  
-    float:left;
-    width : 35px;
-    height: 30px;
-    border: .5px solid #163aaf;
-    background-color:white;
-    color: #163aaf;
-    text-align:center;
-    cursor:pointer;
-    margin: 2px;
-}
-
-.pagination li:hover
-{
-    background-color: #163aaf;
-    border:1px solid #163aaf;
-    color: white;
-}
-
-.pagination ul
-{
-    border: 0px;
-    padding: 0px;
-}
-
-.active-class
-{
-	background-color: #163aaf !important;
-    border:.4 px solid #163aaf !important;
-    color: white !important;	
-}
 
 
 </style>
@@ -297,14 +259,7 @@ backhround: #eaedef;
 <div class="form-group row">
 <label for="lastName" class="col-sm-2 col-form-label">Profile picture:</label>
     <div class="col-sm-6">
-<%--     
-<div class="col-md-2 rounder image-upload">
-    <label for="file-input">
-        <img class="rounder" id="defaultValue" src="${pageContext.request.contextPath}/img/user-200.png" height="90px" width="90px"/>
-    </label>
 
-    <input id="file-input" type="file" onchange="encodeImageFileAsURL(this)" name="picture"/>
-</div> --%>
 	   <div class="form-group row">
 			<div class="col-md-4"></div>
 			<input type="hidden" id="file-input2" role="uploadcare-uploader" name="picture" onchange="encodeImageFileAsURL(this)" data-images-only="true" />
