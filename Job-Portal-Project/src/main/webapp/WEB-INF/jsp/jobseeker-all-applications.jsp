@@ -315,9 +315,14 @@ $(document).ready(function(){
 		  	    				
 		  	    				 <br>
 		  	    				<div class="desc">
+			  							<c:set var = "stat" scope = "session" value = "${application.getStatus()}"/>
+				  	    				<c:if test = "${stat == 'Pending'}">
 										<input type="radio" onclick="addCancel('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Cancel&nbsp;&nbsp;
-			  							<input type="radio" onclick="addReject('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Reject&nbsp;&nbsp;
-			  							<input type="radio" onclick="addAccept('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">AcceptOffer
+			  							</c:if>
+			  							<c:if test = "${stat == 'Offered'}">
+				  							<input type="radio" onclick="addReject('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">Reject&nbsp;&nbsp;
+			  								<input type="radio" onclick="addAccept('${application.getId()}')" name="${application.getId()}" value="${application.getId()}">AcceptOffer
+			  							</c:if>
 		  	    				</div>  
 		  	    			</div>
 		  	    		</td>
@@ -326,9 +331,7 @@ $(document).ready(function(){
 		  	    			<c:out value="${application.getJobPosting().getJobTitle()}" /><br>
 		  	    			<div class="comp">"${application.getJobPosting().getJobPostedByCompany().getCompanyName()}"</div>
 		  	    		</td> 
-				    </tr>	  
-				    
-				      
+				    </tr>
 			    </tbody>
 			    </c:forEach>
 			    

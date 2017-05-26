@@ -170,7 +170,7 @@ public class JobApplicationController {
 
 		
 		map.addAttribute("jobid", jobId);
-		//map.addAttribute("job", job);
+		map.addAttribute("job", job);
 		map.addAttribute("applications",applications);
 
 		map.addAttribute("applicants", applicants);
@@ -185,9 +185,7 @@ public class JobApplicationController {
 	@RequestMapping(value="/jobseeker/app/{email}",method=RequestMethod.GET)
 	public String viewUserApps(@PathVariable String email, HttpServletRequest request, ModelMap map){
 		System.out.println("session: "+session);
-		if(session == null)
-			
-		{
+		if(session == null){
 			return "redirect:/jobseeker/login";
 		}
 		//jobApplicationService.findApplicants(jobId);
