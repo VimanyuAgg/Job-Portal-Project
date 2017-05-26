@@ -398,8 +398,10 @@ public class CompanyController {
 		company.setCompanyName(request.getParameter("name"));
 		company.setWebsite(request.getParameter("website"));
 		company.setAddress(request.getParameter("address"));
+		System.out.println("Iam hereh LINE 401:"+request.getParameter("logoImageUrl"));
 		company.setDescription(request.getParameter("description"));
-		company.setLogoUrl(request.getParameter("logoImageUrl"));
+		if(request.getParameter("logoImageUrl")!=null && request.getParameter("logoImageUrl").length()!=0)
+			company.setLogoUrl(request.getParameter("logoImageUrl"));
 		companyService.updateCompany(company);
 		System.out.println("I am website:"+company.getWebsite());
 		map.addAttribute("company",company);
