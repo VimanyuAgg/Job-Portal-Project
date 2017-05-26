@@ -15,12 +15,10 @@ public class JobAppliedEmail {
 	public static void EmailTrigger(String receiverMail, String firstName, String lastName, String jobTitle,
 			String companyName, String jobId) {
 		// TODO Auto-generated method stub
-		
-	//		String emailID = "testmyouth@gmail.com";
-	//		String emailPassword = "Testouth1@";		
+	
 
 		String emailID = "springonionscmpe275@gmail.com";
-		String emailPassword = "spring-onions123";
+		String emailPassword = ###CONTACT COLLABORATORS ###;
 		
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
