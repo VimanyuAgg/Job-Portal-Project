@@ -185,11 +185,15 @@ public class JobApplicationService {
 				application.setStatus("OfferAccpeted");
 				jobApplicationDAO.save(application);
 				
-				//Company company = application.getJobPosting().getJobPostedByCompany();
 				// mark the field in Company's job as Filled
 				application.getJobPosting().setJobStatus("Filled");
 				jobPostingDAO.save(application.getJobPosting());
-				// email all other applicants that position is filled
+				
+				// email all other applicants that position is filled now
+				List<JobApplication> applications = application.getJobPosting().getApplicants();
+				System.out.println("size of applications is "+applications.size());
+			
+				
 				
 			}
 			

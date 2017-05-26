@@ -352,13 +352,10 @@ backhround: #eaedef;
 		  	    			<c:out value="${job.getJobId()}" /><br>
 		  	    		</td>
 				    </tr>
-   					
-			    </tbody>
-			    
-			    
+   			    </tbody>
 			    </c:forEach>
 			</table>
-		  	    					</form>
+		 </form>
 			
 		
 		</div>	

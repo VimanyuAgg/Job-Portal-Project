@@ -126,10 +126,7 @@ public class JobApplicationController {
 			@ModelAttribute ("jobId_redir") String jobId_redir, @ModelAttribute ("errorMessage") String errorMessage) throws ParseException{
 		System.out.println("session: "+session);
 		
-		
-		
-		if(session == null)
-		{
+		if(session == null){
 			return "redirect:/company/login";
 		}
 
@@ -175,7 +172,7 @@ public class JobApplicationController {
 
 		
 		map.addAttribute("jobid", jobId);
-
+		//map.addAttribute("job", job);
 		map.addAttribute("applications",applications);
 
 		map.addAttribute("applicants", applicants);
