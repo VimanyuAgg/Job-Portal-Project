@@ -123,7 +123,9 @@ public class JobApplicationController {
 	//  REquired jobId
 	@RequestMapping(value="/positions/applicants",method=RequestMethod.GET)
 	public String findApplicants(HttpServletRequest request, ModelMap map,
-			@ModelAttribute ("jobId_redir") String jobId_redir, @ModelAttribute ("errorMessage") String errorMessage) throws ParseException{
+			@ModelAttribute ("jobId_redir") String jobId_redir, 
+			@ModelAttribute("jobId3") String jobId3,
+			@ModelAttribute ("errorMessage") String errorMessage) throws ParseException{
 		System.out.println("session: "+session);
 		
 		if(session == null){
@@ -133,8 +135,11 @@ public class JobApplicationController {
 		System.out.println("inside findApplicants");
 		
 		String jobId = "";
-		if (jobId_redir == null || jobId_redir.isEmpty()){
+		if ((jobId_redir == null || jobId_redir.isEmpty()) && (jobId3 == null || jobId3.isEmpty())){
 			jobId= request.getParameter("jobId");
+		}
+		else if(jobId_redir == null || jobId_redir.isEmpty()){
+			jobId=jobId3;
 		}
 		else{
 			jobId=jobId_redir;
@@ -293,11 +298,10 @@ public class JobApplicationController {
 	
 	@RequestMapping(value="/position/{jobId}/offer/{jsId}",method=RequestMethod.GET)
 	public String giveOffer(@PathVariable String jobId, @PathVariable String jsId, 
-			HttpServletRequest request, ModelMap map){
+			HttpServletRequest request, ModelMap map, RedirectAttributes redirectAttribute){
 		
 		System.out.println("inside giveOffer()");
 		System.out.println("session: "+session);
-
 		System.out.println("jobId "+jobId);
 		System.out.println("jsId "+jsId);
 
@@ -305,39 +309,12 @@ public class JobApplicationController {
 			return "redirect:/jobseeker/login";
 		}
 		
-		JobSeeker applicant = jobSeekerService.findByEmail(".com");
+		JobSeeker applicant = jobSeekerService.findByJsid(Long.parseLong(jsId));
 		
 		if(applicant != null) System.out.println("applicant found");
 		else System.out.println("applicant not found");
-		
-		List<JobApplication> userApplications = jobApplicationService.findApplications(applicant);
-		
-		for(JobApplication application : userApplications){
-			System.out.println("inside loop");
-			System.out.println("inside loop "+application.getId());
-			System.out.println("inside loop"+application.getPostedOn());
-			System.out.println("inside loop"+application.getProfile());
-			System.out.println("inside loop"+application.getJobPosting());
-			
-			if(application.getProfile().equals("Resume")){
-				try{
-//					FileOutputStream fos = new FileOutputStream("/file.txt");
-//					fos.write(application.getResume());
-//					fos.close();
-				}catch(Exception e){
-					System.out.println("Exception in viewUserApps");
-				}
-			}
-			
-			//map.addAttribute("applications", userApplications);
-			
-			System.out.println("inside loop"+application.getResume());
-			System.out.println("inside loop"+application.getStatus());
-		}
-		
-		System.out.println("application size "+userApplications.size());
-		
-		map.addAttribute("applications", userApplications);
-		return "jobseeker-all-applications";
+		jobApplicationService.updateOffer(applicant, jobId);
+		redirectAttribute.addFlashAttribute("jobId3", jobId);
+		return "redirect:/positions/applicants";
 	}	
 }

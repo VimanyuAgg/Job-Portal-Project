@@ -17,11 +17,6 @@
 	<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-   <script>
-	   $(document).ready(function(){
-	       $('#myTable').dataTable();
-	   });
-   </script>
 <style>
 
 	

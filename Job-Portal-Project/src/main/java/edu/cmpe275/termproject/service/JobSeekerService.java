@@ -110,4 +110,11 @@ public class JobSeekerService {
 		
 		return jobSeekerDAO.findByEmail(email);
 	}
+
+public JobSeeker findByJsid(Long jsid) {
+	
+	return jobSeekerDAO.findByJsid(jsid);
+}
+
+
 }

@@ -216,4 +216,27 @@ public class JobApplicationService {
 	public JobApplication getApplication(String applicationId){
 		return jobApplicationDAO.findOne(applicationId);
 	}
+
+	public List<JobApplication> updateOffer(JobSeeker applicant, String jobId) {
+		
+		List<JobApplication> userApplications = findApplications(applicant);
+		
+		for(JobApplication application : userApplications){
+			System.out.println("inside loop");
+			System.out.println("inside loop "+application.getId());
+
+			if(application.getJobPosting().getJobId().equals(jobId)){
+				// this is the job whose offer has been extended
+				System.out.println("inside updating##########");
+				application.setStatus("Offered");
+				jobSeekerDAO.save(applicant);
+				jobApplicationDAO.save(application);
+				break;
+			}
+			
+		}
+		
+		System.out.println("application size "+userApplications.size());
+		return userApplications;
+	}
 }

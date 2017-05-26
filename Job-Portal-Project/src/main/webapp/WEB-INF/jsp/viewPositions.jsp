@@ -16,42 +16,35 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/company-registration.js"></script>
-<%-- 	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet"></link>
- --%>	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
+	<script src="${pageContext.request.contextPath}/js/login-validation.js"/></script>    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<%--     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet"></link>
-
- --%>    
- <link href="${pageContext.request.contextPath}/css/snackbar.css" rel="stylesheet"></link>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ 	<link href="${pageContext.request.contextPath}/css/snackbar.css" rel="stylesheet"></link>
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 		 
 function interested(a){		
-		 $.ajax({
-	            
-			  	 type: "post",
-	            url: "/jobseeker/markInterested",
-	            data: "jobId=" +String(a),
-	            success: function(msg, status){  
-	            	
-	            	document.getElementById("snackbar").innerHTML =  msg["result"]; 
-	            	
-	            	var x = document.getElementById("snackbar");
+	 $.ajax({
+            type: "post",
+            url: "/jobseeker/markInterested",
+            data: "jobId=" +String(a),
+            success: function(msg, status){  
+            	
+            	document.getElementById("snackbar").innerHTML =  msg["result"]; 
+            	
+            	var x = document.getElementById("snackbar");
 
-	                // Add the "show" class to DIV
-	                x.className = "show";
+                x.className = "show";
 
-	                // After 3 seconds, remove the show class from DIV
-	                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-	            	
+                // After 3 seconds, remove the show class from DIV
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+            	
 	            },
 	            error: function(err){
-	            console.log(err);	
-	           //  alert(err);
-	            }
-		 });
+    	        console.log(err);	
+            }
+	 });
 }
 </script>
 
@@ -250,23 +243,11 @@ backhround: #eaedef;
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 	          <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/profile">View Profile</a>
 			  <a class="dropdown-item" href="/jobseeker/<%=session.getAttribute("username")%>/viewInterestedJobs">View Interested Jobs</a>
-	         
-<%-- 	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applications</a>
-	          <a class="dropdown-item" href="/company/register">Edit Profile</a>
- --%>
-
-	        <!--   <a class="dropdown-item" href="/company/register">View Job History</a> -->
-	        <!--   <a class="dropdown-item" href="/company/register">Edit Profile</a> -->
-
 	          <a class="dropdown-item" href="/jobseeker/app/<%=session.getAttribute("email")%>">View Applications</a>
 	         
 
 	        </div>
-<!-- 	        	     <li class="nav-item active">
-	     <form id="jobs" action="/positions/searchByFields" method="POST">
-	        <a class="nav-link mr-sm-2 wh" href="#" onclick="document.getElementById('jobs').submit();">Jobs</a></form>
 	      </li>
- -->	      </li>
 	       <li class="nav-item active">
 	        <a class="nav-link mr-sm-2 wh" href="/jobseeker/logout">Log Out <span class="sr-only">(current)</span></a>
 	      </li>
