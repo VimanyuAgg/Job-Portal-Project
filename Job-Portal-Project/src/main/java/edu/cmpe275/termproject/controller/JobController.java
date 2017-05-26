@@ -25,7 +25,6 @@ import edu.cmpe275.termproject.service.CompanyService;
 import edu.cmpe275.termproject.service.JobService;
 
 @Controller
-@Transactional
 public class JobController {
 	@Autowired
 	CompanyService companyService;

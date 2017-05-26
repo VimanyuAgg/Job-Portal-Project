@@ -57,7 +57,7 @@ import edu.cmpe275.termproject.service.JobService;
 import edud.cmpe275.termproject.websecurity.SecurityConfig;
 
 @Controller
-@Transactional
+
 public class JobSeekerController {
 	
 	@Autowired

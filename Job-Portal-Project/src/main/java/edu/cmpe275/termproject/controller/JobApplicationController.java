@@ -34,7 +34,7 @@ import edu.cmpe275.termproject.service.JobSeekerService;
 import edu.cmpe275.termproject.service.JobService;
 
 @Controller
-@Transactional
+
 @MultipartConfig
 public class JobApplicationController {
 
