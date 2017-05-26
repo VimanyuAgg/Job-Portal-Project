@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import edu.cmpe275.termproject.service.JobSeekerService;
 import edu.cmpe275.termproject.service.JobService;
 
 @Controller
+@Transactional
 @MultipartConfig
 public class JobApplicationController {
 
