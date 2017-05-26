@@ -3,6 +3,7 @@ package edu.cmpe275.termproject.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.catalina.core.ApplicationSessionCookieConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,8 @@ import edu.cmpe275.termproject.dao.CompanyDAO;
 import edu.cmpe275.termproject.dao.JobApplicationDAO;
 import edu.cmpe275.termproject.dao.JobPostingDAO;
 import edu.cmpe275.termproject.dao.JobSeekerDAO;
+import edu.cmpe275.termproject.emailService.CongratulatoryEmail;
+import edu.cmpe275.termproject.emailService.JobApplicationCancelEmail;
 import edu.cmpe275.termproject.emailService.JobAppliedEmail;
 import edu.cmpe275.termproject.emailService.RegistrationEmail;
 import edu.cmpe275.termproject.model.Company;
@@ -193,6 +196,22 @@ public class JobApplicationService {
 				List<JobApplication> applications = application.getJobPosting().getApplicants();
 				System.out.println("size of applications is "+applications.size());
 			
+				for(int i=0;i<applications.size();i++){
+					//Sending position filled email
+					if(applications.get(i).getApplicant().getJsid() != application.getApplicant().getJsid()){
+						JobApplicationCancelEmail.jobFilledEmail(applications.get(i).getApplicant().getEmail(),
+								applications.get(i).getApplicant().getFirstName(),
+								applications.get(i).getApplicant().getLastName(),applications.get(i).getJobPosting().getJobId(),
+								applications.get(i).getJobPosting().getJobTitle(),applications.get(i).getJobPosting().getJobPostedByCompany().getCompanyName());
+					}
+					//Sending Congratulatory mail
+					else{
+						CongratulatoryEmail.sendCongratesMail(application.getApplicant().getEmail(), application.getApplicant().getFirstName(),
+								application.getApplicant().getLastName(),application.getJobPosting().getJobId(),
+								application.getJobPosting().getJobTitle(),application.getJobPosting().getJobPostedByCompany().getCompanyName());
+					}
+				}
+				
 				
 				
 			}
