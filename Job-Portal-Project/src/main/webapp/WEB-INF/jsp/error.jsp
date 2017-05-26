@@ -13,6 +13,188 @@
    
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/navbar.css"></link>
+<style>
+
+body{
+	background-color: #eaedef;
+	background-image: url("1.jpg");
+}
+
+.head{
+	height: 80px;
+	background-color: #62C192;
+}
+
+.rounder{
+	border-radius: 50%;
+}
+
+.field{
+	background: #f2f5f6;
+	border-style: none;
+	border-bottom-style: solid;
+	border-bottom-width: .5px;
+	border-bottom-color: #62C192;
+}
+
+.field:focus {
+  border-color: #62C192;
+  box-shadow: #62C192;  
+}
+
+.btn1{
+	background-color: #62C192;
+	border-color: #62C192;
+	margin-left: 70px;
+}
+
+.btn1: hover{
+	background-color: #62C192;
+	border-color: #62C192;
+}
+
+h1{
+	margin-left: 520px;
+}
+
+#error{
+	text-align: middle;
+}
+html,
+body{
+margin:0;
+padding: 0;
+backhround: #eaedef;
+}
+
+.btn{
+    background: #163aaf;
+	color: white;   
+}
+.btn1{
+	background: #62C192;
+}
+
+.nv{
+	background-color: #163aaf!Important;
+}
+
+.wh{
+	color: white!Important;
+}
+
+.ack{
+	margin-left: 30%;
+}
+
+
+
+.sidebar{
+	background-color: #d1dbff;
+	height: 400px;
+	width: 100%;
+}
+
+.dp{
+	margin-top: 30px;
+	vertical-align:middle;
+	margin-left: 15%;
+	/*  border-radius: 50%; */
+}
+
+.comp{
+	font-size: 14px;
+}
+
+.outer{
+	margin-top: 60px;
+}
+
+.name{
+	text-align: center;
+  	margin: 0 auto;
+	width: 200px;
+	margin-top: 10px;
+}
+
+.data{
+	margin-left: 100px;
+    min-width: 100%;
+    width: 657px;
+}
+
+.desc{
+
+}
+
+.item{
+	min-height: 100px;
+	width: 100%;
+	background-color: #d1dbff;
+	margin-left: 5px;
+	margin-top: 10px;
+	min-height: 100px;
+	padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.cl{
+	width: 69px;
+	height: 69px;
+	border-radius: 50%;
+	margin-left: 8px;
+	margin-top: 8px;
+}
+
+.headd{
+	float: left;
+}
+
+.pagination{
+	margin-left: 42%;
+}
+
+
+.pagination li
+{
+    list-style:none;  
+    float:left;
+    width : 35px;
+    height: 30px;
+    border: .5px solid #163aaf;
+    background-color:white;
+    color: #163aaf;
+    text-align:center;
+    cursor:pointer;
+    margin: 2px;
+}
+
+.pagination li:hover
+{
+    background-color: #163aaf;
+    border:1px solid #163aaf;
+    color: white;
+}
+
+.pagination ul
+{
+    border: 0px;
+    padding: 0px;
+}
+
+.active-class
+{
+	background-color: #163aaf !important;
+    border:.4 px solid #163aaf !important;
+    color: white !important;	
+}
+
+
+</style>
+
+
+
+
     
 </head>
 
@@ -22,7 +204,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="container">
-      <a class="navbar-brand wh" href="#">Spring Onions</a>
+      <a class="navbar-brand wh" href="/jobseeker/<%=session.getAttribute("username")%>/dashboard">Spring Onions</a>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
