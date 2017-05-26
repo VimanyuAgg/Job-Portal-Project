@@ -234,6 +234,8 @@ backhround: #eaedef;
 </nav>
 
 
+<div style="color: Red; text-align:center">Error: ${errorMessage}!</div>
+
 
 <div class="row outer">
 	
@@ -247,7 +249,6 @@ backhround: #eaedef;
 			<div class="name">${address}</div>
 			<div class="name">${website}</div>
 		</div>
-		<div>${errorMessage}</div>
 				<div class="col-md-7">
 		<!-- job card section -->
 
