@@ -15,10 +15,10 @@ public class CongratulatoryEmail {
 	public static void sendCongratesMail(String receiverMail, String firstName, String lastName,
 			  String jobId, String jobTitle, String  companyName){
 //String emailID = "testmyouth@gmail.com";
-//String emailPassword = "Testouth1@";		
+//String emailPassword = 		
 //
 		String emailID = "springonionscmpe275@gmail.com";
-		String emailPassword = "spring-onions123";
+		String emailPassword = ###CONTACT COLLABORATORS ###;
 
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
