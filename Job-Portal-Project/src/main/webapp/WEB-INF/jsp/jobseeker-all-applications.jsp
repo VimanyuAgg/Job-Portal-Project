@@ -105,9 +105,11 @@ backhround: #eaedef;
 }
 
 .dp{
+
 	margin-top: 30px;
-	margin-left: 33%;
-	border-radius: 50%;
+	vertical-align:middle;
+	margin-left: 15%;
+
 }
 
 .comp{
@@ -260,7 +262,7 @@ $(document).ready(function(){
 		<div class="col-md-1"></div>
 		<div class="col-md-2 sidebar" style="text-align">
 			<!-- side bar for profile review -->
-			<img class="img-responsive dp" src="${pageContext.request.contextPath}/img/user-200.png" width="34%">
+			<img class="img-responsive dp" src="${picture}" width="75%">
 		
 			<div class="name">${firstName}&nbsp;${lastName}</div>
  			<br>
@@ -288,7 +290,7 @@ $(document).ready(function(){
 		  	    <tbody>
 		  	    	<tr class="row item post">
 		  	    		<td style="max-width: 100px">
-		  	    			<img class="img-responsive cl" src="${pageContext.request.contextPath}/img/company-200.png">
+		  	    			<img class="img-responsive cl" src="${application.getJobPosting().getJobPostedByCompany().getLogoUrl()}">
 		  	    			<br>
 		  	    			<div class="data" style="color:grey">
 		  	    				<div class="desc">
