@@ -44,7 +44,13 @@ public class JobService {
 		ArrayList<JobPosting> jobList = jobPostingDao.findTop10jobs();
 
 		 System.out.println("inside job service - jobList size: "+jobList.size());
-		
+		 
+		 for(int i=0;i<jobList.size();i++){
+			 if(!jobList.get(i).getJobStatus().equals("open")){
+				 jobList.remove(i);
+			 }
+		 }
+		 System.out.println("open jobList size: "+jobList.size());
 		return jobList;
 	}
 	
@@ -192,6 +198,12 @@ public class JobService {
 				System.out.println("searchStringLists has size "+searchStringLists.size());
 			}
 		}
+		for(int i=0;i<searchStringLists.size();i++){
+			if(searchStringLists.get(i).getJobStatus().equals("open")){
+				searchStringLists.remove(i);
+			}
+		}
+		System.out.println("open searchStringLists has size "+searchStringLists.size());
 		return searchStringLists;
 	}	
 //	public List<JobPosting> searchBySalaryRange(int min, int max){
@@ -203,6 +215,13 @@ public class JobService {
 		System.out.println("Inside searchBySalaryRange() JobService.java");
 		searchSalaryList = jobPostingDao.findBySalaryRange(minimum, maximum);
 		System.out.println("searchSalaryList has size "+searchSalaryList.size());
+		
+		for(int i=0;i<searchSalaryList.size();i++){
+			if(!searchSalaryList.get(i).getJobStatus().equals("open")){
+				searchSalaryList.remove(i);
+			}
+		}
+		System.out.println("open searchSalaryList has size "+searchSalaryList.size());
 		return searchSalaryList;
 	}
 	public List<JobPosting> searchByFields(String jobId, String title, String location, String salary, String status,
@@ -253,6 +272,12 @@ public class JobService {
 			}
 		}
 		
+		for(int i=0;i<searchList.size();i++){
+			if(!searchList.get(i).getJobStatus().equals("open")){
+				searchList.remove(i);
+			}
+		}
+		System.out.println("open searchStringLists now has size "+searchList.size());
 		return searchList;
 		
 	}
