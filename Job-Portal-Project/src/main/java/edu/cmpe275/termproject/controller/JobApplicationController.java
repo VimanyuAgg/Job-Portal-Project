@@ -280,7 +280,7 @@ public class JobApplicationController {
 			JobApplication application=jobApplicationService.getApplication(applicationId);
 			String email=application.getApplicant().getEmail();
 			//Email the Candidate the status - 7G
-			JobApplicationCancelEmail.jobCancelEmail(email, application.getApplicant().getFirstName(),
+			JobApplicationCancelEmail.jobFilledEmail(email, application.getApplicant().getFirstName(),
 					application.getApplicant().getLastName(), 
 					application.getJobPosting().getJobId(), application.getJobPosting().getJobTitle(),
 					application.getJobPosting().getJobPostedByCompany().getCompanyName());

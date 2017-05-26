@@ -239,6 +239,8 @@ a:hover{
 </nav>
 
 
+<div style="color: Red; text-align:center">${errorMessage}</div>
+
 
 <div class="row outer">
 	
@@ -252,7 +254,6 @@ a:hover{
 			<div class="name">${address}</div>
 			<div class="name">${website}</div>
 		</div>
-		<div>${errorMessage}</div>
 				<div class="col-md-7">
 		<!-- job card section -->
 

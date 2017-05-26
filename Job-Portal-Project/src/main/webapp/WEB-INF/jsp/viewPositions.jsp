@@ -24,6 +24,7 @@
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 		 
+/* <<<<<<< HEAD
 function interested(a){		
 	 $.ajax({
             type: "post",
@@ -39,7 +40,31 @@ function interested(a){
 
                 // After 3 seconds, remove the show class from DIV
                 setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-            	
+            	 */
+
+function interested(a){	
+		var prevthis =this;
+		 $.ajax({
+	            
+			  	 type: "post",
+	            url: "/jobseeker/markInterested",
+	            data: "jobId=" +String(a),
+	            success: function(msg, status){  
+	            	
+	            	document.getElementById("snackbar").innerHTML =  msg["result"]; 
+	            	
+	            	var x = document.getElementById("snackbar");
+
+	                // Add the "show" class to DIV
+	                x.className = "show";
+
+	                // After 3 seconds, remove the show class from DIV
+	                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	                //$("#markButton").attr("disabled", true);
+	               
+	            	 
+
+
 	            },
 	            error: function(err){
     	        console.log(err);	
@@ -385,7 +410,7 @@ backhround: #eaedef;
 	      <td><input type="radio" name="profile" onChange="disableResumeButton(this, value='${position.getJobId()}')"/></td>
 	      <td><input type="file" name="${position.getJobId()}" id="${position.getJobId()}" onclick="resumeUpload('${position.getJobId()}')"/></td>
 	      <td><input type="submit" value="Apply Now!"/></td>
-	      <td><input type="button" value="Mark as interested!" onClick="interested('${position.getJobId()}');"/></td>
+	      <td><input type="button" value="Mark as interested!" onClick="interested('${position.getJobId()}');" id="markButton"/></td>
 	      <%-- <td><input type="hidden" value="${position.getJobId()}" id="hiddenJobID"/></td>
 	       --%>
 	    </tr>

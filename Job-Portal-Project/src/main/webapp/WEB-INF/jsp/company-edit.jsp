@@ -250,7 +250,7 @@ backhround: #eaedef;
 		<div class="col-md-1"></div>
 		<div class="col-md-2 sidebar" style="text-align">
 			<!-- side bar for profile review -->
-			<img class="img-responsive dp" src="${logoImageUrl}" width="75%">
+			<img class="img-responsive dp" src="${company.getLogoUrl()}" width="75%">
 		
 			<div class="name"><%=session.getAttribute("companyName")%></div>
  			<br>
