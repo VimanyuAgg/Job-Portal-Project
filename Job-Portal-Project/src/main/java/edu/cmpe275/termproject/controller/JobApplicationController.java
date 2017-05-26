@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import edu.cmpe275.termproject.service.JobSeekerService;
 import edu.cmpe275.termproject.service.JobService;
 
 @Controller
+@Transactional
 @MultipartConfig
 public class JobApplicationController {
 
@@ -170,7 +172,7 @@ public class JobApplicationController {
 
 		
 		map.addAttribute("jobid", jobId);
-		//map.addAttribute("job", job);
+		map.addAttribute("job", job);
 		map.addAttribute("applications",applications);
 
 		map.addAttribute("applicants", applicants);
@@ -185,9 +187,7 @@ public class JobApplicationController {
 	@RequestMapping(value="/jobseeker/app/{email}",method=RequestMethod.GET)
 	public String viewUserApps(@PathVariable String email, HttpServletRequest request, ModelMap map){
 		System.out.println("session: "+session);
-		if(session == null)
-			
-		{
+		if(session == null){
 			return "redirect:/jobseeker/login";
 		}
 		//jobApplicationService.findApplicants(jobId);
