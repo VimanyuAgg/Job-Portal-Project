@@ -3,10 +3,10 @@ Team Number: 13
 Team Members:
 
 Name					SJSUID			Email ID
-Bhushan Deshmukh		011442197		bhushan.deshmukh2012@gmail.com
-Sidharth Bhasin         	011439337		sidharth.bhasin@sjsu.edu
-Sparsh Sidana			011413402		sparsh.sidana@sjsu.edu
-Vimanyu Aggarwal		011006125		vimanyu.aggarwal@sjsu.edu
+Bhushan Deshmukh				bhushan.deshmukh2012@gmail.com
+Sidharth Bhasin         			sidharth.bhasin@sjsu.edu
+Sparsh Sidana					sparsh.sidana@sjsu.edu
+Vimanyu Aggarwal				vimanyu.aggarwal@sjsu.edu
 
 
 Instructions to run the application-
